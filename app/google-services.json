@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "865796184475",
+    "firebase_url": "https://youngman-783f3.firebaseio.com",
+    "project_id": "youngman-783f3",
+    "storage_bucket": "youngman-783f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865796184475:android:8545bf90fe8b8d2d",
+        "android_client_info": {
+          "package_name": "com.example.vikas.youngmanindia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865796184475-m3i8c2dc553pu006nd6e49kdldr603hu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOdDUgwRli_yJEhC4DCrrZDejY6bE20lY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865796184475:android:e0e9ea60aa0b7823",
+        "android_client_info": {
+          "package_name": "com.example.vikas.safetyfirst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865796184475-m3i8c2dc553pu006nd6e49kdldr603hu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOdDUgwRli_yJEhC4DCrrZDejY6bE20lY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
