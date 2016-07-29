@@ -1,4 +1,4 @@
-package com.example.vikas.safetyfirst;
+package com.example.vikas.safetyfirst.mNewsActivity;
 
 /**
  * Created by Vikas on 26-07-2016.
@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.mNewsActivity.FavNewsFragment;
 import com.example.vikas.safetyfirst.mNewsActivity.NewNewsFragment;
 
@@ -94,9 +95,9 @@ public class NewsFragment extends Fragment {
 
             switch (position){
                 case 0 :
-                    return "Primary";
+                    return "News";
                 case 1 :
-                    return "Social";
+                    return "Fav";
             }
             return null;
         }

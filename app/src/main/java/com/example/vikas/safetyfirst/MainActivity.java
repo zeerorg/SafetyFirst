@@ -12,6 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.vikas.safetyfirst.mKnowitActivity.KnowitFragment;
+import com.example.vikas.safetyfirst.mNewsActivity.NewsFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentManager mFragmentManager;
