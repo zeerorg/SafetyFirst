@@ -29,7 +29,10 @@
         </activity>
 
         <activity android:name=".mWebview.Webview"></activity>
-
+        <activity android:name=".mKnowitActivity.Ladders.mNonSelfSupportingLadder.NonSelfSupporting"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".mNewsActivity.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar"

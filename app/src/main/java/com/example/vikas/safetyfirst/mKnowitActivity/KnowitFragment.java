@@ -15,8 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.vikas.safetyfirst.R;
-import com.example.vikas.safetyfirst.mNewsActivity.FavNewsFragment;
-import com.example.vikas.safetyfirst.mNewsActivity.NewNewsFragment;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Ladders;
 
 /**
  * Created by Ratan on 7/29/2015.
@@ -72,13 +71,13 @@ public class KnowitFragment extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0: return new TabFragment1();
+                case 0: return new Ladders();
                 case 1: return new TabFragment2();
-                case 2 : return new TabFragment1();
+                case 2 : return new TabFragment3();
                 case 3 : return new TabFragment2();
-                case 4: return new TabFragment1();
-                case 5: return new TabFragment2();
-                case 6 : return new TabFragment1();
+                case 4: return new TabFragment3();
+                case 5: return new TabFragment3();
+                case 6 : return new TabFragment3();
                 case 7 : return new TabFragment2();
             }
             return null;

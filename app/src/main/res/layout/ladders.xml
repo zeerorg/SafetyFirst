@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/non_self_supporting_ladder"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/non_supporting_ladder"/>
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/self_supporting_ladder"
+        android:src="@drawable/self_supporting_ladder"
+        android:layout_alignLeft="@+id/non_self_supporting_ladder"
+        android:layout_alignStart="@+id/non_self_supporting_ladder"
+        android:layout_alignRight="@+id/non_self_supporting_ladder"
+        android:layout_alignEnd="@+id/non_self_supporting_ladder"
+        android:layout_below="@+id/non_self_supporting_ladder" />
+
+</RelativeLayout>
