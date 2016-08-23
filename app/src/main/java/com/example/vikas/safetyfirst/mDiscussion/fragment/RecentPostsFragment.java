@@ -19,3 +19,4 @@ public class RecentPostsFragment extends PostListFragment {
         return recentPostsQuery;
     }
 }
+

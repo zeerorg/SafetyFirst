@@ -168,6 +168,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         public TextView authorView;
         public TextView bodyView;
+        //TODO add upvotes and downvotes button
 
         public CommentViewHolder(View itemView) {
             super(itemView);
@@ -292,6 +293,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             Comment comment = mComments.get(position);
             holder.authorView.setText(comment.author);
             holder.bodyView.setText(comment.text);
+
         }
 
         @Override

@@ -1,8 +1,9 @@
 package com.example.vikas.safetyfirst;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -20,74 +21,39 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignInActivity extends BaseActivity implements View.OnClickListener {
+public class SignUpActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "SignInActivity";
+    private static final String TAG = "SignUnActivity";
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
+    private EditText mNameField;
     private EditText mEmailField;
     private EditText mPasswordField;
-    private Button mSignInButton;
+    private EditText mConfirmPasswordField;
     private Button mSignUpButton;
-    private TextView mSignUpText;
+    private TextView mSigninText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_up);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
         // Views
-        mEmailField = (EditText) findViewById(R.id.field_email);
-        mPasswordField = (EditText) findViewById(R.id.field_password);
-        mSignInButton = (Button) findViewById(R.id.button_sign_in);
-      //  mSignUpButton = (Button) findViewById(R.id.button_sign_up);
-        mSignUpText = (TextView) findViewById(R.id.link_signup);
+        mNameField = (EditText) findViewById(R.id.input_name);
+        mEmailField = (EditText) findViewById(R.id.input_email);
+        mPasswordField = (EditText) findViewById(R.id.input_password);
+        mConfirmPasswordField = (EditText) findViewById(R.id.input_password_confirm);
+        mSignUpButton = (Button) findViewById(R.id.btn_signup);
+        mSigninText = (TextView) findViewById(R.id.link_login);
+
         // Click listeners
-        mSignInButton.setOnClickListener(this);
-        mSignUpText.setOnClickListener(this);
-      //  mSignUpButton.setOnClickListener(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Check auth on Activity start
-        if (mAuth.getCurrentUser() != null) {
-            onAuthSuccess(mAuth.getCurrentUser());
-        }
-    }
-
-    private void signIn() {
-        Log.d(TAG, "signIn");
-        if (!validateForm()) {
-            return;
-        }
-
-        showProgressDialog();
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
-
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signIn:onComplete:" + task.isSuccessful());
-                        hideProgressDialog();
-
-                        if (task.isSuccessful()) {
-                            onAuthSuccess(task.getResult().getUser());
-                        } else {
-                            Toast.makeText(SignInActivity.this, "Sign In Failed",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        mSignUpButton.setOnClickListener(this);
+        mSigninText.setOnClickListener(this);
     }
 
     private void signUp() {
@@ -110,7 +76,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign Up Failed",
+                            Toast.makeText(SignUpActivity.this, "Sign Up Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -119,12 +85,12 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     private void onAuthSuccess(FirebaseUser user) {
         String username = usernameFromEmail(user.getEmail());
-
+       // String username = mNameField.getText().toString();
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
         // Go to DashboardnActivity
-        startActivity(new Intent(SignInActivity.this,DashboardActivity.class));
+        startActivity(new Intent(SignUpActivity.this,DashboardActivity.class));
         finish();
     }
 
@@ -138,6 +104,12 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     private boolean validateForm() {
         boolean result = true;
+        if (TextUtils.isEmpty(mNameField.getText().toString())) {
+            mNameField.setError("Required");
+            result = false;
+        } else {
+            mNameField.setError(null);
+        }
         if (TextUtils.isEmpty(mEmailField.getText().toString())) {
             mEmailField.setError("Required");
             result = false;
@@ -151,7 +123,14 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         } else {
             mPasswordField.setError(null);
         }
-
+    /*    if (mPasswordField.getText().toString() != mConfirmPasswordField.getText().toString() ) {
+            mPasswordField.setError("Passwords do not match");
+            mConfirmPasswordField.setError("Passwords do not match");
+            result = false;
+        } else {
+            mPasswordField.setError(null);
+            mConfirmPasswordField.setError(null);
+        }*/
         return result;
     }
 
@@ -162,14 +141,14 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         mDatabase.child("users").child(userId).setValue(user);
     }
     // [END basic_write]
-
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.button_sign_in) {
-            signIn();
-        } else if(i == R.id.link_signup){
-            startActivity(new Intent(SignInActivity.this,SignUpActivity.class));
+        if (i == R.id.btn_signup) {
+            signUp();
+        }
+        else if(i == R.id.link_login){
+            startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
             finish();
         }
     }
