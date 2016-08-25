@@ -39,4 +39,13 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_navigation_check_24"/>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Image"
+        android:id="@+id/imageBtn"
+        android:layout_alignBottom="@+id/fab_submit_post"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
