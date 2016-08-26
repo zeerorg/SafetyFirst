@@ -104,8 +104,8 @@ public class PicActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         StorageReference storageRef = storage.getReferenceFromUrl(URL);
-        //todo change name of image from rider to something else
-        StorageReference mountainsRef = storageRef.child("images/" + "rider.jpg");
+        //todo work on filename
+        StorageReference mountainsRef = storageRef.child("images").child(filename);
         assert stream != null;
         uploadTask = mountainsRef.putStream(stream);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -121,6 +121,10 @@ public class PicActivity extends AppCompatActivity {
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 assert downloadUrl != null;
                 Toast.makeText(getBaseContext(), downloadUrl.toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("DOWNLOAD_URI", downloadUrl);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
     }

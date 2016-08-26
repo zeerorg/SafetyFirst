@@ -1,6 +1,7 @@
 package com.example.vikas.safetyfirst.mDiscussion;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class NewPostActivity extends BaseActivity {
 
     private EditText mTitleField;
     private EditText mBodyField;
+    private String mImageUri;
     private Button  mImageBtn;
 
     @Override
@@ -60,15 +62,27 @@ public class NewPostActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(NewPostActivity.this, PicActivity.class));
+                startActivityForResult(new Intent(NewPostActivity.this, PicActivity.class), 1);
 
             }
         });
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                mImageUri = data.getStringExtra("DOWNLOAD_URI");
+                Toast.makeText(NewPostActivity.this, "result ok" + mImageUri, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     private void submitPost() {
         final String title = mTitleField.getText().toString();
         final String body = mBodyField.getText().toString();
+        final String image;
+        if (mImageUri != null) image = mImageUri;
+        else image = null;
 
         // Title is required
         if (TextUtils.isEmpty(title)) {
@@ -100,7 +114,7 @@ public class NewPostActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username, title, body);
+                            writeNewPost(userId, user.username, title, body, image);
                         }
 
                         // Finish this Activity, back to the stream
@@ -117,11 +131,11 @@ public class NewPostActivity extends BaseActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body) {
+    private void writeNewPost(String userId, String username, String title, String body, String image) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("posts").push().getKey();
-        Post post = new Post(userId, username, title, body);
+        Post post = new Post(userId, username, title, body, image);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
