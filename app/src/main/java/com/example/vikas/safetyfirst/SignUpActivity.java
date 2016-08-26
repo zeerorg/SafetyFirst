@@ -65,22 +65,29 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         showProgressDialog();
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
+        String confirmPassword = mConfirmPasswordField.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
-                        hideProgressDialog();
+        if(password.equals(confirmPassword)){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
+                            hideProgressDialog();
 
-                        if (task.isSuccessful()) {
-                            onAuthSuccess(task.getResult().getUser());
-                        } else {
-                            Toast.makeText(SignUpActivity.this, "Sign Up Failed",
-                                    Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                onAuthSuccess(task.getResult().getUser());
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Sign Up Failed",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }else {
+            hideProgressDialog();
+            Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void onAuthSuccess(FirebaseUser user) {
@@ -89,7 +96,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
-        // Go to DashboardnActivity
+        // Go to DashboardActivity
         startActivity(new Intent(SignUpActivity.this,DashboardActivity.class));
         finish();
     }
