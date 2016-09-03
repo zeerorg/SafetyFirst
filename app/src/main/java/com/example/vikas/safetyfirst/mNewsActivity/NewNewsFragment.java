@@ -16,13 +16,7 @@ import com.example.vikas.safetyfirst.mFirebase.FireBaseClient;
  * Created by Vikas on 26-07-2016.
  */
 public class NewNewsFragment extends Fragment {
-/*    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.new_news_layout,null);
-    }*/
-
-    private static final String TAG = "MyFirebaseMsgService";
+    private static final String TAG = "NewNewsFragment";
     final static String DB_URL="https://youngman-783f3.firebaseio.com/";
     RecyclerView rv;
     FireBaseClient fireBaseClient;

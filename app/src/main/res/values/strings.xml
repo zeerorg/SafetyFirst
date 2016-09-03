@@ -56,4 +56,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_pic">PicActivity</string>
+
+    <string name="ladders_heading">Ladders</string>
+    <string name="scaffolding_heading">Scaffoldings</string>
+    <string name="news_heading">Latest</string>
+    <string name="fav_heading">Fav</string>
 </resources>

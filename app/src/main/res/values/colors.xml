@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00BCD4</color>
+    <color name="colorPrimary">#bb160e</color>
     <color name="colorPrimaryDark">#0097A7</color>
-    <color name="colorAccent">#FF5722</color>
+    <color name="colorAccent">#002d47</color>
+    <color name="colorAccentDark">#002033</color>
     <color name="colorPrimaryLight">#B2EBF2</color>
-    <color name="colorPrimaryText">#212121</color>
+    <color name="colorPrimaryText">#404040</color>
     <color name="colorSecondaryText">#727272</color>
     <color name="colorDivider">#B6B6B6</color>
     <color name="white">#FFFFFF</color>
@@ -12,6 +13,7 @@
     <color name="medium_grey">#9E9E9E</color>
     <color name="button_grey">#757575</color>
     <color name="orange">#FA0</color>
+    <color name="background">#eff7ff</color>
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
     <color name="bg_screen2">#20d2bb</color>

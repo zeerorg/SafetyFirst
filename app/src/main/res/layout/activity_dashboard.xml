@@ -9,21 +9,47 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.vikas.safetyfirst.DashboardActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="News"
-        android:id="@+id/newsBtn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="startNews" />
 
-    <Button
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Discussion"
-        android:id="@+id/discussionBtn"
-        android:layout_below="@+id/newsBtn"
-        android:layout_centerHorizontal="true"
-        android:onClick="startDiscussion"/>
+        android:id="@+id/imageView2"
+        android:src="@drawable/home"
+        android:layout_marginBottom="254dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:src="@drawable/news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView4"
+            android:onClick="startNews"/>
+
+        <ImageView
+            android:src="@drawable/discussion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView5"
+            android:layout_gravity="center_vertical"
+            android:onClick="startDiscussion"/>
+
+        <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/knowit"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+            android:onClick="startKnowIt"
+        />
+
+    </LinearLayout>
 </RelativeLayout>

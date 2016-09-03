@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.vikas.safetyfirst.mDiscussion.DiscussionActivity;
+import com.example.vikas.safetyfirst.mKnowitActivity.KnowitActivity;
 import com.example.vikas.safetyfirst.mNewsActivity.NewsActivity;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -23,6 +24,10 @@ public class DashboardActivity extends AppCompatActivity {
     }
     public void startDiscussion(View view) {
         Intent intent = new Intent(this,DiscussionActivity.class);
+        startActivity(intent);
+    }
+    public void startKnowIt(View view) {
+        Intent intent = new Intent(this,KnowitActivity.class);
         startActivity(intent);
     }
 }
