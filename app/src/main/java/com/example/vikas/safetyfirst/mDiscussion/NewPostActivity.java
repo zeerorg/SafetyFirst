@@ -191,6 +191,26 @@ public class NewPostActivity extends BaseActivity {
         Post post = new Post(userId, username, title, body, image);
         Map<String, Object> postValues = post.toMap();
 
+        // Obtaining and adding Keywords for search
+        String[] keywords = title.split(" ");
+        String[] commonWords = {"what", "why", "is", "are"};
+
+        for (int i = 0; i < keywords.length; i++) {
+            for (String commonWord : commonWords) {
+                if (keywords[i].equals(commonWord)) {
+                    keywords[i] = "";
+                }
+            }
+        }
+
+        for (int i = 0; i < keywords.length; i++) {
+            if (keywords[i].length() > 0) {
+                String tempKey = mDatabase.child("keywords").child(keywords[i]).push().getKey();
+                mDatabase.child("keywords").child(keywords[i]).child(tempKey).setValue(key);
+            }
+        }
+        //
+
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/posts/" + key, postValues);
         childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
