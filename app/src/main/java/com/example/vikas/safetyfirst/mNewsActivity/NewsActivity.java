@@ -15,9 +15,12 @@ import android.view.MenuItem;
 import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.SignInActivity;
+import com.example.vikas.safetyfirst.mDiscussion.fragment.RecentPostsFragment;
 import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.LaddersFragment;
 import com.example.vikas.safetyfirst.mKnowitActivity.TabFragment2;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 
 public class NewsActivity extends BaseActivity {
     //FragmentManager mFragmentManager;
@@ -43,10 +46,12 @@ public class NewsActivity extends BaseActivity {
             private final Fragment[] mFragments = new Fragment[] {
                     new NewNewsFragment(),
                     new FavNewsFragment(),
+                    new RecentNewsFragment(),
             };
             private final String[] mFragmentNames = new String[] {
                     getString(R.string.news_heading),
-                    getString(R.string.fav_heading)
+                    getString(R.string.fav_heading),
+                    "Testing"
             };
             @Override
             public Fragment getItem(int position) {
