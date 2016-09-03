@@ -67,23 +67,27 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         String password = mPasswordField.getText().toString();
         String confirmPassword = mConfirmPasswordField.getText().toString();
 
-        if(password.equals(confirmPassword)){
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
-                            hideProgressDialog();
+        if (password.equals(confirmPassword)) {
+            if (password.length() < 6) {
+                Toast.makeText(SignUpActivity.this, "Password length should be atleast 6", Toast.LENGTH_SHORT).show();
+            } else {
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
+                                hideProgressDialog();
 
-                            if (task.isSuccessful()) {
-                                onAuthSuccess(task.getResult().getUser());
-                            } else {
-                                Toast.makeText(SignUpActivity.this, "Sign Up Failed",
-                                        Toast.LENGTH_SHORT).show();
+                                if (task.isSuccessful()) {
+                                    onAuthSuccess(task.getResult().getUser());
+                                } else {
+                                    Toast.makeText(SignUpActivity.this, "Sign Up Failed",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
-        }else {
+                        });
+            }
+        } else {
             hideProgressDialog();
             Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
         }
@@ -92,12 +96,12 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     private void onAuthSuccess(FirebaseUser user) {
         String username = usernameFromEmail(user.getEmail());
-       // String username = mNameField.getText().toString();
+        // String username = mNameField.getText().toString();
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
         // Go to DashboardActivity
-        startActivity(new Intent(SignUpActivity.this,DashboardActivity.class));
+        startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
         finish();
     }
 
@@ -147,15 +151,15 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
         mDatabase.child("users").child(userId).setValue(user);
     }
+
     // [END basic_write]
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btn_signup) {
             signUp();
-        }
-        else if(i == R.id.link_login){
-            startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
+        } else if (i == R.id.link_login) {
+            startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
             finish();
         }
     }

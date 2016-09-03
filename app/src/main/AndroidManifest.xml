@@ -35,11 +35,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".mNewsActivity.DetailActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".DashboardActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".DashboardActivity" />
         </activity>
         <activity android:name=".SignInActivity" />
         <activity android:name=".mNewsActivity.NewsActivity" />
@@ -47,6 +47,7 @@
         <activity android:name=".mDiscussion.NewPostActivity" />
         <activity android:name=".mDiscussion.PostDetailActivity" />
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".mDiscussion.SearchActivity" />
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
