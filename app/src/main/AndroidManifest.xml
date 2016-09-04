@@ -33,7 +33,7 @@
             android:name=".mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".mNewsActivity.DetailActivity"
+            android:name=".mNewsActivity.NewsDetailActivity"
             android:parentActivityName=".DashboardActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
