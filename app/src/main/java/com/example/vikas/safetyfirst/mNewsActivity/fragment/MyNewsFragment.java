@@ -12,6 +12,6 @@ public class MyNewsFragment extends NewsListFragment {
         // All my posts
         /*return databaseReference.child("user-posts")
                 .child(getUid());*/
-        return databaseReference.child("news");
+        return databaseReference.child("user-news").child(getUid());
     }
 }

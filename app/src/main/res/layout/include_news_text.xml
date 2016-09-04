@@ -22,4 +22,6 @@
         android:layout_marginTop="5dp"
         tools:text="@string/lorem" />
 
+    <include layout="@layout/include_actions_news"/>
+
 </LinearLayout>

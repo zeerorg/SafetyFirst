@@ -1,6 +1,7 @@
 package com.example.vikas.safetyfirst.mNewsActivity.fragment;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,9 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.vikas.safetyfirst.FontManager;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.mData.News;
+import com.example.vikas.safetyfirst.mData.Post;
+import com.example.vikas.safetyfirst.mData.User;
 import com.example.vikas.safetyfirst.mNewsActivity.NewsDetailActivity;
 import com.example.vikas.safetyfirst.mNewsActivity.viewholder.NewsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -23,6 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public abstract class NewsListFragment extends Fragment {
@@ -66,34 +75,113 @@ public abstract class NewsListFragment extends Fragment {
         mRecycler.setLayoutManager(mManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
-        Query postsQuery = getQuery(mDatabase);
+        Query newsQuery = getQuery(mDatabase);
         mAdapter = new FirebaseRecyclerAdapter<News, NewsViewHolder>(News.class, R.layout.item_news,
-                NewsViewHolder.class, postsQuery) {
+                NewsViewHolder.class, newsQuery) {
             @Override
             protected void populateViewHolder(final NewsViewHolder viewHolder, final News model, final int position) {
-                final DatabaseReference postRef = getRef(position);
+                final DatabaseReference newsRef = getRef(position);
 
                 // Set click listener for the whole post view
-                final String postKey = postRef.getKey();
+                final String newsKey = newsRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Launch NewsDetailActivity
                         Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-                        intent.putExtra(NewsDetailActivity.EXTRA_NEWS_KEY, postKey);
+                        intent.putExtra(NewsDetailActivity.EXTRA_NEWS_KEY, newsKey);
                         startActivity(intent);
                     }
                 });
 
-
+// Determine if the current user has liked this post and set UI accordingly
+                if (model.stars.containsKey(getUid())) {
+                    viewHolder.bookmark.setImageResource(R.drawable.ic_toggle_star_24);
+                } else {
+                    viewHolder.bookmark.setImageResource(R.drawable.ic_toggle_star_outline_24);
+                }
 
                 // Bind News to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToPost(model, new View.OnClickListener() {
+                viewHolder.bindToNews(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
+
+                        final String[] title = new String[1];
+                        final String[] body = new String[1];
+                        final String[] author = new String[1];
+                        final String[] image = new String[1];
+
+                        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference()
+                                .child("news").child(newsKey);
+                        ValueEventListener postListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                // Get News object and use the values to update the UI
+                                News news = dataSnapshot.getValue(News.class);
+                                // [START_EXCLUDE]
+//                mAuthorView.setText(news.author);
+                                title[0] = news.title;
+                                body[0] =news.body;
+                                author[0] = news.author;
+                                image[0] = news.imgUrl;
+                                // [END_EXCLUDE]
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                // Getting News failed, log a message
+                                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                                // [START_EXCLUDE]
+                                Toast.makeText(getActivity().getApplicationContext(), "Failed to load news.",
+                                        Toast.LENGTH_SHORT).show();
+                                // [END_EXCLUDE]
+                            }
+                        };
+
+                        mPostReference.addValueEventListener(postListener);
+
+
+
+                        Toast.makeText(getActivity().getApplicationContext(),  title[0], Toast.LENGTH_SHORT).show();
+
+                        // [START single_value_read]
+                        final String userId = getUid();
+                        mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
+                                new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        // Get user value
+                                        User user = dataSnapshot.getValue(User.class);
+
+                                        // [START_EXCLUDE]
+                                        if (user == null) {
+                                            // User is null, error out
+                                            Log.e(TAG, "User " + userId + " is unexpectedly null");
+                                            Toast.makeText(getActivity().getApplicationContext(),
+                                                    "Error: could not fetch user.",
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            // Write new post
+                                            writeNewPost(newsRef.getKey(), userId,author[0], user.username, title[0], body[0], image[0]);
+                                        }
+                                        // [END_EXCLUDE]
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                                    }
+                                });
+                        // [END single_value_read]
+
                         // Need to write to both places the post is stored
-                        //  DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
-                        //  DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
+                        DatabaseReference globalPostRef = mDatabase.child("news").child(newsRef.getKey());
+                        DatabaseReference userPostRef = mDatabase.child("user-news").child(model.uid).child(newsRef.getKey());
+
+                        // Run two transactions
+                        onStarClicked(globalPostRef);
+                        onStarClicked(userPostRef);
+
 
                     }
                 });
@@ -103,8 +191,8 @@ public abstract class NewsListFragment extends Fragment {
     }
 
     // [START post_stars_transaction]
-    private void onStarClicked(DatabaseReference postRef) {
-        postRef.runTransaction(new Transaction.Handler() {
+    private void onStarClicked(DatabaseReference newsRef) {
+        newsRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
                 News p = mutableData.getValue(News.class);
@@ -113,7 +201,7 @@ public abstract class NewsListFragment extends Fragment {
                 }
 
                 if (p.stars.containsKey(getUid())) {
-                    // Unstar the post and remove self from stars
+                    // Unstar the news and remove self from stars
                     p.starCount = p.starCount - 1;
                     p.stars.remove(getUid());
                 } else {
@@ -132,6 +220,7 @@ public abstract class NewsListFragment extends Fragment {
                                    DataSnapshot dataSnapshot) {
                 // Transaction completed
                 Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+                Toast.makeText(getActivity().getApplicationContext(), "complete", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -150,5 +239,24 @@ public abstract class NewsListFragment extends Fragment {
     }
 
     public abstract Query getQuery(DatabaseReference databaseReference);
+
+
+    // [START write_fan_out]
+    private void writeNewPost(String key, String userId,String author, String username, String title, String body, String image) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        News news = new News(userId,author, title, body, image);
+        Map<String, Object> newsValues = news.toMap();
+
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/news/" + key, newsValues);
+        childUpdates.put("/user-news/" + userId + "/" + key, newsValues);
+
+        mDatabase.updateChildren(childUpdates);
+    }
+    // [END write_fan_out]
+
+    //TODO remove value event listeners
 
 }
