@@ -3,17 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/sign_background">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
 
         <ImageView android:src="@drawable/firebase_lockup_400"
             android:layout_width="wrap_content"
@@ -26,12 +24,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="24dp">
             <EditText android:id="@+id/field_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:inputType="textEmailAddress"
-                android:hint="Email"
+                android:background="@color/dark_red"
+                android:hint="Email address"
+                android:paddingLeft="10dp"
                 android:maxLines="1"
                 />
         </android.support.design.widget.TextInputLayout>
@@ -40,12 +41,15 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:textColorHint="@color/white"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/field_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@color/dark_red"
                 android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -57,16 +61,32 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Login"/>
+            android:background="@color/dark_blue"
+            android:text="Sign in"
+            android:textColor="@color/white"/>
 
-
-        <TextView android:id="@+id/link_signup"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="No account yet? Create one"
-            android:gravity="center"
-            android:textSize="16dip"/>
+            android:orientation="horizontal"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="70dp">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Don't have an account?"
+                android:gravity="center"
+                android:textSize="16dip"/>
+            <TextView
+                android:id="@+id/link_signup"
+                android:textColor="@color/dark_red"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
