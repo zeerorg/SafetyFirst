@@ -83,7 +83,8 @@ public class NewPostActivity extends BaseActivity {
     private EditText mTitleField;
     private EditText mBodyField;
     private String mImageUri;
-    private Button  mImageBtn;
+ //   private Button  mImageBtn;
+    private ImageView mImageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class NewPostActivity extends BaseActivity {
 
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
-        mImageBtn = (Button) findViewById(R.id.imageBtn);
+        //mImageBtn = (ImageView) findViewById(R.id.addimageBtn);
 
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +107,7 @@ public class NewPostActivity extends BaseActivity {
             }
         });
 
-        mImageBtn.setOnClickListener(new View.OnClickListener() {
+      /*  mImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -114,7 +115,7 @@ public class NewPostActivity extends BaseActivity {
                 startAction();
 
             }
-        });
+        });*/
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

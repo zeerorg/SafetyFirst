@@ -21,6 +21,7 @@ import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.SignInActivity;
 import com.example.vikas.safetyfirst.mDiscussion.fragment.MyPostsFragment;
 import com.example.vikas.safetyfirst.mDiscussion.fragment.RecentPostsFragment;
+import com.example.vikas.safetyfirst.social.*;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DiscussionActivity extends BaseActivity {
