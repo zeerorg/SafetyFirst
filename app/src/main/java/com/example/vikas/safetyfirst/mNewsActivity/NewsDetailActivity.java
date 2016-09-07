@@ -1,16 +1,20 @@
 package com.example.vikas.safetyfirst.mNewsActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.mData.News;
+import com.example.vikas.safetyfirst.mWebview.WebViewActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +32,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     private TextView mTitleView;
     private TextView mBodyView;
     private TextView mReadMore;
+    private ImageView mNewsImage;
     private String url;
     private String HEADLINE;
 
@@ -37,11 +42,11 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         setContentView(R.layout.activity_news_detail);
 
         // Set Collapsing Toolbar layout to the screen
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+    //    CollapsingToolbarLayout collapsingToolbar =
+    //            (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         // Set title of Detail page
 
-        collapsingToolbar.setTitle(HEADLINE);
+   //     collapsingToolbar.setTitle(HEADLINE);
 
 
         // Get post key from intent
@@ -59,6 +64,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         mTitleView = (TextView) findViewById(R.id.post_title);
         mBodyView = (TextView) findViewById(R.id.post_body);
         mReadMore = (TextView) findViewById(R.id.readMore);
+        mNewsImage = (ImageView) findViewById(R.id.news_photo);
 
     mReadMore.setOnClickListener(this);
 
@@ -81,6 +87,11 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
                 mTitleView.setText(news.title);
                 mBodyView.setText(news.body);
                 url = news.author;
+                if(news.imgUrl!=null){
+                    //todo set image in view using picasso
+                    mNewsImage.setImageURI(Uri.parse(news.imgUrl));
+                    mNewsImage.setVisibility(View.VISIBLE);
+                }
                 // [END_EXCLUDE]
             }
 
@@ -118,6 +129,9 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         int i = v.getId();
         if (i == R.id.readMore) {
             Toast.makeText(NewsDetailActivity.this, url, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("AUTHOR", url);
+            startActivity(intent);
         }
     }
 

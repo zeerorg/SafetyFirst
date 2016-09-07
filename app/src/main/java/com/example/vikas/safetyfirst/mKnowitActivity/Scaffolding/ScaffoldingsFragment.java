@@ -1,4 +1,4 @@
-package com.example.vikas.safetyfirst.mKnowitActivity;
+package com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding;
 
 /**
  * Created by Vikas on 26-07-2016.
@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 
 import com.example.vikas.safetyfirst.R;
 
-public class TabFragment2 extends Fragment {
+public class ScaffoldingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_fragment_2, container, false);
+        return inflater.inflate(R.layout.scaffolding_fragment, container, false);
     }
 }

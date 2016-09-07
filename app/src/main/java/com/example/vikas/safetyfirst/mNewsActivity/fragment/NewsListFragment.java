@@ -1,7 +1,6 @@
 package com.example.vikas.safetyfirst.mNewsActivity.fragment;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.vikas.safetyfirst.FontManager;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.mData.News;
-import com.example.vikas.safetyfirst.mData.Post;
 import com.example.vikas.safetyfirst.mData.User;
 import com.example.vikas.safetyfirst.mNewsActivity.NewsDetailActivity;
 import com.example.vikas.safetyfirst.mNewsActivity.viewholder.NewsViewHolder;
@@ -162,7 +159,7 @@ public abstract class NewsListFragment extends Fragment {
                                                     Toast.LENGTH_SHORT).show();
                                         } else {
                                             // Write new post
-                                            writeNewPost(newsRef.getKey(), userId,author[0], user.username, title[0], body[0], image[0]);
+                                            writeNewNews(newsRef.getKey(), userId,author[0], user.username, title[0], body[0], image[0]);
                                         }
                                         // [END_EXCLUDE]
                                     }
@@ -242,7 +239,7 @@ public abstract class NewsListFragment extends Fragment {
 
 
     // [START write_fan_out]
-    private void writeNewPost(String key, String userId,String author, String username, String title, String body, String image) {
+    private void writeNewNews(String key, String userId, String author, String username, String title, String body, String image) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         News news = new News(userId,author, title, body, image);
@@ -250,7 +247,8 @@ public abstract class NewsListFragment extends Fragment {
 
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/news/" + key, newsValues);
+        //TODO this may be a source of error
+      //  childUpdates.put("/news/" + key, newsValues);
         childUpdates.put("/user-news/" + userId + "/" + key, newsValues);
 
         mDatabase.updateChildren(childUpdates);
