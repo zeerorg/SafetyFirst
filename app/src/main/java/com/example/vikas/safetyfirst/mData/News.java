@@ -1,59 +1,50 @@
 package com.example.vikas.safetyfirst.mData;
 
-/**
- * Created by Vikas on 10-07-2016.
- */
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
+
+// [START post_class]
+@IgnoreExtraProperties
 public class News {
 
-    private String headline;
-    private String imgsrc;
-    private String articlesrc;
-    private String article;
-    private String url;
+    public String uid;
+    public String author;
+    public String title;
+    public String body;
+    public String imgUrl;
+    public int starCount = 0;
+    public Map<String, Boolean> stars = new HashMap<>();
 
     public News() {
+        // Default constructor required for calls to DataSnapshot.getValue(News.class)
     }
 
-
-
-    public String getUrl() {
-        return url;
+    public News(String uid, String author, String title, String body, String imgUrl) {
+        this.uid = uid;
+        this.author = author;
+        this.title = title;
+        this.body = body;
+        this.imgUrl = imgUrl;
     }
 
-    public String getArticlesrc() {
-        return articlesrc;
-    }
+    // [START post_to_map]
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", uid);
+        result.put("author", author);
+        result.put("title", title);
+        result.put("body", body);
+        result.put("imgUrl", imgUrl);
+        result.put("starCount", starCount);
+        result.put("stars", stars);
 
-    public void setArticlesrc(String articlesrc) {
-        this.articlesrc = articlesrc;
+        return result;
     }
+    // [END post_to_map]
 
-    public void setUrl(String url) {
-        this.url = url;
-
-    }
-    public String getArticle() {
-        return article;
-    }
-
-    public void setArticle(String article) {
-        this.article = article;
-    }
-
-
-    public String getHeadline() {
-        return headline;
-    }
-
-    public void setHeadline(String headline) {
-        this.headline = headline;
-    }
-
-    public String getImgSrc() {
-        return imgsrc;
-    }
-
-    public void setImgSrc(String imgsrc) {
-        this.imgsrc = imgsrc;
-    }
 }
+// [END post_class]

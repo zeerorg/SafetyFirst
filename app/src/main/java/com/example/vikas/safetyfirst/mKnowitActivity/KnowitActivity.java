@@ -13,6 +13,7 @@ import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.SignInActivity;
 import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.LaddersFragment;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.ScaffoldingsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class KnowitActivity extends BaseActivity {
@@ -30,7 +31,7 @@ public class KnowitActivity extends BaseActivity {
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
                     new LaddersFragment(),
-                    new TabFragment2(),
+                    new ScaffoldingsFragment(),
             };
             private final String[] mFragmentNames = new String[] {
                     getString(R.string.ladders_heading),

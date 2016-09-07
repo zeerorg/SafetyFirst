@@ -27,7 +27,6 @@ public class LaddersFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NonSelfSupporting.class);
                 startActivity(intent);
-              //  Toast.makeText(getActivity(), "non_self_supporting_ladder", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -37,7 +36,6 @@ public class LaddersFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SelfSupporting.class);
                 startActivity(intent);
-               // Toast.makeText(getActivity(), "self_supporting_ladder", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

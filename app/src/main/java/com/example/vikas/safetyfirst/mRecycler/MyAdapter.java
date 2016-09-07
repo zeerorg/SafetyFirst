@@ -14,17 +14,15 @@ import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.mData.News;
 import com.example.vikas.safetyfirst.mInterface.ItemClickListener;
 import com.example.vikas.safetyfirst.mPicasso.PicassoClient;
-import com.example.vikas.safetyfirst.mNewsActivity.DetailActivity;
-
 import java.util.ArrayList;
 
 /**
  * Created by Vikas on 10-07-2016.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
+public class MyAdapter{
 
-    Context c;
+/*    Context c;
     ArrayList<News> news;
 
     public MyAdapter(Context c, ArrayList<News> news) {
@@ -44,20 +42,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     @Override
     public void onBindViewHolder(final MyHolder holder, final int position) {
 
-        holder.headlineTxt.setText( news.get(position).getHeadline());
+       *//* holder.headlineTxt.setText( news.get(position).getHeadline());
         holder.articleTxt.setText(news.get(position).getArticle());
         if(news.get(position).getImgSrc()!=null){
             holder.img .setVisibility(View.VISIBLE);
-            PicassoClient.downloadImage(c,news.get(position).getImgSrc(),holder.img);
+            PicassoClient.downloadImage(c,news.get(position).getImgSrc(),holder.img);*//*
         }
 
 
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                Intent intent = new Intent(c, DetailActivity.class);
+              *//*  Intent intent = new Intent(c, DetailActivity.class);
                 intent.putExtra("Headline", news.get(position).getHeadline());
-                intent.putExtra("Article", news.get(position).getArticle());
+                intent.putExtra("Article", news.get(position).getArticle());*//*
 
                 String transitionName = "hello";
 
@@ -91,6 +89,6 @@ holder.likeBtn.setOnClickListener(new View.OnClickListener()
     public void dismissNews(int position){
 news.remove(position);
         this.notifyItemRemoved(position);
-    }
+    }*/
 
 }

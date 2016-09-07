@@ -9,9 +9,10 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dots_height">30dp</dimen>
     <dimen name="dots_margin_bottom">20dp</dimen>
-    <dimen name="img_width_height">120dp</dimen>
-    <dimen name="slide_title">30dp</dimen>
-    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="img_width_height">250dp</dimen>
+    <dimen name="welcome_paddingTop">50dp</dimen>
+    <dimen name="slide_title">30sp</dimen>
+    <dimen name="slide_desc">12sp</dimen>
     <dimen name="desc_padding">40dp</dimen>
     <dimen name="card_margin_horizontal">5dp</dimen>
     <dimen name="card_image_height">150dp</dimen>
@@ -23,4 +24,17 @@
     <dimen name="app_bar_height">256dp</dimen>
     <dimen name="article_keylines">5dp</dimen>
     <dimen name="navheader_height">222dp</dimen>
+
+    <dimen name="margin_medium">5dp</dimen>
+    <dimen name="list_item_height">18dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="post_author_icon_size">30dp</dimen>
+    <dimen name="profile_user_photo_size">200dp</dimen>
+    <dimen name="comment_author_icon_size">30dp</dimen>
+    <dimen name="comment_author_name_size">16sp</dimen>
+    <dimen name="user_detail_backdrop_height">256dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="user_detail_photo_size">80dp</dimen>
+    <dimen name="user_detail_post_tile_size">100dp</dimen>
+
 </resources>

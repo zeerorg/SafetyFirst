@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -19,35 +20,40 @@
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".mWebview.Webview" />
         <activity
-            android:name=".mKnowitActivity.Ladders.mNonSelfSupportingLadder.NonSelfSupporting"
+            android:name=".mKnowitActivity$Ladders$mNonSelfSupportingLadder.NonSelfSupporting"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting"
+            android:name=".mKnowitActivity$Ladders$mSelfSupportingLadder.SelfSupporting"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".mNewsActivity.DetailActivity"
-            android:parentActivityName=".DashboardActivity"
+            android:name=".mNewsActivity.NewsDetailActivity"
+            android:parentActivityName=".mNewsActivity.NewsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DashboardActivity" />
+                android:value=".mNewsActivity.NewsActivity" />
         </activity>
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".mNewsActivity.NewsActivity" />
-        <activity android:name=".mDiscussion.DiscussionActivity" />
-        <activity android:name=".mDiscussion.NewPostActivity" />
-        <activity android:name=".mDiscussion.PostDetailActivity" />
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".mDiscussion.SearchActivity" />
+        <activity
+            android:name=".SignInActivity"
+            android:label="@string/sign_in" />
+        <activity
+            android:name=".mNewsActivity.NewsActivity"
+            android:label="@string/titleNewsActivity" />
+        <activity
+            android:name=".mDiscussion.DiscussionActivity"
+            android:label="@string/titleDiscussionActivity" />
+        <activity
+            android:name=".mDiscussion.NewPostActivity"
+            android:label="@string/titleNewPostActivity" />
+        <activity
+            android:name=".mDiscussion.PostDetailActivity"
+            android:label="@string/titlePostDetailActivity" />
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/titleDashboard" />
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
@@ -55,7 +61,16 @@
             android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mKnowitActivity.KnowitActivity"></activity>
+        <activity android:name=".mKnowitActivity.KnowitActivity" />
+
+        <activity android:name=".mWebview.WebViewActivity" />
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
