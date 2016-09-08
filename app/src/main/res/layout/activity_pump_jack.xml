@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.PumpJack">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Pump Jack Scaffold"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+        android:id="@+id/content1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pump jacks are a uniquely designed scaffold consisting of a platform supported by move able brackets on vertical poles."
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/md_keylines"
+        android:paddingRight="@dimen/md_keylines"
+        android:paddingLeft="@dimen/md_keylines"/>
+
+    <TextView
+        android:id="@+id/content2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The brackets are designed to be raised and lowered in a manner similar to an automobile jack."
+        android:layout_below="@+id/content1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/md_keylines"
+        android:paddingRight="@dimen/md_keylines"
+        android:paddingLeft="@dimen/md_keylines"/>
+    <TextView
+        android:id="@+id/content3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pump jack brackets, braces, and accessories must be fabricated from metal plates and angles."
+        android:layout_below="@+id/content2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/md_keylines"
+        android:paddingRight="@dimen/md_keylines"
+        android:paddingLeft="@dimen/md_keylines"/>
+    <TextView
+        android:id="@+id/content4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Each pump jack bracket must have two positive gripping mechanisms to prevent any failure or slippage. When bracing already installed has to be removed so the pump jack can pass, an additional brace must be installed approximately 4 feet above the original brace before it is removed."
+        android:layout_below="@+id/content3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/md_keylines"
+        android:paddingRight="@dimen/md_keylines"
+        android:paddingLeft="@dimen/md_keylines"/>
+    <TextView
+        android:id="@+id/content5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The additional brace must be left in place until the pump jack has been moved and the original brace reinstalled."
+        android:layout_below="@+id/content4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/md_keylines"
+        android:paddingRight="@dimen/md_keylines"
+        android:paddingLeft="@dimen/md_keylines"/>
+
+</RelativeLayout>
+</ScrollView>

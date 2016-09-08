@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //SET PERSISTENCE
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        //   FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);

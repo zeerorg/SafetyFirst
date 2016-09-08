@@ -12,6 +12,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.vikas.safetyfirst.R;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -31,13 +32,16 @@ public class WebViewActivity extends AppCompatActivity implements ObservableScro
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
+        String url = getIntent().getStringExtra("Url");
+        Toast.makeText(this, url, Toast.LENGTH_LONG).show();
+
         webView = (ObservableWebView) findViewById(R.id.web);
         progressBar = (ProgressBar) findViewById(R.id.loading);
         webView.setScrollViewCallbacks(this);
 
         webView.getSettings().setJavaScriptEnabled(true); // enable javascript
         webView.setWebViewClient(new MyWebViewClient());
-        webView.loadUrl("http://www.devexchanges.info/");
+        webView.loadUrl(url);
     }
 
     @Override
