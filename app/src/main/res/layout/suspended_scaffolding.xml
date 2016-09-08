@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Suspended Scaffolding"
+            android:layout_marginBottom="@dimen/md_keylines"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suspended scaffolds are platforms suspended by ropes, or other non-rigid means, from an overhead structure. Because two-point scaffolds are the most common type of suspended scaffold.
+"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Types of Suspended Scaffolding"
+            android:layout_marginBottom="@dimen/md_keylines"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/BoatswainChair"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="1. Single-Point Adjustable scaffold(Boatswain’s Chairs)"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/swingStage"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="2. Two-Point Adjustable scaffold(Swing Stage)"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/multiplepoint_scaffold"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="3. Multiple-Point Adjustable scaffold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/multilevel_scaffold"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="4. Multi-Level scaffold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/catenary_scaffold"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="5. Catenary scaffold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/float_scaffold"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="6. Float (Ship) scaffold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/interior_hung_scaffold"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="7. Interior Hung scaffold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/needle_beam_scaffold"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:text="8. Needle Beam scaffold"/>
+
+    </LinearLayout>
+</ScrollView>

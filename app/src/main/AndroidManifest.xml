@@ -23,11 +23,16 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".mWebview.Webview" />
         <activity
-            android:name=".mKnowitActivity$Ladders$mNonSelfSupportingLadder.NonSelfSupporting"
+            android:name=".mKnowitActivity.Ladders$mNonSelfSupportingLadder.NonSelfSupporting"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".mKnowitActivity$Ladders$mSelfSupportingLadder.SelfSupporting"
+            android:name=".mKnowitActivity.Ladders$mSelfSupportingLadder.SelfSupporting"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".mKnowitActivity.Scaffolding.SupportedScaffold" android:label="Self Supporting Scaffold"/>
+        <activity android:name=".mKnowitActivity.Scaffolding.SuspendedScaffold" android:label="Suspended Scaffold"/>
+        <activity android:name=".mKnowitActivity.Scaffolding.SpecialUseScaffold" android:label="Special Use Scaffold"/>
+
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:parentActivityName=".mNewsActivity.NewsActivity"
@@ -71,6 +76,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
