@@ -11,6 +11,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Suspended Scaffolding"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginBottom="@dimen/md_keylines"/>
         <TextView
             android:layout_width="wrap_content"
