@@ -1,4 +1,4 @@
-package com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding;
+package com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
