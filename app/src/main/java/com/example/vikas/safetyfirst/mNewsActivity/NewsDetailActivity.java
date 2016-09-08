@@ -14,12 +14,15 @@ import android.widget.Toast;
 import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.mData.News;
+import com.example.vikas.safetyfirst.mPicasso.PicassoClient;
 import com.example.vikas.safetyfirst.mWebview.WebViewActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 public class NewsDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "NewsDetailActivity";
@@ -89,7 +92,9 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
                 url = news.author;
                 if(news.imgUrl!=null){
                     //todo set image in view using picasso
-                    mNewsImage.setImageURI(Uri.parse(news.imgUrl));
+                    PicassoClient.downloadImage(getApplicationContext(), news.imgUrl, mNewsImage);
+
+                 //   mNewsImage.setImageURI(Uri.parse(news.imgUrl));
                     mNewsImage.setVisibility(View.VISIBLE);
                 }
                 // [END_EXCLUDE]
@@ -130,7 +135,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         if (i == R.id.readMore) {
             Toast.makeText(NewsDetailActivity.this, url, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("AUTHOR", url);
+            intent.putExtra("Url", url);
             startActivity(intent);
         }
     }

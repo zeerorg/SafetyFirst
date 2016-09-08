@@ -8,12 +8,16 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.SignInActivity;
 import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.LaddersFragment;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.mNonSelfSupportingLadder.NonSelfSupporting;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting;
 import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.ScaffoldingsFragment;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.PumpJack;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class KnowitActivity extends BaseActivity {
@@ -75,5 +79,20 @@ public class KnowitActivity extends BaseActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void startPumpJack(View view) {
+        Intent intent = new Intent(this, PumpJack.class);
+        startActivity(intent);
+    }
+
+    public void startSelfSupportingLadder(View view) {
+        Intent intent = new Intent(this, SelfSupporting.class);
+        startActivity(intent);
+    }
+
+    public void startNonSelfSupportingLadder(View view) {
+        Intent intent = new Intent(this, NonSelfSupporting.class);
+        startActivity(intent);
     }
 }

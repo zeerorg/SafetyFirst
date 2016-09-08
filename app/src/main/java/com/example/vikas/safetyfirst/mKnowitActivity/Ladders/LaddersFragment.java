@@ -20,24 +20,6 @@ public class LaddersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ladders, container, false);
-
-        ImageButton non_self_supporting_ladder = (ImageButton) view.findViewById(R.id.non_self_supporting_ladder);
-        non_self_supporting_ladder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NonSelfSupporting.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton self_supporting_ladder = (ImageButton) view.findViewById(R.id.self_supporting_ladder);
-        self_supporting_ladder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SelfSupporting.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 }

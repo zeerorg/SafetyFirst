@@ -204,18 +204,20 @@ public class NewPostActivity extends BaseActivity {
             }
         }
 
-        for (int i = 0; i < keywords.length; i++) {
-            if (keywords[i].length() > 0) {
-                String tempKey = mDatabase.child("keywords").child(keywords[i]).push().getKey();
-                mDatabase.child("keywords").child(keywords[i]).child(tempKey).setValue(key);
-            }
-        }
+
         //
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/posts/" + key, postValues);
         childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
 
+        for (int i = 0; i < keywords.length; i++) {
+            if (keywords[i].length() > 0) {
+                String tempKey = mDatabase.child("keywords").child(keywords[i]).push().getKey();
+             //   mDatabase.child("keywords").child(keywords[i]).child(tempKey).setValue(key);
+                childUpdates.put("/keywords/"+ keywords[i] + "/" + key , postValues);
+            }
+        }
         mDatabase.updateChildren(childUpdates);
     }
     // [END write_fan_out]
