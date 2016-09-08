@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vikas.safetyfirst.R;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.PumpJack;
 
 public class ScaffoldingsFragment extends Fragment{
 

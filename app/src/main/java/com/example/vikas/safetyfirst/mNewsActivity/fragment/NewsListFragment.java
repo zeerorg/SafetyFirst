@@ -93,9 +93,9 @@ public abstract class NewsListFragment extends Fragment {
 
 // Determine if the current user has liked this post and set UI accordingly
                 if (model.stars.containsKey(getUid())) {
-                    viewHolder.bookmark.setImageResource(R.drawable.ic_toggle_star_24);
+                    viewHolder.bookmark.setImageResource(R.drawable.bookmark_toggle);
                 } else {
-                    viewHolder.bookmark.setImageResource(R.drawable.ic_toggle_star_outline_24);
+                    viewHolder.bookmark.setImageResource(R.drawable.bookmark);
                 }
 
                 // Bind News to ViewHolder, setting OnClickListener for the star button
@@ -176,8 +176,8 @@ public abstract class NewsListFragment extends Fragment {
                         DatabaseReference userPostRef = mDatabase.child("user-news").child(model.uid).child(newsRef.getKey());
 
                         // Run two transactions
-                        onStarClicked(globalPostRef);
-                        onStarClicked(userPostRef);
+                        onBookmarked(globalPostRef);
+                        onBookmarked(userPostRef);
 
 
                     }
@@ -187,8 +187,8 @@ public abstract class NewsListFragment extends Fragment {
         mRecycler.setAdapter(mAdapter);
     }
 
-    // [START post_stars_transaction]
-    private void onStarClicked(DatabaseReference newsRef) {
+    // [START news_stars_transaction]
+    private void onBookmarked(DatabaseReference newsRef) {
         newsRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {

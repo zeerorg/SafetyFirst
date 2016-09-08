@@ -2,60 +2,148 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    android:layout_height="match_parent"
+    >
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/scaffold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="30dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/scaffolding"
+        android:layout_below="@+id/imageView6">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView6"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="A scaffold is a temporary structure specifically erected to support access or working platforms. Scaffolds are commonly used in construction work so that workers have a safe, stable platform on which to work when work cannot be done at ground level or on a finished floor.
-Scaffolds, once properly erected, are a control measure to prevent the risk of persons and objects falling when working at height.
-">
+            android:orientation="vertical">
 
-        </TextView>
-        <TextView
-            android:id="@+id/types_of_scaffolding"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Self-Supporting Scaffolds"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:background="@color/colorPrimary"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Frame Scaffold"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:paddingTop="2dp"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Manually Propelled / Mobile Scaffold"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:paddingTop="2dp"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pump Jack Scaffold"
+                    android:onClick="startPumpJack"
+                    android:paddingTop="2dp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tube Coupler Scaffold"
+                    android:paddingTop="2dp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ladder Jack Scaffold"
+                    android:paddingTop="2dp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pole Scaffold"
+                    android:paddingTop="2dp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Speciality Scaffold"
+                    android:paddingTop="2dp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView6"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/scaffolding"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/md_keylines"
-            android:text="Types of Scaffoldings"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/types_of_scaffolding1"
-            android:layout_below="@id/types_of_scaffolding"
-            android:textAppearance="?android:attr/textAppearanceButton"
-            android:layout_marginBottom="@dimen/md_keylines"
-            android:text="1. Self Supporting Scaffolding"/>
-
-        <TextView
-            android:id="@+id/types_of_scaffolding2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/types_of_scaffolding1"
-            android:layout_marginBottom="@dimen/md_keylines"
-            android:text="2. Suspension scaffolds"
-            android:textAppearance="?android:attr/textAppearanceButton"/>
-        <TextView
-            android:id="@+id/types_of_scaffolding3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/types_of_scaffolding2"
-            android:layout_marginBottom="@dimen/md_keylines"
-            android:text="3. Special use scaffolds"
-            android:textAppearance="?android:attr/textAppearanceButton"/>
+            android:orientation="vertical">
 
 
 
-    </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suspension Scaffolds"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Single-Point Adjustable Scaffold"
+                    android:paddingTop="2dp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@color/cardview_light_background"
+                    android:textColor="@color/colorAccentDark"/>
+            </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+
+</RelativeLayout>
 </ScrollView>
