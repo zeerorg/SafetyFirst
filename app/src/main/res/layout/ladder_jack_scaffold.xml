@@ -6,24 +6,22 @@
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="match_parent">
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Ladder Jack Scaffolds"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/md_keylines"/>
+            android:src="@drawable/ladder_jack_scaffold"
+            android:paddingLeft="30dp"
+            android:layout_gravity="center_horizontal"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="•  A ladder jack scaffold is a simple device consisting of a platform resting on brackets attached to a ladder."/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• Ladder jacks are primarily used in light applications because of their portability and cost effectiveness."
             android:layout_marginBottom="@dimen/md_keylines"/>
         <TextView
@@ -31,21 +29,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/BoatswainChair"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• All ladders used to support ladder jack scaffolds must comply with-Stairways and Ladders."/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/swingStage"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• Ladder jacks must be designed and constructed to bear on the side rails and ladder rungs. Ladders used to support ladder jack scaffolds must be placed to prevent slipping fastened to prevent slipping and or equipped with devices to prevent slipping. "/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ladder_jack_scaffold"
-            android:paddingLeft="30dp"
-            android:layout_gravity="center_horizontal"/>
+
 
     </LinearLayout>
 </ScrollView>

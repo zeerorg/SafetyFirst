@@ -6,24 +6,22 @@
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="match_parent">
-        <TextView
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Mobile Scaffolding"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/md_keylines"/>
+            android:src="@drawable/mobilescaffolding"
+            android:paddingLeft="30dp"
+            android:layout_gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="•  Mobile scaffolds are a type of supported scaffold set on wheels or casters"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• They are designed to be easily moved and are commonly used for things like painting and plastering, where workers must frequently change position."
             android:layout_marginBottom="@dimen/md_keylines"/>
         <TextView
@@ -31,28 +29,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/BoatswainChair"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• Scaffolds must be plumb, level, and squared.All brace connections must be secured."/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/swingStage"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• To prevent movement of the scaffold while it is being used in a stationary position, scaffold casters and wheels must be locked with positive wheel locks "/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/multiplepoint_scaffold"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="• Platforms must not extend beyond the base supports of the scaffold, unless stability is ensured by outrigger frames Leveling of the scaffold, where necessary, must be achieved by the use of screw jacks."/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mobilescaffolding"
-            android:paddingLeft="30dp"
-            android:layout_gravity="center_horizontal"/>
+
 
     </LinearLayout>
 </ScrollView>

@@ -6,32 +6,24 @@
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Frame or Fabricated Scaffolds"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/md_keylines"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/md_keylines"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="• The most common type of scaffold because they are versatile, economical, and easy to use."/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="• They are frequently used in one or two tiers by residential contractors, painters, etc., but their modular frames can also be stacked several stories high for use on large-scale construction jobs."
-            android:layout_marginBottom="@dimen/md_keylines"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/frame_scaffold"
             android:paddingLeft="30dp"
             android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:text="• The most common type of scaffold because they are versatile, economical, and easy to use."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• They are frequently used in one or two tiers by residential contractors, painters, etc., but their modular frames can also be stacked several stories high for use on large-scale construction jobs."
+            android:layout_marginBottom="@dimen/md_keylines"/>
+
 
     </LinearLayout>
 </ScrollView>

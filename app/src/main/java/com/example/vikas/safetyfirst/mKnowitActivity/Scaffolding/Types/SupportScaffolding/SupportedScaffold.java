@@ -15,7 +15,8 @@ public class SupportedScaffold extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.supported_scaffold);
+      //  setContentView(R.layout.supported_scaffold);
+        setContentView(R.layout.frame_scaffold);
         TextView frameScaffold = (TextView) findViewById(R.id.frame_scoffold);
         frameScaffold.setOnClickListener(new View.OnClickListener() {
             @Override
