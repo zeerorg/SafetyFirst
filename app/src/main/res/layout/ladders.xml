@@ -28,7 +28,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView6"
-                android:onClick="startSelfSupportingLadder"
                 android:layout_margin="5dp">
 
                 <LinearLayout
@@ -53,6 +52,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Standard Ladder"
+                            android:onClick="startStandardLadder"
                             style="@style/TextAppearance.AppCompat.Medium"
                             android:paddingTop="2dp"
                             android:background="@color/cardview_light_background"
@@ -61,6 +61,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Two Way Ladder"
+                            android:onClick="startTwoWayLadder"
                             style="@style/TextAppearance.AppCompat.Medium"
                             android:paddingTop="2dp"
                             android:background="@color/cardview_light_background"
@@ -69,6 +70,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Orchard Ladder"
+                            android:onClick="startOrchardLadder"
                             android:paddingTop="2dp"
                             style="@style/TextAppearance.AppCompat.Medium"
                             android:background="@color/cardview_light_background"
@@ -77,6 +79,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Trestle Ladder"
+                            android:onClick="startTrestleLadder"
                             android:paddingTop="2dp"
                             style="@style/TextAppearance.AppCompat.Medium"
                             android:background="@color/cardview_light_background"
@@ -85,6 +88,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Platform Ladder"
+                            android:onClick="startPlatformLadder"
                             android:paddingTop="2dp"
                             style="@style/TextAppearance.AppCompat.Medium"
                             android:background="@color/cardview_light_background"
@@ -97,7 +101,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView6"
-                android:onClick="startNonSelfSupportingLadder"
                 android:layout_margin="5dp">
 
                 <LinearLayout
@@ -120,6 +123,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Extension Ladder"
+                        android:onClick="startExtensionLadder"
                         android:paddingTop="2dp"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:background="@color/cardview_light_background"
@@ -128,6 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Single Ladder"
+                        android:onClick="startSingleLadder"
                         android:paddingTop="2dp"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:background="@color/cardview_light_background"

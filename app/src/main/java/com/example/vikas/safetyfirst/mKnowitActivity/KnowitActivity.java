@@ -14,8 +14,13 @@ import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.SignInActivity;
 import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.LaddersFragment;
-import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.mNonSelfSupportingLadder.NonSelfSupporting;
-import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.ExtensionLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.OrchardLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.PlatformLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.SingleLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.StandardLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.TrestleLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.TwoWayLadder;
 import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.ScaffoldingsFragment;
 
 import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.FrameScaffold;
@@ -105,15 +110,6 @@ public class KnowitActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    public void startSelfSupportingLadder(View view) {
-        Intent intent = new Intent(this, SelfSupporting.class);
-        startActivity(intent);
-    }
-
-    public void startNonSelfSupportingLadder(View view) {
-        Intent intent = new Intent(this, NonSelfSupporting.class);
-        startActivity(intent);
-    }
 
     public void frame_text_view(View view) {
         Intent intent = new Intent(this, FrameScaffold.class);
@@ -192,6 +188,41 @@ public class KnowitActivity extends BaseActivity {
 
     public void needle_beam_scaffold_textView(View view) {
         Intent intent = new Intent(this, NeedleBeamScaffold.class);
+        startActivity(intent);
+    }
+
+    public void startStandardLadder(View view) {
+        Intent intent = new Intent(this, StandardLadder.class);
+        startActivity(intent);
+    }
+
+    public void startOrchardLadder(View view) {
+        Intent intent = new Intent(this, OrchardLadder.class);
+        startActivity(intent);
+    }
+
+    public void startPlatformLadder(View view) {
+        Intent intent = new Intent(this, PlatformLadder.class);
+        startActivity(intent);
+    }
+
+    public void startSingleLadder(View view) {
+        Intent intent = new Intent(this, SingleLadder.class);
+        startActivity(intent);
+    }
+
+    public void startExtensionLadder(View view) {
+        Intent intent = new Intent(this, ExtensionLadder.class);
+        startActivity(intent);
+    }
+
+    public void startTrestleLadder(View view) {
+        Intent intent = new Intent(this, TrestleLadder.class);
+        startActivity(intent);
+    }
+
+    public void startTwoWayLadder(View view) {
+        Intent intent = new Intent(this, TwoWayLadder.class);
         startActivity(intent);
     }
 }
