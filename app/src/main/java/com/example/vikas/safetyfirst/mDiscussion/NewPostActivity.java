@@ -194,11 +194,11 @@ public class NewPostActivity extends BaseActivity {
 
         // Obtaining and adding Keywords for search
         String[] keywords = title.split(" ");
-        String[] commonWords = {"what", "why", "is", "are"};
+        String[] commonWords = {"what", "why", "is", "are", "and", "in", "how", "to"};
 
         for (int i = 0; i < keywords.length; i++) {
             for (String commonWord : commonWords) {
-                if (keywords[i].equals(commonWord)) {
+                if (keywords[i].toLowerCase().equals(commonWord)) {
                     keywords[i] = "";
                 }
             }
@@ -215,7 +215,7 @@ public class NewPostActivity extends BaseActivity {
             if (keywords[i].length() > 0) {
                 String tempKey = mDatabase.child("keywords").child(keywords[i]).push().getKey();
              //   mDatabase.child("keywords").child(keywords[i]).child(tempKey).setValue(key);
-                childUpdates.put("/keywords/"+ keywords[i] + "/" + key , postValues);
+                childUpdates.put("/keywords/"+ keywords[i].toLowerCase() + "/" + key , postValues);
             }
         }
         mDatabase.updateChildren(childUpdates);

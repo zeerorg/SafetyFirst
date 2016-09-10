@@ -28,15 +28,10 @@ public class SearchPostFragment extends PostListFragment {
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
-        /*
-        List<Query> queries = null;
-        for (String keyword : keywords) {
-            if (databaseReference.child("keywords").child(keyword).getRef() != null) {
-                queries.add(databaseReference.child("keywords").child(keyword).getRef());
-            }
+        if (databaseReference.child("keywords").child(query.toLowerCase()) == null) {
+            Toast.makeText(getContext(), "No TAGS Found. Try another word.", Toast.LENGTH_SHORT).show();
         }
-        */
-        return databaseReference.child("user-posts").child(getUid());
+        return databaseReference.child("keywords").child(query.toLowerCase());
     }
 
 

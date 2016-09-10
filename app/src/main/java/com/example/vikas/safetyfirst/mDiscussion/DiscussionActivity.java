@@ -122,6 +122,7 @@ public class DiscussionActivity extends BaseActivity {
                 finish();
                 return true;
             case R.id.search_post:
+                Toast.makeText(DiscussionActivity.this, "Just write important TAG/Word of your Question", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
