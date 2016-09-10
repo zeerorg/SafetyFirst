@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Trestle Ladder"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Platform Ladder"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="center_horizontal"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/md_keylines"
+            android:layout_height="150dp"
+            android:src="@drawable/trestle_ladder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="•	The Trestle Ladder, also known as a Double Front Ladder, is a self-supporting portable ladder that is non-adjustable in length, and hinged at the top. It consists of two sections and is designed to be climbed by two persons at the same time, one on each side."
+            android:layout_below="@+id/textView"
+            android:paddingTop="@dimen/md_keylines"
+            android:paddingRight="@dimen/md_keylines"
+            android:paddingLeft="@dimen/md_keylines"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Trestle Ladders range in lengths up to 20 ft. as measured along the side rail.  The highest standing level on a Trestle Ladder is slightly more than 2 ft. from the top of the ladder. "
+            android:paddingTop="@dimen/md_keylines"
+            android:paddingRight="@dimen/md_keylines"
+            android:paddingLeft="@dimen/md_keylines"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="•	A Trestle Ladder requires level ground support for all four of its side rails.  If this work site condition does not exist, a Trestle Ladder should not be selected for the job."
+            android:paddingTop="@dimen/md_keylines"
+            android:paddingRight="@dimen/md_keylines"
+            android:paddingLeft="@dimen/md_keylines"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• A Trestle Ladder must not be used unless its base is spread fully open and the Spreaders locked."
+            android:paddingTop="@dimen/md_keylines"
+            android:paddingRight="@dimen/md_keylines"
+            android:paddingLeft="@dimen/md_keylines" />
+
+    </LinearLayout>
+</ScrollView>
