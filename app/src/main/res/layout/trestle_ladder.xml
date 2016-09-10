@@ -14,14 +14,14 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Platform Ladder"
+            android:text="Trestle Ladder"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_gravity="center_horizontal"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_margin="@dimen/md_keylines"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:src="@drawable/trestle_ladder"/>
 
         <TextView
