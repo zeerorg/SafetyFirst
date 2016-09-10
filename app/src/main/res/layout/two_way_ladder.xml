@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="•	A platform ladder is a front step ladder with a platform as its top step."
+            android:text="• Flat steps, hinged back"
             android:paddingTop="@dimen/md_keylines"
             android:paddingRight="@dimen/md_keylines"
             android:paddingLeft="@dimen/md_keylines"/>
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="• A top rail guard is usually around two feet higher than the platform to provide safety while you are working."
+            android:text="• Use on firm level footing "
             android:paddingTop="@dimen/md_keylines"
             android:paddingRight="@dimen/md_keylines"
             android:paddingLeft="@dimen/md_keylines"/>
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="•	Platform ladders provide that higher level of comfort you look for while standing on a ladder for any amount of time.  You won’t be killing the bottom of your feet or your shins when you stand on the platform."
+            android:text="•	Metal, wood, fiberglass"
             android:paddingTop="@dimen/md_keylines"
             android:paddingRight="@dimen/md_keylines"
             android:paddingLeft="@dimen/md_keylines"/>
@@ -51,7 +51,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="• This ladder allows you to work on any project that requires you to use two hands as safely as if you were on the ground itself.  Being able to rotate around and work in which ever direction you need helps you to work safer and faster."
+            android:text="•	Metal spreader or locking arms"
+            android:paddingTop="@dimen/md_keylines"
+            android:paddingRight="@dimen/md_keylines"
+            android:paddingLeft="@dimen/md_keylines" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="•	No work from top step"
+            android:paddingTop="@dimen/md_keylines"
+            android:paddingRight="@dimen/md_keylines"
+            android:paddingLeft="@dimen/md_keylines" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="•	20 feet maximum length"
             android:paddingTop="@dimen/md_keylines"
             android:paddingRight="@dimen/md_keylines"
             android:paddingLeft="@dimen/md_keylines" />
