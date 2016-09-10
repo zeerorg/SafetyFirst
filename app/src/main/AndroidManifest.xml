@@ -82,6 +82,7 @@
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:parentActivityName=".mNewsActivity.NewsActivity"
+            android:label="News"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

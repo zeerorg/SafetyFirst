@@ -20,10 +20,12 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void startNews(View view) {
+        //TODO check internet connection
         Intent intent = new Intent(this, NewsActivity.class);
         startActivity(intent);
     }
     public void startDiscussion(View view) {
+        //TODO check internet connection
         Intent intent = new Intent(this,DiscussionActivity.class);
         startActivity(intent);
     }
