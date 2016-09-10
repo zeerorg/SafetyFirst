@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,30 +7,27 @@
     android:orientation="vertical"
     tools:context="com.example.vikas.safetyfirst.DashboardActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@drawable/home"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
 
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_below="@+id/imageView2"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/imageView2"
+        android:layout_marginBottom="@dimen/md_keylines"
+        android:src="@drawable/home"
+        android:scaleType="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <ImageView
             android:src="@drawable/news"
@@ -66,9 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,13 +84,18 @@
 
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/feedback_button"
-        android:onClick="startFeedBack"/>
 </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#C0E5FF"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textColor="@color/dark_red"
+        android:text="@string/feedback"
+        android:onClick="startFeedBack"
+        android:id="@+id/textView2" />
+
 
 </RelativeLayout>
-</ScrollView>
