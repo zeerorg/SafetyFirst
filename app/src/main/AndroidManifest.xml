@@ -22,12 +22,62 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".mWebview.Webview" />
+        <activity android:name=".FeedBackActivity"
+            android:label="FeedBack"/>
         <activity
-            android:name=".mKnowitActivity.Ladders.mNonSelfSupportingLadder.NonSelfSupporting"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.SupportedScaffold"
+            android:label="Self Supporting Scaffold" />
         <activity
-            android:name=".mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SuspendedScaffold"
+            android:label="Suspended Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SpecialUseScaffolding.SpecialUseScaffold"
+            android:label="Special Use Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.FrameScaffold"
+            android:label="Frame Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.PoleScaffold"
+            android:label="Pole Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.SpecialtyScaffold"
+            android:label="Specialty Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.LadderJackScaffold"
+            android:label="Ladder Jack Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.MobileScaffold"
+            android:label="Mobile Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.TubeCouplerScaffold"
+            android:label="Tubr Coupler Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.PumpJackScaffold"
+            android:label="Pump Jack Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.CatenaryScaffold"
+            android:label="Catenary Scaffolding" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.FloatScaffold"
+            android:label="Float Scaffolding" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.InteriorHungScaffold"
+            android:label="Interior Hung Scaffold" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.MultiLevelScaffold"
+            android:label="Multi Level Scaffolding" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.MutiPointAdjustable"
+            android:label="Multi-Point Adjustable Scaffolding" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.NeedleBeamScaffold"
+            android:label="Needle Beam Scaffolding" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SinglePointAdjustable"
+            android:label="Single Point Scaffolding" />
+        <activity
+            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SwingStageScaffold"
+            android:label="Swing Stage Scaffolding" />
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:parentActivityName=".mNewsActivity.NewsActivity"
@@ -72,7 +122,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mKnowitActivity.Scaffolding.Types.PumpJack"></activity>
+        <activity android:name=".mKnowitActivity.Ladders.Types.StandardLadder" />
+        <activity android:name=".mKnowitActivity.Ladders.Types.TwoWayLadder" />
+        <activity android:name=".mKnowitActivity.Ladders.Types.OrchardLadder" />
+        <activity android:name=".mKnowitActivity.Ladders.Types.TrestleLadder" />
+        <activity android:name=".mKnowitActivity.Ladders.Types.PlatformLadder" />
+        <activity android:name=".mKnowitActivity.Ladders.Types.ExtensionLadder" />
+        <activity android:name=".mKnowitActivity.Ladders.Types.SingleLadder"></activity>
     </application>
 
 </manifest>

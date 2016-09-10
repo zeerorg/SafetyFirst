@@ -32,8 +32,8 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void startTestDiscussion(View view) {
-        Intent intent = new Intent(this,ProfileActivity.class);
+    public void startFeedBack(View view) {
+        Intent intent = new Intent(this,FeedBackActivity.class);
         startActivity(intent);
     }
 }

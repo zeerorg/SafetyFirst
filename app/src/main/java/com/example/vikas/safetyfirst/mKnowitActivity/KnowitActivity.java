@@ -14,10 +14,32 @@ import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.example.vikas.safetyfirst.SignInActivity;
 import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.LaddersFragment;
-import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.mNonSelfSupportingLadder.NonSelfSupporting;
-import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.mSelfSupportingLadder.SelfSupporting;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.ExtensionLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.OrchardLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.PlatformLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.SingleLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.StandardLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.TrestleLadder;
+import com.example.vikas.safetyfirst.mKnowitActivity.Ladders.Types.TwoWayLadder;
 import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.ScaffoldingsFragment;
-import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.PumpJack;
+
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.FrameScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.LadderJackScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.MobileScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.PoleScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.PumpJackScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.SpecialtyScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.SupportedScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SupportScaffolding.TubeCouplerScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.CatenaryScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.FloatScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.InteriorHungScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.MultiLevelScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.MutiPointAdjustable;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.NeedleBeamScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SinglePointAdjustable;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SuspendedScaffold;
+import com.example.vikas.safetyfirst.mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SwingStageScaffold;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class KnowitActivity extends BaseActivity {
@@ -81,18 +103,126 @@ public class KnowitActivity extends BaseActivity {
         }
     }
 
+
+
     public void startPumpJack(View view) {
-        Intent intent = new Intent(this, PumpJack.class);
+        Intent intent = new Intent(this, PumpJackScaffold.class);
         startActivity(intent);
     }
 
-    public void startSelfSupportingLadder(View view) {
-        Intent intent = new Intent(this, SelfSupporting.class);
+
+    public void frame_text_view(View view) {
+        Intent intent = new Intent(this, FrameScaffold.class);
         startActivity(intent);
     }
 
-    public void startNonSelfSupportingLadder(View view) {
-        Intent intent = new Intent(this, NonSelfSupporting.class);
+    public void mobile_text_view(View view) {
+        Intent intent = new Intent(this, MobileScaffold.class);
+        startActivity(intent);
+    }
+
+    public void tube_coupler_textView(View view) {
+        Intent intent = new Intent(this, TubeCouplerScaffold.class);
+        startActivity(intent);
+    }
+
+    public void ladder_jack_textView(View view) {
+        Intent intent = new Intent(this, LadderJackScaffold.class);
+        startActivity(intent);
+    }
+
+    public void pole_textView(View view) {
+        Intent intent = new Intent(this, PoleScaffold.class);
+        startActivity(intent);
+    }
+
+    public void speciality_textView(View view) {
+        Intent intent = new Intent(this, SpecialtyScaffold.class);
+        startActivity(intent);
+    }
+
+    public void self_supporting_scaffold_textView(View view) {
+        Intent intent = new Intent(this, SupportedScaffold.class);
+        startActivity(intent);
+    }
+
+    public void suspension_scaffolds_textView(View view) {
+        Intent intent = new Intent(this, SuspendedScaffold.class);
+        startActivity(intent);
+    }
+
+    public void single_point_adjustable_textView(View view) {
+        Intent intent = new Intent(this, SinglePointAdjustable.class);
+        startActivity(intent);
+    }
+
+    public void swing_scaffold_textView(View view) {
+        Intent intent = new Intent(this, SwingStageScaffold.class);
+        startActivity(intent);
+    }
+
+    public void multiple_point_adjustable_textView(View view) {
+        Intent intent = new Intent(this, MutiPointAdjustable.class);
+        startActivity(intent);
+    }
+
+    public void multi_level_scaffold_textView(View view) {
+        Intent intent = new Intent(this, MultiLevelScaffold.class);
+        startActivity(intent);
+    }
+
+    public void catenary_textView(View view) {
+        Intent intent = new Intent(this, CatenaryScaffold.class);
+        startActivity(intent);
+    }
+
+    public void float_scaffold_textView(View view) {
+        Intent intent = new Intent(this, FloatScaffold.class);
+        startActivity(intent);
+    }
+
+    public void interior_hung_scaffold_textView(View view) {
+        Intent intent = new Intent(this, InteriorHungScaffold.class);
+        startActivity(intent);
+    }
+
+    public void needle_beam_scaffold_textView(View view) {
+        Intent intent = new Intent(this, NeedleBeamScaffold.class);
+        startActivity(intent);
+    }
+
+    public void startStandardLadder(View view) {
+        Intent intent = new Intent(this, StandardLadder.class);
+        startActivity(intent);
+    }
+
+    public void startOrchardLadder(View view) {
+        Intent intent = new Intent(this, OrchardLadder.class);
+        startActivity(intent);
+    }
+
+    public void startPlatformLadder(View view) {
+        Intent intent = new Intent(this, PlatformLadder.class);
+        startActivity(intent);
+    }
+
+    public void startSingleLadder(View view) {
+        Intent intent = new Intent(this, SingleLadder.class);
+        startActivity(intent);
+    }
+
+    public void startExtensionLadder(View view) {
+        Intent intent = new Intent(this, ExtensionLadder.class);
+        startActivity(intent);
+    }
+
+    public void startTrestleLadder(View view) {
+        Intent intent = new Intent(this, TrestleLadder.class);
+        startActivity(intent);
+    }
+
+    public void startTwoWayLadder(View view) {
+        Intent intent = new Intent(this, TwoWayLadder.class);
         startActivity(intent);
     }
 }
