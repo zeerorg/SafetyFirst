@@ -1,8 +1,5 @@
 package com.example.vikas.safetyfirst.mWebview;
 
-/**
- * Created by Vikas on 07-09-2016.
- */
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -14,17 +11,15 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.vikas.safetyfirst.BaseActivity;
 import com.example.vikas.safetyfirst.R;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
-/**
- */
-public class WebViewActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
+public class WebViewActivity extends BaseActivity implements ObservableScrollViewCallbacks {
 
     private ObservableWebView webView;
-    private ProgressBar progressBar;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -36,11 +31,10 @@ public class WebViewActivity extends AppCompatActivity implements ObservableScro
         Toast.makeText(this, url, Toast.LENGTH_LONG).show();
 
         webView = (ObservableWebView) findViewById(R.id.web);
-        progressBar = (ProgressBar) findViewById(R.id.loading);
         webView.setScrollViewCallbacks(this);
 
         webView.getSettings().setJavaScriptEnabled(true); // enable javascript
-        webView.setWebViewClient(new MyWebViewClient());
+        webView.setWebViewClient(new MyWebViewClient(url));
         webView.loadUrl(url);
     }
 
@@ -70,22 +64,30 @@ public class WebViewActivity extends AppCompatActivity implements ObservableScro
     }
 
     private class MyWebViewClient extends WebViewClient {
+
+        private String currentURL;
+
+        public MyWebViewClient(String currentURL){
+            this.currentURL = currentURL;
+        }
+
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            if(url.equals(currentURL)){
+                view.loadUrl(url);
+            }
             return true;
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            progressBar.setVisibility(View.GONE);
-            WebViewActivity.this.progressBar.setProgress(100);
+            hideProgressDialog();
             super.onPageFinished(view, url);
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            WebViewActivity.this.progressBar.setProgress(0);
+            showProgressDialog();
             super.onPageStarted(view, url, favicon);
         }
     }
