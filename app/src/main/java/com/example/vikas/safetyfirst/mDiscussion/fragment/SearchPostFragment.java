@@ -6,6 +6,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
+import java.util.List;
+
 public class SearchPostFragment extends PostListFragment {
 
     private String query;
@@ -26,7 +28,10 @@ public class SearchPostFragment extends PostListFragment {
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
-        return databaseReference.child("user-posts").child(getUid());
+        if (databaseReference.child("keywords").child(query.toLowerCase()) == null) {
+            Toast.makeText(getContext(), "No TAGS Found. Try another word.", Toast.LENGTH_SHORT).show();
+        }
+        return databaseReference.child("keywords").child(query.toLowerCase());
     }
 
 
