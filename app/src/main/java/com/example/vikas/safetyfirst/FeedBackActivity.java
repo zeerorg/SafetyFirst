@@ -24,7 +24,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FeedBackActivity extends BaseActivity {
+public class FeedBackActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "NewFeedbackActivity";
     private static final String REQUIRED = "Required";
@@ -39,6 +39,20 @@ public class FeedBackActivity extends BaseActivity {
 
     private EditText mTitleField;
     private EditText mBodyField;
+    private ImageView mVeryGood;
+    private ImageView mGood;
+    private ImageView mSatisfactory;
+    private ImageView mBad;
+    private ImageView mStars;
+    private ImageView mSubmit;
+
+    String title = "nothing";
+
+    boolean very_good = false;
+    boolean good = false;
+    boolean satisfactory = false;
+    boolean bad = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,26 +66,24 @@ public class FeedBackActivity extends BaseActivity {
 
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
-
-        findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitPost();
-            }
-        });
-
-
+        mVeryGood = (ImageView) findViewById(R.id.very_good);
+        mGood = (ImageView) findViewById(R.id.good);
+        mSatisfactory = (ImageView) findViewById(R.id.satisfactory);
+        mBad = (ImageView) findViewById(R.id.bad);
+        mSubmit = (ImageView) findViewById(R.id.submit);
+        mStars = (ImageView) findViewById(R.id.stars);
+        mVeryGood.setOnClickListener(this);
+        mGood.setOnClickListener(this);
+        mSatisfactory.setOnClickListener(this);
+        mBad.setOnClickListener(this);
+       mSubmit.setOnClickListener(this);
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void submitPost() {
-        final String title = mTitleField.getText().toString();
+
         final String body = mBodyField.getText().toString();
-        // Title is required
-        if (TextUtils.isEmpty(title)) {
-            mTitleField.setError(REQUIRED);
-            return;
-        }
+
 
         // Body is required
         if (TextUtils.isEmpty(body)) {
@@ -124,7 +136,7 @@ public class FeedBackActivity extends BaseActivity {
         childUpdates.put("/feedback/" + key, feedbackValues);
 
         mDatabase.updateChildren(childUpdates);
-        Toast.makeText(FeedBackActivity.this, "uploaded", Toast.LENGTH_SHORT).show();
+        Toast.makeText(FeedBackActivity.this, "Feedback sent", Toast.LENGTH_SHORT).show();
     }
     // [END write_fan_out]
 
@@ -169,5 +181,79 @@ public class FeedBackActivity extends BaseActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch(view.getId()) {
+            case R.id.submit:
+                submitPost();
+                break;
+            case R.id.very_good:
+                very_good = !very_good;
+                good = false;
+                satisfactory = false;
+                bad = false;
+                setView();
+                break;
+
+            case R.id.good:
+                very_good = false;
+                good = !good;
+                satisfactory = false;
+                bad = false;
+                setView();
+
+                break;
+            case R.id.satisfactory:
+                very_good = false;
+                good = false;
+                satisfactory = !satisfactory;
+                bad = false;
+                setView();
+                break;
+            case R.id.bad:
+                very_good = false;
+                good = false;
+                satisfactory = false;
+                bad = !bad;
+                setView();
+
+                break;
+        }
+
+    }
+
+    private void setView() {
+        if(very_good){
+            title="Very Good";
+            mVeryGood.setImageResource(R.drawable.pressed_very_good);
+            mGood.setImageResource(R.drawable.good);
+            mSatisfactory.setImageResource(R.drawable.satisfactory);
+            mBad.setImageResource(R.drawable.bad);
+            mStars.setImageResource(R.drawable.stars4);
+
+        }
+        if(good){
+            title="Good";
+            mVeryGood.setImageResource(R.drawable.very_good);
+            mGood.setImageResource(R.drawable.good_pressed);
+            mSatisfactory.setImageResource(R.drawable.satisfactory);
+            mBad.setImageResource(R.drawable.bad);
+            mStars.setImageResource(R.drawable.stars3);}
+        if(satisfactory){
+            title="Satisfactory";
+            mVeryGood.setImageResource(R.drawable.very_good);
+            mGood.setImageResource(R.drawable.good);
+            mSatisfactory.setImageResource(R.drawable.satisfactory_pressed);
+            mBad.setImageResource(R.drawable.bad);
+            mStars.setImageResource(R.drawable.stars2);}
+        if(bad){title="Bad";
+            mVeryGood.setImageResource(R.drawable.very_good);
+            mGood.setImageResource(R.drawable.good);
+            mSatisfactory.setImageResource(R.drawable.satisfactory);
+            mBad.setImageResource(R.drawable.bad_pressed_r);
+            mStars.setImageResource(R.drawable.stars1);}
     }
 }

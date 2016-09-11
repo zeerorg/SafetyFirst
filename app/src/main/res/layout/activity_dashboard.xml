@@ -91,7 +91,7 @@
         android:background="#C0E5FF"
         android:layout_alignParentBottom="true"
         android:textAlignment="center"
-        android:textSize="30dp"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/dark_red"
         android:text="@string/feedback"
         android:onClick="startFeedBack"

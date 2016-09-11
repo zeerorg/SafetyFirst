@@ -9,7 +9,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.vikas.safetyfirst.FeedBackActivity">
+    tools:context="com.example.vikas.safetyfirst.FeedBackActivity"
+    android:weightSum="1">
 
 <TextView
     android:layout_width="wrap_content"
@@ -21,6 +22,12 @@
     android:layout_gravity="center_horizontal"
     android:textColor="@color/colorAccentDark"/>
 
+    <ImageView
+        android:id="@+id/stars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/stars0"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,27 +38,57 @@
         style="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorAccentDark"/>
 
+    <ImageView
+        android:id="@+id/very_good"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/very_good"/>
+    <ImageView
+        android:id="@+id/good"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/good"/>
+    <ImageView
+        android:id="@+id/satisfactory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/satisfactory"/>
+    <ImageView
+        android:id="@+id/bad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bad"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/md_keylines"
+        android:paddingBottom="@dimen/md_keylines"
+        android:text="Thanks. Anything else that you would like to add."
+        style="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorAccentDark"/>
+
+
     <EditText
         android:id="@+id/field_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/field_title"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="5dp"
         android:inputType="textMultiLine"
         android:maxLines="10"
-        android:scrollHorizontally="false" />
+        android:scrollHorizontally="false"
+        android:layout_weight="11.50" />
 
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/fab_submit_post"
-        android:layout_gravity="center_horizontal" />
+        android:src="@drawable/submit"/>
 
 
 </LinearLayout>

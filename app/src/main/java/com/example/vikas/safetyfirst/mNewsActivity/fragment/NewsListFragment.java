@@ -217,7 +217,7 @@ public abstract class NewsListFragment extends Fragment {
                                    DataSnapshot dataSnapshot) {
                 // Transaction completed
                 Log.d(TAG, "postTransaction:onComplete:" + databaseError);
-                Toast.makeText(getActivity().getApplicationContext(), "complete", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity().getApplicationContext(), "complete", Toast.LENGTH_SHORT).show();
             }
         });
     }

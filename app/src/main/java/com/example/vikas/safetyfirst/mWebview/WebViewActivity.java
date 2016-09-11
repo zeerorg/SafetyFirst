@@ -28,7 +28,7 @@ public class WebViewActivity extends BaseActivity implements ObservableScrollVie
         setContentView(R.layout.activity_web);
 
         String url = getIntent().getStringExtra("Url");
-        Toast.makeText(this, url, Toast.LENGTH_LONG).show();
+      //  Toast.makeText(this, url, Toast.LENGTH_LONG).show();
 
         webView = (ObservableWebView) findViewById(R.id.web);
         webView.setScrollViewCallbacks(this);
