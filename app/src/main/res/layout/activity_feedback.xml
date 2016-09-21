@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.vikas.safetyfirst.FeedBackActivity"
+    tools:context="com.vikas.dtu.safetyfirst.FeedBackActivity"
     android:weightSum="1">
 
 <TextView
