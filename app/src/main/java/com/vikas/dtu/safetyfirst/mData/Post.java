@@ -10,6 +10,7 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Post {
 
+    public String authorImageUrl;
     public String uid;
     public String author;
     public String title;
@@ -22,12 +23,17 @@ public class Post {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    public Post(String uid, String author, String title, String body, String image) {
+    public Post(String uid, String author, String title, String body, String image, String authorImageUrl) {
+        this.authorImageUrl = authorImageUrl;
         this.uid = uid;
         this.author = author;
         this.title = title;
         this.body = body;
         this.image = image;
+    }
+
+    public String getPhotoUrl() {
+        return authorImageUrl;
     }
 
     // [START post_to_map]
@@ -41,6 +47,7 @@ public class Post {
         result.put("image", image);
         result.put("starCount", starCount);
         result.put("stars", stars);
+        result.put("authorImageUrl", authorImageUrl);
 
         return result;
     }

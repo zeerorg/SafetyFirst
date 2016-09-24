@@ -1,4 +1,4 @@
-package com.vikas.dtu.safetyfirst.mDiscussion;
+package com.vikas.dtu.safetyfirst.mNewsActivity2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.SignInActivity;
-import com.vikas.dtu.safetyfirst.mDiscussion.fragment.MyPostsFragment;
-import com.vikas.dtu.safetyfirst.mDiscussion.fragment.RecentPostsFragment;
-import com.google.firebase.auth.FirebaseAuth;
+import com.vikas.dtu.safetyfirst.mDiscussion.SearchActivity;
+import com.vikas.dtu.safetyfirst.mNewsActivity2.fragment.MyNewsFragment;
+import com.vikas.dtu.safetyfirst.mNewsActivity2.fragment.RecentNewsFragment;
 
-public class DiscussionActivity extends BaseActivity {
+public class NewsActivity extends BaseActivity {
 
     private static final String TAG = "NewsActivity";
 
@@ -36,8 +37,8 @@ public class DiscussionActivity extends BaseActivity {
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[]{
-                    new RecentPostsFragment(),
-                    new MyPostsFragment(),
+                    new RecentNewsFragment(),
+                    new MyNewsFragment(),
             };
             private final String[] mFragmentNames = new String[]{
                     getString(R.string.heading_recent),
@@ -64,14 +65,6 @@ public class DiscussionActivity extends BaseActivity {
         mViewPager.setAdapter(mPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        // Button launches NewPostActivity
-        findViewById(R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DiscussionActivity.this, NewPostActivity.class));
-            }
-        });
     }
 
     @Override

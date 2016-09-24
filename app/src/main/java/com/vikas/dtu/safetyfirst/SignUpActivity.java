@@ -97,7 +97,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         String username = usernameFromEmail(user.getEmail());
         // String username = mNameField.getText().toString();
         // Write new user
-        writeNewUser(user.getUid(), username, user.getEmail());
+        writeNewUser(user.getUid(), username, user.getEmail(), user.getPhotoUrl()!= null ?user.getPhotoUrl().toString():null);
 
         // Go to DashboardActivity
         startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
@@ -145,8 +145,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     // [START basic_write]
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+    private void writeNewUser(String userId, String name, String email, String image) {
+        User user = new User(name, email, image);
 
         mDatabase.child("users").child(userId).setValue(user);
     }

@@ -119,4 +119,5 @@
     <string name="fav_heading">Fav</string>
     <string name="lorem">Nothing found!</string>
     <string name="search_activity">Search Activity</string>
+    <string name="send_to">Share using..</string>
 </resources>

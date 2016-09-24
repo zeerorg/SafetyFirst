@@ -20,15 +20,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true" />
 
-    <include
-        android:id="@+id/post_text_layout"
-        layout="@layout/include_post_text"
+    <TextView
+        android:id="@+id/post_title"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/post_author_layout"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp" />
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textStyle="bold"
+        tools:text="My First Post" />
+
+    <TextView
+        android:id="@+id/post_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="@string/lorem" />
 
     <LinearLayout
         android:id="@+id/comment_form"

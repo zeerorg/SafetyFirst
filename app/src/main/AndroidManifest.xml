@@ -97,6 +97,9 @@
             android:name="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity" />
         <activity
+            android:name="com.vikas.dtu.safetyfirst.mNewsActivity2.NewsActivity"
+            android:label="@string/titleNewsActivity" />
+        <activity
             android:name="com.vikas.dtu.safetyfirst.mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity" />
         <activity
@@ -113,6 +116,9 @@
             android:label="@string/titleDashboard" />
         <activity
             android:name="com.vikas.dtu.safetyfirst.SignUpActivity"
+            android:label="@string/title_activity_sign_up" />
+        <activity
+            android:name="com.vikas.dtu.safetyfirst.SignInActivity2"
             android:label="@string/title_activity_sign_up" />
         <activity android:name="com.vikas.dtu.safetyfirst.NoNetworkConnection" />
         <activity

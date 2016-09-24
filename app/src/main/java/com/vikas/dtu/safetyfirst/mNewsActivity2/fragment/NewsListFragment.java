@@ -1,9 +1,8 @@
-package com.vikas.dtu.safetyfirst.mDiscussion.fragment;
+package com.vikas.dtu.safetyfirst.mNewsActivity2.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,11 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mData.Post;
-import com.vikas.dtu.safetyfirst.mDiscussion.PostDetailActivity;
-import com.vikas.dtu.safetyfirst.mRecycler.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,8 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
+import com.vikas.dtu.safetyfirst.R;
+import com.vikas.dtu.safetyfirst.mData.Post;
+import com.vikas.dtu.safetyfirst.mNewsActivity2.NewsDetailActivity;
+import com.vikas.dtu.safetyfirst.mRecycler.PostViewHolder;
 
-public abstract class PostListFragment extends Fragment {
+public abstract class NewsListFragment extends Fragment {
 
     private static final String TAG = "NewsListFragment";
 
@@ -38,7 +36,7 @@ public abstract class PostListFragment extends Fragment {
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    public PostListFragment() {
+    public NewsListFragment() {
     }
 
     @Override
@@ -81,8 +79,8 @@ public abstract class PostListFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Launch NewsDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                        intent.putExtra(NewsDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });
@@ -92,16 +90,6 @@ public abstract class PostListFragment extends Fragment {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_24);
                 } else {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
-                }
-
-                //Set Author Photo
-                if (model.getPhotoUrl() == null) {
-                    viewHolder.authorImage.setImageDrawable(ContextCompat.getDrawable(getContext(),
-                            R.drawable.ic_action_account_circle_40));
-                } else {
-                    Glide.with(getContext())
-                            .load(model.getPhotoUrl())
-                            .into(viewHolder.authorImage);
                 }
 
                 // Bind Post to ViewHolder, setting OnClickListener for the star button

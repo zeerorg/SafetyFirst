@@ -27,7 +27,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     public static final String EXTRA_NEWS_KEY = "post_key";
 
     private DatabaseReference mPostReference;
-    private ValueEventListener mPostListener;
+    private ValueEventListener mNewsListener;
     private String mPostKey;
     private TextView mTitleView;
     private TextView mBodyView;
@@ -40,14 +40,6 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
-
-        // Set Collapsing Toolbar layout to the screen
-    //    CollapsingToolbarLayout collapsingToolbar =
-    //            (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        // Set title of Detail page
-
-   //     collapsingToolbar.setTitle(HEADLINE);
-
 
         // Get post key from intent
         mPostKey = getIntent().getStringExtra(EXTRA_NEWS_KEY);
@@ -74,9 +66,9 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     public void onStart() {
         super.onStart();
 
-        // Add value event listener to the post
-        // [START post_value_event_listener]
-        ValueEventListener postListener = new ValueEventListener() {
+        // Add value event listener to the news
+        // [START news_value_event_listener]
+        ValueEventListener newsListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get News object and use the values to update the UI
@@ -88,10 +80,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
                 mBodyView.setText(news.body);
                 url = news.author;
                 if(news.imgUrl!=null){
-                    //todo set image in view using picasso
                     PicassoClient.downloadImage(getApplicationContext(), news.imgUrl, mNewsImage);
-
-                 //   mNewsImage.setImageURI(Uri.parse(news.imgUrl));
                     mNewsImage.setVisibility(View.VISIBLE);
                 }
                 // [END_EXCLUDE]
@@ -107,11 +96,11 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
                 // [END_EXCLUDE]
             }
         };
-        mPostReference.addValueEventListener(postListener);
-        // [END post_value_event_listener]
+        mPostReference.addValueEventListener(newsListener);
+        // [END news_value_event_listener]
 
         // Keep copy of post listener so we can remove it when app stops
-        mPostListener = postListener;
+        mNewsListener = newsListener;
 
     }
 
@@ -120,8 +109,8 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         super.onStop();
 
         // Remove post value event listener
-        if (mPostListener != null) {
-            mPostReference.removeEventListener(mPostListener);
+        if (mNewsListener != null) {
+            mPostReference.removeEventListener(mNewsListener);
         }
 
     }

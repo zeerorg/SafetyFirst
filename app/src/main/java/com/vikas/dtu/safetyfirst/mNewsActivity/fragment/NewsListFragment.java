@@ -79,7 +79,7 @@ public abstract class NewsListFragment extends Fragment {
             protected void populateViewHolder(final NewsViewHolder viewHolder, final News model, final int position) {
                 final DatabaseReference newsRef = getRef(position);
 
-                // Set click listener for the whole post view
+                // Set click listener for the whole news view
                 final String newsKey = newsRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -118,7 +118,7 @@ public abstract class NewsListFragment extends Fragment {
                                 // [START_EXCLUDE]
 //                mAuthorView.setText(news.author);
                                 title[0] = news.title;
-                                body[0] =news.body;
+                                body[0] = news.body;
                                 author[0] = news.author;
                                 image[0] = news.imgUrl;
                                 // [END_EXCLUDE]
@@ -136,10 +136,6 @@ public abstract class NewsListFragment extends Fragment {
                         };
 
                         mPostReference.addValueEventListener(postListener);
-
-
-
-                        Toast.makeText(getActivity().getApplicationContext(),  title[0], Toast.LENGTH_SHORT).show();
 
                         // [START single_value_read]
                         final String userId = getUid();
@@ -159,7 +155,7 @@ public abstract class NewsListFragment extends Fragment {
                                                     Toast.LENGTH_SHORT).show();
                                         } else {
                                             // Write new post
-                                            writeNewNews(newsRef.getKey(), userId,author[0], user.username, title[0], body[0], image[0]);
+                                            writeNewNews(newsRef.getKey(), userId, author[0], user.username, title[0], body[0], image[0]);
                                         }
                                         // [END_EXCLUDE]
                                     }
@@ -180,6 +176,21 @@ public abstract class NewsListFragment extends Fragment {
                         onBookmarked(userPostRef);
 
 
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                         DatabaseReference  mPostReference = FirebaseDatabase.getInstance().getReference()
+                                .child("news").child(newsKey);
+
+
+                        Toast.makeText(getContext()," ", Toast.LENGTH_SHORT).show();
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "");
+                        sendIntent.setType("text/plain");
+                        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
                     }
                 });
             }

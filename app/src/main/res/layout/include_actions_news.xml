@@ -15,5 +15,14 @@
         android:layout_marginLeft="10dp"
         android:gravity="center"
         android:src="@drawable/bookmark"/>
+    <ImageView
+        android:id="@+id/share"
+        android:visibility="gone"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:src="@drawable/share"/>
 
 </LinearLayout>

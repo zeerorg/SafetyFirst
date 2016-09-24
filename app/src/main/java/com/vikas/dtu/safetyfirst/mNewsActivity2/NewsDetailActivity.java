@@ -1,8 +1,7 @@
-package com.vikas.dtu.safetyfirst.mDiscussion;
+package com.vikas.dtu.safetyfirst.mNewsActivity2;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,26 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.vikas.dtu.safetyfirst.BaseActivity;
-import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mData.Comment;
-import com.vikas.dtu.safetyfirst.mData.Post;
-import com.vikas.dtu.safetyfirst.mData.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vikas.dtu.safetyfirst.BaseActivity;
+import com.vikas.dtu.safetyfirst.R;
+import com.vikas.dtu.safetyfirst.mData.Comment;
+import com.vikas.dtu.safetyfirst.mData.Post;
+import com.vikas.dtu.safetyfirst.mData.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDetailActivity extends BaseActivity implements View.OnClickListener {
+public class NewsDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "NewsDetailActivity";
 
@@ -42,7 +40,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private String mPostKey;
     private CommentAdapter mAdapter;
 
-    private ImageView mAuthorImage;
     private TextView mAuthorView;
     private TextView mTitleView;
     private TextView mBodyView;
@@ -68,7 +65,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 .child("post-comments").child(mPostKey);
 
         // Initialize Views
-        mAuthorImage = (ImageView) findViewById(R.id.post_author_photo);
         mAuthorView = (TextView) findViewById(R.id.post_author);
         mTitleView = (TextView) findViewById(R.id.post_title);
         mBodyView = (TextView) findViewById(R.id.post_body);
@@ -93,14 +89,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 // Get Post object and use the values to update the UI
                 Post post = dataSnapshot.getValue(Post.class);
                 // [START_EXCLUDE]
-                if (post.getPhotoUrl() == null) {
-                   mAuthorImage.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),
-                            R.drawable.ic_action_account_circle_40));
-                } else {
-                    Glide.with(getBaseContext())
-                            .load(post.getPhotoUrl())
-                            .into(mAuthorImage);
-                }
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
@@ -112,7 +100,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(PostDetailActivity.this, "Failed to load post.",
+                Toast.makeText(NewsDetailActivity.this, "Failed to load post.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }

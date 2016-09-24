@@ -14,6 +14,7 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
     public TextView titleView;
     public TextView authorView;
     public ImageView bookmark;
+    public ImageView share;
     public TextView bodyView;
 
     public NewsViewHolder(View itemView) {
@@ -23,15 +24,15 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
      //   authorView = (TextView) itemView.findViewById(R.id.post_author);
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
         bookmark = (ImageView) itemView.findViewById(R.id.bookmark);
+        share = (ImageView) itemView.findViewById(R.id.share);
 
     }
 
-    public void bindToNews(News news, View.OnClickListener starClickListener) {
+    public void bindToNews(News news, View.OnClickListener starClickListener, View.OnClickListener shareClickListener) {
         titleView.setText(news.title);
-
-
         bodyView.setText(news.body);
         bookmark.setOnClickListener(starClickListener);
+        share.setOnClickListener(shareClickListener);
 //
     }
 }

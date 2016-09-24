@@ -168,7 +168,7 @@ public class NewPostActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username, title, body, image);
+                            writeNewPost(userId, user.username, title, body, image, user.userImage);
                         }
 
                         // Finish this Activity, back to the stream
@@ -185,11 +185,11 @@ public class NewPostActivity extends BaseActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body, String image) {
+    private void writeNewPost(String userId, String username, String title, String body, String image, String authorImageUrl) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("posts").push().getKey();
-        Post post = new Post(userId, username, title, body, image);
+        Post post = new Post(userId, username, title, body, image, authorImageUrl);
         Map<String, Object> postValues = post.toMap();
 
         // Obtaining and adding Keywords for search

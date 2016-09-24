@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.vikas.dtu.safetyfirst.mData.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,13 +27,14 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     private static final String TAG = "SignInActivity";
 
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mFirebaseAuth;
 
     private EditText mEmailField;
     private EditText mPasswordField;
-    private Button mSignInButton;
-    private Button mSignUpButton;
+    private Button customSigninButton;
     private TextView mSignUpText;
+
+    private SignInButton mSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +42,21 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_sign_in);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         // Views
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
-        mSignInButton = (Button) findViewById(R.id.button_sign_in);
+        customSigninButton = (Button) findViewById(R.id.button_sign_in);
         //  mSignUpButton = (Button) findViewById(R.id.button_sign_up);
+        mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
         mSignUpText = (TextView) findViewById(R.id.link_signup);
         // Click listeners
-        mSignInButton.setOnClickListener(this);
+        customSigninButton.setOnClickListener(this);
         mSignUpText.setOnClickListener(this);
         //  mSignUpButton.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -58,8 +64,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         super.onStart();
 
         // Check auth on Activity start
-        if (mAuth.getCurrentUser() != null) {
-            onAuthSuccess(mAuth.getCurrentUser());
+        if (mFirebaseAuth.getCurrentUser() != null) {
+            onAuthSuccess(mFirebaseAuth.getCurrentUser());
         }
     }
 
@@ -73,7 +79,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email, password)
+        mFirebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -100,7 +106,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mFirebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -121,7 +127,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         String username = usernameFromEmail(user.getEmail());
 
         // Write new user
-        writeNewUser(user.getUid(), username, user.getEmail());
+        writeNewUser(user.getUid(), username, user.getEmail(), user.getPhotoUrl()!= null ?user.getPhotoUrl().toString():null);
 
         // Go to DashboardnActivity
         startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
@@ -156,8 +162,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
 
     // [START basic_write]
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+    private void writeNewUser(String userId, String name, String email, String image) {
+        User user = new User(name, email, image);
 
         mDatabase.child("users").child(userId).setValue(user);
     }
