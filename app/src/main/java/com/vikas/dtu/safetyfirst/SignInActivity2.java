@@ -31,7 +31,7 @@ import com.vikas.dtu.safetyfirst.mData.User;
 public class SignInActivity2 extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
-    private static final String TAG = "SignInActivity";
+    private static final String TAG = "SignInActivity2";
     private static final int RC_SIGN_IN = 9001;
     private SignInButton mSignInButton;
     private DatabaseReference mDatabase;
@@ -90,8 +90,7 @@ public class SignInActivity2 extends AppCompatActivity implements GoogleApiClien
             case R.id.sign_in_button:
                 signIn();
                 break;
-            default:
-                return;
+
         }
     }
 

@@ -158,7 +158,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         if (i == R.id.btn_signup) {
             signUp();
         } else if (i == R.id.link_login) {
-            startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+            startActivity(new Intent(SignUpActivity.this, SignInActivity2.class));
             finish();
         }
     }
