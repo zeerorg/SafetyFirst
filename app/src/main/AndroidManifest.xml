@@ -104,11 +104,7 @@
             android:label="@string/titleNewPostActivity">
             <meta-data android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.vikas.dtu.safetyfirst.mDiscussion.PostDetailActivity"
@@ -136,7 +132,11 @@
             android:name="com.vikas.dtu.safetyfirst.SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
 
         </activity>

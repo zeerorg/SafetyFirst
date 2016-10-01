@@ -6,19 +6,16 @@
         android:icon="@drawable/ic_photo_camera_white_24dp"
         android:title="@string/action_image"
         app:showAsAction="ifRoom" />
-
-    <!-- Video -->
-    <item android:id="@+id/video"
-        android:icon="@drawable/ic_videocam_white_24dp"
-        android:title="@string/action_video"
-        app:showAsAction="ifRoom" />
-
     <!-- File -->
     <item android:id="@+id/file"
         android:icon="@drawable/ic_attach_file_white_24dp"
         android:title="@string/action_file"
         app:showAsAction="ifRoom"/>
-
+    <!-- Video -->
+    <item android:id="@+id/video"
+        android:icon="@drawable/ic_videocam_white_24dp"
+        android:title="@string/action_video"
+        app:showAsAction="ifRoom" />
     <!-- Link -->
     <item android:id="@+id/link"
         android:icon="@drawable/ic_link_white_24dp"
