@@ -1,6 +1,8 @@
 package com.vikas.dtu.safetyfirst.mWebview;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -13,83 +15,50 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCal
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
-public class WebViewActivity extends BaseActivity implements ObservableScrollViewCallbacks {
+public class WebViewActivity extends BaseActivity {
 
-    private ObservableWebView webView;
+    private WebView webView;
+    private Activity activity;
+    private ProgressDialog progDailog;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        activity = this;
 
         String url = getIntent().getStringExtra("Url");
-      //  Toast.makeText(this, url, Toast.LENGTH_LONG).show();
+        //  Toast.makeText(this, url, Toast.LENGTH_LONG).show();
 
-        webView = (ObservableWebView) findViewById(R.id.web);
-        webView.setScrollViewCallbacks(this);
+        progDailog = ProgressDialog.show(activity, "Loading", "Please wait...", true);
+        progDailog.setCancelable(false);
 
-        webView.getSettings().setJavaScriptEnabled(true); // enable javascript
-        webView.setWebViewClient(new MyWebViewClient(url));
-        webView.loadUrl(url);
-    }
 
-    @Override
-    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-    }
+        webView = (WebView) findViewById(R.id.web);
 
-    @Override
-    public void onDownMotionEvent() {
-    }
 
-    @Override
-    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-        ActionBar ab = getSupportActionBar();
-        if (ab == null) {
-            return;
-        }
-        if (scrollState == ScrollState.UP) {
-            if (ab.isShowing()) {
-                ab.hide();
-            }
-        } else if (scrollState == ScrollState.DOWN) {
-            if (!ab.isShowing()) {
-                ab.show();
-            }
-        }
-    }
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.setWebViewClient(new WebViewClient() {
 
-    private class MyWebViewClient extends WebViewClient {
-
-        private String currentURL;
-
-        public MyWebViewClient(String currentURL){
-            this.currentURL = currentURL;
-        }
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if(url.equals(currentURL)){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                progDailog.show();
                 view.loadUrl(url);
+
+                return true;
             }
-            return true;
-        }
 
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            hideProgressDialog();
-            super.onPageFinished(view, url);
-        }
+            @Override
+            public void onPageFinished(WebView view, final String url) {
+                progDailog.dismiss();
+            }
+        });
 
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            showProgressDialog();
-            super.onPageStarted(view, url, favicon);
-        }
-    }
+        webView.loadUrl(url);
 
-    @Override
-    public  void onBackPressed(){
-        finish();
     }
 }

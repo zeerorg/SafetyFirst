@@ -215,6 +215,7 @@ public abstract class NewsListFragment extends Fragment {
                 } else {
                     // Star the post and add self to stars
                     p.starCount = p.starCount + 1;
+
                     p.stars.put(getUid(), true);
                 }
 

@@ -24,6 +24,7 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
      //   authorView = (TextView) itemView.findViewById(R.id.post_author);
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
         bookmark = (ImageView) itemView.findViewById(R.id.bookmark);
+        //bookmark.setImageResource(R.drawable.bookmark);
         share = (ImageView) itemView.findViewById(R.id.share);
 
     }
