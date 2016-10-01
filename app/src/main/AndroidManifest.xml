@@ -101,6 +101,7 @@
             android:label="@string/titleDiscussionActivity" />
         <activity
             android:name="com.vikas.dtu.safetyfirst.mDiscussion.NewPostActivity"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:label="@string/titleNewPostActivity">
             <meta-data android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />

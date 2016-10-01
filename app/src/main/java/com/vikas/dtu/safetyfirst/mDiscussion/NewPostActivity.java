@@ -1,5 +1,6 @@
 package com.vikas.dtu.safetyfirst.mDiscussion;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,19 +64,15 @@ public class NewPostActivity extends BaseActivity {
     private static final String REQUIRED = "Required";
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 2;
-    private Button button;
-    private ImageView imageView;
+    private ImageView mImageView;
+    private ProgressDialog mProgressDialog;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    /*  private static String[] PERMISSIONS_STORAGE = {
-              Manifest.permission.READ_EXTERNAL_STORAGE,
-              Manifest.permission.WRITE_EXTERNAL_STORAGE
-      };*/
     private FirebaseStorage storage;
     private UploadTask uploadTask;
     private String path;
     private Uri uriSavedImage;
     private Button DownloadButton;
-    private String URL="gs://youngman-783f3.appspot.com/";
+    private String URL="gs://safetyfirst-aec72.appspot.com/";
 
     private GoogleApiClient client;
 
@@ -85,8 +83,6 @@ public class NewPostActivity extends BaseActivity {
     private EditText mTitleField;
     private EditText mBodyField;
     private String mImageUri;
-   private Button  mImageBtn;
-   // private ImageView mImageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +96,8 @@ public class NewPostActivity extends BaseActivity {
 
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
-        mImageBtn = (Button) findViewById(R.id.addimageBtn);
+        mImageView = (ImageView) findViewById(R.id.field_image);
+
 
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,31 +105,10 @@ public class NewPostActivity extends BaseActivity {
                 submitPost();
             }
         });
-
-        mImageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               // startActivityForResult(new Intent(NewPostActivity.this, PicActivity.class), 1);
-                startAction();
-
-            }
-        });
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-/*//recieves image url from pic activity
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK){
-                mImageUri = data.getStringExtra("DOWNLOAD_URI");
-                Toast.makeText(NewPostActivity.this, "result ok" + mImageUri, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
     private void submitPost() {
         final String title = mTitleField.getText().toString();
         final String body = mBodyField.getText().toString();
@@ -255,27 +231,6 @@ public class NewPostActivity extends BaseActivity {
                 finish();
             }
         });
-    }
-    private void DownloadImage()  {
-        StorageReference storageRef = storage.getReferenceFromUrl(URL);
-        StorageReference mountainsRef = storageRef.child("images/"+"rider.jpg");
-
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + "_compressed_" + ".jpg");
-        mountainsRef.getFile(destination).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                Toast.makeText(getBaseContext(), "Done", Toast.LENGTH_SHORT).show();
-                //Show in Image View
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
     }
 
     private void startAction() {
@@ -552,5 +507,27 @@ public class NewPostActivity extends BaseActivity {
         inflater.inflate(R.menu.activity_new_post_actions, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+            case R.id.image:
+                // image action
+                startAction();
+                return true;
+            case R.id.file:
+                // file action
+
+                return true;
+            case R.id.video:
+                // video action
+                return true;
+            case R.id.link:
+                // link action
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

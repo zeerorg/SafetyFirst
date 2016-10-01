@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "658105027609-c542veh2ntteqkcktc3blo1s8advvtku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst",
+            "certificate_hash": "072E21BD0E64D091685372FF069EA8B4AB630553"
+          }
+        },
+        {
           "client_id": "658105027609-s7n128ab4vur7mc4vj0mb1164lkol7gm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
