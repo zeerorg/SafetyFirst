@@ -91,9 +91,6 @@
                 android:value="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity" />
         </activity>
         <activity
-            android:name="com.vikas.dtu.safetyfirst.SignInActivity"
-            android:label="@string/sign_in" />
-        <activity
             android:name="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity" />
         <activity

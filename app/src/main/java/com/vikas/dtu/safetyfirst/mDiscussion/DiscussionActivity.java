@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.SignInActivity;
+import com.vikas.dtu.safetyfirst.SignInActivity2;
 import com.vikas.dtu.safetyfirst.mDiscussion.fragment.MyPostsFragment;
 import com.vikas.dtu.safetyfirst.mDiscussion.fragment.RecentPostsFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -115,7 +115,7 @@ public class DiscussionActivity extends BaseActivity {
         switch (i) {
             case R.id.action_logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(this, SignInActivity.class));
+                startActivity(new Intent(this, SignInActivity2.class));
                 finish();
                 return true;
             case R.id.search_post:
