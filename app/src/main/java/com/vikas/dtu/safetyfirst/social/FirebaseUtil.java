@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vikas.dtu.safetyfirst.social.Models.Author;
 
-class FirebaseUtil {
+public class FirebaseUtil {
     public static DatabaseReference getBaseRef() {
         return FirebaseDatabase.getInstance().getReference();
     }

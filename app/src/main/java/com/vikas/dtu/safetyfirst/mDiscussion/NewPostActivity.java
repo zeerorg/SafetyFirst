@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -83,8 +85,8 @@ public class NewPostActivity extends BaseActivity {
     private EditText mTitleField;
     private EditText mBodyField;
     private String mImageUri;
- //   private Button  mImageBtn;
-    private ImageView mImageBtn;
+   private Button  mImageBtn;
+   // private ImageView mImageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,7 @@ public class NewPostActivity extends BaseActivity {
 
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
-        //mImageBtn = (ImageView) findViewById(R.id.addimageBtn);
+        mImageBtn = (Button) findViewById(R.id.addimageBtn);
 
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +109,7 @@ public class NewPostActivity extends BaseActivity {
             }
         });
 
-      /*  mImageBtn.setOnClickListener(new View.OnClickListener() {
+        mImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -115,7 +117,7 @@ public class NewPostActivity extends BaseActivity {
                 startAction();
 
             }
-        });*/
+        });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -542,5 +544,13 @@ public class NewPostActivity extends BaseActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_new_post_actions, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }
