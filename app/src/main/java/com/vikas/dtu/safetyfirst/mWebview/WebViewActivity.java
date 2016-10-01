@@ -41,6 +41,7 @@ public class WebViewActivity extends BaseActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setBuiltInZoomControls(true);
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
