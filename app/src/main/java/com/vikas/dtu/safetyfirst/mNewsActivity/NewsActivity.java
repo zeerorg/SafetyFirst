@@ -27,7 +27,7 @@ import android.view.MenuItem;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.SignInActivity;
+import com.vikas.dtu.safetyfirst.SignInActivity2;
 import com.vikas.dtu.safetyfirst.mNewsActivity.fragment.MyNewsFragment;
 import com.vikas.dtu.safetyfirst.mNewsActivity.fragment.RecentNewsFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -86,7 +86,7 @@ public class NewsActivity extends BaseActivity {
         int i = item.getItemId();
         if (i == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, SignInActivity.class));
+            startActivity(new Intent(this, SignInActivity2.class));
             finish();
             return true;
         } else {

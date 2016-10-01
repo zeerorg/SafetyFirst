@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.SignInActivity;
+import com.vikas.dtu.safetyfirst.SignInActivity2;
 import com.vikas.dtu.safetyfirst.mKnowitActivity.Ladders.LaddersFragment;
 import com.vikas.dtu.safetyfirst.mKnowitActivity.Ladders.Types.ExtensionLadder;
 import com.vikas.dtu.safetyfirst.mKnowitActivity.Ladders.Types.OrchardLadder;
@@ -95,7 +95,7 @@ public class KnowitActivity extends BaseActivity {
         int i = item.getItemId();
         if (i == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, SignInActivity.class));
+            startActivity(new Intent(this, SignInActivity2.class));
             finish();
             return true;
         } else {
