@@ -1,7 +1,9 @@
 package com.vikas.dtu.safetyfirst.mDiscussion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.api.model.StringList;
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.Comment;
@@ -27,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vikas.dtu.safetyfirst.mWebview.WebViewActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +55,16 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
 
+    private Button mImageButton;
+    private Button mVideoButton;
+    private Button mFileButton;
+    private Button mLinkButton;
+
+    private String mImageUrl;
+    private String mVideoUrl;
+    private String mFileUrl;
+    private String mLinkUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +87,12 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mAuthorView = (TextView) findViewById(R.id.post_author);
         mTitleView = (TextView) findViewById(R.id.post_title);
         mBodyView = (TextView) findViewById(R.id.post_body);
+
+        mImageButton = (Button) findViewById(R.id.image_btn);
+        mFileButton = (Button) findViewById(R.id.file_btn);
+        mVideoButton = (Button) findViewById(R.id.video_btn);
+        mLinkButton = (Button) findViewById(R.id.link_btn);
+
         mCommentField = (EditText) findViewById(R.id.field_comment_text);
         mCommentButton = (Button) findViewById(R.id.button_post_comment);
         mCommentsRecycler = (RecyclerView) findViewById(R.id.recycler_comments);
@@ -104,6 +125,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
+
+                //TODO get attachment urls from post if they exist
                 // [END_EXCLUDE]
             }
 
@@ -320,5 +343,33 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             }
         }
 
+    }
+
+
+    //Called by Link Button from Layout XML
+    public void showLink(){
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra("Url", "www.google.com");
+        startActivity(intent);
+    }
+
+    //Called by Video Button from Layout XML
+    public void showVideo(){
+
+    }
+
+    //Called by Image Button from Layout XML
+    public void showImage(){
+
+    }
+
+    //Called by File Button from Layout XML
+    public void showFile(){
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityCompat.finishAfterTransition(this);
     }
 }

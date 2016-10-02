@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -60,5 +61,10 @@ public class WebViewActivity extends BaseActivity {
 
         webView.loadUrl(url);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityCompat.finishAfterTransition(this);
     }
 }

@@ -5,6 +5,16 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+=======
+        <option name="gradleHome" value="C:\Program Files\Android\Android Studio\gradle\gradle-2.14.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+>>>>>>> fdc82e8189c557cc399e9d138dc32e88dad6835d
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
