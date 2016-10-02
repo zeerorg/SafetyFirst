@@ -126,8 +126,12 @@
     <string name="action_link">Link</string>
     <string name="title">Title</string>
     <string name="write_your_post">Write your post...</string>
+<<<<<<< HEAD
+    <string name="attach_link">Attach Link</string>
+=======
     <string name="image">Image</string>
     <string name="file">File</string>
     <string name="video">Video</string>
     <string name="link">Link</string>
+>>>>>>> fdc82e8189c557cc399e9d138dc32e88dad6835d
 </resources>

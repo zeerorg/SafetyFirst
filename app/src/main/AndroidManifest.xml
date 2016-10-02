@@ -118,6 +118,9 @@
         <activity
             android:name="com.vikas.dtu.safetyfirst.SignUpActivity"
             android:label="@string/title_activity_sign_up" />
+
+        <activity android:name=".SignInActivity"/>
+
         <activity
             android:name="com.vikas.dtu.safetyfirst.SignInActivity2"
             android:label="@string/title_activity_sign_up" />
