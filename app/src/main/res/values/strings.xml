@@ -126,4 +126,5 @@
     <string name="action_link">Link</string>
     <string name="title">Title</string>
     <string name="write_your_post">Write your post...</string>
+    <string name="attach_link">Attach Link</string>
 </resources>

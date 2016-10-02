@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.storage.OnProgressListener;
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.Post;
@@ -29,7 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.StorageReference;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -63,7 +64,9 @@ public class NewPostActivity extends BaseActivity {
     private static final String TAG = "NewPostActivity";
     private static final String REQUIRED = "Required";
     private static final int REQUEST_CAMERA = 1;
-    private static final int SELECT_FILE = 2;
+    private static final int SELECT_IMAGE = 2;
+    private static final int SELECT_PDF = 3;
+    private static final int SELECT_VIDEO = 4;
     private ImageView mImageView;
     private ProgressDialog mProgressDialog;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -72,7 +75,16 @@ public class NewPostActivity extends BaseActivity {
     private String path;
     private Uri uriSavedImage;
     private Button DownloadButton;
-    private String URL="gs://safetyfirst-aec72.appspot.com/";
+    private String URL = "gs://safetyfirst-aec72.appspot.com/";
+
+
+    ////Using paths to upload
+    String imagePath = null, videoPath = null, pdfPath = null, attachLink = null;
+    //// these download URL are on firebase storage , USE them to render files wherever needed,
+    //// and push them to post and user post first. A Post structure wasn`t made according to url, i have left it.
+    String downloadImageURL = null, downloadVideoURL = null, downloadPdfURL = null;
+    ////
+
 
     private GoogleApiClient client;
 
@@ -103,12 +115,16 @@ public class NewPostActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 submitPost();
+                if (imagePath != null) uploadImage();
+                if (pdfPath != null) uploadPDF();
+                if (videoPath != null) uploadVideo();
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
     private void submitPost() {
         final String title = mTitleField.getText().toString();
         final String body = mBodyField.getText().toString();
@@ -192,46 +208,13 @@ public class NewPostActivity extends BaseActivity {
         for (int i = 0; i < keywords.length; i++) {
             if (keywords[i].length() > 0) {
                 String tempKey = mDatabase.child("keywords").child(keywords[i]).push().getKey();
-             //   mDatabase.child("keywords").child(keywords[i]).child(tempKey).setValue(key);
-                childUpdates.put("/keywords/"+ keywords[i].toLowerCase() + "/" + key , postValues);
+                //   mDatabase.child("keywords").child(keywords[i]).child(tempKey).setValue(key);
+                childUpdates.put("/keywords/" + keywords[i].toLowerCase() + "/" + key, postValues);
             }
         }
         mDatabase.updateChildren(childUpdates);
     }
     // [END write_fan_out]
-
-    private void UploadToFirebase(String filename) {
-        InputStream stream = null;
-        try {
-            stream = new FileInputStream(new File(filename));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        StorageReference storageRef = storage.getReferenceFromUrl(URL);
-        //todo work on filename
-        StorageReference mountainsRef = storageRef.child("images").child(filename);
-        assert stream != null;
-        uploadTask = mountainsRef.putStream(stream);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-                Toast.makeText(getBaseContext(), "Failed", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                assert downloadUrl != null;
-                Toast.makeText(getBaseContext(), downloadUrl.toString(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
-                intent.putExtra("DOWNLOAD_URI", downloadUrl);
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
-    }
 
     private void startAction() {
         final CharSequence[] items = {"Take Photo", "Choose From Gallery", "Cancel"};
@@ -255,7 +238,7 @@ public class NewPostActivity extends BaseActivity {
                     intent.setType("image/*");
                     startActivityForResult(
                             Intent.createChooser(intent, "Select File"),
-                            SELECT_FILE);
+                            SELECT_IMAGE);
                 } else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
@@ -268,23 +251,43 @@ public class NewPostActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+
             if (requestCode == REQUEST_CAMERA) {
-                String filename = compressImage(String.valueOf(uriSavedImage));
-                UploadToFirebase(filename);
-
-
-            } else if (requestCode == SELECT_FILE) {
+                String filename;
+                filename = compressImage(String.valueOf(uriSavedImage));
+                imagePath = filename;
+                Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
+            } else if (requestCode == SELECT_IMAGE) {
                 Uri selectedImageUri = data.getData();
-                String[] projection = {MediaStore.Images.Media.DATA};
-                CursorLoader cursorLoader = new CursorLoader(this, selectedImageUri, projection, null, null,
-                        null);
-                Cursor cursor = cursorLoader.loadInBackground();
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                String selectedImagePath = cursor.getString(column_index);
-                String filename = compressImage(selectedImagePath);
-                UploadToFirebase(filename);
+                Cursor cursor = getContentResolver().query(selectedImageUri, null, null, null, null);
+                if (cursor == null) {
+                    Log.d("response", "NUll");
+                    imagePath = selectedImageUri.getPath();
+                } else {
+                    Log.d("response", "Not nUll");
+                    cursor.moveToFirst();
+                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                    imagePath = cursor.getString(index);
+                }
+                Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
+            } else if (requestCode == SELECT_PDF) {
+                pdfPath = data.getData().getPath();
+                Toast.makeText(this, pdfPath, Toast.LENGTH_SHORT).show();
+            } else if (requestCode == SELECT_VIDEO) {
+                Uri selectedVideoUri = data.getData();
+                Cursor cursor = getContentResolver().query(selectedVideoUri, null, null, null, null);
+                if (cursor == null) {
+                    Log.d("response", "NUll");
+                    videoPath = selectedVideoUri.getPath();
+                } else {
+                    Log.d("response", "Not nUll");
+                    cursor.moveToFirst();
+                    int index = cursor.getColumnIndex(MediaStore.Video.Media.DATA);
+                    videoPath = cursor.getString(index);
+                }
+                Toast.makeText(this, videoPath, Toast.LENGTH_SHORT).show();
             }
+
 
         }
     }
@@ -420,13 +423,6 @@ public class NewPostActivity extends BaseActivity {
         return filename;
     }
 
-    public String getFilename() {
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + "_compressed_" + ".jpg");
-        return String.valueOf(destination);
-
-    }
-
     private String getRealPathFromURI(String contentURI) {
         Uri contentUri = Uri.parse(contentURI);
         Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
@@ -439,6 +435,13 @@ public class NewPostActivity extends BaseActivity {
             int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
             return cursor.getString(index);
         }
+    }
+
+    public String getFilename() {
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + "_compressed_" + ".jpg");
+        return String.valueOf(destination);
+
     }
 
     public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
@@ -504,10 +507,11 @@ public class NewPostActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_new_post_actions, menu);
+        inflater.inflate(R.menu.menu_new_post, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Take appropriate action for each action item click
@@ -518,16 +522,136 @@ public class NewPostActivity extends BaseActivity {
                 return true;
             case R.id.file:
                 // file action
-
+                pickPDF();
                 return true;
             case R.id.video:
                 // video action
+                pickVideo();
                 return true;
             case R.id.link:
                 // link action
+                attachLink();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void attachLink() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.attach_link);
+        final EditText etInputLink = new EditText(this);
+        etInputLink.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(etInputLink);
+        builder.setPositiveButton("Attach", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (etInputLink.getText().toString().trim().equals("")) {
+                    Toast.makeText(NewPostActivity.this, "Add a link to attach", Toast.LENGTH_SHORT).show();
+                } else {
+                    /// this is link that user added. Add this to firebase wherever you want
+                    attachLink = etInputLink.getText().toString();
+                    Toast.makeText(NewPostActivity.this, "Link Attached", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void pickPDF() {
+        Intent pickPdf = new Intent(Intent.ACTION_GET_CONTENT);
+        pickPdf.setType("application/pdf");
+        startActivityForResult(pickPdf, SELECT_PDF);
+    }
+
+    private void pickVideo() {
+        Intent pickVideo = new Intent(Intent.ACTION_GET_CONTENT);
+        pickVideo.setType("video/*");
+        startActivityForResult(pickVideo, SELECT_VIDEO);
+    }
+
+    public void uploadImage() {
+        Uri file = Uri.fromFile(new File(imagePath));
+        /// upload destination. change according to your needs
+        UploadTask uploadTask = storage.getReferenceFromUrl(URL).child(getUid() + "/image/" + file.getLastPathSegment()).putFile(file);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Toast.makeText(getBaseContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                assert downloadUrl != null;
+                Toast.makeText(getBaseContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("DOWNLOAD_URI", downloadUrl);
+                setResult(RESULT_OK, intent);
+                finish();
+
+            }
+        });
+    }
+
+    public void uploadPDF() {
+        Uri file = Uri.fromFile(new File(pdfPath));
+        /// upload destination. change according to your needs
+        UploadTask uploadTask = storage.getReferenceFromUrl(URL).child(getUid() + "/pdf/" + file.getLastPathSegment()).putFile(file);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Toast.makeText(getBaseContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                assert downloadUrl != null;
+                Toast.makeText(getBaseContext(), "PDF uploaded", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("DOWNLOAD_URI", downloadUrl);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+    }
+
+    public void uploadVideo() {
+        Uri file = Uri.fromFile(new File(videoPath));
+        /// upload destination. change according to your needs
+        UploadTask uploadTask = storage.getReferenceFromUrl(URL).child(getUid() + "/video/" + file.getLastPathSegment()).putFile(file);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Toast.makeText(getBaseContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                assert downloadUrl != null;
+                Toast.makeText(getBaseContext(), "Video uploaded", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("DOWNLOAD_URI", downloadUrl);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+    }
+
 }
