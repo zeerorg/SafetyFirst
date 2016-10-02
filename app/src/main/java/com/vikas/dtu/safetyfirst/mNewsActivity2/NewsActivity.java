@@ -118,4 +118,5 @@ public class NewsActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
 }
