@@ -98,6 +98,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mCommentsRecycler = (RecyclerView) findViewById(R.id.recycler_comments);
 
         mCommentButton.setOnClickListener(this);
+        mImageButton.setOnClickListener(this);
+        mFileButton.setOnClickListener(this);
+        mVideoButton.setOnClickListener(this);
+        mLinkButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
     }
@@ -115,7 +119,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 Post post = dataSnapshot.getValue(Post.class);
                 // [START_EXCLUDE]
                 if (post.getPhotoUrl() == null) {
-                   mAuthorImage.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),
+                    mAuthorImage.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),
                             R.drawable.ic_action_account_circle_40));
                 } else {
                     Glide.with(getBaseContext())
@@ -166,9 +170,25 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.button_post_comment) {
-            postComment();
+        switch (v.getId()) {
+            case R.id.button_post_comment:
+                if (!mCommentField.getText().toString().trim().equals(""))
+                    postComment();
+                else
+                    Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.image_btn:
+                Toast.makeText(this, "image btn clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.file_btn:
+                Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.video_btn:
+                Toast.makeText(this, "video btn clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.link_btn:
+                Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 
@@ -347,24 +367,24 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
 
     //Called by Link Button from Layout XML
-    public void showLink(){
+    public void showLink() {
         Intent intent = new Intent(this, WebViewActivity.class);
         intent.putExtra("Url", "www.google.com");
         startActivity(intent);
     }
 
     //Called by Video Button from Layout XML
-    public void showVideo(){
+    public void showVideo() {
 
     }
 
     //Called by Image Button from Layout XML
-    public void showImage(){
+    public void showImage() {
 
     }
 
     //Called by File Button from Layout XML
-    public void showFile(){
+    public void showFile() {
 
     }
 

@@ -89,6 +89,7 @@
         <Button
             android:id="@+id/button_post_comment"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:background="@android:color/darker_gray"
             android:layout_width="match_parent"
             android:layout_weight="0.2"
             android:layout_height="wrap_content"
