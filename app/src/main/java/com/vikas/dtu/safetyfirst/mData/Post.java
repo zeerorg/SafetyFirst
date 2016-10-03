@@ -56,6 +56,7 @@ public class Post {
         result.put("starCount", starCount);
         result.put("stars", stars);
         result.put("authorImageUrl", authorImageUrl);
+        result.put("postLink", link);
 
         return result;
     }
