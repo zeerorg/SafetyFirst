@@ -2,6 +2,7 @@ package com.vikas.dtu.safetyfirst.mData;
 
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.storage.StreamDownloadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,21 +16,28 @@ public class Post {
     public String author;
     public String title;
     public String body;
-    public String image;
     public int starCount = 0;
     public Map<String, Boolean> stars = new HashMap<>();
+
+    public String image;
+    public String video;
+    public String file;
+    public String link;
 
     public Post() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    public Post(String uid, String author, String title, String body, String image, String authorImageUrl) {
+    public Post(String uid, String author, String title, String body, String image, String authorImageUrl, String video, String file, String link) {
         this.authorImageUrl = authorImageUrl;
         this.uid = uid;
         this.author = author;
         this.title = title;
         this.body = body;
         this.image = image;
+        this.video = video;
+        this.file = file;
+        this.link = link;
     }
 
     public String getPhotoUrl() {

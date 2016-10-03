@@ -77,6 +77,9 @@ public class NewPostActivity extends BaseActivity {
     private Button DownloadButton;
     private String URL = "gs://safetyfirst-aec72.appspot.com/";
 
+    private DatabaseReference mAttachmentsReference;
+
+    private String key;
 
     ////Using paths to upload
     String imagePath = null, videoPath = null, pdfPath = null, attachLink = null;
@@ -85,6 +88,7 @@ public class NewPostActivity extends BaseActivity {
     String downloadImageURL = null, downloadVideoURL = null, downloadPdfURL = null;
     ////
 
+    int LINK_ATTACH = 1, FILE_ATTACH=2, IMAGE_ATTACH=3, VIDEO_ATTACH=4;
 
     private GoogleApiClient client;
 
@@ -162,7 +166,7 @@ public class NewPostActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username, title, body, image, user.userImage);
+                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.userImage,downloadVideoURL, downloadPdfURL, attachLink);
                         }
 
                         // Finish this Activity, back to the stream
@@ -179,11 +183,17 @@ public class NewPostActivity extends BaseActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body, String image, String authorImageUrl) {
+    private void writeNewPost(String userId, String username, String title, String body, String downloadImageURL, String authorImageUrl,
+                              String downloadPdfURL, String downloadVideoURL, String attachLink) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        String key = mDatabase.child("posts").push().getKey();
-        Post post = new Post(userId, username, title, body, image, authorImageUrl);
+         key = mDatabase.child("posts").push().getKey();
+
+        mAttachmentsReference = FirebaseDatabase.getInstance().getReference()
+                .child("post-attachments").child(key);
+
+
+        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl,downloadVideoURL, downloadPdfURL, attachLink);
         Map<String, Object> postValues = post.toMap();
 
         // Obtaining and adding Keywords for search
@@ -197,9 +207,6 @@ public class NewPostActivity extends BaseActivity {
                 }
             }
         }
-
-
-        //
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/posts/" + key, postValues);
@@ -291,19 +298,6 @@ public class NewPostActivity extends BaseActivity {
 
         }
     }
-
-
-
-/*    public static void verifyStoragePermissions(AppCompatActivity activity) {
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
-    }*/
 
     public String compressImage(String imageUri) {
 
@@ -551,6 +545,7 @@ public class NewPostActivity extends BaseActivity {
                 } else {
                     /// this is link that user added. Add this to firebase wherever you want
                     attachLink = etInputLink.getText().toString();
+                    pushNode(LINK_ATTACH, attachLink);
                     Toast.makeText(NewPostActivity.this, "Link Attached", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -591,11 +586,20 @@ public class NewPostActivity extends BaseActivity {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
 
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
+
+                downloadImageURL = String.valueOf(downloadUrl);
                 assert downloadUrl != null;
                 Toast.makeText(getBaseContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.putExtra("DOWNLOAD_URI", downloadUrl);
                 setResult(RESULT_OK, intent);
+
+              /*  Map<String, Object> imageAttach = new HashMap<String, Object>();
+                imageAttach.put("/posts/" + key + "/image/", downloadImageURL);
+                mDatabase.updateChildren(imageAttach);*/
+
+                pushNode(IMAGE_ATTACH, downloadImageURL);
+
                 finish();
 
             }
@@ -623,6 +627,7 @@ public class NewPostActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.putExtra("DOWNLOAD_URI", downloadUrl);
                 setResult(RESULT_OK, intent);
+                pushNode(FILE_ATTACH, String.valueOf(downloadUrl));
                 finish();
             }
         });
@@ -649,9 +654,21 @@ public class NewPostActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.putExtra("DOWNLOAD_URI", downloadUrl);
                 setResult(RESULT_OK, intent);
+                pushNode(VIDEO_ATTACH, String.valueOf(downloadUrl));
                 finish();
             }
         });
     }
 
+    public void pushNode(int ID, String AttachUrl){
+String type;
+
+        if (ID==LINK_ATTACH) {type = "LINK_ATTACH";}
+        else if (ID==FILE_ATTACH){type = "FILE_ATTACH";}
+        else if (ID==VIDEO_ATTACH){type = "VIDEO_ATTACH";}
+        else if (ID==IMAGE_ATTACH){type = "IMAGE_ATTACH";}
+        else type="null";
+
+        mAttachmentsReference.push().setValue(type, AttachUrl);
+    }
 }
