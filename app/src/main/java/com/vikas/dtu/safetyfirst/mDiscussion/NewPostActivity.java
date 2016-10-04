@@ -88,7 +88,7 @@ public class NewPostActivity extends BaseActivity {
     String downloadImageURL = null, downloadVideoURL = null, downloadPdfURL = null;
     ////
 
-    int LINK_ATTACH = 1, FILE_ATTACH=2, IMAGE_ATTACH=3, VIDEO_ATTACH=4;
+    int LINK_ATTACH = 1, FILE_ATTACH = 2, IMAGE_ATTACH = 3, VIDEO_ATTACH = 4;
 
     private GoogleApiClient client;
 
@@ -166,7 +166,9 @@ public class NewPostActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.userImage,downloadVideoURL, downloadPdfURL, attachLink);
+                            key = mDatabase.child("posts").push().getKey();
+                            mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(key);
+                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.userImage, downloadVideoURL, downloadPdfURL, attachLink);
                         }
 
                         // Finish this Activity, back to the stream
@@ -187,13 +189,7 @@ public class NewPostActivity extends BaseActivity {
                               String downloadPdfURL, String downloadVideoURL, String attachLink) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-         key = mDatabase.child("posts").push().getKey();
-
-        mAttachmentsReference = FirebaseDatabase.getInstance().getReference()
-                .child("post-attachments").child(key);
-
-
-        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl,downloadVideoURL, downloadPdfURL, attachLink);
+        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl, downloadVideoURL, downloadPdfURL, attachLink);
         Map<String, Object> postValues = post.toMap();
 
         // Obtaining and adding Keywords for search
@@ -545,7 +541,6 @@ public class NewPostActivity extends BaseActivity {
                 } else {
                     /// this is link that user added. Add this to firebase wherever you want
                     attachLink = etInputLink.getText().toString();
-                    pushNode(LINK_ATTACH, attachLink);
                     Toast.makeText(NewPostActivity.this, "Link Attached", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -660,15 +655,19 @@ public class NewPostActivity extends BaseActivity {
         });
     }
 
-    public void pushNode(int ID, String AttachUrl){
-String type;
+    public void pushNode(int ID, String AttachUrl) {
+        String type;
 
-        if (ID==LINK_ATTACH) {type = "LINK_ATTACH";}
-        else if (ID==FILE_ATTACH){type = "FILE_ATTACH";}
-        else if (ID==VIDEO_ATTACH){type = "VIDEO_ATTACH";}
-        else if (ID==IMAGE_ATTACH){type = "IMAGE_ATTACH";}
-        else type="null";
+        if (ID == LINK_ATTACH) {
+            type = "LINK_ATTACH";
+        } else if (ID == FILE_ATTACH) {
+            type = "FILE_ATTACH";
+        } else if (ID == VIDEO_ATTACH) {
+            type = "VIDEO_ATTACH";
+        } else if (ID == IMAGE_ATTACH) {
+            type = "IMAGE_ATTACH";
+        } else type = "null";
 
-        mAttachmentsReference.push().setValue(type, AttachUrl);
+        mAttachmentsReference.child(type).setValue(AttachUrl);
     }
 }

@@ -1,7 +1,10 @@
 package com.vikas.dtu.safetyfirst.mDiscussion;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -11,14 +14,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.api.model.StringList;
+import com.squareup.picasso.Picasso;
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.Comment;
@@ -41,7 +47,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     public static final String EXTRA_POST_KEY = "post_key";
 
-    private DatabaseReference mPostReference;
+    private DatabaseReference mPostReference, mPostAttachmentsReference;
     private DatabaseReference mCommentsReference;
     private ValueEventListener mPostListener;
     private String mPostKey;
@@ -81,6 +87,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 .child("posts").child(mPostKey);
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
                 .child("post-comments").child(mPostKey);
+        mPostAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(mPostKey);
 
         // Initialize Views
         mAuthorImage = (ImageView) findViewById(R.id.post_author_photo);
@@ -178,15 +185,19 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                     Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.image_btn:
+                showImage();
                 Toast.makeText(this, "image btn clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.file_btn:
+                showFile();
                 Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.video_btn:
+                showVideo();
                 Toast.makeText(this, "video btn clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.link_btn:
+                showLink();
                 Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -368,9 +379,25 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     //Called by Link Button from Layout XML
     public void showLink() {
-        Intent intent = new Intent(this, WebViewActivity.class);
-        intent.putExtra("Url", "www.google.com");
-        startActivity(intent);
+        mPostReference.child("postLink").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String postLink = (String) dataSnapshot.getValue();
+                if (postLink != null) {
+                    Intent intent = new Intent(PostDetailActivity.this, WebViewActivity.class);
+                    intent.putExtra("Url", postLink);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(PostDetailActivity.this, "No Valid Link", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(PostDetailActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     //Called by Video Button from Layout XML
@@ -380,7 +407,24 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     //Called by Image Button from Layout XML
     public void showImage() {
+        mPostAttachmentsReference.child("IMAGE_ATTACH").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Dialog imageDialog = new Dialog(PostDetailActivity.this);
+                imageDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                imageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                ImageView image = new ImageView(PostDetailActivity.this);
+                Picasso.with(PostDetailActivity.this).load((String)dataSnapshot.getValue()).into(image);
+                Log.d(TAG,(String) dataSnapshot.getValue());
+                imageDialog.addContentView(image, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                imageDialog.show();
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     //Called by File Button from Layout XML
