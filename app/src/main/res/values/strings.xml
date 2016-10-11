@@ -133,4 +133,6 @@
     <string name="file">File</string>
     <string name="video">Video</string>
     <string name="link">Link</string>
+
+    <string name="facebook_app_id">510719265719344</string>
 </resources>

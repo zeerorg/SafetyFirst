@@ -40,7 +40,7 @@ public class DashboardActivity extends AppCompatActivity implements GoogleApiCli
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
-            startActivity(new Intent(this, SignInActivity.class));
+            startActivity(new Intent(this, SignInActivity2.class));
             finish();
             return;
         } else {
