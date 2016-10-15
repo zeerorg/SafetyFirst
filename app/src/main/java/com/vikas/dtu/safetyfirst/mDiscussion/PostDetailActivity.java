@@ -1,11 +1,13 @@
 package com.vikas.dtu.safetyfirst.mDiscussion;
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vikas.dtu.safetyfirst.mWebview.WebViewActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -402,7 +411,24 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     //Called by Video Button from Layout XML
     public void showVideo() {
+        mPostAttachmentsReference.child("VIDEO_ATTACH").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String url = (String) dataSnapshot.getValue();
+                if (url != null) {
+                    Intent intentPlayVideo = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    intentPlayVideo.setDataAndType(Uri.parse(url), "video/*");
+                    startActivity(intentPlayVideo);
+                } else {
+                    Toast.makeText(PostDetailActivity.this, "No Video Attached", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     //Called by Image Button from Layout XML
@@ -410,14 +436,19 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mPostAttachmentsReference.child("IMAGE_ATTACH").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Dialog imageDialog = new Dialog(PostDetailActivity.this);
-                imageDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                imageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                ImageView image = new ImageView(PostDetailActivity.this);
-                Picasso.with(PostDetailActivity.this).load((String)dataSnapshot.getValue()).into(image);
-                Log.d(TAG,(String) dataSnapshot.getValue());
-                imageDialog.addContentView(image, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                imageDialog.show();
+                String imageLink = (String) dataSnapshot.getValue();
+                if (imageLink != null) {
+                    Dialog imageDialog = new Dialog(PostDetailActivity.this);
+                    imageDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    imageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                    ImageView image = new ImageView(PostDetailActivity.this);
+                    Picasso.with(PostDetailActivity.this).load(imageLink).into(image);
+                    Log.d(TAG, (String) dataSnapshot.getValue());
+                    imageDialog.addContentView(image, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    imageDialog.show();
+                } else {
+                    Toast.makeText(PostDetailActivity.this, "No Image Attached", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -429,8 +460,69 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     //Called by File Button from Layout XML
     public void showFile() {
+        mPostAttachmentsReference.child("FILE_ATTACH").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String url = (String) dataSnapshot.getValue();
+                Log.d(TAG, url);
+                if (url != null) {
+                    /*
+                    showProgressDialog();
+                    Uri path = Uri.fromFile(downloadFile(url));
+                    try {
+                        Intent intentPDF = new Intent(Intent.ACTION_VIEW);
+                        intentPDF.setDataAndType(path, "application/pdf");
+                        startActivity(intentPDF);
+                        hideProgressDialog();
+                    } catch (ActivityNotFoundException e) {
+                        Log.d(TAG, e.toString());
+                    }
+                    */
+                    Intent intentPDF = new Intent(Intent.ACTION_VIEW);
+                    intentPDF.setDataAndType(Uri.parse(url),"text/html");
+                    startActivity(intentPDF);
 
+                } else {
+                    Toast.makeText(PostDetailActivity.this, "No File Attached", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
+
+    /*
+    private File downloadFile(String url) {
+        File file = null;
+        try {
+            URL _url = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) _url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setDoOutput(true);
+            urlConnection.connect();
+
+            File SD_card_root = Environment.getExternalStorageDirectory();
+            file = new File(SD_card_root, "SafetyFirst");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            InputStream inputStream = urlConnection.getInputStream();
+            byte[] buffer = new byte[1024 * 1024];
+            int bufferLength;
+
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutputStream.write(buffer, 0, bufferLength);
+            }
+            fileOutputStream.close();
+            Log.d(TAG,"downloaded");
+
+        } catch (Exception e) {
+            Log.d(TAG, e.toString());
+        }
+        return file;
+    }
+    */
 
     @Override
     public void onBackPressed() {
