@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight"
     tools:context="com.vikas.dtu.safetyfirst.mDiscussion.NewPostActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPLOAD"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"
+        android:textSize="18sp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <ImageButton
+            android:background="@color/colorAccent"
+            android:layout_marginRight="@dimen/md_keylines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_photo_camera_white_24dp"/>
+        <ImageButton
+            android:background="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_link_white_24dp"/>
+        <ImageButton
+            android:background="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/md_keylines"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_videocam_white_24dp"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/field_title"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/md_keylines"
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:inputType="text"
         android:hint="@string/title"
         android:maxLines="1" />
 
@@ -20,33 +56,31 @@
         android:id="@+id/field_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/field_title"
-        android:layout_marginBottom="5dp"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginBottom="@dimen/md_keylines"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/md_keylines"
         android:hint="@string/write_your_post"
         android:inputType="textMultiLine"
+        android:lines="10"
         android:maxLines="10"
         android:scrollHorizontally="false" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/field_image"
-        android:layout_below="@id/field_body"
-        tools:ignore="ContentDescription" />
 
-    <android.support.design.widget.FloatingActionButton
+
+    <Button
         android:id="@+id/fab_submit_post"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_navigation_check_24"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+       android:text="POST"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
         tools:ignore="RtlHardcoded" />
 
 
 
 
-</RelativeLayout>
+</LinearLayout>
