@@ -33,6 +33,7 @@
             android:layout_alignBottom="@+id/movieImage"
             android:textAlignment="center"
             android:text="Name"
+            android:textIsSelectable="true"
             android:background="@color/colorAccent"
             android:layout_gravity="bottom"
             android:gravity="center_vertical"

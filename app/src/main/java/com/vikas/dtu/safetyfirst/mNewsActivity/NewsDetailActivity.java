@@ -3,6 +3,8 @@ package com.vikas.dtu.safetyfirst.mNewsActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,6 +42,15 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+       // Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+       // setSupportActionBar(myToolbar);
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         // Get post key from intent
         mPostKey = getIntent().getStringExtra(EXTRA_NEWS_KEY);
@@ -57,6 +68,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         mBodyView = (TextView) findViewById(R.id.post_body);
         mReadMore = (TextView) findViewById(R.id.readMore);
         mNewsImage = (ImageView) findViewById(R.id.news_photo);
+        findViewById(R.id.share_news).setOnClickListener(this);
 
     mReadMore.setOnClickListener(this);
 
@@ -122,6 +134,12 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
           //  Toast.makeText(NewsDetailActivity.this, url, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, WebViewActivity.class);
             intent.putExtra("Url", url);
+            startActivity(intent);
+        }
+        if (i==R.id.share_news) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, url);
             startActivity(intent);
         }
     }

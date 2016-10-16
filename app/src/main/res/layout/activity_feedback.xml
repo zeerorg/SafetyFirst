@@ -79,6 +79,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="5dp"
         android:inputType="textMultiLine"
+        android:textIsSelectable="true"
         android:maxLines="10"
         android:scrollHorizontally="false"
         android:layout_weight="11.50" />
