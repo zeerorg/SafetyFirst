@@ -107,31 +107,60 @@
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
             android:parentActivityName=".mNewsActivity.NewsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity" />
         </activity>
         <activity
             android:name=".mNewsActivity.NewsActivity"
-            android:label="@string/titleNewsActivity" />
+            android:label="@string/titleNewsActivity"
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+
         <activity
             android:name=".mNewsActivity2.NewsActivity"
             android:label="@string/titleNewsActivity" />
         <activity
             android:name=".mDiscussion.DiscussionActivity"
-            android:label="@string/titleDiscussionActivity" />
+            android:label="@string/titleDiscussionActivity"
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+
         <activity
             android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
-            android:uiOptions="splitActionBarWhenNarrow">
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:parentActivityName=".mDiscussion.DiscussionActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mDiscussion.DiscussionActivity" />
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
             android:name=".mDiscussion.PostDetailActivity"
-            android:label="@string/titlePostDetailActivity" />
+            android:label="@string/titlePostDetailActivity"
+            android:parentActivityName=".mDiscussion.DiscussionActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mDiscussion.DiscussionActivity" />
+        </activity>
         <activity
             android:name=".mDiscussion.SearchActivity"
             android:label="@string/search_activity" />
@@ -147,7 +176,15 @@
             android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mKnowitActivity.KnowitActivity" />
+        <activity android:name=".mKnowitActivity.KnowitActivity"
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
             android:name=".SplashScreen"
