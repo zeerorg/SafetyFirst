@@ -74,7 +74,7 @@ public class NewPostActivity extends BaseActivity {
     private UploadTask uploadTask;
     private String path;
     private Uri uriSavedImage;
-    private Button DownloadButton;
+    private Button PostButton;
     private String URL = "gs://safetyfirst-aec72.appspot.com/";
 
     private DatabaseReference mAttachmentsReference;
@@ -112,12 +112,12 @@ public class NewPostActivity extends BaseActivity {
 
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
-        mImageView = (ImageView) findViewById(R.id.field_image);
 
 
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(NewPostActivity.this, "clicked", Toast.LENGTH_SHORT).show();
                 submitPost();
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();

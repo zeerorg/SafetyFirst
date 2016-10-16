@@ -48,4 +48,9 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <!-- Dialog Activity with no Title -->
+    <style name="ThemeOverlay.MyDialogActivity" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
