@@ -50,6 +50,66 @@
             android:name=".FeedBackActivity"
             android:label="FeedBack" />
         <activity
+            android:name=".mKnowItActivity.KnowItActivity"
+            android:label="Know It"
+            android:parentActivityName=".DashboardActivity" >
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.Ladder.SelfSupportingLadder"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Ladder.LadderActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.Ladder.NonSelfSupportingLadder"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Ladder.LadderActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.Ladder.LadderActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
+        </activity>
+        <activity android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
+        </activity>
+        <activity
             android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.SupportedScaffold"
             android:label="Self Supporting Scaffold" />
         <activity
@@ -106,8 +166,7 @@
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
-            android:parentActivityName=".mNewsActivity.NewsActivity"
-            >
+            android:parentActivityName=".mNewsActivity.NewsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity" />

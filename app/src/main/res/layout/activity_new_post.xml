@@ -23,17 +23,20 @@
             android:layout_marginRight="@dimen/md_keylines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="uploadImage"
             android:src="@drawable/ic_photo_camera_white_24dp"/>
         <ImageButton
             android:background="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="uploadFile"
             android:src="@drawable/ic_link_white_24dp"/>
         <ImageButton
             android:background="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_marginLeft="@dimen/md_keylines"
             android:layout_height="wrap_content"
+            android:onClick="uploadVideo"
             android:src="@drawable/ic_videocam_white_24dp"/>
     </LinearLayout>
 
