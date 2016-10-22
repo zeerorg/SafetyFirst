@@ -501,7 +501,7 @@ public class NewPostActivity extends BaseActivity {
         client.disconnect();
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_new_post, menu);
@@ -533,7 +533,7 @@ public class NewPostActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+*/
     private void attachLink() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.attach_link);
@@ -676,5 +676,17 @@ public class NewPostActivity extends BaseActivity {
         } else type = "null";
 
         mAttachmentsReference.child(type).setValue(AttachUrl);
+    }
+
+    public void uploadImage(View view) {
+        startAction();
+    }
+
+    public void uploadFile(View view) {
+        pickPDF();
+    }
+
+    public void uploadVideo(View view) {
+        pickVideo();
     }
 }

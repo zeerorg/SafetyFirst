@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.api.model.StringList;
 import com.squareup.picasso.Picasso;
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
@@ -75,6 +77,16 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private Button mVideoButton;
     private Button mFileButton;
     private Button mLinkButton;
+
+    private String mImageUrl;
+    private String mVideoUrl;
+    private String mFileUrl;
+    private String mLinkUrl;
+    TextView tv_loading;
+    String dest_file_path = "test.pdf";
+    int downloadedSize = 0, totalsize;
+    String download_file_url = "http://mirror.unl.edu/ctan/macros/latex/contrib/abc/abc.pdf";
+    float per = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,31 +228,31 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     private void postComment() {
         final String uid = getUid();
-    FirebaseDatabase.getInstance().getReference().child("users").child(uid)
-    .addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            // Get user information
-            User user = dataSnapshot.getValue(User.class);
-            String authorName = user.username;
+        FirebaseDatabase.getInstance().getReference().child("users").child(uid)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user information
+                        User user = dataSnapshot.getValue(User.class);
+                        String authorName = user.username;
 
-            // Create new comment object
-            String commentText = mCommentField.getText().toString();
-            Comment comment = new Comment(uid, authorName, commentText);
+                        // Create new comment object
+                        String commentText = mCommentField.getText().toString();
+                        Comment comment = new Comment(uid, authorName, commentText);
 
-            // Push the comment, it will appear in the list
-            mCommentsReference.push().setValue(comment);
+                        // Push the comment, it will appear in the list
+                        mCommentsReference.push().setValue(comment);
 
-            // Clear the field
-            mCommentField.setText(null);
-        }
+                        // Clear the field
+                        mCommentField.setText(null);
+                    }
 
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-        }
-    });
-}
+                    }
+                });
+    }
 
     private static class CommentViewHolder extends RecyclerView.ViewHolder {
 
@@ -466,65 +478,125 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String url = (String) dataSnapshot.getValue();
-                Log.d(TAG, url);
+              //  Log.d(TAG, url);
                 if (url != null) {
-                    /*
-                    showProgressDialog();
-                    Uri path = Uri.fromFile(downloadFile(url));
-                    try {
-                        Intent intentPDF = new Intent(Intent.ACTION_VIEW);
-                        intentPDF.setDataAndType(path, "application/pdf");
-                        startActivity(intentPDF);
-                        hideProgressDialog();
-                    } catch (ActivityNotFoundException e) {
-                        Log.d(TAG, e.toString());
-                    }
-                    */
-                    Intent intentPDF = new Intent(Intent.ACTION_VIEW);
-                    intentPDF.setDataAndType(Uri.parse(url),"text/html");
-                    startActivity(intentPDF);
+                    tv_loading = new TextView(PostDetailActivity.this);
+                    setContentView(tv_loading);
+                    tv_loading.setGravity(Gravity.CENTER);
+                    tv_loading.setTypeface(null, Typeface.BOLD);
+                    downloadAndOpenPDF(url);
 
                 } else {
                     Toast.makeText(PostDetailActivity.this, "No File Attached", Toast.LENGTH_SHORT).show();
                 }
             }
+            void downloadAndOpenPDF(final String url) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        Uri path = Uri.fromFile(downloadFile(url));
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setDataAndType(path, "application/pdf");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        } catch (ActivityNotFoundException e) {
+                            tv_loading
+                                    .setError("PDF Reader application is not installed in your device");
+                        }
+                    }
+                }).start();
 
-            @Override
+            }
+
+            File downloadFile(String dwnload_file_path) {
+                File file = null;
+                try {
+
+                    URL url = new URL(dwnload_file_path);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url
+                            .openConnection();
+
+                  //  urlConnection.setRequestMethod("GET");
+                  //  urlConnection.setDoOutput(true);
+
+                    // connect
+                    urlConnection.connect();
+
+                    // set the path where we want to save the file
+                    File SDCardRoot = Environment.getExternalStorageDirectory();
+                    // create a new file, to save the downloaded file
+                    file = new File(SDCardRoot, dest_file_path);
+
+                    FileOutputStream fileOutput = new FileOutputStream(file);
+
+                    // Stream used for reading the data from the internet
+                    InputStream inputStream = urlConnection.getInputStream();
+
+                    // this is the total size of the file which we are
+                    // downloading
+                    totalsize = urlConnection.getContentLength();
+                    setText("Starting PDF download...");
+
+                    // create a buffer...
+                    byte[] buffer = new byte[1024 * 1024];
+                    int bufferLength = 0;
+
+                    while ((bufferLength = inputStream.read(buffer)) > 0) {
+                        fileOutput.write(buffer, 0, bufferLength);
+                        downloadedSize += bufferLength;
+                        per = ((float) downloadedSize / totalsize) * 100;
+                        setText("Total PDF File size  : "
+                                + (totalsize / 1024)
+                                + " KB\n\nDownloading PDF " + (int) per
+                                + "% complete");
+                    }
+                    // close the output stream when complete //
+                    fileOutput.close();
+                    setText("Download Complete. Open PDF Application installed in the device.");
+
+                } catch (final MalformedURLException e) {
+                    setTextError("Some error occured. Press back and try again.",
+                            Color.RED);
+                } catch (final IOException e) {
+                    setTextError("Some error occured. Press back and try again.",
+                            Color.RED);
+                } catch (final Exception e) {
+                    setTextError(
+                            "Failed to download image. Please check your internet connection.",
+                            Color.RED);
+                }
+                return file;
+            }
+
+            void setTextError(final String message, final int color) {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        tv_loading.setTextColor(color);
+                        tv_loading.setText(message);
+                    }
+                });
+
+            }
+
+            void setText(final String txt) {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        tv_loading.setText(txt);
+                    }
+                });
+            }
+
+
+
+                @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
     }
 
-    /*
-    private File downloadFile(String url) {
-        File file = null;
-        try {
-            URL _url = new URL(url);
-            HttpURLConnection urlConnection = (HttpURLConnection) _url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setDoOutput(true);
-            urlConnection.connect();
 
-            File SD_card_root = Environment.getExternalStorageDirectory();
-            file = new File(SD_card_root, "SafetyFirst");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            InputStream inputStream = urlConnection.getInputStream();
-            byte[] buffer = new byte[1024 * 1024];
-            int bufferLength;
-
-            while ((bufferLength = inputStream.read(buffer)) > 0) {
-                fileOutputStream.write(buffer, 0, bufferLength);
-            }
-            fileOutputStream.close();
-            Log.d(TAG,"downloaded");
-
-        } catch (Exception e) {
-            Log.d(TAG, e.toString());
-        }
-        return file;
-    }
-    */
 
     @Override
     public void onBackPressed() {

@@ -52,59 +52,66 @@
             android:name=".FeedBackActivity"
             android:label="FeedBack" />
         <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.SupportedScaffold"
-            android:label="Self Supporting Scaffold" />
+            android:name=".mKnowItActivity.KnowItActivity"
+            android:label="Know It"
+            android:parentActivityName=".DashboardActivity" >
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
         <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SuspendedScaffold"
-            android:label="Suspended Scaffold" />
+            android:name=".mKnowItActivity.Ladder.SelfSupportingLadder"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Ladder.LadderActivity" />
+        </activity>
         <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SpecialUseScaffolding.SpecialUseScaffold"
-            android:label="Special Use Scaffold" />
+            android:name=".mKnowItActivity.Ladder.NonSelfSupportingLadder"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Ladder.LadderActivity" />
+        </activity>
         <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.FrameScaffold"
-            android:label="Frame Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.PoleScaffold"
-            android:label="Pole Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.SpecialtyScaffold"
-            android:label="Specialty Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.LadderJackScaffold"
-            android:label="Ladder Jack Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.MobileScaffold"
-            android:label="Mobile Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.TubeCouplerScaffold"
-            android:label="Tube Coupler Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SupportScaffolding.PumpJackScaffold"
-            android:label="Pump Jack Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.CatenaryScaffold"
-            android:label="Catenary Scaffolding" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.FloatScaffold"
-            android:label="Float Scaffolding" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.InteriorHungScaffold"
-            android:label="Interior Hung Scaffold" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.MultiLevelScaffold"
-            android:label="Multi Level Scaffolding" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.MutiPointAdjustable"
-            android:label="Multi-Point Adjustable Scaffolding" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.NeedleBeamScaffold"
-            android:label="Needle Beam Scaffolding" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SinglePointAdjustable"
-            android:label="Single Point Scaffolding" />
-        <activity
-            android:name=".mKnowitActivity.Scaffolding.Types.SuspendedScaffolding.SwingStageScaffold"
-            android:label="Swing Stage Scaffolding" />
+            android:name=".mKnowItActivity.Ladder.LadderActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
+        </activity>
+        <activity android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
+        </activity>
+
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
