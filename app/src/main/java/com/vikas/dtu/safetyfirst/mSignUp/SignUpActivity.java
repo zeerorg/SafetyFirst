@@ -1,4 +1,4 @@
-package com.vikas.dtu.safetyfirst;
+package com.vikas.dtu.safetyfirst.mSignUp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.vikas.dtu.safetyfirst.BaseActivity;
+import com.vikas.dtu.safetyfirst.DashboardActivity;
+import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -158,7 +161,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         if (i == R.id.btn_signup) {
             signUp();
         } else if (i == R.id.link_login) {
-            startActivity(new Intent(SignUpActivity.this, SignInActivity2.class));
+            startActivity(new Intent(SignUpActivity.this, SignInGoogle.class));
             finish();
         }
     }

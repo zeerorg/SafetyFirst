@@ -76,11 +76,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private Button mFileButton;
     private Button mLinkButton;
 
-    private String mImageUrl;
-    private String mVideoUrl;
-    private String mFileUrl;
-    private String mLinkUrl;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,31 +216,31 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     private void postComment() {
         final String uid = getUid();
-        FirebaseDatabase.getInstance().getReference().child("users").child(uid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user information
-                        User user = dataSnapshot.getValue(User.class);
-                        String authorName = user.username;
+    FirebaseDatabase.getInstance().getReference().child("users").child(uid)
+    .addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            // Get user information
+            User user = dataSnapshot.getValue(User.class);
+            String authorName = user.username;
 
-                        // Create new comment object
-                        String commentText = mCommentField.getText().toString();
-                        Comment comment = new Comment(uid, authorName, commentText);
+            // Create new comment object
+            String commentText = mCommentField.getText().toString();
+            Comment comment = new Comment(uid, authorName, commentText);
 
-                        // Push the comment, it will appear in the list
-                        mCommentsReference.push().setValue(comment);
+            // Push the comment, it will appear in the list
+            mCommentsReference.push().setValue(comment);
 
-                        // Clear the field
-                        mCommentField.setText(null);
-                    }
+            // Clear the field
+            mCommentField.setText(null);
+        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
-    }
+        }
+    });
+}
 
     private static class CommentViewHolder extends RecyclerView.ViewHolder {
 

@@ -23,7 +23,6 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-
         <activity
             android:name=".DeepLinkActivity"
             android:label="@string/app_name"
@@ -31,17 +30,20 @@
 
             <!-- [START deep_link_filter] -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="example.com" android:scheme="http"/>
-                <data android:host="example.com" android:scheme="https"/>
+                <data
+                    android:host="example.com"
+                    android:scheme="http" />
+                <data
+                    android:host="example.com"
+                    android:scheme="https" />
             </intent-filter>
             <!-- [END deep_link_filter] -->
         </activity>
-
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/app_name"
@@ -106,8 +108,7 @@
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
-            android:parentActivityName=".mNewsActivity.NewsActivity"
-            >
+            android:parentActivityName=".mNewsActivity.NewsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity" />
@@ -115,7 +116,7 @@
         <activity
             android:name=".mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
-            android:parentActivityName=".DashboardActivity" >
+            android:parentActivityName=".DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -123,25 +124,21 @@
                 android:value=".DashboardActivity" />
         </activity>
 
-        <activity
-            android:name=".mNewsActivity2.NewsActivity"
-            android:label="@string/titleNewsActivity" />
         <activity
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
-            android:parentActivityName=".DashboardActivity" >
+            android:parentActivityName=".DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
-
         <activity
             android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
-            android:uiOptions="splitActionBarWhenNarrow"
-            android:parentActivityName=".mDiscussion.DiscussionActivity" >
+            android:parentActivityName=".mDiscussion.DiscussionActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -154,7 +151,7 @@
         <activity
             android:name=".mDiscussion.PostDetailActivity"
             android:label="@string/titlePostDetailActivity"
-            android:parentActivityName=".mDiscussion.DiscussionActivity" >
+            android:parentActivityName=".mDiscussion.DiscussionActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -165,35 +162,36 @@
             android:name=".mDiscussion.SearchActivity"
             android:label="@string/search_activity" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".mSignUp.SignUpActivity"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".mSignUp.SignInActivity" />
         <activity
-            android:name=".SignInActivity2"
+            android:name=".mSignUp.SignInGoogle"
             android:label="@string/title_activity_sign_up" />
         <activity android:name=".NoNetworkConnection" />
         <activity
             android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mKnowitActivity.KnowitActivity"
-            android:parentActivityName=".DashboardActivity" >
+        <activity
+            android:name=".mKnowitActivity.KnowitActivity"
+            android:parentActivityName=".DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
-
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".mKnowitActivity.Ladders.Types.StandardLadder" />
         <activity android:name=".mKnowitActivity.Ladders.Types.TwoWayLadder" />
         <activity android:name=".mKnowitActivity.Ladders.Types.OrchardLadder" />
@@ -201,13 +199,20 @@
         <activity android:name=".mKnowitActivity.Ladders.Types.PlatformLadder" />
         <activity android:name=".mKnowitActivity.Ladders.Types.ExtensionLadder" />
         <activity android:name=".mKnowitActivity.Ladders.Types.SingleLadder" />
-
         <activity
             android:name=".DashboardActivity"
             android:label="Dashboard"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
-        </activity>
+        <activity android:name=".mUser.UpdateProfile"
+            android:label="Update Profile"/>
     </application>
 
 </manifest>

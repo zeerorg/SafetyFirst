@@ -3,9 +3,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_update_profile"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Update Profile" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -14,10 +14,6 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
     </group>
 
     <item android:title="Communicate">
@@ -30,6 +26,10 @@
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_send"
                 android:title="About Us" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Log out" />
         </menu>
     </item>
 

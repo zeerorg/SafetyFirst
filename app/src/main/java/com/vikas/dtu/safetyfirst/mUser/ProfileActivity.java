@@ -74,7 +74,7 @@ public class ProfileActivity extends BaseActivity implements
                                 .build())
                 .build();
 
-        mSignInUi = (ViewGroup) findViewById(R.id.sign_in_ui);
+/*        mSignInUi = (ViewGroup) findViewById(R.id.sign_in_ui);
         mProfileUi = (ViewGroup) findViewById(R.id.profile);
 
         mProfilePhoto = (CircleImageView) findViewById(R.id.profile_user_photo);
@@ -82,13 +82,13 @@ public class ProfileActivity extends BaseActivity implements
 
         findViewById(R.id.launch_sign_in).setOnClickListener(this);
         findViewById(R.id.show_feeds_button).setOnClickListener(this);
-        findViewById(R.id.sign_out_button).setOnClickListener(this);
+        findViewById(R.id.sign_out_button).setOnClickListener(this);*/
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch(id) {
+     /*   switch(id) {
             case R.id.launch_sign_in:
                 launchSignInIntent();
                 break;
@@ -101,7 +101,7 @@ public class ProfileActivity extends BaseActivity implements
                 Intent feedsIntent = new Intent(this, FeedsActivity.class);
                 startActivity(feedsIntent);
                 break;
-        }
+        }*/
     }
 
     private void launchSignInIntent() {

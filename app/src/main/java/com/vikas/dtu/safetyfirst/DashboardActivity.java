@@ -8,24 +8,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,65 +31,58 @@ import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst.mKnowitActivity.KnowitActivity;
 import com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity;
-import com.vikas.dtu.safetyfirst.mUtils.CircleTransform;
+import com.vikas.dtu.safetyfirst.mSignUp.SignInGoogle;
 import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.appinvite.AppInviteInvitationResult;
 import com.google.android.gms.appinvite.AppInviteReferral;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.vikas.dtu.safetyfirst.mUser.UpdateProfile;
 
-public class DashboardActivity extends AppCompatActivity
+public class DashboardActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = DashboardActivity.class.getSimpleName();
     private FirebaseAuth mFirebaseAuth;
     public static final String ANONYMOUS = "anonymous";
     private FirebaseUser mFirebaseUser;
-    private String mUsername;
-    private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
 private ImageView imgProfile;
     private TextView userProfile;
     private TextView emailProfile;
-    private String mEmail;
+    TextView Username;
     private static final int REQUEST_INVITE = 0;
 
     // [START define_variables]
     private GoogleApiClient mGoogleApiClient;
+    private NavigationView navigationView;
     // [END define_variables]
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        mFirebaseUser = getCurrentUser();
+        if(mFirebaseUser==null){
+            startActivity(new Intent(DashboardActivity.this, SignInGoogle.class));
+            finish();
+        }
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Set default username is anonymous.
-        mUsername = ANONYMOUS;
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if (mFirebaseUser == null) {
-            // Not signed in, launch the Sign In activity
-            startActivity(new Intent(this, SignInActivity2.class));
-            finish();
-            return;
-        } else {
-            mUsername = mFirebaseUser.getDisplayName();
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-            }
-            mEmail = mFirebaseUser.getEmail().toString().toLowerCase();
-        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
         // Create an auto-managed GoogleApiClient with access to App Invites.
+        // ATTENTION: This "addApi(AppIndex.API)"was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(AppInvite.API)
                 .enableAutoManage(this, this)
-                .build();
+                .addApi(AppIndex.API).build();
         // Check for App Invite invitations and launch deep-link activity if possible.
         // Requires that an Activity is registered in AndroidManifest.xml to handle
         // deep-link URLs.
@@ -116,23 +107,26 @@ private ImageView imgProfile;
                             }
                         });
 
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView Username = (TextView) findViewById(R.id.username);
-   //     Username.setText(mUsername);
+        Username = (TextView) findViewById(R.id.username);
+        //    Username.setText(mUsername);
 
-        imgProfile = (ImageView) findViewById(R.id.profile_image);
-        userProfile = (TextView) findViewById(R.id.profile_user);
-        emailProfile = (TextView) findViewById(R.id.profile_email);
-
-       // loadNavHeader();
+        View header = navigationView.getHeaderView(0);
+        imgProfile = (ImageView) header.findViewById(R.id.profile_image);
+        userProfile = (TextView) header.findViewById(R.id.profile_user);
+        emailProfile = (TextView) header.findViewById(R.id.profile_email);
+//userProfile.setText("vik");
+//        loadNavHeader();
     }
 
     @Override
@@ -173,14 +167,11 @@ private ImageView imgProfile;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-
+        if (id == R.id.nav_update_profile) {
+            startActivity(new Intent(DashboardActivity.this, UpdateProfile.class));
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
 
         } else if (id == R.id.nav_invite) {
 
@@ -188,6 +179,8 @@ private ImageView imgProfile;
 
         } else if (id == R.id.nav_about) {
 
+        } else if (id == R.id.log_out) {
+            logout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -238,20 +231,32 @@ private ImageView imgProfile;
     }
 
     private void loadNavHeader() {
-        // name, website
-        userProfile.setText(mUsername);
-        emailProfile.setText(mEmail);
 
-        // Loading profile image
-        Glide.with(this).load(mPhotoUrl)
-                .crossFade()
-                .thumbnail(0.5f)
-                .bitmapTransform(new CircleTransform(this))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgProfile);
 
-        // showing dot next to notifications label
-      //  navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+            // Name, email address, and profile photo Url
+//            String name = getName();
+            String email = getEmail();
+            Uri photoUrl = getPhotoUrl();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            String uid = user.getUid();
+
+         //   Username.setText(name!=null?name:"Name");
+
+          //  userProfile.setText(name!=null?name:"Name");
+            emailProfile.setText(email!=null?email:"Email");
+
+           /* if(photoUrl!=null) {
+                Glide.with(getBaseContext())
+                        .load(photoUrl)
+                        .into(imgProfile);
+            }*/
+
+
+
+
     }
 
     private void showMessage(String msg) {
@@ -288,5 +293,44 @@ private ImageView imgProfile;
                 // [END_EXCLUDE]
             }
         }
+    }
+
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Dashboard Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mGoogleApiClient.connect();
+        AppIndex.AppIndexApi.start(mGoogleApiClient, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(mGoogleApiClient, getIndexApiAction());
+        mGoogleApiClient.disconnect();
+
+        finish();
     }
 }
