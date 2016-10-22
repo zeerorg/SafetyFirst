@@ -31,6 +31,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst.mDiscussion.DiscussionActivity;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItActivity;
 import com.vikas.dtu.safetyfirst.mKnowitActivity.KnowitActivity;
 import com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst.mUtils.CircleTransform;
@@ -228,7 +229,7 @@ private ImageView imgProfile;
     }
 
     public void startKnowIt(View view) {
-        Intent intent = new Intent(this, KnowitActivity.class);
+        Intent intent = new Intent(this, KnowItActivity.class);
         startActivity(intent);
     }
 
