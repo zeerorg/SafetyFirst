@@ -54,64 +54,67 @@
         <activity
             android:name=".mKnowItActivity.KnowItActivity"
             android:label="Know It"
-            android:parentActivityName=".DashboardActivity" >
-        <!-- Parent activity meta-data to support 4.0 and lower -->
+            android:parentActivityName=".DashboardActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
         <activity
             android:name=".mKnowItActivity.Ladder.SelfSupportingLadder"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.Ladder.LadderActivity" />
         </activity>
-        <activity
-            android:name=".mKnowItActivity.Ladder.NonSelfSupportingLadder"
-            android:label="Know It"
-            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".mKnowItActivity.Ladder.LadderActivity" />
-        </activity>
+        <activity android:name=".DashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".mKnowItActivity.Ladder.LadderActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
-        <activity android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
+        <activity
+            android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
-        <activity android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
+        <activity
+            android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
-        </activity>
-        <activity android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
-            android:label="Scaffod"
-            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
-        </activity>
 
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
+            android:label="Scaffod"
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
+        </activity>
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
@@ -130,7 +133,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
-
         <activity
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
@@ -180,15 +182,7 @@
             android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".mKnowitActivity.KnowitActivity"
-            android:parentActivityName=".DashboardActivity">
 
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DashboardActivity" />
-        </activity>
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
             android:name=".SplashScreen"
@@ -199,17 +193,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mKnowitActivity.Ladders.Types.StandardLadder" />
-        <activity android:name=".mKnowitActivity.Ladders.Types.TwoWayLadder" />
-        <activity android:name=".mKnowitActivity.Ladders.Types.OrchardLadder" />
-        <activity android:name=".mKnowitActivity.Ladders.Types.TrestleLadder" />
-        <activity android:name=".mKnowitActivity.Ladders.Types.PlatformLadder" />
-        <activity android:name=".mKnowitActivity.Ladders.Types.ExtensionLadder" />
-        <activity android:name=".mKnowitActivity.Ladders.Types.SingleLadder" />
-        <activity
             android:name=".DashboardActivity"
             android:label="Dashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -218,8 +204,9 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".mUser.UpdateProfile"
-            android:label="Update Profile"/>
+        <activity
+            android:name=".mUser.UpdateProfile"
+            android:label="Update Profile" />
     </application>
 
 </manifest>
