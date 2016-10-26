@@ -34,6 +34,7 @@
                         android:gravity="center_horizontal"
                         android:layout_marginBottom="10dp"
                         />
+
                     <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
                         android:padding="5dp"
                         android:id="@+id/standard_ladder"

@@ -17,7 +17,8 @@
                 <ImageView
                     android:id= "@+id/ladder_imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="300dp"
+                    android:scaleType="center"
                     android:src="@drawable/ladder"
                     android:layout_marginBottom="30dp"
                     android:onClick="ladderActivity"/>
@@ -45,9 +46,10 @@
                 <ImageView
                     android:id= "@+id/scaffolding_imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/scaffold"
+                    android:layout_height="300dp"
+                    android:src="@drawable/scaffolds"
                     android:onClick="scaffolding"
+                    android:scaleType="fitXY"
                     android:layout_marginBottom="30dp"
                     />
                 <TextView

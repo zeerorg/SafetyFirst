@@ -11,13 +11,14 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:src="@drawable/ladder"/>
             <TextView
                 android:id="@+id/ladder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ladders"
+                android:textColor="@color/dark_red"
                 android:paddingBottom="30dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"/>

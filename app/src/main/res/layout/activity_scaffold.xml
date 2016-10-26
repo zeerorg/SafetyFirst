@@ -12,7 +12,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/scaffold"/>
+                android:src="@drawable/scaffolds"/>
             <TextView
                 android:id="@+id/ladder"
                 android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
                         android:paddingTop="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/scaffold"
+                        android:src="@drawable/scaffolds"
                         android:onClick="selfSupportingScaffold"
                         />
                     <TextView
@@ -91,7 +91,7 @@
                         android:paddingTop="10dp"
                         android:scaleType="fitCenter"
                         android:onClick="suspensionScaffold"
-                        android:src="@drawable/scaffold"/>
+                        android:src="@drawable/scaffolds"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

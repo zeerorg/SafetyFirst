@@ -23,8 +23,8 @@
         android:layout_height="300dp"
         android:id="@+id/imageView2"
         android:layout_marginBottom="@dimen/md_keylines"
-        android:src="@drawable/home"
-        android:scaleType="center" />
+        android:src="@drawable/welder"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"

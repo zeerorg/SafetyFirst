@@ -32,7 +32,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItActivity;
-import com.vikas.dtu.safetyfirst.mKnowitActivity.KnowitActivity;
 import com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst.mUtils.CircleTransform;
 import com.google.android.gms.appinvite.AppInvite;

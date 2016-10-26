@@ -1,8 +1,14 @@
 package com.vikas.dtu.safetyfirst.mKnowItActivity.Ladder;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
@@ -13,6 +19,9 @@ import com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView;
  */
 
 public class SelfSupportingLadder extends BaseActivity {
+    private boolean expandable = true;
+    Button btnSeeMore;
+    boolean expand = true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +65,9 @@ public class SelfSupportingLadder extends BaseActivity {
                 "•	Platform ladders provide that higher level of comfort you look for while standing on a ladder for any amount of time.  You won’t be killing the bottom of your feet or your shins when you stand on the platform.\n"+
                 "• This ladder allows you to work on any project that requires you to use two hands as safely as if you were on the ground itself.  Being able to rotate around and work in which ever direction you need helps you to work safer and faster.";
         ExpandableTextView expandableTextView = (ExpandableTextView) findViewById(R.id.standard_ladder);
-        expandableTextView.setText(yourText);
+       expandableTextView.setText(yourText);
+
+
         ExpandableTextView twoWayLadderTextView = (ExpandableTextView)findViewById(R.id.two_way_ladder);
         twoWayLadderTextView.setText(twoWayLadder);
         ExpandableTextView orchardLadderTextView = (ExpandableTextView)findViewById(R.id.orchard_ladder);
@@ -68,4 +79,7 @@ public class SelfSupportingLadder extends BaseActivity {
 
 
     }
+
+
+
 }

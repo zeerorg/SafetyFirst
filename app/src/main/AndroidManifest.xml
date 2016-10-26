@@ -210,7 +210,7 @@
 
         <activity
             android:name=".DashboardActivity"
-            android:label="Dashboard"
+            android:label="Safety First"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
