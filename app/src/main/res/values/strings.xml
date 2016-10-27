@@ -183,6 +183,8 @@
     <string name="invitation_id_fmt" formatted="false">Invitation ID: %s</string>
 
     <string name="sent_invitations_fmt" formatted="false">Sent %d invitations</string>
+    <string name="item_title">News Headline</string>
+    <string name="item_desc">Article</string>
 
 
 </resources>

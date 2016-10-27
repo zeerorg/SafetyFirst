@@ -66,6 +66,7 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:hint="@string/write_your_post"
         android:inputType="textMultiLine"
+        android:gravity="center"
         android:lines="10"
         android:maxLines="10"
         android:scrollHorizontally="false" />

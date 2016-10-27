@@ -1,4 +1,4 @@
-package com.vikas.dtu.safetyfirst;
+package com.vikas.dtu.safetyfirst.mSignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.vikas.dtu.safetyfirst.BaseActivity;
+import com.vikas.dtu.safetyfirst.DashboardActivity;
+import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

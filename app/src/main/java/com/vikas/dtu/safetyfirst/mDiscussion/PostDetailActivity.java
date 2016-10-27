@@ -85,7 +85,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     TextView tv_loading;
     String dest_file_path = "test.pdf";
     int downloadedSize = 0, totalsize;
-    String download_file_url = "http://mirror.unl.edu/ctan/macros/latex/contrib/abc/abc.pdf";
     float per = 0;
 
     @Override
