@@ -192,7 +192,7 @@ public abstract class NewsListFragment extends Fragment {
                         sendIntent.setType("text/plain");
                         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
                     }
-                });
+                }, getContext());
             }
         };
         mRecycler.setAdapter(mAdapter);

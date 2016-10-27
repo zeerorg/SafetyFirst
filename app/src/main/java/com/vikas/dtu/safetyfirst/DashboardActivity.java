@@ -330,7 +330,5 @@ private ImageView imgProfile;
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(mGoogleApiClient, getIndexApiAction());
         mGoogleApiClient.disconnect();
-
-        finish();
     }
 }
