@@ -12,7 +12,8 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/scaffolds"/>
             <TextView
                 android:id="@+id/ladder"

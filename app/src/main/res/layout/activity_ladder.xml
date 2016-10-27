@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
@@ -12,6 +13,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/ladder"/>
             <TextView
                 android:id="@+id/ladder"
@@ -20,6 +22,8 @@
                 android:text="Ladders"
                 android:textColor="@color/dark_red"
                 android:paddingBottom="30dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"/>
         </RelativeLayout>
