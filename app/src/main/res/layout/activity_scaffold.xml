@@ -14,7 +14,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/scaffolds"/>
+                android:src="@drawable/scaffolds_s"/>
             <TextView
                 android:id="@+id/ladder"
                 android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
                         android:paddingTop="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/scaffolds"
+                        android:src="@drawable/scaffolds_s"
                         android:onClick="selfSupportingScaffold"
                         />
                     <TextView
@@ -93,7 +93,7 @@
                         android:paddingTop="10dp"
                         android:scaleType="fitCenter"
                         android:onClick="suspensionScaffold"
-                        android:src="@drawable/scaffolds"/>
+                        android:src="@drawable/scaffolds_s"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

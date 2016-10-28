@@ -20,7 +20,7 @@
                     android:layout_height="300dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/dash"
+                    android:src="@drawable/welder"
 
                     />
 
