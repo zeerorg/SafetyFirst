@@ -29,7 +29,7 @@ public class DialogUtils {
      * @param ctx           Activity context
      * @param title         Title of the progress dialog
      * @param body          Body/Message to be shown in the progress dialog
-     * @param isCancellable True if the dialog can be cancelled on back button press, false otherwise
+     * @param isCancellable True if the dialog can be cancelled on back round_blue_dark press, false otherwise
      *
      */
     public static void showProgressDialog(Context ctx, String title, String body, boolean isCancellable) {
@@ -44,7 +44,7 @@ public class DialogUtils {
      * @param title         Title of the progress dialog
      * @param body          Body/Message to be shown in the progress dialog
      * @param icon          Icon to show in the progress dialog. It can be null.
-     * @param isCancellable True if the dialog can be cancelled on back button press, false otherwise
+     * @param isCancellable True if the dialog can be cancelled on back round_blue_dark press, false otherwise
      *
      */
     public static void showProgressDialog(Context ctx, String title, String body, Drawable icon, boolean isCancellable) {
@@ -80,7 +80,7 @@ public class DialogUtils {
     }
 
     /**
-     * Shows an alert dialog with the OK button. When the user presses OK button, the dialog
+     * Shows an alert dialog with the OK round_blue_dark. When the user presses OK round_blue_dark, the dialog
      * dismisses.
      *
      */
@@ -89,7 +89,7 @@ public class DialogUtils {
     }
 
     /**
-     * Shows an alert dialog with OK button
+     * Shows an alert dialog with OK round_blue_dark
      *
      */
     public static void showAlertDialog(Context ctx, String title, String body, DialogInterface.OnClickListener okListener) {
@@ -133,8 +133,8 @@ public class DialogUtils {
      * @param message     Message to be shown in the dialog.
      * @param yesListener Yes click handler
      * @param noListener
-     * @param yesLabel    Label for yes button
-     * @param noLabel     Label for no button
+     * @param yesLabel    Label for yes round_blue_dark
+     * @param noLabel     Label for no round_blue_dark
      *
      */
     public static void showConfirmDialog(Context ctx, String message, DialogInterface.OnClickListener yesListener, DialogInterface.OnClickListener noListener, String yesLabel, String noLabel) {
@@ -164,7 +164,7 @@ public class DialogUtils {
     }
 
     /**
-     * Creates a confirmation dialog that show a pop-up with button labeled as parameters labels.
+     * Creates a confirmation dialog that show a pop-up with round_blue_dark labeled as parameters labels.
      *
      * @param ctx                 {@link Activity} {@link Context}
      * @param message             Message to be shown in the dialog.

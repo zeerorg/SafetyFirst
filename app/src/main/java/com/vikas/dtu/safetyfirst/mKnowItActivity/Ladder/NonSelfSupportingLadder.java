@@ -20,7 +20,7 @@ public class NonSelfSupportingLadder extends BaseActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
         String extensionLadder = " This type is used to reach high places and most be leaned against some type of support; such as a house, wall, or tree before it can be used." +
                 "Most extension ladders consist of two parts:"+

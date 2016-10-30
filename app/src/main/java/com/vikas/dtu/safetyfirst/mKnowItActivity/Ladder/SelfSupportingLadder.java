@@ -29,7 +29,7 @@ public class SelfSupportingLadder extends BaseActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
         String yourText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                 "Ut volutpat interdum interdum. Nulla laoreet lacus diam, vitae " +

@@ -25,17 +25,19 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
 
         titleView = (TextView) itemView.findViewById(R.id.post_title);
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
-        bookmark = (ImageView) itemView.findViewById(R.id.bookmark);
-        share = (ImageView) itemView.findViewById(R.id.share);
+      //  bookmark = (ImageView) itemView.findViewById(R.id.bookmark);
+     //   share = (ImageView) itemView.findViewById(R.id.share);
         mNewsImage = (ImageView) itemView.findViewById(R.id.card_image);
 
     }
 
-    public void bindToNews(News news, View.OnClickListener starClickListener, View.OnClickListener shareClickListener, Context c) {
+    public void bindToNews(News news,
+                           //View.OnClickListener starClickListener, View.OnClickListener shareClickListener,
+                            Context c) {
         titleView.setText(news.title);
         bodyView.setText(news.body);
-        bookmark.setOnClickListener(starClickListener);
-        share.setOnClickListener(shareClickListener);
+      //  bookmark.setOnClickListener(starClickListener);
+//        share.setOnClickListener(shareClickListener);
         if(news.imgUrl!=null){
             PicassoClient.downloadImage(c, news.imgUrl, mNewsImage);
             mNewsImage.setVisibility(View.VISIBLE);

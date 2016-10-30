@@ -20,7 +20,7 @@ public class SelfSupportingScaffold extends BaseActivity{
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
         String frameScaffold = "• The most common type of scaffold because they are versatile, economical, and easy to use."+
                 "• They are frequently used in one or two tiers by residential contractors, painters, etc., but their modular frames can also be stacked several stories high for use on large-scale construction jobs.";

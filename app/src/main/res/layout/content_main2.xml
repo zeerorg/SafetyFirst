@@ -67,7 +67,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:src="@drawable/news"
+                    android:src="@drawable/button_news"
                     android:layout_width="93dp"
                     android:layout_height="93dp"
                     android:id="@+id/imageView4"
@@ -75,7 +75,7 @@
                     android:onClick="startNews"/>
 
                 <ImageView
-                    android:src="@drawable/discussion"
+                    android:src="@drawable/button_discussion"
                     android:layout_width="93dp"
                     android:layout_height="93dp"
                     android:id="@+id/imageView5"
@@ -120,7 +120,7 @@
                 android:layout_marginRight="40dp" >
 
                 <ImageView
-                    android:src="@drawable/laws"
+                    android:src="@drawable/button_laws"
                     android:layout_width="93dp"
                     android:layout_height="93dp"
                     android:id="@+id/laws"
@@ -131,8 +131,7 @@
                 <ImageView
                     android:layout_width="93dp"
                     android:layout_height="93dp"
-                    android:src="@drawable/knowit"
-
+                    android:src="@drawable/button_knowit"
                     android:id="@+id/imageView3"
                     android:layout_weight="1"
                     android:onClick="startKnowIt" />

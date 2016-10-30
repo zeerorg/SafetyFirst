@@ -48,7 +48,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
 
 

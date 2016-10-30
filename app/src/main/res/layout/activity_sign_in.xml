@@ -16,7 +16,6 @@
         <ImageView android:src="@drawable/ic_launcher"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
 
         <!-- Email Label -->
@@ -24,13 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="@color/white"
-            android:layout_marginBottom="24dp">
+            android:textColorHint="@color/white">
             <EditText android:id="@+id/field_email"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:inputType="textEmailAddress"
-                android:background="@color/dark_red"
+                android:background="@drawable/round_red_dark"
                 android:hint="Email address"
                 android:paddingLeft="10dp"
                 android:maxLines="1"
@@ -41,15 +39,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-            android:layout_marginBottom="8dp">
+            android:textColorHint="@color/white">
             <EditText android:id="@+id/field_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/dark_red"
+                android:background="@drawable/round_red_dark"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
-                android:layout_marginTop="20dp"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -59,18 +55,34 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:background="@color/dark_blue"
+            android:background="@drawable/round_blue_dark"
             android:text="Sign in"
             android:textColor="@color/white"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="10dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -80,19 +92,12 @@
                 android:textSize="16dip"/>
             <TextView
                 android:id="@+id/link_signup"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_up"/>
         </LinearLayout>
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="visible"
-            android:layout_gravity="center"/>
     </LinearLayout>
 </ScrollView>

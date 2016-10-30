@@ -92,14 +92,15 @@ public abstract class NewsListFragment extends Fragment {
                 });
 
 // Determine if the current user has liked this post and set UI accordingly
-                if (model.stars.containsKey(getUid())) {
+              /*  if (model.stars.containsKey(getUid())) {
                     viewHolder.bookmark.setImageResource(R.drawable.bookmark_toggle);
                 } else {
                     viewHolder.bookmark.setImageResource(R.drawable.bookmark);
-                }
+                }*/
 
-                // Bind News to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToNews(model, new View.OnClickListener() {
+                // Bind News to ViewHolder, setting OnClickListener for the star round_blue_dark
+                viewHolder.bindToNews(model,
+                        /*new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
 
@@ -192,7 +193,8 @@ public abstract class NewsListFragment extends Fragment {
                         sendIntent.setType("text/plain");
                         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
                     }
-                }, getContext());
+                },*/
+                        getContext());
             }
         };
         mRecycler.setAdapter(mAdapter);

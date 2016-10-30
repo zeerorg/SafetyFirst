@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.vikas.dtu.safetyfirst.mSignUp.SignInGoogle;
+import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 
 
 
@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void logout() {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(this, SignInGoogle.class));
+        startActivity(new Intent(this, SignInActivity.class));
     }
 
 
