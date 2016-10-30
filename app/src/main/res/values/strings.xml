@@ -186,5 +186,6 @@
     <string name="item_title">News Headline</string>
     <string name="item_desc">Article</string>
 
+    <string name="spinner_title">Join As</string>
 
 </resources>
