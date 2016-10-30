@@ -6,9 +6,12 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +26,12 @@ import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.User;
 
-public class UpdateProfile extends BaseActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
     FirebaseUser user;
 
     ImageView mPhoto;
@@ -33,10 +41,13 @@ public class UpdateProfile extends BaseActivity implements View.OnClickListener 
     EditText mQualification;
     EditText mDesignation;
     EditText mCity;
+    Spinner mSpinner;
     private ValueEventListener mUserListener;
 
     private Button mSubmit;
     DatabaseReference useRef;
+    String joinAs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,24 @@ public class UpdateProfile extends BaseActivity implements View.OnClickListener 
         mCity = (EditText) findViewById(R.id.city);
         mSubmit = (Button) findViewById(R.id.submit);
         user = getCurrentUser();
+        mSpinner = (Spinner) findViewById(R.id.join);
+
+
+        mSpinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Contractor");
+        categories.add("Safety Officer");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        mSpinner.setAdapter(dataAdapter);
 
         useRef = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(getUid());
@@ -58,6 +87,17 @@ public class UpdateProfile extends BaseActivity implements View.OnClickListener 
         mSubmit.setOnClickListener(this);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+         joinAs = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + joinAs, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
     @Override
     public void onClick(View v) {
         int i = v.getId();
@@ -69,9 +109,23 @@ public class UpdateProfile extends BaseActivity implements View.OnClickListener 
                 String designation = mDesignation.getText().toString();
                 String city = mCity.getText().toString();
 
-
+                updateUser(company, qualification, designation, city);
             }
         }
+    }
+
+    void updateUser(String company,String qualification,String designation,String city){
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("company", company);
+        childUpdates.put("qualification", qualification);
+        childUpdates.put("designation", designation);
+        childUpdates.put("city", city);
+        childUpdates.put("joinAs", joinAs);
+
+        useRef.updateChildren(childUpdates);
+
+        Toast.makeText(this, getUid(), Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -139,12 +193,14 @@ public class UpdateProfile extends BaseActivity implements View.OnClickListener 
 
     private boolean validateForm() {
         boolean result = true;
+
         if (TextUtils.isEmpty(mCompany.getText().toString())) {
             mCompany.setError("Required");
             result = false;
         } else {
             mCompany.setError(null);
         }
+
         if (TextUtils.isEmpty(mQualification.getText().toString())) {
             mQualification.setError("Required");
             result = false;

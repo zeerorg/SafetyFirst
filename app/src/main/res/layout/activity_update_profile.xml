@@ -90,9 +90,19 @@
         android:gravity="center"
         android:inputType="text"
         android:hint="Join As"
+        android:visibility="gone"
         android:textColorHint="@color/white"
         android:maxLines="1"
         android:textColor="@color/white"/>
+
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/join"
+        android:prompt="@string/spinner_title"/>
+
     <EditText
         android:id="@+id/city"
         android:background="@drawable/round_red_dark"
@@ -117,6 +127,6 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:text="Submit"
         android:textColor="@color/white"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/round_red_dark"/>
 
 </LinearLayout>
