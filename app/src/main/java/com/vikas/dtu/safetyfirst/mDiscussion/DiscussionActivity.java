@@ -17,7 +17,7 @@ import android.widget.EditText;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mSignUp.SignInGoogle;
+import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst.mDiscussion.fragment.MyPostsFragment;
 import com.vikas.dtu.safetyfirst.mDiscussion.fragment.RecentPostsFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +36,7 @@ public class DiscussionActivity extends BaseActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
 
         // Create the adapter that will return a fragment for each section
@@ -121,7 +121,7 @@ public class DiscussionActivity extends BaseActivity {
         switch (i) {
             case R.id.action_logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(this, SignInGoogle.class));
+                startActivity(new Intent(this, SignInActivity.class));
                 finish();
                 return true;
             case R.id.search_post:

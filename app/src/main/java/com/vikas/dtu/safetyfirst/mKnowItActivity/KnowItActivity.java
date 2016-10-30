@@ -15,7 +15,7 @@ import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mKnowItActivity.Ladder.LadderActivity;
 import com.vikas.dtu.safetyfirst.mKnowItActivity.Scaffoldings.Scaffolding;
-import com.vikas.dtu.safetyfirst.mSignUp.SignInGoogle;
+import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class KnowItActivity extends BaseActivity{
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
         ImageView imageView = (ImageView)findViewById(R.id.know_it_imageView);
 
@@ -77,7 +77,7 @@ public class KnowItActivity extends BaseActivity{
         int i = item.getItemId();
         if (i == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, SignInGoogle.class));
+            startActivity(new Intent(this, SignInActivity.class));
             finish();
             return true;
         } else {

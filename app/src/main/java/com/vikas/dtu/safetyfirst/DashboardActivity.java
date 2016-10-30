@@ -31,7 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItActivity;
 import com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity;
-import com.vikas.dtu.safetyfirst.mSignUp.SignInGoogle;
+import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.appinvite.AppInviteInvitationResult;
@@ -65,7 +65,7 @@ private ImageView imgProfile;
 
         mFirebaseUser = getCurrentUser();
         if(mFirebaseUser==null){
-            startActivity(new Intent(DashboardActivity.this, SignInGoogle.class));
+            startActivity(new Intent(DashboardActivity.this, SignInActivity.class));
             finish();
         }
 
@@ -149,14 +149,10 @@ private ImageView imgProfile;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up round_blue_dark, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -169,17 +165,15 @@ private ImageView imgProfile;
 
         if (id == R.id.nav_update_profile) {
             startActivity(new Intent(DashboardActivity.this, UpdateProfile.class));
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_faq) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_help) {
 
         } else if (id == R.id.nav_invite) {
 
            onInviteClicked();
 
-        } else if (id == R.id.nav_about) {
-
-        } else if (id == R.id.log_out) {
+        }  else if (id == R.id.log_out) {
             logout();
         }
 
@@ -267,7 +261,7 @@ private ImageView imgProfile;
     private void onInviteClicked() {
         Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                 .setMessage(getString(R.string.invitation_message))
-                .setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))
+                //.setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))
                 .setCustomImage(Uri.parse(getString(R.string.invitation_custom_image)))
                 .setCallToActionText(getString(R.string.invitation_cta))
                 .build();

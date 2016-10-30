@@ -20,7 +20,7 @@ public class SuspensionScaffold extends BaseActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
         String singlePointAdjustable = "A single-point adjustable scaffold consists of a platform suspended by one rope from an overhead support and equipped with means to permit the movement of the platform to desired work levels."+
                 "The most common among these is the scaffold used by window washers to clean the outside of a skyscraper (also known as a boatswain's chair)."+

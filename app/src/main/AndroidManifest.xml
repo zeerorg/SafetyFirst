@@ -173,7 +173,6 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".mSignUp.SignInActivity" />
         <activity android:name=".mSignUp.SignUpActivity"/>
         <activity
             android:name=".SignInActivity2"
@@ -206,7 +205,7 @@
             android:name=".DashboardActivity"
             android:label="Safety First"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mSignUp.SignInGoogle"></activity>
+        <activity android:name=".mSignUp.SignInActivity"></activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.

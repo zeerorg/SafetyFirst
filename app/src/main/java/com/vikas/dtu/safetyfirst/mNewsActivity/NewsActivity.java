@@ -31,7 +31,7 @@ import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mNewsActivity.fragment.MyNewsFragment;
 import com.vikas.dtu.safetyfirst.mNewsActivity.fragment.RecentNewsFragment;
 import com.google.firebase.auth.FirebaseAuth;
-import com.vikas.dtu.safetyfirst.mSignUp.SignInGoogle;
+import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 
 public class NewsActivity extends BaseActivity {
 
@@ -47,7 +47,7 @@ public class NewsActivity extends BaseActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
 
 
@@ -93,7 +93,7 @@ public class NewsActivity extends BaseActivity {
         int i = item.getItemId();
         if (i == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, SignInGoogle.class));
+            startActivity(new Intent(this, SignInActivity.class));
             finish();
             return true;
         } else {

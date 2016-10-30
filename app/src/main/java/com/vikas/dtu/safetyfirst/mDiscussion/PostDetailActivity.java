@@ -94,7 +94,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
 
 
@@ -257,7 +257,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         public TextView authorView;
         public TextView bodyView;
-        //TODO add upvotes and downvotes button
+        //TODO add upvotes and downvotes round_blue_dark
 
         public CommentViewHolder(View itemView) {
             super(itemView);

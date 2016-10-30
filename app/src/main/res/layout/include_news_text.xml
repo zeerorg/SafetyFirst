@@ -15,14 +15,15 @@
 
     <TextView
         android:id="@+id/post_title"
-        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/card_title_height"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/card_image"
+        android:textAllCaps="true"
         android:layout_marginLeft="@dimen/md_keylines"
+        android:textSize="22sp"
         tools:text="@string/item_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/white" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/post_body"
@@ -38,7 +39,5 @@
         android:maxLines="3"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/article_subheading"/>
-
-    <include layout="@layout/include_actions_news"/>
 
 </RelativeLayout>

@@ -22,7 +22,7 @@ public class LadderActivity extends BaseActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the Up round_blue_dark
         ab.setDisplayHomeAsUpEnabled(true);
         String Ladder = "Ladders are used when employees need to move up or down between two different levels. Slips, trips, and falls are significant contributors to accidents. Slips, trips, and falls can occur when wrong ladder selection is made and when improper climbing techniques and/or defective ladders are used."+
                 "\nAppropriate ladders must be used for the corresponding job and defective ladders will not be used. When hazards exist that cannot be eliminated, then engineering practices, administrative practices, safe work practices, Personal Protective Equipment (PPE), and proper training regarding ladders must be implemented. "+
