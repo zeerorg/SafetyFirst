@@ -3,6 +3,7 @@ package com.vikas.dtu.safetyfirst.mDiscussion;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,11 +14,14 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -59,7 +63,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     public static final String EXTRA_POST_KEY = "post_key";
 
-    private DatabaseReference mPostReference, mPostAttachmentsReference;
+    private DatabaseReference mPostReference, mPostAttachmentsReference, mUserPostReference;
     private DatabaseReference mCommentsReference;
     private ValueEventListener mPostListener;
     private String mPostKey;
@@ -87,6 +91,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     int downloadedSize = 0, totalsize;
     float per = 0;
 
+    private Post post;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +116,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
                 .child("post-comments").child(mPostKey);
         mPostAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(mPostKey);
+        mUserPostReference = FirebaseDatabase.getInstance().getReference().child("user-posts").child(getUid()).child(mPostKey);
 
         // Initialize Views
         mAuthorImage = (ImageView) findViewById(R.id.post_author_photo);
@@ -145,7 +152,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
-                Post post = dataSnapshot.getValue(Post.class);
+                post = dataSnapshot.getValue(Post.class);
                 // [START_EXCLUDE]
                 if (post.getPhotoUrl() == null) {
                     mAuthorImage.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),
@@ -158,6 +165,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
+
 
                 //TODO get attachment urls from post if they exist
                 // [END_EXCLUDE]
@@ -477,7 +485,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String url = (String) dataSnapshot.getValue();
-              //  Log.d(TAG, url);
+                //  Log.d(TAG, url);
                 if (url != null) {
                     tv_loading = new TextView(PostDetailActivity.this);
                     setContentView(tv_loading);
@@ -489,6 +497,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                     Toast.makeText(PostDetailActivity.this, "No File Attached", Toast.LENGTH_SHORT).show();
                 }
             }
+
             void downloadAndOpenPDF(final String url) {
                 new Thread(new Runnable() {
                     public void run() {
@@ -516,8 +525,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                     HttpURLConnection urlConnection = (HttpURLConnection) url
                             .openConnection();
 
-                  //  urlConnection.setRequestMethod("GET");
-                  //  urlConnection.setDoOutput(true);
+                    //  urlConnection.setRequestMethod("GET");
+                    //  urlConnection.setDoOutput(true);
 
                     // connect
                     urlConnection.connect();
@@ -587,8 +596,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             }
 
 
-
-                @Override
+            @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
@@ -596,6 +604,50 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (getUid().equals(post.uid)) {
+            getMenuInflater().inflate(R.menu.post_detail, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_post:
+                // delete post remotely from [  nodes to remove from   posts, user-posts, post-attachments, post-comments ]
+                final AlertDialog.Builder post_Del_Alert = new AlertDialog.Builder(this);
+                post_Del_Alert.setTitle("Warning").setMessage("Are you sure you want to delete this post?")
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                if (mPostListener != null) {
+                                    mPostReference.removeEventListener(mPostListener);
+                                }
+                                mAdapter.cleanupListener();
+
+                                mPostReference.removeValue();
+                                mCommentsReference.removeValue();
+                                mPostAttachmentsReference.removeValue();
+                                mUserPostReference.removeValue();
+                                //Todo:  delete stuff from storage too
+                                finish();
+                            }
+                        });
+                post_Del_Alert.create().show();
+
+                break;
+        }
+        return true;
+    }
 
     @Override
     public void onBackPressed() {

@@ -124,7 +124,6 @@ public class NewPostActivity extends BaseActivity {
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(NewPostActivity.this, "clicked", Toast.LENGTH_SHORT).show();
                 submitPost();
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();
