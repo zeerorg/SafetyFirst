@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
@@ -32,7 +33,7 @@ public class LadderActivity extends BaseActivity {
                 "\n• Metal bearings of locks, wheels, pulleys, etc., shall be frequently lubricated."+
                 "\n• Ladders must be inspected frequently and those which have developed defects must be withdrawn from service for repair or destruction and tagged or marked as \"Dangerous, Do Not Use.\" "+
                 "\n• Ladders with broken or missing steps, rungs, or cleats, broken side rails, or other faulty equipment shall not be used; improvised repairs are not allowed.";
-        ExpandableTextView LadderTextView = (ExpandableTextView)findViewById(R.id.laddertextview);
+        TextView LadderTextView = (TextView) findViewById(R.id.laddertextview);
         LadderTextView.setText(Ladder);
     }
 

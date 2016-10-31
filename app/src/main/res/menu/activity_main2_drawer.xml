@@ -3,31 +3,35 @@
 
     <group android:checkableBehavior="single">
 
+
+
         <item
             android:id="@+id/nav_faq"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="FAQ" />
+            android:title="FAQ">
+        </item>
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Help" />
+            android:title="Help" >
+        </item>
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_menu_send"
-            android:title="Feedback" />
+            android:title="Feedback"/>
 
         <item
             android:id="@+id/nav_invite"
             android:icon="@drawable/ic_menu_share"
-            android:title="Invite" />
+            android:title="Invite"/>
         <item
          android:id="@+id/nav_update_profile"
          android:icon="@drawable/ic_menu_camera"
-         android:title="Update Profile" />
+         android:title="Update Profile"/>
         <item
          android:id="@+id/log_out"
          android:icon="@drawable/ic_menu_manage"
-         android:title="Log out" />
+         android:title="Log out"/>
 
 
     </group>
