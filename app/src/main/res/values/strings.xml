@@ -187,5 +187,6 @@
     <string name="item_desc">Article</string>
 
     <string name="spinner_title">Join As</string>
+    <string name="delete_post">Delete Post</string>
 
 </resources>
