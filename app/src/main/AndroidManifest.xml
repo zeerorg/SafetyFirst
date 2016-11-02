@@ -25,7 +25,6 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-
         <service
             android:name=".NotificationService"
             android:exported="false" />
@@ -58,7 +57,6 @@
             </intent-filter>
             <!-- [END deep_link_filter] -->
         </activity>
-
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/app_name"
@@ -70,6 +68,7 @@
             android:name=".mKnowItActivity.KnowItActivity"
             android:label="Know It"
             android:parentActivityName=".DashboardActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -79,6 +78,7 @@
             android:name=".mKnowItActivity.Ladder.SelfSupportingLadder"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -88,6 +88,7 @@
             android:name=".mKnowItActivity.Ladder.NonSelfSupportingLadder"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -97,6 +98,7 @@
             android:name=".mKnowItActivity.Ladder.LadderActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -106,6 +108,7 @@
             android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -115,6 +118,7 @@
             android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -124,12 +128,12 @@
             android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
-
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
@@ -148,8 +152,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
-
-
         <activity
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
@@ -160,7 +162,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
-
         <activity
             android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
@@ -206,16 +207,14 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".DashboardActivity"
             android:label="Safety First"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mSignUp.SignInActivity"></activity>
+        <activity android:name=".mSignUp.SignInActivity" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -224,5 +223,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity android:name=".mLaws.LawsActivity" />
     </application>
+
 </manifest>

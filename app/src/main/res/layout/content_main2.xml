@@ -129,7 +129,7 @@
                         android:layout_height="match_parent"
                         android:id="@+id/laws"
                         android:layout_weight="1"
-                        android:onClick="startNews"/>
+                        android:onClick="startLaws"/>
 
 
                     <ImageView
