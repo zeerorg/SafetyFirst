@@ -93,6 +93,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     String dest_file_path = "test.pdf";
     int downloadedSize = 0, totalsize;
     float per = 0;
+    boolean postLoaded = false;
+    private Menu mMenu;
 
     private Post post;
 
@@ -168,6 +170,9 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
+
+                postLoaded = true;
+                onCreateOptionsMenu(mMenu);
 
 
                 //TODO get attachment urls from post if they exist
@@ -261,6 +266,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                         final Realm realm = Realm.getDefaultInstance();
                         PostNotify postNotify = realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst();
                         if (postNotify == null) {
+                            realm.beginTransaction();
                             postNotify = realm.createObject(PostNotify.class);
                             postNotify.setUid(getUid());
                             postNotify.setPostKey(mPostKey);
@@ -269,6 +275,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     finalPostNotify.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()) + 1);
+                                    realm.commitTransaction();
                                     postNotifyRef.child(mPostKey).child("num_of_comments").setValue(finalPostNotify.getNumComments());
                                 }
 
@@ -662,11 +669,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getUid().equals(post.uid)) {
-            getMenuInflater().inflate(R.menu.post_detail, menu);
+        if(postLoaded) {
+            if (getUid().equals(post.uid) && (menu != null)) {
+                getMenuInflater().inflate(R.menu.post_detail, menu);
+                postLoaded = false;
+            }
+        }else{
+            mMenu = menu;
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -697,6 +708,13 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                                 mCommentsReference.removeValue();
                                 mPostAttachmentsReference.removeValue();
                                 mUserPostReference.removeValue();
+                                FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
+                                Realm realm = Realm.getDefaultInstance();
+                                realm.beginTransaction();
+                                if(realm.where(PostNotify.class).equalTo("postKey",mPostKey).findFirst() != null) {
+                                    realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst().deleteFromRealm();
+                                }
+                                realm.commitTransaction();
                                 //Todo:  delete stuff from storage too
                                 finish();
                             }

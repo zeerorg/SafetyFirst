@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
+import com.vikas.dtu.safetyfirst.NotificationService;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst.mDiscussion.fragment.MyPostsFragment;
@@ -33,6 +34,11 @@ public class DiscussionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discussion);
+
+        // starting notification service
+        Intent serviceIntent = new Intent(this,NotificationService.class);
+        startService(serviceIntent);
+
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 

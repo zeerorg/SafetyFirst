@@ -144,6 +144,7 @@ public class NewPostActivity extends BaseActivity {
                 post_notify_ref.child(key).child("num_of_comments").setValue(0);
                 post_notify_ref.child(key).child("num_of_stars").setValue(0);
 
+
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();
                 if (videoPath != null) uploadVideo();
