@@ -19,6 +19,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/colorPrimary"
+            android:textAllCaps="true"
             android:textStyle="bold"
             tools:text="My First Post" />
 
