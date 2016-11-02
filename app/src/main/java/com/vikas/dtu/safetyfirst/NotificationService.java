@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.Settings;
 import android.support.v7.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,7 +86,8 @@ public class NotificationService extends IntentService {
                 .setAutoCancel(true)
                 .setColor(Color.parseColor("#A8A8A8"))
                 .setContentText("Someone commented on your post or some update on post you are involved with.")
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp);
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 NOTIFICATION_ID,
