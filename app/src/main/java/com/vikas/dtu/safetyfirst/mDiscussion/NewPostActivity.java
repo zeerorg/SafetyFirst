@@ -36,6 +36,7 @@ import com.google.firebase.storage.StorageReference;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.vikas.dtu.safetyfirst.model.PostNotify;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +60,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
+
+import io.realm.Realm;
 
 public class NewPostActivity extends BaseActivity {
 
@@ -124,7 +127,23 @@ public class NewPostActivity extends BaseActivity {
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                key = mDatabase.child("posts").push().getKey();
                 submitPost();
+                Realm realm = Realm.getDefaultInstance();
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        PostNotify postNotify = realm.createObject(PostNotify.class);
+                        postNotify.setUid(getUid());
+                        postNotify.setPostKey(key);
+                        postNotify.setNumComments(0);
+                        postNotify.setNumStars(0);
+                    }
+                });
+                DatabaseReference post_notify_ref = FirebaseDatabase.getInstance().getReference().child("post-notify");
+                post_notify_ref.child(key).child("num_of_comments").setValue(0);
+                post_notify_ref.child(key).child("num_of_stars").setValue(0);
+
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();
                 if (videoPath != null) uploadVideo();
@@ -172,7 +191,6 @@ public class NewPostActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            key = mDatabase.child("posts").push().getKey();
                             mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(key);
                             writeNewPost(userId, user.username, title, body, downloadImageURL, user.userImage, downloadVideoURL, downloadPdfURL, attachLink);
                         }

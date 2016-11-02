@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -24,6 +25,15 @@
             android:value="@string/facebook_app_id" />
 
 
+        <service
+            android:name=".NotificationService"
+            android:exported="false" />
+        <receiver android:name=".NotificationServiceStarterReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".DeepLinkActivity"
             android:label="@string/app_name"
@@ -31,13 +41,17 @@
 
             <!-- [START deep_link_filter] -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="example.com" android:scheme="http"/>
-                <data android:host="example.com" android:scheme="https"/>
+                <data
+                    android:host="example.com"
+                    android:scheme="http" />
+                <data
+                    android:host="example.com"
+                    android:scheme="https" />
             </intent-filter>
             <!-- [END deep_link_filter] -->
         </activity>
@@ -52,8 +66,8 @@
         <activity
             android:name=".mKnowItActivity.KnowItActivity"
             android:label="Know It"
-            android:parentActivityName=".DashboardActivity" >
-        <!-- Parent activity meta-data to support 4.0 and lower -->
+            android:parentActivityName=".DashboardActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
@@ -85,7 +99,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
-        <activity android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
+        <activity
+            android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -93,7 +108,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
-        <activity android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
+        <activity
+            android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -101,7 +117,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
-        <activity android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
+        <activity
+            android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -121,7 +138,7 @@
         <activity
             android:name=".mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
-            android:parentActivityName=".DashboardActivity" >
+            android:parentActivityName=".DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -133,7 +150,7 @@
         <activity
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
-            android:parentActivityName=".DashboardActivity" >
+            android:parentActivityName=".DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -144,8 +161,8 @@
         <activity
             android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
-            android:uiOptions="splitActionBarWhenNarrow"
-            android:parentActivityName=".mDiscussion.DiscussionActivity" >
+            android:parentActivityName=".mDiscussion.DiscussionActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -158,7 +175,7 @@
         <activity
             android:name=".mDiscussion.PostDetailActivity"
             android:label="@string/titlePostDetailActivity"
-            android:parentActivityName=".mDiscussion.DiscussionActivity" >
+            android:parentActivityName=".mDiscussion.DiscussionActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -169,26 +186,27 @@
             android:name=".mDiscussion.SearchActivity"
             android:label="@string/search_activity" />
 
-        <activity android:name=".mSignUp.SignUpActivity"/>
+        <activity android:name=".mSignUp.SignUpActivity" />
 
         <activity android:name=".NoNetworkConnection" />
         <activity
             android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mUser.UpdateProfile"
-            android:label="Update Profile"
-            />
+        <activity
+            android:name=".mUser.UpdateProfile"
+            android:label="Update Profile" />
 
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".DashboardActivity"
@@ -203,5 +221,5 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        </application>
+    </application>
 </manifest>

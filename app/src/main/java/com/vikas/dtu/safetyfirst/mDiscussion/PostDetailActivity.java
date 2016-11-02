@@ -46,6 +46,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vikas.dtu.safetyfirst.mWebview.WebViewActivity;
+import com.vikas.dtu.safetyfirst.model.PostNotify;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,6 +57,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
 
 public class PostDetailActivity extends BaseActivity implements View.OnClickListener {
 
@@ -252,6 +255,62 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
                         // Clear the field
                         mCommentField.setText(null);
+
+                        // Add post-key to local DB to check for notification //
+                        final DatabaseReference postNotifyRef = FirebaseDatabase.getInstance().getReference().child("post-notify");
+                        final Realm realm = Realm.getDefaultInstance();
+                        PostNotify postNotify = realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst();
+                        if (postNotify == null) {
+                            postNotify = realm.createObject(PostNotify.class);
+                            postNotify.setUid(getUid());
+                            postNotify.setPostKey(mPostKey);
+                            final PostNotify finalPostNotify = postNotify;
+                            postNotifyRef.child(mPostKey).child("num_of_comments").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    finalPostNotify.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()) + 1);
+                                    postNotifyRef.child(mPostKey).child("num_of_comments").setValue(finalPostNotify.getNumComments());
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                            /* For Star click
+                            postNotifyRef.child(mPostKey).child("num_of_stars").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    finalPostNotify.setNumStars(Integer.parseInt(dataSnapshot.getValue().toString()));
+                                    postNotifyRef.child(mPostKey).child("num_of_stars").setValue(finalPostNotify.getNumStars());
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                            */
+                        } else {
+                            realm.beginTransaction();
+                            final PostNotify finalPostNotify = realm.where(PostNotify.class).equalTo("postKey",mPostKey).findFirst();
+
+                            postNotifyRef.child(mPostKey).child("num_of_comments").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    finalPostNotify.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()) + 1);
+                                    realm.commitTransaction();
+                                    postNotifyRef.child(mPostKey).child("num_of_comments").setValue(finalPostNotify.getNumComments());
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                        //  END Realm Stuff //
+
                     }
 
                     @Override
