@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.vikas.dtu.safetyfirst.BaseActivity;
@@ -28,6 +29,8 @@ public class KnowItActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.know_it_list);
+
+        
         final ArrayList<KnowIt> count = new ArrayList<KnowIt>();
         count.add(new KnowIt("Ladder", R.drawable.ladders_s));
         count.add(new KnowIt("Scaffold", R.drawable.scaffolds_s));
@@ -62,7 +65,9 @@ public class KnowItActivity extends BaseActivity{
                     case R.drawable.scaffolds_s:
                         Intent i = new Intent(KnowItActivity.this, Scaffolding.class);
                         startActivity(i);
+                        break;
                     default:
+                        Toast.makeText(KnowItActivity.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
                         break;
                 }
 

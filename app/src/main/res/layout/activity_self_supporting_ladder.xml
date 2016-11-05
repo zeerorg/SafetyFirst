@@ -9,7 +9,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:onClick="standardLadder">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -20,7 +21,6 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:src="@drawable/standard_ladder"
-                    android:layout_marginBottom="30dp"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
@@ -32,19 +32,14 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/dark_red"
                         android:textSize="20sp"
+                        android:layout_marginTop="50dp"
+                        android:onClick="standardLadder"
+                        android:layout_marginBottom="50dp"
                         android:text="Standard Ladders"
                         android:textIsSelectable="true"
                         android:gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
                         />
 
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
-                        android:padding="5dp"
-                        android:id="@+id/standard_ladder"
-                        android:textIsSelectable="true"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -52,6 +47,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="twoWayLadder"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +59,6 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:src="@drawable/two_way_ladder"
-                    android:layout_marginBottom="30dp"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
@@ -71,21 +66,16 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
                     <TextView
+                        android:onClick="twoWayLadder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="50dp"
                         android:textColor="@color/dark_red"
                         android:textSize="20sp"
                         android:text="Two Way Ladder"
                         android:textIsSelectable="true"
                         android:gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
-                        />
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
-                        android:id="@+id/two_way_ladder"
-                        android:padding="5dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -96,6 +86,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="orchardLadder"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,7 +98,6 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:src="@drawable/orchard_ladder"
-                    android:layout_marginBottom="30dp"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
@@ -122,21 +112,18 @@
                         android:textSize="20sp"
                         android:textIsSelectable="true"
                         android:gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
-                        />
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
-                        android:id="@+id/orchard_ladder"
-                        android:padding="5dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:onClick="orchardLadder"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="50dp"
                         />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="trestleLadder"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,7 +135,6 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:src="@drawable/trestle_ladder"
-                    android:layout_marginBottom="30dp"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
@@ -160,26 +146,22 @@
                         android:layout_height="wrap_content"
                         android:text="Trestle Ladder"
                         android:textColor="@color/dark_red"
+                        android:onClick="trestleLadder"
                         android:textSize="20sp"
                         android:textIsSelectable="true"
                         android:gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
-                        />
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
-                        android:id="@+id/trestle_ladder"
-                        android:padding="5dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="50dp"
                         />
                 </LinearLayout>
             </LinearLayout>
 
-
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="platformLadder"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -191,7 +173,6 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:src="@drawable/platform_ladder"
-                    android:layout_marginBottom="30dp"
                     />
                 <LinearLayout
                     android:layout_width="0dp"
@@ -206,25 +187,14 @@
                         android:textSize="20sp"
                         android:textIsSelectable="true"
                         android:gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
-                        />
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
-                        android:id="@+id/platform_ladder"
-                        android:padding="5dp"
-                        android:textIsSelectable="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="50dp"
                         />
                 </LinearLayout>
             </LinearLayout>
 
 
         </android.support.v7.widget.CardView>
-
-
-
-
-
 
     </LinearLayout>
 </ScrollView>

@@ -189,9 +189,7 @@
         <activity
             android:name=".mDiscussion.SearchActivity"
             android:label="@string/search_activity" />
-
         <activity android:name=".mSignUp.SignUpActivity" />
-
         <activity android:name=".NoNetworkConnection" />
         <activity
             android:name=".PicActivity"
@@ -200,13 +198,13 @@
         <activity
             android:name=".mUser.UpdateProfile"
             android:label="Update Profile" />
-
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -224,6 +222,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".mLaws.LawsActivity" />
+        <activity android:name=".mKnowItActivity.KnowItDetails"></activity>
     </application>
 
 </manifest>
