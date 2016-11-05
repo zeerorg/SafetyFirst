@@ -86,7 +86,7 @@ public class NewPostActivity extends BaseActivity {
     private String key;
 
     ////Using paths to upload
-    String imagePath = null, videoPath = null, pdfPath = null, attachLink = null;
+    String imagePath = null, pdfPath = null, attachLink = null;
     //// these download URL are on firebase storage , USE them to render files wherever needed,
     //// and push them to post and user post first. A Post structure wasn`t made according to url, i have left it.
     String downloadImageURL = null, downloadVideoURL = null, downloadPdfURL = null;
@@ -147,7 +147,7 @@ public class NewPostActivity extends BaseActivity {
 
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();
-                if (videoPath != null) uploadVideo();
+             //   if (videoPath != null) uploadVideo();
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -301,19 +301,6 @@ public class NewPostActivity extends BaseActivity {
             } else if (requestCode == SELECT_PDF) {
                 pdfPath = data.getData().getPath();
                 Toast.makeText(this, pdfPath, Toast.LENGTH_SHORT).show();
-            } else if (requestCode == SELECT_VIDEO) {
-                Uri selectedVideoUri = data.getData();
-                Cursor cursor = getContentResolver().query(selectedVideoUri, null, null, null, null);
-                if (cursor == null) {
-                    Log.d("response", "NUll");
-                    videoPath = selectedVideoUri.getPath();
-                } else {
-                    Log.d("response", "Not nUll");
-                    cursor.moveToFirst();
-                    int index = cursor.getColumnIndex(MediaStore.Video.Media.DATA);
-                    videoPath = cursor.getString(index);
-                }
-                Toast.makeText(this, videoPath, Toast.LENGTH_SHORT).show();
             }
 
 
@@ -653,33 +640,6 @@ public class NewPostActivity extends BaseActivity {
         });
     }
 
-    public void uploadVideo() {
-        Uri file = Uri.fromFile(new File(videoPath));
-        /// upload destination. change according to your needs
-        UploadTask uploadTask = storage.getReferenceFromUrl(URL).child(getUid() + "/video/" + file.getLastPathSegment()).putFile(file);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-                Toast.makeText(getBaseContext(), "Failed", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                assert downloadUrl != null;
-                Toast.makeText(getBaseContext(), "Video uploaded", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
-                intent.putExtra("DOWNLOAD_URI", downloadUrl);
-                setResult(RESULT_OK, intent);
-                pushNode(VIDEO_ATTACH, String.valueOf(downloadUrl));
-                finish();
-            }
-        });
-    }
-
     public void pushNode(int ID, String AttachUrl) {
         String type;
 
@@ -687,8 +647,6 @@ public class NewPostActivity extends BaseActivity {
             type = "LINK_ATTACH";
         } else if (ID == FILE_ATTACH) {
             type = "FILE_ATTACH";
-        } else if (ID == VIDEO_ATTACH) {
-            type = "VIDEO_ATTACH";
         } else if (ID == IMAGE_ATTACH) {
             type = "IMAGE_ATTACH";
         } else type = "null";
@@ -702,9 +660,5 @@ public class NewPostActivity extends BaseActivity {
 
     public void uploadFile(View view) {
         pickPDF();
-    }
-
-    public void uploadVideo(View view) {
-        pickVideo();
     }
 }
