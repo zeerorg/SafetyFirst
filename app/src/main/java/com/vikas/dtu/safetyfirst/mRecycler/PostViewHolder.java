@@ -1,19 +1,13 @@
 package com.vikas.dtu.safetyfirst.mRecycler;
 
-import android.content.Context;
-import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.vikas.dtu.safetyfirst.R;
 import com.vikas.dtu.safetyfirst.mData.Post;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 
@@ -40,8 +34,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindToPost(Post post, View.OnClickListener starClickListener) {
-
-
         titleView.setText(post.title);
         authorView.setText(post.author);
         numStarsView.setText(String.valueOf(post.starCount));
