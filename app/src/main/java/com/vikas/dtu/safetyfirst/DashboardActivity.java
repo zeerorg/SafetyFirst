@@ -118,6 +118,7 @@ private ImageView imgProfile;
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
         Username = (TextView) findViewById(R.id.username);

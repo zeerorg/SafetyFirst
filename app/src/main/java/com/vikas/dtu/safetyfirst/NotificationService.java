@@ -86,7 +86,7 @@ public class NotificationService extends IntentService {
                 .setAutoCancel(true)
                 .setColor(Color.parseColor("#A8A8A8"))
                 .setContentText("Someone commented on your post or some update on post you are involved with.")
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setSmallIcon(R.drawable.ic_email_white_24dp)
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
