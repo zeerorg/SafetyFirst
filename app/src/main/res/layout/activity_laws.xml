@@ -12,17 +12,42 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/welder"
+            android:layout_width="match_parent"
+            android:padding="@dimen/md_keylines"
+            android:layout_height="match_parent"
+            android:alpha=".3"
+            android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Law Heading"
             android:textColor="@color/colorAccent"
-            android:layout_gravity="center"
+            android:textAlignment="center"
             android:paddingTop="30dp"
-            android:paddingBottom="30dp"
+            android:paddingBottom="10dp"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
+        <TextView
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/WelcomeDetails"/>
+
+            <View
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:id="@+id/line"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

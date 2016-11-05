@@ -214,7 +214,7 @@ public class NewPostActivity extends BaseActivity {
                               String downloadPdfURL, String downloadVideoURL, String attachLink) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl, downloadVideoURL, downloadPdfURL, attachLink);
+        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl, downloadPdfURL, attachLink);
         Map<String, Object> postValues = post.toMap();
 
         // Obtaining and adding Keywords for search

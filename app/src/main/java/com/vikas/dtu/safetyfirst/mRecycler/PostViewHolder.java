@@ -1,5 +1,6 @@
 package com.vikas.dtu.safetyfirst.mRecycler;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     public TextView numStarsView;
     public TextView bodyView;
     public ImageView authorImage;
+    public ImageView postImage;
 
     public PostViewHolder(View itemView) {
         super(itemView);
@@ -34,9 +36,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         starView = (ImageView) itemView.findViewById(R.id.star);
         numStarsView = (TextView) itemView.findViewById(R.id.post_num_stars);
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
+        postImage = (ImageView) itemView.findViewById(R.id.post_image);
     }
 
-    public void bindToPost(Post post, View.OnClickListener starClickListener) {
+    public void bindToPost(Post post, View.OnClickListener starClickListener, Context context) {
 
 
         titleView.setText(post.title);
@@ -45,7 +48,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         bodyView.setText(post.body);
         bodyView.setMaxLines(6);
         bodyView.setEllipsize(TextUtils.TruncateAt.END);
-
         starView.setOnClickListener(starClickListener);
+
+        if(post.image != null){
+            Glide.with(context)
+                    .load(post.image)
+                    .into(postImage);
+        }
     }
 }

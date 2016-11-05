@@ -104,6 +104,7 @@ public abstract class PostListFragment extends Fragment {
                             .into(viewHolder.authorImage);
                 }
 
+
                 // Bind Post to ViewHolder, setting OnClickListener for the star round_blue_dark
                 viewHolder.bindToPost(model, new View.OnClickListener() {
                     @Override
@@ -116,7 +117,8 @@ public abstract class PostListFragment extends Fragment {
                         onStarClicked(globalPostRef);
                         onStarClicked(userPostRef);
                     }
-                });
+                },
+                getContext());
             }
         };
         mRecycler.setAdapter(mAdapter);

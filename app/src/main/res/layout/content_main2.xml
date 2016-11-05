@@ -16,25 +16,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="30dp"
-                    android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/welder"
 
                     />
+
                 <TextView
+                    android:id="@+id/post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/background"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
                     android:gravity="center"
                     android:text="post, company"
-                    android:id="@+id/post"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textAllCaps="false"
                     style="@style/Base.TextAppearance.AppCompat.Small"
-                    />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -46,12 +45,14 @@
                     android:text="USERNAME"
                     android:id="@+id/username"
                     android:textColor="@color/dark_blue"
-                    android:textSize="28sp"
+                    android:textSize="24sp"
                     android:textAllCaps="true"
                     android:background="@color/background"
                     android:layout_above="@id/post"
 
                     />
+
+
 
             </RelativeLayout>
 

@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="56dp"
         android:paddingLeft="40dp"
-        android:paddingRight="40dp">
+        android:paddingRight="40dp"
+        android:weightSum="1">
 
         <ImageView android:src="@drawable/ic_launcher"
             android:layout_width="wrap_content"
@@ -19,35 +20,28 @@
             android:layout_gravity="center_horizontal" />
 
         <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColorHint="@color/white">
+
             <EditText android:id="@+id/field_email"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:inputType="textEmailAddress"
+                android:textColorHint="@color/white"
                 android:background="@drawable/round_red_dark"
                 android:hint="Email address"
                 android:paddingLeft="10dp"
                 android:maxLines="1"
                 />
-        </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/white">
             <EditText android:id="@+id/field_password"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
+                android:textColorHint="@color/white"
+
                 android:background="@drawable/round_red_dark"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
 
 
         <android.support.v7.widget.AppCompatButton
