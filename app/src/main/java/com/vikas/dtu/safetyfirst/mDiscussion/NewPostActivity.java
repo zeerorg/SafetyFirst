@@ -147,7 +147,6 @@ public class NewPostActivity extends BaseActivity {
 
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();
-             //   if (videoPath != null) uploadVideo();
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -601,9 +600,9 @@ public class NewPostActivity extends BaseActivity {
                 intent.putExtra("DOWNLOAD_URI", downloadUrl);
                 setResult(RESULT_OK, intent);
 
-              /*  Map<String, Object> imageAttach = new HashMap<String, Object>();
+                Map<String, Object> imageAttach = new HashMap<>();
                 imageAttach.put("/posts/" + key + "/image/", downloadImageURL);
-                mDatabase.updateChildren(imageAttach);*/
+                mDatabase.updateChildren(imageAttach);
 
                 pushNode(IMAGE_ATTACH, downloadImageURL);
 
