@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -120,13 +121,21 @@ private ImageView imgProfile;
         navigationView.setNavigationItemSelectedListener(this);
 
         Username = (TextView) findViewById(R.id.username);
-        //    Username.setText(mUsername);
+        Username.setText(getName());
 
         View header = navigationView.getHeaderView(0);
         imgProfile = (ImageView) header.findViewById(R.id.profile_image);
         userProfile = (TextView) header.findViewById(R.id.profile_user);
         emailProfile = (TextView) header.findViewById(R.id.profile_email);
-//userProfile.setText("vik");
+
+
+        userProfile.setText(getName());
+        emailProfile.setText(getEmail());
+        if(getPhotoUrl()!=null) {
+            Glide.with(getBaseContext())
+                    .load(getPhotoUrl())
+                    .into(imgProfile);
+        }
 //        loadNavHeader();
     }
 
@@ -177,7 +186,9 @@ private ImageView imgProfile;
         }  else if (id == R.id.log_out) {
             logout();
         }
-
+        else if (id==R.id.nav_feedback){
+            startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));
+                }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -233,20 +244,12 @@ private ImageView imgProfile;
     private void loadNavHeader() {
 
 
-            // Name, email address, and profile photo Url
-//            String name = getName();
-            String email = getEmail();
-            Uri photoUrl = getPhotoUrl();
 
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String uid = user.getUid();
 
          //   Username.setText(name!=null?name:"Name");
 
           //  userProfile.setText(name!=null?name:"Name");
-            emailProfile.setText(email!=null?email:"Email");
+          //  emailProfile.setText(email!=null?email:"Email");
 
            /* if(photoUrl!=null) {
                 Glide.with(getBaseContext())

@@ -55,13 +55,13 @@ public class LawsActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mines_pdf:
-                    downloadfile(mineurl, "mines");
+                   // downloadfile(mineurl, "mines");
                 break;
             case R.id.theFactories_pdf:
-                    downloadfile(factoryurl, "factories");
+                   // downloadfile(factoryurl, "factories");
                 break;
             case R.id.dockWorker_pdf:
-                    downloadfile(dockworkerurl, "dockWorker");
+                   // downloadfile(dockworkerurl, "dockWorker");
                 break;
         }
     }
