@@ -92,6 +92,7 @@ public class SelfSupportingLadder extends BaseActivity {
         Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails.class);
         i.putExtra("info", yourText );
         i.putExtra("image", R.drawable.standard_ladder);
+        i.putExtra("check", "<a href=\"http://www.google.com\">http://www.google.com</a>");
         // i.putExtra(yourText, "howto" );
         // i.putExtra(yourText, "checklist" );
         // i.putExtra(yourText, "video" );

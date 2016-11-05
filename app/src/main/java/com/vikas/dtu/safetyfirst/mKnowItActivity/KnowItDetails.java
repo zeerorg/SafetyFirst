@@ -23,6 +23,7 @@ public class KnowItDetails extends AppCompatActivity implements View.OnClickList
 
     private String info;
     private String howto;
+    private String check;
     private int image;
 
 
@@ -35,6 +36,8 @@ public class KnowItDetails extends AppCompatActivity implements View.OnClickList
         if(bundle != null){
                 info = (String) bundle.get("info");
                 image = (int) bundle.get("image");
+
+            if(bundle.get("check")!=null){check=(String)bundle.get("check");}
         }
         // Get the TextSwitcher view from the layout
 
@@ -104,7 +107,8 @@ public class KnowItDetails extends AppCompatActivity implements View.OnClickList
                 mSwitcher.setText(getResources().getString(R.string.dummy2));
                 break;
             case R.id.check_btn:
-                mSwitcher.setText(getResources().getString(R.string.dummy3));
+                if(check!=null)
+                mSwitcher.setText(check);
                 break;
             case R.id.video_btn:
                 mSwitcher.setText(getResources().getString(R.string.dummy1));

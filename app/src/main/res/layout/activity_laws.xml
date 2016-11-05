@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
     android:id="@+id/activity_laws"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +15,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vikas.dtu.safetyfirst.mLaws.LawsActivity">
     <android.support.v7.widget.CardView
+        android:id="@+id/dockWorker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -26,7 +32,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Law Heading"
+            android:text="The Dock Workers Act"
             android:textColor="@color/colorAccent"
             android:textAlignment="center"
             android:paddingTop="30dp"
@@ -38,17 +44,139 @@
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="@string/WelcomeDetails"/>
+            android:text="@string/WelcomeDetails"/>
 
             <View
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:id="@+id/line"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="Download"
+                android:id="@+id/dockWorker_pdf"
+                android:textStyle="bold"
+                android:layout_gravity="right"
+                android:layout_margin="20dp"/>
         </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/mines"
+        android:layout_below="@id/dockWorker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/welder"
+            android:layout_width="match_parent"
+            android:padding="@dimen/md_keylines"
+            android:layout_height="match_parent"
+            android:alpha=".3"
+            android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Mines Act"
+                android:textColor="@color/colorAccent"
+                android:textAlignment="center"
+                android:paddingTop="30dp"
+                android:paddingBottom="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/WelcomeDetails"/>
+
+            <View
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:id="@+id/line2"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/mines_pdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="Download"
+                android:textStyle="bold"
+                android:layout_gravity="right"
+                android:layout_margin="20dp"/>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/theFactories"
+        android:layout_below="@id/mines"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/welder"
+            android:layout_width="match_parent"
+            android:padding="@dimen/md_keylines"
+            android:layout_height="match_parent"
+            android:alpha=".3"
+            android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Factories Act"
+                android:textColor="@color/colorAccent"
+                android:textAlignment="center"
+                android:paddingTop="30dp"
+                android:paddingBottom="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/WelcomeDetails"/>
+
+            <View
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:id="@+id/line3"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="Download"
+                android:id="@+id/theFactories_pdf"
+                android:textStyle="bold"
+                android:layout_gravity="right"
+                android:layout_margin="20dp"/>
+        </LinearLayout>
+
 
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>
+</ScrollView>
