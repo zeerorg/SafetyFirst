@@ -39,7 +39,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         postImage = (ImageView) itemView.findViewById(R.id.post_image);
     }
 
-    public void bindToPost(Post post, View.OnClickListener starClickListener, Context context) {
+    public void bindToPost(Post post, View.OnClickListener starClickListener) {
 
 
         titleView.setText(post.title);
@@ -49,11 +49,5 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         bodyView.setMaxLines(6);
         bodyView.setEllipsize(TextUtils.TruncateAt.END);
         starView.setOnClickListener(starClickListener);
-
-        if(post.image != null){
-            Glide.with(context)
-                    .load(post.image)
-                    .into(postImage);
-        }
     }
 }

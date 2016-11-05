@@ -104,6 +104,12 @@ public abstract class PostListFragment extends Fragment {
                             .into(viewHolder.authorImage);
                 }
 
+                if(model.image != null) {
+                        Glide.with(getContext())
+                                .load(model.getImage())
+                                .into(viewHolder.postImage);
+                        viewHolder.postImage.setVisibility(View.VISIBLE);
+                }
 
                 // Bind Post to ViewHolder, setting OnClickListener for the star round_blue_dark
                 viewHolder.bindToPost(model, new View.OnClickListener() {
@@ -117,8 +123,7 @@ public abstract class PostListFragment extends Fragment {
                         onStarClicked(globalPostRef);
                         onStarClicked(userPostRef);
                     }
-                },
-                getContext());
+                });
             }
         };
         mRecycler.setAdapter(mAdapter);
