@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItDetails1;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItDetails.KnowItDetail;
 
 /**
  * Created by krishna on 17/10/16.
@@ -84,7 +84,7 @@ public class SelfSupportingLadder extends BaseActivity {
 
     public void standardLadder(View view){
 
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetail.class);
         i.putExtra("info", yourText );
         i.putExtra("image", R.drawable.standard_ladder);
         i.putExtra("check", "<a href=\"http://www.google.com\">http://www.google.com</a>");
@@ -95,28 +95,28 @@ public class SelfSupportingLadder extends BaseActivity {
     }
 
     public void twoWayLadder(View view){
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetail.class);
          i.putExtra("info",twoWayLadder );
         i.putExtra("image", R.drawable.two_way_ladder);
         startActivity(i);
     }
 
     public void orchardLadder(View view){
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetail.class);
          i.putExtra("info", orchardLadder );
         i.putExtra("image", R.drawable.orchard_ladder);
         startActivity(i);
     }
 
     public void trestleLadder(View view){
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetail.class);
         i.putExtra("info", trestleLadder);
         i.putExtra("image", R.drawable.trestle_ladder);
         startActivity(i);
     }
 
     public void platformLadder(View view) {
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetail.class);
         i.putExtra("info", platformLadder);
         i.putExtra("image", R.drawable.platform_ladder);
         startActivity(i);

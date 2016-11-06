@@ -222,7 +222,6 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".mLaws.LawsActivity" />
-        <activity android:name=".mKnowItActivity.KnowItDetails1" />
         <activity android:name=".mKnowItActivity.KnowItDetails2" />
         <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail"></activity>
     </application>
