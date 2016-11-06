@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView;
 
 /**
  * Created by krishna on 17/10/16.
@@ -38,13 +37,8 @@ public class LadderActivity extends BaseActivity {
     }
 
     public void selfSupportingLadder(View view) {
-        Intent intent = new Intent(this,SelfSupportingLadder.class);
+        Intent intent = new Intent(this,LadderTypes.class);
         startActivity(intent);
     }
 
-    public void nonSelfSupportingLadder(View view) {
-        Intent intent = new Intent(this,NonSelfSupportingLadder.class);
-        startActivity(intent);
-
     }
-}

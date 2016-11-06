@@ -12,10 +12,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -25,16 +23,6 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <service
-            android:name=".NotificationService"
-            android:exported="false" />
-
-        <receiver android:name=".NotificationServiceStarterReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name=".DeepLinkActivity"
@@ -43,31 +31,25 @@
 
             <!-- [START deep_link_filter] -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data
-                    android:host="example.com"
-                    android:scheme="http" />
-                <data
-                    android:host="example.com"
-                    android:scheme="https" />
+                <data android:host="example.com" android:scheme="http"/>
+                <data android:host="example.com" android:scheme="https"/>
             </intent-filter>
             <!-- [END deep_link_filter] -->
         </activity>
+
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FeedBackActivity"
-            android:label="FeedBack" />
-        <activity
-            android:name=".mKnowItActivity.KnowItActivity"
-            android:label="Know It"
-            android:parentActivityName=".DashboardActivity">
+            android:label="FeedBack"
+            android:parentActivityName=".DashboardActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -75,10 +57,18 @@
                 android:value=".DashboardActivity" />
         </activity>
         <activity
-            android:name=".mKnowItActivity.Ladder.SelfSupportingLadder"
+            android:name=".mKnowItActivity.KnowItActivity"
+            android:label="Know It"
+            android:parentActivityName=".DashboardActivity" >
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.Ladder.LadderTypes"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -88,7 +78,6 @@
             android:name=".mKnowItActivity.Ladder.NonSelfSupportingLadder"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -98,42 +87,110 @@
             android:name=".mKnowItActivity.Ladder.LadderActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
+        <activity
+            android:name=".mKnowItActivity.AerialLiftActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.Ladder.StandardLadder"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.Ladder.LadderActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.CraneLiftActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.FireSprinklerActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.ForkLiftActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.HeatStressActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.RespiratoryLiftActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+        <activity
+            android:name=".mKnowItActivity.SafetyNetActivity"
+            android:label="Know It"
+            android:parentActivityName=".mKnowItActivity.KnowItActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mKnowItActivity.KnowItActivity" />
+        </activity>
+
         <activity
             android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
-        <activity
-            android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
+        <activity android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
-        <activity
-            android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
+        <activity android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
+
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
@@ -145,28 +202,43 @@
         <activity
             android:name=".mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
-            android:parentActivityName=".DashboardActivity">
+            android:parentActivityName=".DashboardActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
+        <activity
+            android:name=".mLaws.LawsActivity"
+            android:label="@string/titleNewsActivity"
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+
+
+
         <activity
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
-            android:parentActivityName=".DashboardActivity">
+            android:parentActivityName=".DashboardActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
         <activity
             android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
-            android:parentActivityName=".mDiscussion.DiscussionActivity"
-            android:uiOptions="splitActionBarWhenNarrow">
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:parentActivityName=".mDiscussion.DiscussionActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -179,7 +251,7 @@
         <activity
             android:name=".mDiscussion.PostDetailActivity"
             android:label="@string/titlePostDetailActivity"
-            android:parentActivityName=".mDiscussion.DiscussionActivity">
+            android:parentActivityName=".mDiscussion.DiscussionActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -189,30 +261,39 @@
         <activity
             android:name=".mDiscussion.SearchActivity"
             android:label="@string/search_activity" />
-        <activity android:name=".mSignUp.SignUpActivity" />
+
+        <activity android:name=".mSignUp.SignUpActivity"/>
+
         <activity android:name=".NoNetworkConnection" />
         <activity
             android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".mUser.UpdateProfile"
-            android:label="Update Profile" />
+        <activity android:name=".mUser.UpdateProfile"
+            android:label="Update Profile"
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+
         <activity
             android:name=".DashboardActivity"
             android:label="Safety First"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mSignUp.SignInActivity" />
+        <activity android:name=".mSignUp.SignInActivity"></activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -221,8 +302,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".mLaws.LawsActivity" />
-        <activity android:name=".mKnowItActivity.KnowItDetails2" />
         <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail" />
     </application>
 

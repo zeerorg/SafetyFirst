@@ -40,7 +40,7 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ellipsize="start"
         android:gravity="center"
         android:inputType="text"
@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ellipsize="start"
         android:gravity="center"
         android:inputType="text"
@@ -70,7 +70,7 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ellipsize="start"
         android:gravity="center"
         android:inputType="text"
@@ -85,7 +85,7 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ellipsize="start"
         android:gravity="center"
         android:inputType="text"
@@ -98,8 +98,10 @@
 
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/md_keylines"
+        android:layout_marginRight="15dp"
         android:id="@+id/join"
         android:prompt="@string/spinner_title"/>
 
@@ -110,7 +112,7 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ellipsize="start"
         android:gravity="center"
         android:inputType="text"
@@ -127,6 +129,6 @@
         android:layout_marginTop="@dimen/md_keylines"
         android:text="Submit"
         android:textColor="@color/white"
-        android:background="@drawable/round_red_dark"/>
+        android:background="@color/dark_blue"/>
 
 </LinearLayout>
