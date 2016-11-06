@@ -16,12 +16,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/scaffold_gradient"/>
+                android:src="@drawable/heat_stroke_gradient"/>
             <TextView
                 android:id="@+id/ladder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scaffolds"
+                android:text="Heat Stress"
                 android:textColor="@color/dark_red"
                 android:paddingBottom="5dp"
                 android:textSize="30sp"
@@ -37,6 +37,7 @@
             <TextView
                 android:id="@+id/laddertextview"
                 android:layout_margin="10dp"
+                android:text="Workers at risk of heat stress include outdoor workers and workers in hot environments such as firefighters, bakery workers, farmers, construction workers, miners, boiler room workers, factory workers, and others. Workers at greater risk of heat stress include those who are 65 years of age or older, are overweight, have heart disease or high blood pressure, or take medications that may be affected by extreme heat resulting in heat stress.Prevention of heat stress in workers is important. Employers should provide training to workers so they understand what heat stress is, how it affects their health and safety, and how it can be prevented."
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -56,11 +57,44 @@
                     android:paddingLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Safety Rules"
-                    android:textSize="20dp"
+                    android:text="Hazard Control : "
+                    android:textSize="20sp"
                     android:textColor="@color/dark_blue"/>
                 <TextView
-                    android:text="●All wood parts must be free from sharp edges and splinters; sound and free from accepted visual inspection from shake, wane, compression failures, decay, or other irregularities.\n● Ladders must be maintained in good condition at all times, the joint between the steps and side rails must be tight, all hardware and fittings securely attached, and the movable parts shall operate freely without binding or undue play.\n● Metal bearings of locks, wheels, pulleys, etc., shall be frequently lubricated.\n● Ladders must be inspected frequently and those which have developed defects must be withdrawn from service for repair or destruction and tagged or marked as Dangerous, Do Not Use.\n● Ladders with broken or missing steps, rungs, or cleats, broken side rails, or other faulty equipment shall not be used; improvised repairs are not allowed."
+                    android:paddingLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engineering Controls : "
+                    android:textSize="18sp"
+                    android:textColor="@color/dark_blue"/>
+                <TextView
+                    android:text="● Ensure all inside areas have adequate ventilation\n● Provide shaded awnings for outside work when possible\n● Provide portable ventilation when possible"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Administrative Controls : "
+                    android:textSize="18sp"
+                    android:textColor="@color/dark_blue"/>
+                <TextView
+                    android:text="● Provide training to all affected employees\n● Provide adequate and sanitary drinking facilities and utensils\n● Rotate workers during high heat operations"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Protective Equipments : "
+                    android:textSize="18sp"
+                    android:textColor="@color/dark_blue"/>
+                <TextView
+                    android:text="● Provide cooling PPE when appropriate"
                     android:layout_margin="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

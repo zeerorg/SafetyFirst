@@ -16,12 +16,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/scaffold_gradient"/>
+                android:src="@drawable/safety_nets_gradient"/>
             <TextView
                 android:id="@+id/ladder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scaffolds"
+                android:text="Safety Net"
                 android:textColor="@color/dark_red"
                 android:paddingBottom="5dp"
                 android:textSize="30sp"
@@ -34,12 +34,25 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             >
-            <TextView
-                android:id="@+id/laddertextview"
-                android:layout_margin="10dp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Safety Net"
+                    android:textSize="20dp"
+                    android:textColor="@color/dark_blue"/>
+                <TextView
+                    android:text="This Best Practice Guideline covers the safety requirements and safe use of safety nets to protect people from being injured by a fall from a height. This information is for anyone who has to provide a safe place of work and make sure that all plant and equipment is safe.\nIt describes best practice for:\nsafety net design principles\ntypes and classifications of safety nets\nsafety net components\ninstalling of safety nets\ninspection, repair and maintenance of safety nets."
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -56,11 +69,12 @@
                     android:paddingLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Safety Rules"
+                    android:text="PRINCIPLES OF SAFETY NET DESIGN"
                     android:textSize="20dp"
                     android:textColor="@color/dark_blue"/>
                 <TextView
-                    android:text="●All wood parts must be free from sharp edges and splinters; sound and free from accepted visual inspection from shake, wane, compression failures, decay, or other irregularities.\n● Ladders must be maintained in good condition at all times, the joint between the steps and side rails must be tight, all hardware and fittings securely attached, and the movable parts shall operate freely without binding or undue play.\n● Metal bearings of locks, wheels, pulleys, etc., shall be frequently lubricated.\n● Ladders must be inspected frequently and those which have developed defects must be withdrawn from service for repair or destruction and tagged or marked as Dangerous, Do Not Use.\n● Ladders with broken or missing steps, rungs, or cleats, broken side rails, or other faulty equipment shall not be used; improvised repairs are not allowed."
+                    android:text=" Safety nets are designed to progressively deflect (stretch) and absorb the energy of a fall, so a falling person is less likely to be injured. The greater the fall height, the greater the impact; so the net’s deflection must also be greater. The safety net must be able to deform or deflect enough to absorb all of the energy from the fall’s impact up to the maximum fall height for the design.
+There must be enough clear distance below the net so that the person falling does not hit an obstacle or the ground while the net is deflecting"
                     android:layout_margin="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -83,7 +97,7 @@
                     android:padding="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ladders_type"
+                    android:src="@drawable/types_of_safety_nets"
                     android:onClick="selfSupportingLadder"
                     />
                 <RelativeLayout
@@ -95,7 +109,7 @@
                         android:id="@+id/types_of_ladder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ladders"
+                        android:text="Safety Nets"
                         android:textSize="22sp"
                         android:textColor="@color/dark_red"
                         android:onClick="selfSupportingLadder"
