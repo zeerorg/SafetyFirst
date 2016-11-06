@@ -223,7 +223,7 @@
 
         <activity android:name=".mLaws.LawsActivity" />
         <activity android:name=".mKnowItActivity.KnowItDetails2" />
-        <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail"></activity>
+        <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail" />
     </application>
 
 </manifest>

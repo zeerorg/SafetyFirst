@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
 
 
-
 public class BaseActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private ProgressDialog mProgressDialog;
@@ -46,21 +45,22 @@ public class BaseActivity extends AppCompatActivity {
         return user;
     }
 
-    public Uri getPhotoUrl(){
-        if(user.getPhotoUrl()!=null) return user.getPhotoUrl();
+    public Uri getPhotoUrl() {
+        if (user != null && user.getPhotoUrl() != null) return user.getPhotoUrl();
         return null;
     }
 
-    public String getEmail(){
-        if(user.getEmail()!=null) return user.getEmail();
+    public String getEmail() {
+        if (user != null && user.getEmail() != null) return user.getEmail();
         return null;
     }
 
-    public String getName(){
-        if(user.getDisplayName()!=null) return user.getDisplayName();
-        return null;
+    public String getName() {
+        if (user != null && user.getDisplayName() != null)
+            return user.getDisplayName();
+        else
+            return null;
     }
-
 
 
 }
