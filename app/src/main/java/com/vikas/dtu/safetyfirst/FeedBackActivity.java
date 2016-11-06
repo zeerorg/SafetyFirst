@@ -3,6 +3,7 @@ package com.vikas.dtu.safetyfirst;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -57,6 +58,10 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up round_blue_dark
+        ab.setDisplayHomeAsUpEnabled(true);
 
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();

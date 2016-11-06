@@ -3,6 +3,7 @@ package com.vikas.dtu.safetyfirst.mUser;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,10 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up round_blue_dark
+        ab.setDisplayHomeAsUpEnabled(true);
 
         mPhoto = (ImageView) findViewById(R.id.user_photo);
         mName = (TextView) findViewById(R.id.nameTxt);

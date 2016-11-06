@@ -168,7 +168,12 @@ private ImageView imgProfile;
             startActivity(new Intent(DashboardActivity.this, UpdateProfile.class));
         } else if (id == R.id.nav_faq) {
 
-        } else if (id == R.id.nav_help) {
+        }
+        else if (id == R.id.nav_feedback)
+        {
+            startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));
+        }
+        else if (id == R.id.nav_help) {
 
         } else if (id == R.id.nav_invite) {
 

@@ -50,7 +50,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FeedBackActivity"
-            android:label="FeedBack" />
+            android:label="FeedBack"
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
         <activity
             android:name=".mKnowItActivity.KnowItActivity"
             android:label="Know It"
@@ -266,7 +273,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".mUser.UpdateProfile"
             android:label="Update Profile"
-            />
+            android:parentActivityName=".DashboardActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
 
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
