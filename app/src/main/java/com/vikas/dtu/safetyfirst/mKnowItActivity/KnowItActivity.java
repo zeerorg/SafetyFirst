@@ -29,8 +29,6 @@ public class KnowItActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.know_it_list);
-
-        
         final ArrayList<KnowIt> count = new ArrayList<KnowIt>();
         count.add(new KnowIt("Ladder", R.drawable.ladders_s));
         count.add(new KnowIt("Scaffold", R.drawable.scaffolds_s));
@@ -66,8 +64,28 @@ public class KnowItActivity extends BaseActivity{
                         Intent i = new Intent(KnowItActivity.this, Scaffolding.class);
                         startActivity(i);
                         break;
+                   case R.drawable.aeriall_lift_s:
+                       startActivity(new Intent(KnowItActivity.this, AerialLiftActivity.class));
+                       break;
+                   case R.drawable.crane_s:
+                       startActivity(new Intent(KnowItActivity.this, CraneLiftActivity.class));
+                       break;
+                   case R.drawable.sprinkler_s:
+                       startActivity(new Intent(KnowItActivity.this, FireSprinklerActivity.class));
+                       break;
+                   case R.drawable.forlift_s:
+                       startActivity(new Intent(KnowItActivity.this, ForkLiftActivity.class));
+                       break;
+                   case R.drawable.heat_stroke_s:
+                       startActivity(new Intent(KnowItActivity.this, HeatStressActivity.class));
+                       break;
+                   case R.drawable.respiratort_s:
+                       startActivity(new Intent(KnowItActivity.this, RespiratoryLiftActivity.class));
+                       break;
+                   case R.drawable.safety_nets_s:
+                       startActivity(new Intent(KnowItActivity.this, SafetyNetActivity.class));
+                       break;
                     default:
-                        Toast.makeText(KnowItActivity.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
                         break;
                 }
 

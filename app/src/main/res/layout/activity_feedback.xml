@@ -30,9 +30,10 @@
         android:src="@drawable/stars0"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:paddingTop="@dimen/md_keylines"
         android:paddingBottom="@dimen/md_keylines"
         android:text="How do you feel about the help you received?"
