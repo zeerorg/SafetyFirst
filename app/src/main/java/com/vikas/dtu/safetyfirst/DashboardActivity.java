@@ -8,15 +8,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +25,13 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.appinvite.AppInvite;
+import com.google.android.gms.appinvite.AppInviteInvitation;
+import com.google.android.gms.appinvite.AppInviteInvitationResult;
+import com.google.android.gms.appinvite.AppInviteReferral;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst.mDiscussion.DiscussionActivity;
@@ -34,27 +39,21 @@ import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItActivity;
 import com.vikas.dtu.safetyfirst.mLaws.LawsActivity;
 import com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
-import com.google.android.gms.appinvite.AppInvite;
-import com.google.android.gms.appinvite.AppInviteInvitation;
-import com.google.android.gms.appinvite.AppInviteInvitationResult;
-import com.google.android.gms.appinvite.AppInviteReferral;
-import com.google.android.gms.common.api.ResultCallback;
 import com.vikas.dtu.safetyfirst.mUser.UpdateProfile;
 
 public class DashboardActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener,GoogleApiClient.OnConnectionFailedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG = DashboardActivity.class.getSimpleName();
-    private FirebaseAuth mFirebaseAuth;
     public static final String ANONYMOUS = "anonymous";
+    private static final String TAG = DashboardActivity.class.getSimpleName();
+    private static final int REQUEST_INVITE = 0;
+    TextView Username;
+    private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private SharedPreferences mSharedPreferences;
-private ImageView imgProfile;
+    private ImageView imgProfile;
     private TextView userProfile;
     private TextView emailProfile;
-    TextView Username;
-    private static final int REQUEST_INVITE = 0;
-
     // [START define_variables]
     private GoogleApiClient mGoogleApiClient;
     private NavigationView navigationView;
@@ -66,7 +65,7 @@ private ImageView imgProfile;
         setContentView(R.layout.activity_dashboard);
 
         mFirebaseUser = getCurrentUser();
-        if(mFirebaseUser==null){
+        if (mFirebaseUser == null) {
             startActivity(new Intent(DashboardActivity.this, SignInActivity.class));
             finish();
         }
@@ -110,7 +109,6 @@ private ImageView imgProfile;
                         });
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -132,7 +130,7 @@ private ImageView imgProfile;
 
         userProfile.setText(getName());
         emailProfile.setText(getEmail());
-        if(getPhotoUrl()!=null) {
+        if (getPhotoUrl() != null) {
             Glide.with(getBaseContext())
                     .load(getPhotoUrl())
                     .into(imgProfile);
@@ -182,14 +180,13 @@ private ImageView imgProfile;
 
         } else if (id == R.id.nav_invite) {
 
-           onInviteClicked();
+            onInviteClicked();
 
-        }  else if (id == R.id.log_out) {
+        } else if (id == R.id.log_out) {
             logout();
-        }
-        else if (id==R.id.nav_feedback){
+        } else if (id == R.id.nav_feedback) {
             startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));
-                }
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -206,10 +203,10 @@ private ImageView imgProfile;
 
     public void startNews(View view) {
 
-        if(isNetworkConnected()) {
+        if (isNetworkConnected()) {
             Intent intent = new Intent(this, NewsActivity.class);
             startActivity(intent);
-        }else {
+        } else {
             Intent intent = new Intent(this, NoNetworkConnection.class);
             startActivity(intent);
         }
@@ -217,10 +214,10 @@ private ImageView imgProfile;
 
     public void startDiscussion(View view) {
 
-        if(isNetworkConnected()) {
+        if (isNetworkConnected()) {
             Intent intent = new Intent(this, DiscussionActivity.class);
             startActivity(intent);
-        }else {
+        } else {
             Intent intent = new Intent(this, NoNetworkConnection.class);
             startActivity(intent);
         }
@@ -245,12 +242,10 @@ private ImageView imgProfile;
     private void loadNavHeader() {
 
 
+        //   Username.setText(name!=null?name:"Name");
 
-
-         //   Username.setText(name!=null?name:"Name");
-
-          //  userProfile.setText(name!=null?name:"Name");
-          //  emailProfile.setText(email!=null?email:"Email");
+        //  userProfile.setText(name!=null?name:"Name");
+        //  emailProfile.setText(email!=null?email:"Email");
 
            /* if(photoUrl!=null) {
                 Glide.with(getBaseContext())
@@ -259,13 +254,11 @@ private ImageView imgProfile;
             }*/
 
 
-
-
     }
 
     private void showMessage(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-       // Snackbar.make(container, msg, Snackbar.LENGTH_SHORT).show();
+        // Snackbar.make(container, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     private void onInviteClicked() {
