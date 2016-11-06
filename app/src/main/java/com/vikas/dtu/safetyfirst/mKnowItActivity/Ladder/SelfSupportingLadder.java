@@ -1,20 +1,15 @@
 package com.vikas.dtu.safetyfirst.mKnowItActivity.Ladder;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView;
-import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItDetails;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.KnowItDetails1;
 
 /**
  * Created by krishna on 17/10/16.
@@ -89,7 +84,7 @@ public class SelfSupportingLadder extends BaseActivity {
 
     public void standardLadder(View view){
 
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
         i.putExtra("info", yourText );
         i.putExtra("image", R.drawable.standard_ladder);
         i.putExtra("check", "<a href=\"http://www.google.com\">http://www.google.com</a>");
@@ -100,28 +95,28 @@ public class SelfSupportingLadder extends BaseActivity {
     }
 
     public void twoWayLadder(View view){
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
          i.putExtra("info",twoWayLadder );
         i.putExtra("image", R.drawable.two_way_ladder);
         startActivity(i);
     }
 
     public void orchardLadder(View view){
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
          i.putExtra("info", orchardLadder );
         i.putExtra("image", R.drawable.orchard_ladder);
         startActivity(i);
     }
 
     public void trestleLadder(View view){
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
         i.putExtra("info", trestleLadder);
         i.putExtra("image", R.drawable.trestle_ladder);
         startActivity(i);
     }
 
     public void platformLadder(View view) {
-        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails.class);
+        Intent i = new Intent(SelfSupportingLadder.this, KnowItDetails1.class);
         i.putExtra("info", platformLadder);
         i.putExtra("image", R.drawable.platform_ladder);
         startActivity(i);

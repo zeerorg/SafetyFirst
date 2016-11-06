@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 <LinearLayout
@@ -16,60 +17,66 @@
     android:focusableInTouchMode="true"
     tools:context="mDiscussion.PostDetailActivity">
 
+    <TextView
+        android:id="@+id/post_title"
+        android:textColor="@color/colorPrimary"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textIsSelectable="true"
+        tools:text="My First Post" />
+
     <include
         android:id="@+id/post_author_layout"
         layout="@layout/include_post_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:id="@+id/post_title"
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textStyle="bold"
-        android:textIsSelectable="true"
-        tools:text="My First Post" />
-
-
     <TextView
         android:id="@+id/post_body"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textIsSelectable="true"
-        tools:text="@string/lorem" />
+        tools:text="@string/dummy1" />
 
     <android.support.v7.widget.ButtonBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/md_keylines"
+        android:layout_marginBottom="@dimen/md_keylines"
+        android:layout_gravity="center">
+
+        <ImageButton
             android:id="@+id/image_btn"
+            android:padding="@dimen/md_keylines"
+            android:background="@drawable/round_red_dark"
+            android:layout_marginRight="@dimen/md_keylines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/image"
-            android:onClick="showImage"/>
-        <Button
-            android:id="@+id/file_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/file"
-            android:onClick="showFile"/>
-        <Button
-            android:id="@+id/video_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/video"
-            android:onClick="showVideo"/>
-        <Button
+            android:onClick="showImage"
+            android:src="@drawable/ic_photo_camera_white_24dp"/>
+        <ImageButton
             android:id="@+id/link_btn"
+            android:layout_marginLeft="@dimen/md_keylines"
+            android:layout_marginRight="@dimen/md_keylines"
+            android:padding="@dimen/md_keylines"
+            android:background="@drawable/round_red_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/link"
-            android:onClick="showLink"/>
+            android:onClick="showLink"
+            android:src="@drawable/ic_link_white_24dp"/>
+        <ImageButton
+            android:id="@+id/file_btn"
+            android:padding="@dimen/md_keylines"
+            android:background="@drawable/round_red_dark"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/md_keylines"
+            android:layout_height="wrap_content"
+            android:onClick="showFile"
+            android:src="@drawable/ic_attach_file_white_24dp"/>
 
     </android.support.v7.widget.ButtonBarLayout>
 

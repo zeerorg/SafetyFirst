@@ -104,7 +104,8 @@ public abstract class PostListFragment extends Fragment {
                             .into(viewHolder.authorImage);
                 }
 
-                if(model.image != null) {
+                if(model.getImage() != null) {
+                    Log.d("IMAGEURL", model.getImage());
                         Glide.with(getContext())
                                 .load(model.getImage())
                                 .into(viewHolder.postImage);
@@ -118,7 +119,6 @@ public abstract class PostListFragment extends Fragment {
                         // Need to write to both places the post is stored
                         DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
                         DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
-
                         // Run two transactions
                         onStarClicked(globalPostRef);
                         onStarClicked(userPostRef);

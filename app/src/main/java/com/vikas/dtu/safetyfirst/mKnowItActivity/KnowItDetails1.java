@@ -1,7 +1,6 @@
 package com.vikas.dtu.safetyfirst.mKnowItActivity;
 
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,12 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.vikas.dtu.safetyfirst.R;
 
-public class KnowItDetails extends AppCompatActivity implements View.OnClickListener{
+public class KnowItDetails1 extends AppCompatActivity implements View.OnClickListener{
     private TextSwitcher mSwitcher;
     private ImageView mImage;
 
@@ -88,9 +86,9 @@ public class KnowItDetails extends AppCompatActivity implements View.OnClickList
         public View makeView() {
 
             // Create a new TextView
-            TextView t = new TextView(KnowItDetails.this);
+            TextView t = new TextView(KnowItDetails1.this);
             t.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-           // t.setTextAppearance(KnowItDetails.this, android.R.style.TextAppearance_Large);
+           // t.setTextAppearance(KnowItDetails1.this, android.R.style.TextAppearance_Large);
             return t;
         }
     };

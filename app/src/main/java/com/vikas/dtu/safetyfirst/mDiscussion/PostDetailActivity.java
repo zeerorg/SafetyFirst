@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -80,10 +81,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
 
-    private Button mImageButton;
-    private Button mVideoButton;
-    private Button mFileButton;
-    private Button mLinkButton;
+    private ImageButton mImageButton;
+   // private Button mVideoButton;
+    private ImageButton mFileButton;
+    private ImageButton mLinkButton;
 
     private String mImageUrl;
     private String mVideoUrl;
@@ -129,10 +130,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mTitleView = (TextView) findViewById(R.id.post_title);
         mBodyView = (TextView) findViewById(R.id.post_body);
 
-        mImageButton = (Button) findViewById(R.id.image_btn);
-        mFileButton = (Button) findViewById(R.id.file_btn);
-        mVideoButton = (Button) findViewById(R.id.video_btn);
-        mLinkButton = (Button) findViewById(R.id.link_btn);
+        mImageButton = (ImageButton) findViewById(R.id.image_btn);
+        mFileButton = (ImageButton) findViewById(R.id.file_btn);
+       // mVideoButton = (Button) findViewById(R.id.video_btn);
+        mLinkButton = (ImageButton) findViewById(R.id.link_btn);
 
         mCommentField = (EditText) findViewById(R.id.field_comment_text);
         mCommentButton = (Button) findViewById(R.id.button_post_comment);
@@ -141,7 +142,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mCommentButton.setOnClickListener(this);
         mImageButton.setOnClickListener(this);
         mFileButton.setOnClickListener(this);
-        mVideoButton.setOnClickListener(this);
+       // mVideoButton.setOnClickListener(this);
         mLinkButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -230,10 +231,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 showFile();
                 Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.video_btn:
+         /*   case R.id.video_btn:
                 showVideo();
                 Toast.makeText(this, "video btn clicked", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             case R.id.link_btn:
                 showLink();
                 Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
