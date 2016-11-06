@@ -104,11 +104,13 @@ public abstract class PostListFragment extends Fragment {
                             .into(viewHolder.authorImage);
                 }
 
-                if(model.image != null) {
-                        Glide.with(getContext())
-                                .load(model.getImage())
-                                .into(viewHolder.postImage);
-                        viewHolder.postImage.setVisibility(View.VISIBLE);
+                if (model.getImage() != null) {
+                    Glide.with(getContext())
+                            .load(model.getImage())
+                            .into(viewHolder.postImage);
+                    viewHolder.postImage.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.postImage.setVisibility(View.GONE);
                 }
 
                 // Bind Post to ViewHolder, setting OnClickListener for the star round_blue_dark
