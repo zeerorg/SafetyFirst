@@ -98,6 +98,8 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="OR"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimary" />
 
         <com.google.android.gms.common.SignInButton

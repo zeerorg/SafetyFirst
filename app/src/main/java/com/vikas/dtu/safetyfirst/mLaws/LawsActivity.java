@@ -1,35 +1,18 @@
 package com.vikas.dtu.safetyfirst.mLaws;
 
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.net.Uri;
-import android.os.Environment;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
 import com.vikas.dtu.safetyfirst.R;
-import com.vikas.dtu.safetyfirst.mUtils.Downloader;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.List;
 
 public class LawsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private BroadcastReceiver mBroadcastReceiver;
-    private ProgressDialog mProgressDialog;
-    private FirebaseAuth mAuth;
 
+    String dest_file_path = "laws.pdf";
+    int downloadedSize = 0, totalsize;
+    float per = 0;
 
     public  TextView minesView, factoriesView, dockworkerView;
 
@@ -55,31 +38,96 @@ public class LawsActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mines_pdf:
-                   // downloadfile(mineurl, "mines");
+              //  downloadAndOpenPDF(mineurl);
                 break;
             case R.id.theFactories_pdf:
-                   // downloadfile(factoryurl, "factories");
+             //   downloadAndOpenPDF(factoryurl);
                 break;
             case R.id.dockWorker_pdf:
-                   // downloadfile(dockworkerurl, "dockWorker");
+             //   downloadAndOpenPDF(dockworkerurl);
                 break;
         }
     }
 
 
+ /*   void downloadAndOpenPDF(final String url) {
+        new Thread(new Runnable() {
+            public void run() {
+                Uri path = Uri.fromFile(downloadFile(url));
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(path, "application/pdf");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                } catch (ActivityNotFoundException e) {
+                    //TODO make dialog to show error
+                    Toast.makeText(LawsActivity.this, "Cannot download file", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).start();
 
-    public void showPdf()
-    {
-        File file = new File(Environment.getExternalStorageDirectory()+"/pdf/Read.pdf");
-        PackageManager packageManager = getPackageManager();
-        Intent testIntent = new Intent(Intent.ACTION_VIEW);
-        testIntent.setType("application/pdf");
-        List list = packageManager.queryIntentActivities(testIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile(file);
-        intent.setDataAndType(uri, "application/pdf");
-        startActivity(intent);
     }
 
+
+    File downloadFile(String dwnload_file_path) {
+        File file = null;
+        try {
+
+            URL url = new URL(dwnload_file_path);
+            HttpURLConnection urlConnection = (HttpURLConnection) url
+                    .openConnection();
+
+            //  urlConnection.setRequestMethod("GET");
+            //  urlConnection.setDoOutput(true);
+
+            // connect
+            urlConnection.connect();
+
+            // set the path where we want to save the file
+            File SDCardRoot = Environment.getExternalStorageDirectory();
+            // create a new file, to save the downloaded file
+            file = new File(SDCardRoot, dest_file_path);
+
+            FileOutputStream fileOutput = new FileOutputStream(file);
+
+            // Stream used for reading the data from the internet
+            InputStream inputStream = urlConnection.getInputStream();
+
+            // this is the total size of the file which we are
+            // downloading
+            totalsize = urlConnection.getContentLength();
+            Toast.makeText(this, "Download running in background", Toast.LENGTH_SHORT).show();
+
+            // create a buffer...
+            byte[] buffer = new byte[1024 * 1024];
+            int bufferLength = 0;
+
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+                downloadedSize += bufferLength;
+                per = ((float) downloadedSize / totalsize) * 100;
+                setText("Total PDF File size  : "
+                        + (totalsize / 1024)
+                        + " KB\n\nDownloading PDF " + (int) per
+                        + "% complete");
+            }
+            // close the output stream when complete //
+            fileOutput.close();
+            setText("Download Complete. Open PDF Application installed in the device.");
+
+        } catch (final MalformedURLException e) {
+            setTextError("Some error occured. Press back and try again.",
+                    Color.RED);
+        } catch (final IOException e) {
+            setTextError("Some error occured. Press back and try again.",
+                    Color.RED);
+        } catch (final Exception e) {
+            setTextError(
+                    "Failed to download image. Please check your internet connection.",
+                    Color.RED);
+        }
+        return file;
+    }
+    */
 }

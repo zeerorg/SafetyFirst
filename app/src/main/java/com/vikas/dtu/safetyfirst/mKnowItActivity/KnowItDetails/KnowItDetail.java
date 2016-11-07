@@ -38,6 +38,9 @@ public class KnowItDetail extends AppCompatActivity {
             info = (String) bundle.get("info");
             image = (int) bundle.get("image");
 
+            howto = (String) bundle.get("howto");
+            check = (String) bundle.get("checklist");
+            
             if(bundle.get("check")!=null){check=(String)bundle.get("check");}
         }
 

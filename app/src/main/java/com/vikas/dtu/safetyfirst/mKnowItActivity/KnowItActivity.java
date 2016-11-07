@@ -9,11 +9,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.AerialLift.AerialLiftActivity;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.CraneLift.CraneLiftActivity;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.FireSprinkler.FireSprinklerActivity;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.ForkLift.ForkLiftActivity;
+import com.vikas.dtu.safetyfirst.mKnowItActivity.HeatStress.HeatStressActivity;
 import com.vikas.dtu.safetyfirst.mKnowItActivity.Ladder.LadderActivity;
 import com.vikas.dtu.safetyfirst.mKnowItActivity.Scaffoldings.Scaffolding;
 import com.vikas.dtu.safetyfirst.mSignUp.SignInActivity;
