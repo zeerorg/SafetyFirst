@@ -16,7 +16,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="30dp"
-                    android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/welder"
 
@@ -29,6 +28,7 @@
                     android:layout_alignParentBottom="true"
                     android:gravity="center"
                     android:text="post, company"
+                    android:visibility="gone"
                     android:id="@+id/post"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -39,6 +39,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:paddingLeft="40dp"
                     android:paddingRight="40dp"

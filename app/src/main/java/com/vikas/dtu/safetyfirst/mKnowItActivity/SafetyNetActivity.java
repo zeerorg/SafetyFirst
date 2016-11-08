@@ -2,6 +2,7 @@ package com.vikas.dtu.safetyfirst.mKnowItActivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.vikas.dtu.safetyfirst.BaseActivity;
 import com.vikas.dtu.safetyfirst.R;
@@ -15,5 +16,9 @@ public class SafetyNetActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_safety_net);
+    }
+
+    public void toast(){
+        Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
     }
 }

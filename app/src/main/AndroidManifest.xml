@@ -46,10 +46,12 @@
         </activity>
         <activity
             android:name=".WelcomeActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FeedBackActivity"
+            android:screenOrientation="portrait"
             android:label="FeedBack"
             android:parentActivityName=".DashboardActivity">
 
@@ -59,6 +61,7 @@
                 android:value=".DashboardActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.KnowItActivity"
             android:label="Know It"
             android:parentActivityName=".DashboardActivity">
@@ -69,6 +72,7 @@
                 android:value=".DashboardActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.Ladder.LadderTypes"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity">
@@ -79,6 +83,7 @@
                 android:value=".mKnowItActivity.Ladder.LadderActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.Ladder.LadderActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -89,6 +94,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.AerialLift.AerialLiftActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -99,6 +105,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.CraneLift.CraneLiftActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -109,6 +116,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.FireSprinkler.FireSprinklerActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -119,6 +127,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.ForkLift.ForkLiftActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -129,6 +138,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.HeatStress.HeatStressActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -139,6 +149,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.RespiratoryLiftActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -149,6 +160,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.SafetyNetActivity"
             android:label="Know It"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -159,6 +171,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.KnowItActivity">
@@ -169,6 +182,7 @@
                 android:value=".mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
@@ -179,6 +193,7 @@
                 android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
             android:label="Scaffod"
             android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding">
@@ -189,6 +204,7 @@
                 android:value=".mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
             android:parentActivityName=".mNewsActivity.NewsActivity">
@@ -197,6 +213,7 @@
                 android:value="com.vikas.dtu.safetyfirst.mNewsActivity.NewsActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
             android:parentActivityName=".DashboardActivity">
@@ -207,8 +224,9 @@
                 android:value=".DashboardActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mLaws.LawsActivity"
-            android:label="@string/titleNewsActivity"
+            android:label="Laws"
             android:parentActivityName=".DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -217,6 +235,7 @@
                 android:value=".DashboardActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
             android:parentActivityName=".DashboardActivity">
@@ -227,6 +246,7 @@
                 android:value=".DashboardActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
             android:parentActivityName=".mDiscussion.DiscussionActivity"
@@ -241,6 +261,7 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mDiscussion.PostDetailActivity"
             android:label="@string/titlePostDetailActivity"
             android:parentActivityName=".mDiscussion.DiscussionActivity">
@@ -251,6 +272,7 @@
                 android:value=".mDiscussion.DiscussionActivity" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".mDiscussion.SearchActivity"
             android:label="@string/search_activity" />
         <activity android:name=".mSignUp.SignUpActivity" />
@@ -260,6 +282,7 @@
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".mUser.UpdateProfile"
             android:label="Update Profile"
             android:parentActivityName=".DashboardActivity">
@@ -271,6 +294,7 @@
         </activity>
         <activity android:name=".mWebview.WebViewActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -280,6 +304,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".DashboardActivity"
             android:label="Safety First"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -293,7 +318,14 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail" />
-        <activity android:name=".TermsnCondition"></activity>
+        <activity android:name=".TermsnCondition"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Help"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FaqActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mKnowItActivity.Ladder.LadderList"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

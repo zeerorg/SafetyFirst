@@ -7,7 +7,6 @@
     android:dividerHeight="0dp"
    android:fadeScrollbars="false"
     android:paddingTop="15dp"
-    android:scrollbarThumbVertical="@drawable/scrollbar"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

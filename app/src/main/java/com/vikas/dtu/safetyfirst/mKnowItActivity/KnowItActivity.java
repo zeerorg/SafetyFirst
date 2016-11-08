@@ -35,12 +35,12 @@ public class KnowItActivity extends BaseActivity{
         setContentView(R.layout.know_it_list);
         final ArrayList<KnowIt> count = new ArrayList<KnowIt>();
         count.add(new KnowIt("Ladder", R.drawable.ladders_s));
-        count.add(new KnowIt("Scaffold", R.drawable.scaffolds_s));
+       // count.add(new KnowIt("Scaffold", R.drawable.scaffolds_s));
         count.add(new KnowIt("Fork Lift", R.drawable.forlift_s));
         count.add(new KnowIt("Airlift", R.drawable.aeriall_lift_s));
         count.add(new KnowIt("Heat Stress", R.drawable.heat_stroke_s));
-        count.add(new KnowIt("Crane Lift", R.drawable.crane_s));
-        count.add(new KnowIt("Respiratory Lift", R.drawable.respiratort_s));
+       // count.add(new KnowIt("Crane Lift", R.drawable.crane_s));
+       // count.add(new KnowIt("Respiratory Lift", R.drawable.respiratort_s));
         count.add(new KnowIt("Safety Net", R.drawable.safety_nets_s));
         count.add(new KnowIt("Fire Sprinkler", R.drawable.sprinkler_s));
         KnowItAdapter itemsAdapter = new KnowItAdapter(this, count);

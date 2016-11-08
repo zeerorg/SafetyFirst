@@ -59,6 +59,7 @@
             android:onClick="showImage"
             android:src="@drawable/ic_photo_camera_white_24dp"/>
         <ImageButton
+            android:visibility="gone"
             android:id="@+id/link_btn"
             android:layout_marginLeft="@dimen/md_keylines"
             android:layout_marginRight="@dimen/md_keylines"

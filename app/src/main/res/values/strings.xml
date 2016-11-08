@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Safety First</string>
+
+    
     <string name="login"><u><b>Login</b></u></string>
     <string name="action_settings">Settings</string>
 
@@ -199,6 +201,22 @@
     <string name="dummy2">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</string>
     <string name="dummy3">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi traductores. At solmen va esser necessi far uniform grammatica, pronunciation e plu sommun paroles. Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam ti del coalescent lingues.</string>
     <string name="previous">PREVIOUS</string>
+    <string name="forklift">A forklift is also known as a lift truck essentially because it’s a truck that  can lift loads using a set of forks. A forklift can be used in numerous  places such as warehouses, factories, farms, shipping yards and much  more. There are many types of forklifts which can be called a variety of  different names; in this case we will use the basic names of the forklifts  when describing their capabilities.</string>
+    <string name="forksafety">●Check fork blades for wear. Forks are constantly subjected to abrasion by concrete floors, steel shelving, etc. This abrasion can reduce the thickness of a fork until it cannot lift loads up to the designed capacity.\n●Check for distortion. Forks can be bent out of shape. Dependingon distortion, some forks can be straightened. The fork manufacturer is best qualified to correct this. Your local forklift supplier can make the arrangements.\n●Check for cracks in heel and hanger. Cracks may appear on forks where attachments are welded on or in the inside radius of the bend area. Periodic inspection using a magnetic particle or dye penetrant test can detect cracks.\n●Replace, when necessary, with good quality forks. When ordering or reordering forks, make sure you are getting high quality forks that will do your lifting jobs safely. Insist on forged forks or ones with an upset heel.\n●Do not exceed the recommended load limit of your lift truck. Each lift truck has a maximum load limit. The load limit is shown on the data plate of the lift truck.</string>
+
+
+<string name="factory">The main objective of the Act is not only to ensure adequate safety measures but also to promote health and welfare of the workers employed in factories as well as to prevent haphazard growth of factories.
+\n
+To ensure safety of the workers, the Act has provided several measures such as compulsory fencing of machines of all sorts. No person should be employed in any factory to lift, carry or move any load so heavy as to be likely to cause him injury. If it appears to the Inspector that any building or part of a building or any part of the ways, machinery or plant in a factory is in a condition that it is dangerous to human life or safety, he may serve on the Manager of the factory, an order in writing, specifying the measures which in his opinion should be adopted and requiring them to be carried out before a stipulated date.
+</string>
+
+    <string name="mines">
+The Mines Act, 1952 contains provisions for measures relating to the health, safety and welfare of workers in the coal, metalliferous and oil mines. According to the Act,the term ‘mine’ means “any excavation where any operation for the purpose of searching for or obtaining minerals has been or is being carried on and includes all borings, bore holes, oil wells and accessory crude conditioning plants, shafts, opencast workings, conveyors or aerial ropeways, planes, machinery works, railways, tramways , slidings, workshops, power stations, etc. or any premises connected with mining operations and near or in the mining area”.The Act prescribes the duties of the owner to manage mines and mining operation and the health and safety in mines. It also prescribes the number of working hours in mines, the minimum wage rates, and other related matters.
+</string>
+    <string name="dock">
+An Act to provide for the safety, health and welfare of dock workers and for matters connected therewith.
+The appropriate Government, may, by notification in the Official Gazette, appoint such person as it thinks fit to be the Chief Inspector of Dock Safety and such persons as it thinks fit to be Inspectors subordinate to the Chief Inspector for the purpose of this Act at such ports as may be specified In the notification.
+</string>
 
 
 </resources>

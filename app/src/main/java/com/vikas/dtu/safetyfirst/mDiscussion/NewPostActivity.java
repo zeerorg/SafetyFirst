@@ -129,6 +129,7 @@ public class NewPostActivity extends BaseActivity {
             public void onClick(View v) {
                 key = mDatabase.child("posts").push().getKey();
                 submitPost();
+                Realm.init(NewPostActivity.this);
                 Realm realm = Realm.getDefaultInstance();
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
@@ -505,39 +506,39 @@ public class NewPostActivity extends BaseActivity {
         client.disconnect();
     }
 
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_new_post, menu);
+    /* @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         MenuInflater inflater = getMenuInflater();
+         inflater.inflate(R.menu.menu_new_post, menu);
 
-        return super.onCreateOptionsMenu(menu);
-    }
+         return super.onCreateOptionsMenu(menu);
+     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Take appropriate action for each action item click
-        switch (item.getItemId()) {
-            case R.id.image:
-                // image action
-                startAction();
-                return true;
-            case R.id.file:
-                // file action
-                pickPDF();
-                return true;
-            case R.id.video:
-                // video action
-                pickVideo();
-                return true;
-            case R.id.link:
-                // link action
-                attachLink();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-*/
+     @Override
+     public boolean onOptionsItemSelected(MenuItem item) {
+         // Take appropriate action for each action item click
+         switch (item.getItemId()) {
+             case R.id.image:
+                 // image action
+                 startAction();
+                 return true;
+             case R.id.file:
+                 // file action
+                 pickPDF();
+                 return true;
+             case R.id.video:
+                 // video action
+                 pickVideo();
+                 return true;
+             case R.id.link:
+                 // link action
+                 attachLink();
+                 return true;
+             default:
+                 return super.onOptionsItemSelected(item);
+         }
+     }
+ */
     private void attachLink() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.attach_link);

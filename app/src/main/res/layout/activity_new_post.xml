@@ -29,6 +29,7 @@
             android:onClick="uploadImage"
             android:src="@drawable/ic_photo_camera_white_24dp"/>
         <ImageButton
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/md_keylines"
             android:layout_marginRight="@dimen/md_keylines"
             android:padding="@dimen/md_keylines"

@@ -45,42 +45,32 @@ public class NewsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-
-        // Enable the Up round_blue_dark
-        ab.setDisplayHomeAsUpEnabled(true);
 
 
-        // Create the adapter that will return a fragment for each section
-        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
-            private final Fragment[] mFragments = new Fragment[] {
-                    new RecentNewsFragment(),
-                    new MyNewsFragment(),
-            };
-            private final String[] mFragmentNames = new String[] {
-                    getString(R.string.news_heading),
-                    getString(R.string.fav_heading)
-            };
-            @Override
-            public Fragment getItem(int position) {
-                return mFragments[position];
+        // Check that the activity is using the layout version with
+        // the fragment_container FrameLayout
+        if (findViewById(R.id.fragment_container) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
             }
-            @Override
-            public int getCount() {
-                return mFragments.length;
-            }
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return mFragmentNames[position];
-            }
-        };
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
 
-    }
+            // Create a new Fragment to be placed in the activity layout
+            RecentNewsFragment firstFragment = new  RecentNewsFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, firstFragment).commit();
+        }
+
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

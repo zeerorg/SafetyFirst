@@ -37,7 +37,7 @@ public class LadderActivity extends BaseActivity {
     }
 
     public void selfSupportingLadder(View view) {
-        Intent intent = new Intent(this,LadderTypes.class);
+        Intent intent = new Intent(this,LadderList.class);
         startActivity(intent);
     }
 

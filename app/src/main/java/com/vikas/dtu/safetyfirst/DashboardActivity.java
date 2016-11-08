@@ -148,6 +148,7 @@ public class DashboardActivity extends BaseActivity
         }
     }
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -165,6 +166,7 @@ public class DashboardActivity extends BaseActivity
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -175,13 +177,14 @@ public class DashboardActivity extends BaseActivity
         if (id == R.id.nav_update_profile) {
             startActivity(new Intent(DashboardActivity.this, UpdateProfile.class));
         } else if (id == R.id.nav_faq) {
-
+            startActivity(new Intent(DashboardActivity.this, FaqActivity.class));
         }
         else if (id == R.id.nav_feedback)
         {
             startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));
         }
         else if (id == R.id.nav_help) {
+            startActivity(new Intent(DashboardActivity.this, Help.class));
 
         } else if (id == R.id.nav_invite) {
 
@@ -259,6 +262,16 @@ public class DashboardActivity extends BaseActivity
             }*/
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+            mFirebaseUser = getCurrentUser();
+            if (mFirebaseUser == null) {
+                startActivity(new Intent(DashboardActivity.this, SignInActivity.class));
+                finish();
+            }
     }
 
     private void showMessage(String msg) {

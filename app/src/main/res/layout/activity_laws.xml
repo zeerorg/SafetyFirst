@@ -23,7 +23,7 @@
             android:src="@drawable/welder"
             android:layout_width="match_parent"
             android:padding="@dimen/md_keylines"
-            android:layout_height="320dp"
+            android:layout_height="match_parent"
             android:alpha=".3"
             android:scaleType="fitXY"/>
         <LinearLayout
@@ -45,7 +45,7 @@
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/WelcomeDetails"/>
+            android:text="@string/dock"/>
 
             <View
                 android:layout_marginLeft="20dp"
@@ -78,7 +78,7 @@
             android:src="@drawable/laws2"
             android:layout_width="match_parent"
             android:padding="@dimen/md_keylines"
-            android:layout_height="320dp"
+            android:layout_height="match_parent"
             android:alpha=".3"
             android:scaleType="fitXY"/>
         <LinearLayout
@@ -100,7 +100,7 @@
                 android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/WelcomeDetails"/>
+                android:text="@string/mines"/>
 
             <View
                 android:layout_marginLeft="20dp"
@@ -134,7 +134,7 @@
             android:src="@drawable/laws3"
             android:layout_width="match_parent"
             android:padding="@dimen/md_keylines"
-            android:layout_height="320dp"
+            android:layout_height="match_parent"
             android:alpha=".3"
             android:scaleType="fitXY"/>
         <LinearLayout
@@ -156,7 +156,7 @@
                 android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/WelcomeDetails"/>
+                android:text="@string/factory"/>
 
             <View
                 android:layout_marginLeft="20dp"
