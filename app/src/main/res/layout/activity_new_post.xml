@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context="com.vikas.dtu.safetyfirst.mDiscussion.NewPostActivity">
+    tools:context="com.vikas.dtu.safetyfirst2.mDiscussion.NewPostActivity">
     <TextView
         android:layout_margin="@dimen/md_keylines"
         android:layout_width="wrap_content"

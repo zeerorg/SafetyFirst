@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.vikas.dtu.safetyfirst.mUser.UpdateProfile">
+    tools:context="com.vikas.dtu.safetyfirst2.mUser.UpdateProfile">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_photo"

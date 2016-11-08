@@ -36,7 +36,7 @@
                         android:gravity="center_horizontal"
                         android:layout_marginBottom="10dp"
                         />
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
+                    <com.vikas.dtu.safetyfirst2.mKnowItActivity.ExpandableTextView
                         android:id="@+id/extension_ladder"
                         android:layout_width="fill_parent"
                         android:textIsSelectable="true"
@@ -77,7 +77,7 @@
                         android:gravity="center_horizontal"
                         android:layout_marginBottom="10dp"
                         />
-                    <com.vikas.dtu.safetyfirst.mKnowItActivity.ExpandableTextView
+                    <com.vikas.dtu.safetyfirst2.mKnowItActivity.ExpandableTextView
                         android:id="@+id/single_ladder"
                         android:textIsSelectable="true"
                         android:layout_width="match_parent"

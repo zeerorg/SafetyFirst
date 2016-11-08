@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "658105027609-c23ahiqk2k6l81cpcajnn6nl6v17hmbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst",
+            "certificate_hash": "6B1AF66CBB66376115C8453F3283882E00511ACE"
+          }
+        },
+        {
+          "client_id": "658105027609-3cqb1on3lv4t9nd1sdmg3rdib0i5arq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst",
+            "certificate_hash": "5FADC2552C3D8236F78FB48A4A31A243DAA2CD71"
+          }
+        },
+        {
           "client_id": "658105027609-rm39prp1s7ata0djsdq90rtc5dqfe6kl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -44,6 +60,50 @@
           "android_info": {
             "package_name": "com.vikas.dtu.safetyfirst",
             "certificate_hash": "7B0C61128DA23E7DF0111DA7D34F4D315819608E"
+          }
+        },
+        {
+          "client_id": "658105027609-160e2s6lj5qld2qoaos3g1r956t63fqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvu-6jePJr0iJSEEQyZuhv3dskfEQCtq8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658105027609-160e2s6lj5qld2qoaos3g1r956t63fqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658105027609:android:7c91ff33410e8ef9",
+        "android_client_info": {
+          "package_name": "com.vikas.dtu.safetyfirst2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658105027609-1mni42nfek5af73kt21gdadjp1hnfenm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "87222137856AF871D1539D4AFD2D0238ACA1412F"
           }
         },
         {

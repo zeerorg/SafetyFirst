@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Safety First</string>
+    <string name="app_name">Safety First 2.0</string>
 
-    
+
     <string name="login"><u><b>Login</b></u></string>
     <string name="action_settings">Settings</string>
 
