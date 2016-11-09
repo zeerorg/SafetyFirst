@@ -709,13 +709,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                                 mCommentsReference.removeValue();
                                 mPostAttachmentsReference.removeValue();
                                 mUserPostReference.removeValue();
-                                FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
+
                                 Realm realm = Realm.getDefaultInstance();
                                 realm.beginTransaction();
                                 if(realm.where(PostNotify.class).equalTo("postKey",mPostKey).findFirst() != null) {
                                     realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst().deleteFromRealm();
                                 }
                                 realm.commitTransaction();
+
+                                FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
                                 //Todo:  delete stuff from storage too
                                 finish();
                             }
