@@ -129,7 +129,7 @@ public class NewPostActivity extends BaseActivity {
             public void onClick(View v) {
                 key = mDatabase.child("posts").push().getKey();
                 submitPost();
-                Realm.init(NewPostActivity.this);
+               // Realm.init(NewPostActivity.this);
                 Realm realm = Realm.getDefaultInstance();
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
