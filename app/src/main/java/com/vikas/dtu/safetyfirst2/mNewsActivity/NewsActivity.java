@@ -20,9 +20,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
@@ -30,12 +30,13 @@ import com.vikas.dtu.safetyfirst2.mNewsActivity.fragment.RecentNewsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends BaseActivity {
 
     private static final String TAG = "NewsActivity";
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

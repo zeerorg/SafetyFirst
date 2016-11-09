@@ -98,7 +98,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private Menu mMenu;
 
     private Post post;
-    private int clickcount =0;
+  //  private int clickcount =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,9 +219,11 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_post_comment:
-                if (!mCommentField.getText().toString().trim().equals("") && clickcount==0) {
+                if (!mCommentField.getText().toString().trim().equals("")) {
+
                     postComment();
-                    clickcount++; //to fix realm transaction already in progress exception
+
+                   // clickcount++; //to fix realm transaction already in progress exception
                 }
                 else
                     Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
@@ -246,6 +248,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     }
 
     private void postComment() {
+        mCommentButton.setClickable(false);
+        mCommentButton.setBackgroundColor(getResources().getColor(R.color.grey));
         final String uid = getUid();
         FirebaseDatabase.getInstance().getReference().child("users").child(uid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -329,6 +333,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
                     }
                 });
+        mCommentButton.setClickable(true);
+      //  mCommentButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
     }
 
     private static class CommentViewHolder extends RecyclerView.ViewHolder {

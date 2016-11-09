@@ -138,7 +138,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         if (i==R.id.share_news) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, url);
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, url + "\nShared via:Safety First\nhttps://play.google.com/store/apps/details?id=com.vikas.dtu.safetyfirst2");
             startActivity(intent);
         }
     }
