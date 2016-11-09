@@ -162,7 +162,7 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.vikas.dtu.safetyfirst/http/host/path")
+                Uri.parse("android-app://com.vikas.dtu.safetyfirst2/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -181,7 +181,7 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.vikas.dtu.safetyfirst/http/host/path")
+                Uri.parse("android-app://com.vikas.dtu.safetyfirst2/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

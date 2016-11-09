@@ -8,12 +8,16 @@ import android.support.v7.app.ActionBar;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.storage.OnProgressListener;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.Post;
@@ -28,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.StorageReference;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,9 +41,11 @@ import com.vikas.dtu.safetyfirst2.model.PostNotify;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -51,6 +58,7 @@ import android.media.ExifInterface;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 
 import io.realm.Realm;
@@ -251,7 +259,7 @@ public class NewPostActivity extends BaseActivity {
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
                     startActivityForResult(intent, REQUEST_CAMERA);
                 } else if (items[item].equals("Choose From Gallery")) {
-                    Toast.makeText(getBaseContext(), "choosing from gallery", Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(getBaseContext(), "choosing from gallery", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(
                             Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -276,7 +284,7 @@ public class NewPostActivity extends BaseActivity {
                 String filename;
                 filename = compressImage(String.valueOf(uriSavedImage));
                 imagePath = filename;
-                Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
             } else if (requestCode == SELECT_IMAGE) {
                 Uri selectedImageUri = data.getData();
                 Cursor cursor = getContentResolver().query(selectedImageUri, null, null, null, null);

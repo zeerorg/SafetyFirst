@@ -225,11 +225,11 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.image_btn:
                 showImage();
-                Toast.makeText(this, "image btn clicked", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, "image btn clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.file_btn:
                 showFile();
-                Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
                 break;
          /*   case R.id.video_btn:
                 showVideo();
@@ -237,7 +237,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 break;*/
             case R.id.link_btn:
                 showLink();
-                Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
