@@ -129,7 +129,6 @@ public class NewPostActivity extends BaseActivity {
             public void onClick(View v) {
                 key = mDatabase.child("posts").push().getKey();
                 submitPost();
-               // Realm.init(NewPostActivity.this);
                 Realm realm = Realm.getDefaultInstance();
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
@@ -145,7 +144,7 @@ public class NewPostActivity extends BaseActivity {
                 post_notify_ref.child(key).child("num_of_comments").setValue(0);
                 post_notify_ref.child(key).child("num_of_stars").setValue(0);
 
-
+                
                 if (imagePath != null) uploadImage();
                 if (pdfPath != null) uploadPDF();
             }

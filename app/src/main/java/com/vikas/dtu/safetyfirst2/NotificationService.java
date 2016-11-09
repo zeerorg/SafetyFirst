@@ -52,12 +52,15 @@ public class NotificationService extends IntentService {
                     postNotifyRef.child(postKey).child("num_of_comments").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (numComments != Integer.parseInt(dataSnapshot.getValue().toString())) {
-                                processStartNotification(postKey);
-                                changeLocalDB_Value(postKey,Integer.parseInt(dataSnapshot.getValue().toString()));
-                                //temp.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()));
+                            if (dataSnapshot.exists()) {
+                                if (numComments != Integer.parseInt(dataSnapshot.getValue().toString())) {
+                                    processStartNotification(postKey);
+                                    changeLocalDB_Value(postKey, Integer.parseInt(dataSnapshot.getValue().toString()));
+                                    //temp.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()));
+                                }
                             }
                         }
+
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
@@ -68,10 +71,10 @@ public class NotificationService extends IntentService {
         }
     }
 
-    private void changeLocalDB_Value(String postKey,int val) {
+    private void changeLocalDB_Value(String postKey, int val) {
         realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        realm.where(PostNotify.class).equalTo("postKey",postKey).findFirst().setNumComments(val);
+        realm.where(PostNotify.class).equalTo("postKey", postKey).findFirst().setNumComments(val);
         realm.commitTransaction();
     }
 
