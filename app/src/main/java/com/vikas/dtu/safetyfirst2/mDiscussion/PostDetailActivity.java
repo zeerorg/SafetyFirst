@@ -98,6 +98,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private Menu mMenu;
 
     private Post post;
+    private int clickcount =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,8 +219,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_post_comment:
-                if (!mCommentField.getText().toString().trim().equals(""))
+                if (!mCommentField.getText().toString().trim().equals("") && clickcount==0) {
                     postComment();
+                    clickcount++; //to fix realm transaction already in progress exception
+                }
                 else
                     Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
                 break;

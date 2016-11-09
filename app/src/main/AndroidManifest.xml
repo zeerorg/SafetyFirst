@@ -230,6 +230,7 @@
             android:screenOrientation="portrait"
             android:name="com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
+            android:theme="@style/AppTheme"
             android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->

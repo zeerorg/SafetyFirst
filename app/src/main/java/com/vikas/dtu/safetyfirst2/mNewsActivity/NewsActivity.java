@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -29,7 +30,7 @@ import com.vikas.dtu.safetyfirst2.mNewsActivity.fragment.RecentNewsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 
-public class NewsActivity extends BaseActivity {
+public class NewsActivity extends AppCompatActivity {
 
     private static final String TAG = "NewsActivity";
 
@@ -70,7 +71,7 @@ public class NewsActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
 

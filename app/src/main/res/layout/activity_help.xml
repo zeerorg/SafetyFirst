@@ -24,7 +24,7 @@
            android:layout_height="wrap_content"
            android:textColor="@color/colorAccent"
            android:textStyle="bold"
-           android:text="Smarth Jain"/>
+           android:text="Samarth Jain"/>
        <LinearLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
