@@ -218,7 +218,7 @@ public class NewPostActivity extends BaseActivity {
 
         // Obtaining and adding Keywords for search
         String[] keywords = title.split(" ");
-        String[] commonWords = {"what", "why", "is", "are", "and", "in", "how", "to"};
+        String[] commonWords = {"what", "why", "is", "are", "and", "in", "how", "to", "a"};
 
         for (int i = 0; i < keywords.length; i++) {
             for (String commonWord : commonWords) {
