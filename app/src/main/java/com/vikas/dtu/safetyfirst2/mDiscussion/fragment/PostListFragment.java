@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.vikas.dtu.safetyfirst2.R;
@@ -34,6 +35,8 @@ public abstract class PostListFragment extends Fragment {
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
+    private ProgressBar mProgressBar;
+
     private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
@@ -52,6 +55,8 @@ public abstract class PostListFragment extends Fragment {
         // [END create_database_reference]
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.messages_list);
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+
         mRecycler.setHasFixedSize(true);
 
         return rootView;
@@ -73,6 +78,9 @@ public abstract class PostListFragment extends Fragment {
                 PostViewHolder.class, postsQuery) {
             @Override
             protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
+
+                mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view

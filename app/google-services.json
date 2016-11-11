@@ -99,6 +99,54 @@
       },
       "oauth_client": [
         {
+          "client_id": "658105027609-b6ftvdnm22ok0pfhfrbkhr57j9f0lsoq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "D5E4E6BC17D5D91E0403A99E6F9CC6841A28F3F2"
+          }
+        },
+        {
+          "client_id": "658105027609-6s58oeiia25835nd8ptb4ckfvsne3bnm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "072E21BD0E64D091685372FF069EA8B4AB630553"
+          }
+        },
+        {
+          "client_id": "658105027609-2jrgjlqjoefc76bfsp00aicpnfsugfl5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "7B0C61128DA23E7DF0111DA7D34F4D315819608E"
+          }
+        },
+        {
+          "client_id": "658105027609-0l2u1j42bv80sk1jigro1nje35mn6mpk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "4943FB45663560E895CC37D90821C56A3A17C0CE"
+          }
+        },
+        {
+          "client_id": "658105027609-h9b7d439scslmcr13rb7gaib5j1ia63k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "6B1AF66CBB66376115C8453F3283882E00511ACE"
+          }
+        },
+        {
+          "client_id": "658105027609-uhci93d73k3ojrullcn6djiurskmnkqd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vikas.dtu.safetyfirst2",
+            "certificate_hash": "5FADC2552C3D8236F78FB48A4A31A243DAA2CD71"
+          }
+        },
+        {
           "client_id": "658105027609-1mni42nfek5af73kt21gdadjp1hnfenm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.News;
@@ -36,6 +37,8 @@ public abstract class NewsListFragment extends Fragment {
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
+    private ProgressBar mProgressBar;
+
     private FirebaseRecyclerAdapter<News, NewsViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
@@ -53,6 +56,8 @@ public abstract class NewsListFragment extends Fragment {
         // [END create_database_reference]
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.messages_list);
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+
         mRecycler.setHasFixedSize(true);
 
         return rootView;
@@ -75,7 +80,7 @@ public abstract class NewsListFragment extends Fragment {
             @Override
             protected void populateViewHolder(final NewsViewHolder viewHolder, final News model, final int position) {
 
-                //mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+                mProgressBar.setVisibility(ProgressBar.INVISIBLE);
 
                 final DatabaseReference newsRef = getRef(position);
 
