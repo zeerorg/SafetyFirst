@@ -217,6 +217,10 @@ The Mines Act, 1952 contains provisions for measures relating to the health, saf
 An Act to provide for the safety, health and welfare of dock workers and for matters connected therewith.
 The appropriate Government, may, by notification in the Official Gazette, appoint such person as it thinks fit to be the Chief Inspector of Dock Safety and such persons as it thinks fit to be Inspectors subordinate to the Chief Inspector for the purpose of this Act at such ports as may be specified In the notification.
 </string>
+    <string-array name="options">
+        <item>Choose Photo From Gallery</item>
+        <item>Take Photo</item>
+    </string-array>
 
 
 </resources>

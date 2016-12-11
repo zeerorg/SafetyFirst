@@ -17,6 +17,8 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="center"
+        android:clickable="true"
+        android:onClick="OnClick"
         android:src="@drawable/ic_action_account_circle_40"/>
     <TextView
         android:id="@+id/nameTxt"
