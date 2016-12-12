@@ -29,7 +29,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +50,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -165,6 +168,7 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
             try {
                 inputstream=getContentResolver().openInputStream(Imagepath);
                 Bitmap bitmap= BitmapFactory.decodeStream(inputstream);
+                bitmap=Bitmap.createScaledBitmap(bitmap,710,710,true);
                 mPhoto.setImageBitmap(bitmap);
                 UploadPhoto(Imagepath);
             } catch (FileNotFoundException e) {
@@ -176,14 +180,15 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
         else if(requestCode==RESULT_CAMERA_IMAGE&&resultCode==RESULT_OK){
 
             Bitmap bitmap;
-                bitmap=(Bitmap)data.getExtras().get("data");
-                mPhoto.setImageBitmap(bitmap);
-                Imagepath=getImageUri(this,bitmap);
-                UploadPhoto(Imagepath);
+            bitmap=(Bitmap)data.getExtras().get("data");
+            bitmap=Bitmap.createScaledBitmap(bitmap,710,710,true);
+            mPhoto.setImageBitmap(bitmap);
+            Imagepath=getImageUri(this,bitmap);
+            UploadPhoto(Imagepath);
         }
 
 
-        }
+    }
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -216,7 +221,7 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-         joinAs = parent.getItemAtPosition(position).toString();
+        joinAs = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + joinAs, Toast.LENGTH_LONG).show();
@@ -229,7 +234,7 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
         int i = v.getId();
         if (i == R.id.submit){
             if (validateForm()) {
-              //TODO upload data
+                //TODO upload data
                 String company = mCompany.getText().toString();
                 String qualification = mQualification.getText().toString();
                 String designation = mDesignation.getText().toString();
@@ -267,34 +272,33 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get User object and use the values to update the UI
-               User user = dataSnapshot.getValue(User.class);
+                User user = dataSnapshot.getValue(User.class);
                 // [START_EXCLUDE]
 //
                 if(check==true){
                     check=false;}else{
-                if(profilephotoRef!=null){
-                    final long ONE_MEGABYTE = 1024 * 1024;
-                    profilephotoRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    if(profilephotoRef!=null){
+                    profilephotoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
-                        public void onSuccess(byte[] bytes) {
-                            // Data for "images/island.jpg" is returns, use this as needed
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                            mPhoto.setImageBitmap(bitmap);
+                        public void onSuccess(Uri uri) {
+                            useRef.child("userImage").setValue(uri.toString());
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
+                    })   .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
-                            Toast.makeText(getApplicationContext(),"Couldn`t Load Photo",Toast.LENGTH_SHORT).show();
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(UpdateProfile.this, "Failed to get Url!", Toast.LENGTH_SHORT).show();
                         }
-                    });}else if (profilephotoRef==null&&user.getPhotoUrl() == null) {
-                    mPhoto.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),
-                            R.drawable.ic_action_account_circle_40));
-                } else if(profilephotoRef==null&&user.getPhotoUrl()!=null) {
-                    Glide.with(getBaseContext())
-                            .load(user.getPhotoUrl())
-                            .into(mPhoto);
-                }}
+                    });
+
+                        Glide.with(getApplicationContext()).load(user.getPhotoUrl()).override(165,165).into(mPhoto);
+                    }else if (profilephotoRef==null&&user.getPhotoUrl() == null) {
+                        mPhoto.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),
+                                R.drawable.ic_action_account_circle_40));
+                    } else if(profilephotoRef==null&&user.getPhotoUrl()!=null) {
+                        Glide.with(getApplicationContext())
+                                .load(user.getPhotoUrl()).override(165,165)
+                                .into(mPhoto);
+                    }}
 
 
 
