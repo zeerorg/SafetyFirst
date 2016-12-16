@@ -2,6 +2,8 @@ package com.vikas.dtu.safetyfirst2.mData;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.Map;
 
 // [START blog_user_class]
@@ -66,6 +68,7 @@ public class User {
     public Map<String, Object> getFollowing() {
         return following;
     }
+
 
 
 }

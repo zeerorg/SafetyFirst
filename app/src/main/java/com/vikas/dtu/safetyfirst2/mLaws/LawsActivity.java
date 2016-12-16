@@ -1,6 +1,7 @@
 package com.vikas.dtu.safetyfirst2.mLaws;
 
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,12 +10,24 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ActionBarOverlayLayout;
+import android.util.AttributeSet;
+import android.util.Xml;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.github.barteksc.pdfviewer.PDFView;
 import com.vikas.dtu.safetyfirst2.R;
+
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,15 +36,16 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.jar.Attributes;
 
 public class LawsActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     String dest_file_path = "laws.pdf";
-    int downloadedSize = 0, totalsize;
+    int downloadedSize = 0, totalsize,screenWidth,screenHeight;
     TextView tv_loading;
     float per = 0;
-
+    Uri path;
     public TextView minesView, factoriesView, dockworkerView;
 
     static String dockworkerurl = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Fdockworker.pdf?alt=media&token=d4cc97f6-5bf9-40a4-90e1-5b65856a9a97";
@@ -88,21 +102,37 @@ public class LawsActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
     void downloadAndOpenPDF(final String url) {
         new Thread(new Runnable() {
             public void run() {
-                Uri path = Uri.fromFile(downloadFile(url));
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(path, "application/pdf");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                } catch (ActivityNotFoundException e) {
-                    tv_loading
-                            .setError("PDF Reader application is not installed in your device");
+
+                path = Uri.fromFile(downloadFile(url));
+
+                    Activity activity=LawsActivity.this;
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            XmlPullParser parser = getResources().getXml(R.xml.pdf_view);
+                            try {
+                                parser.next();
+                                parser.nextTag();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            AttributeSet attr = Xml.asAttributeSet(parser);
+                            PDFView pdfView=new PDFView(getApplicationContext(),attr);
+                            PDFView.Configurator configurator=pdfView.fromUri(path);
+                            configurator.load();
+                            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                            LawsActivity.this.getSupportActionBar().hide();
+                            setContentView(pdfView);
+                        }
+                    });
+
                 }
-            }
+
         }).start();
 
     }
