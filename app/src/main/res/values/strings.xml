@@ -222,5 +222,175 @@ The appropriate Government, may, by notification in the Official Gazette, appoin
         <item>Take Photo</item>
     </string-array>
 
+    <!--FAQs (Questions)-->
+    <string-array name="faq_ques">
+        <item>What is the objective behind the development of the app?</item>
+        <item>Which are the Safety Laws currently available?</item>
+        <item>Who are the people behind the development of the app?</item>
+        <item>Why is the information provided in the Know It section so Limited?</item>
+        <item>Who are the people who will be replying to the queries in the Discussion forum?</item>
+        <item>Who will be responsible if the advice given in the Discussion Forum is incorrect?</item>
+
+        <!--FAQs (Answers)-->
+    </string-array>
+    <string-array name="faq_answers">
+
+        <item>To create a platform for all the HSE officers to connect and share knowledge,
+            increase safety awareness , provide solutions to the HSE officers in real time
+            so they could make their workplace a safer place.</item>
+
+        <item>Currently we are providing only Indian Laws namely-Labour law.
+            We will be updating the app with Osha,Nebosh etc Guidelines as well.</item>
+
+        <item>Vinay,Sanchit,Samarth,vikas students of Delhi College of Engineering with
+            funding from angel investors.</item>
+
+        <item>Even though the first version of the app has been released but we are continuously
+            adding new segments to the Know It section to make it more informative.</item>
+
+        <item>Safety officers across the globe will be answering the questions. If not answered
+            in a given time frame we will try our best so that a safety officer may answer
+            your query.</item>
+
+        <item>We will not be responsible for any mishap or causality caused due to any answer in
+            the app. This has been included in the terms and condition. This app is only a platform
+            to connect like minded people and discuss and share knowledge.</item>
+
+    </string-array>
+
+    <!--TermsAndConditions-->
+    <string name="terms_and_conditions">
+        By downloading the application SAFETY FIRST  (here after referred to as “The Company”),
+        installing or using this application or any portion thereof (“Application”), you agree to
+        the following terms and conditions (the “Terms and Conditions”).\n\n
+<font fgcolor = "black"><b>USE OF APPLICATION</b></font>\n\n
+a. The Company grants you the non-exclusive, non-transferable, limited right and license to install
+        and use this Application solely and exclusively for your personal use.\n
+b. You are prohibited from using the Application in any manner that could damage, disable,
+        overburden, or impair the Application (or servers or networks connected to the Application),
+        or using the Application in any manner that could interfere with any other party’s use and
+        enjoyment of the Application (or servers or networks connected to the Application).\n
+c. You agree that you are solely responsible for, and that the Company has no responsibility to you
+        or to any third party for) your use of the Application.\n\n
+You agree that you are solely responsible for any breach thereof of your obligations, and for the
+        consequences (including any loss or damage which The Company may suffer) of any such breach.\n\n
+<font fgcolor = "black"><b>PROPRIETARY RIGHTS</b></font>\n\n
+You acknowledge that (a) the Application holds proprietary and confidential information that is
+        protected by the applicable intellectual property and other laws prevailing in India and
+        worldwide, and (b) The Company and/or third parties own the right, title and interest in
+        and to the Application and all content, that may be presented or accessed through the
+        Application, including without limitation all Intellectual Property Rights therein and thereto.\n\n
+
+“Intellectual Property Rights” means any and all rights recognised from time to time under the
+        patent law, copyright law, trademark law, in relation to the developed application, its
+        renewals, extensions and restorations thereof.\n\n
+You further agree that you will not, and will neither allow any third party to, (i) copy, sell,
+        license, distribute, transfer, modify, adapt, translate, prepare derivative works from,
+        decompile, reverse engineer, disassemble or otherwise attempt to derive source code from
+        the Application or content that may be presented or accessed through the Application for
+        any purpose, (ii) take any action to circumvent or defeat the security or content usage
+        rules provided, deployed or enforced by any functionality (including without limitation
+        digital rights management functionality) contained in the Application, (iii) use the
+        Application to access, copy, transfer, transcode or retransmit content in violation of any
+        law or third party rights, or (iv) remove, obscure, or alter the Company’s or any third
+        party’s copyright notices, trademarks, or other proprietary rights notices affixed to or
+        contained within or accessed in conjunction with or through the Application.\n\n
+<font fgcolor = "black"><b>3. THE COMPANY TERMS OF SERVICE AND PRIVACY POLICY</b></font>\n\n
+a. The Company’s Privacy Policy (located at http://www.google.com/privacypolicy.html) explains how
+        the Company treats your information and protects your privacy when you use the Application.
+        You agree to the use of your data in accordance with the Company’s privacy policies.\n
+b. The Application may contain features that are used in conjunction with the Company’s search and
+        other services. Accordingly, your use of such features of the Application is also governed
+        by The Company’s Terms of Service located at http://www.google.com/terms_of_service.html,
+        The Company’s Privacy Policy located at http://www.google.com/privacypolicy.html, as well
+        as any applicable The Company Service-specific Terms of Service and Privacy Policy, which
+        may be updated from time to time and without notice.\n\n
+<font fgcolor = "black"><b>6. TERMINATION</b></font>\n\n
+a. These Terms and Conditions will continue to apply until terminated by either you or the Company
+        as set forth below. You may note however that termination thereof will not absolve you of
+        any consequences that follow as respects acts and things done at the time of usage of the
+        application. \n
+b. You may terminate these Terms and Conditions at any time by permanently deleting the Application
+        from your mobile device in its entirety.\n
+c. Your rights automatically and immediately terminate without notice from The Company or any Third
+        Party if you fail to comply with any provision of these Terms and Conditions. In such event,
+        you must immediately delete the Application.\n\n
+<font fgcolor = "black"><b>7. INDEMNITY</b></font>\n\n
+To the maximum extent permitted by law, you agree to defend, indemnify and hold harmless The Company,
+        its affiliates and their respective directors, officers, employees and agents from and
+        against any and all claims, actions, suits or proceedings, as well as any and all losses,
+        liabilities, damages, costs and expenses (including reasonable attorneys fees) arising out
+        of or accruing from your use of the Application, including your downloading, installation,
+        or use of the Application, or your violation of these Terms and Conditions.\n\n
+<font fgcolor = "black"><b>8. Disclaimer of Warranties</b></font>\n\n
+A. You expressly understand and agree that your use of the application is at your sole discretion
+        and risk and that the application is provided as is and as available without warranty of
+        any kind.\n
+B. You are solely responsible for any damage to your mobile device, or other device, or loss of data
+        that results from such use.\n
+C. The Company is not responsible for the authenticity of any content hosted on the application and
+        any consequences that may follow as a result of following the content thereof.\n
+D. The company further expressly disclaims all warranties and conditions of any kind, whether
+        express or implied, including, but not limited to the implied warranties and conditions of
+        merchantability, fitness for a particular purpose and non-infringement, with respect to the
+        application.\n\n
+
+<font fgcolor = "black"><b>9. Limitation of liability</b></font>\n\n
+You expressly understand and agree that the company, its subsidiaries and affiliates, and its
+        licensors are not liable to you under any theory of liability for any direct, indirect,
+        incidental, special consequential or exemplary damages that may be incurred by you through
+        your use of the application, including any loss of data or damage to your mobile device,
+        whether or not the company or its representatives have been advised of or should have been
+        aware of the possibility of any such losses arising.\n\n
+
+<font fgcolor = "black"><b>10. MISCELLANEOUS</b></font>\n\n
+a. These Terms and Conditions constitute the entire Agreement between you and The Company relating
+        to the Application and govern your use of the Application, and completely replace any prior
+        or contemporaneous agreements between you and The Company regarding the Application.\n
+b. The failure of The Company to exercise or enforce any right or provision of these Terms and
+        Conditions does not constitute a waiver of such right or provision, which will still be
+        available to The Company.\n
+c. If any court of law, having the jurisdiction to decide on this matter, rules that any provision
+        of these Terms and Conditions is invalid, then that provision will be removed from the
+        Terms and Conditions without affecting the rest of the Terms and Conditions. The remaining
+        provisions of these Terms and Conditions will continue to be valid and enforceable.\n\n
+
+As a condition of use you agree to not use the Services for any purpose that are unlawful or
+        prohibited by these Terms, or any other purpose not reasonably intended by Safety First By
+        way of example, and not as a limitation you agree not to use the Services:\n\n
+
+To abuse, harass, threaten, impersonate or intimidate any person;\n\n
+To post or transmit, or cause to be posted or transmitted, any Content that is illegal, defamatory,
+        obscene pornographic, abusive. offensive, profane, or that infringes any copyright or other
+        right of any person; For any purpose (including posting or viewing Content) that is not
+        permitted under the laws of the jurisdiction  where  you use the Services;\n\n
+
+To post or transmit, or cause to be posted or transmitted, any communication or solicitation
+        designed or intended to obtain password. account, or private information from any Safety
+        First user\n\n
+
+To create or transmit unwanted ‘spam’ to any person or any URL\n\n
+
+To create multiple accounts for the purpose of voting for or against users photographs or images;\n\n
+To post copyrighted Content which doesn’t belong to you, with exception of Blogs where you may post
+        such Content explicit mention of the authors name and a link to the source of the Content\n\n
+With the exception of accessing RSS feeds, you will not use any robot, spider, scraper or other
+        automated means to access the Se for any purpose without our express written permission.\n\n
+Additionally. you agree that you will not: (i) take any action that imposes, or may impose in our
+        sole discretion an unreasonable or disproportionately large load on our infrastructure:
+        (I) interfere or attempt to interfere with the proper working of the Site or any activities
+        concluded on the Site, or (ii) bypass any measures we may use to prevent or restrict access
+        to the Site,\n\n
+
+To artificially inflate or alter vote counts, blog counts. comments or any other Service or for
+        the purpose of giving or receiving money or other compensation in exchange for votes, or for
+        participating in any other organized effort that ii any way artificially alters the results
+        of Services:\n\n
+To advertise to, or so, any user to buy or sell any products or services, orb use any information
+        obtained from the Services in order to contact, advertise to, solicit, or sell any user
+        without prior explicit consent To promote or sell Content of another person\n
+
+    </string>
+
 
 </resources>
