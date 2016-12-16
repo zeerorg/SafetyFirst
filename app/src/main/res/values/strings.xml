@@ -219,4 +219,39 @@ The appropriate Government, may, by notification in the Official Gazette, appoin
 </string>
 
 
+    <string-array name="faq_ques">
+        <item>What is the objective behind the development of the app?</item>
+        <item>Which are the Safety Laws currently available?</item>
+        <item>Who are the people behind the development of the app?</item>
+        <item>Why is the information provided in the Know It section so Limited?</item>
+        <item>Who are the people who will be replying to the queries in the Discussion forum?</item>
+        <item>Who will be responsible if the advice given in the Discussion Forum is incorrect?</item>
+
+    </string-array>
+    <string-array name="faq_answers">
+
+        <item>To create a platform for all the HSE officers to connect and share knowledge,
+            increase safety awareness , provide solutions to the HSE officers in real time
+            so they could make their workplace a safer place.</item>
+
+        <item>Currently we are providing only Indian Laws namely-Labour law.
+            We will be updating the app with Osha,Nebosh etc Guidelines as well.</item>
+
+        <item>Vinay,Sanchit,Samarth,vikas students of Delhi College of Engineering with
+            funding from angel investors.</item>
+
+        <item>Even though the first version of the app has been released but we are continuously
+            adding new segments to the Know It section to make it more informative.</item>
+
+        <item>Safety officers across the globe will be answering the questions. If not answered
+            in a given time frame we will try our best so that a safety officer may answer
+            your query.</item>
+
+        <item>We will not be responsible for any mishap or causality caused due to any answer in
+            the app. This has been included in the terms and condition. This app is only a platform
+            to connect like minded people and discuss and share knowledge.</item>
+
+    </string-array>
+
+
 </resources>
