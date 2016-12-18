@@ -88,6 +88,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
+        <activity android:name="com.vikas.dtu.safetyfirst2.mKnowIt2.KnowItDetailActivity"
+            android:parentActivityName=".mKnowIt2.KnowItActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.vikas.dtu.safetyfirst2.mKnowIt2.KnowItActivity"
+            android:label="Know It"
+            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+        </activity>
         <activity
             android:screenOrientation="portrait"
             android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Ladder.LadderTypes"
