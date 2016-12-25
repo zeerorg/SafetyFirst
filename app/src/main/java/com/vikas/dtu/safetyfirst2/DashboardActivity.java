@@ -35,7 +35,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity;
-import com.vikas.dtu.safetyfirst2.mLaws.LawsActivity;
+import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
+
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
@@ -236,8 +237,8 @@ public class DashboardActivity extends BaseActivity
         startActivity(intent);
     }
 
-    public void startLaws(View view) {
-        Intent intent = new Intent(this, LawsActivity.class);
+    public void startLaw(View view) {
+        Intent intent = new Intent(this, ActivityLaws.class);
         startActivity(intent);
     }
 

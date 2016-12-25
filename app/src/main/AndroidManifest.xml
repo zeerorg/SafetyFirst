@@ -13,9 +13,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-feature android:name="android.hardware.camera"
-        android:required="false" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".MyApplication"
@@ -24,24 +25,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <service
-                    android:name=".NotificationService"
-                    android:exported="false" />
+            android:name=".NotificationService"
+            android:exported="false" />
 
-                <receiver android:name=".NotificationServiceStarterReceiver">
-                    <intent-filter>
-                        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                        <action android:name="android.intent.action.USER_PRESENT" />
-                    </intent-filter>
-                </receiver>
+        <receiver android:name=".NotificationServiceStarterReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="com.vikas.dtu.safetyfirst2.DeepLinkActivity"
+            android:name=".DeepLinkActivity"
             android:label="@string/app_name"
             android:theme="@style/ThemeOverlay.MyDialogActivity">
 
@@ -62,15 +62,15 @@
             <!-- [END deep_link_filter] -->
         </activity>
         <activity
-            android:name="com.vikas.dtu.safetyfirst2.WelcomeActivity"
-            android:screenOrientation="portrait"
+            android:name=".WelcomeActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.vikas.dtu.safetyfirst2.FeedBackActivity"
-            android:screenOrientation="portrait"
+            android:name=".FeedBackActivity"
             android:label="FeedBack"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -78,10 +78,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity"
+            android:name=".mKnowItActivity.KnowItActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -89,10 +89,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Ladder.LadderTypes"
+            android:name=".mKnowItActivity.Ladder.LadderTypes"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.Ladder.LadderActivity">
+            android:parentActivityName=".mKnowItActivity.Ladder.LadderActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -100,10 +100,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.Ladder.LadderActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Ladder.LadderActivity"
+            android:name=".mKnowItActivity.Ladder.LadderActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -111,10 +111,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.AerialLift.AerialLiftActivity"
+            android:name=".mKnowItActivity.AerialLift.AerialLiftActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -122,10 +122,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.CraneLift.CraneLiftActivity"
+            android:name=".mKnowItActivity.CraneLift.CraneLiftActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -133,10 +133,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.FireSprinkler.FireSprinklerActivity"
+            android:name=".mKnowItActivity.FireSprinkler.FireSprinklerActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -144,10 +144,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.ForkLift.ForkLiftActivity"
+            android:name=".mKnowItActivity.ForkLift.ForkLiftActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -155,10 +155,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.HeatStress.HeatStressActivity"
+            android:name=".mKnowItActivity.HeatStress.HeatStressActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -166,10 +166,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.RespiratoryLiftActivity"
+            android:name=".mKnowItActivity.RespiratoryLiftActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -177,10 +177,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.SafetyNetActivity"
+            android:name=".mKnowItActivity.SafetyNetActivity"
             android:label="Know It"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -188,10 +188,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.Scaffolding"
+            android:name=".mKnowItActivity.Scaffoldings.Scaffolding"
             android:label="Scaffod"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity">
+            android:parentActivityName=".mKnowItActivity.KnowItActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -199,10 +199,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.SuspensionScaffold"
+            android:name=".mKnowItActivity.Scaffoldings.SuspensionScaffold"
             android:label="Scaffod"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.Scaffolding">
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -210,10 +210,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
+            android:name=".mKnowItActivity.Scaffoldings.SelfSupportingScaffold"
             android:label="Scaffod"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.Scaffolding">
+            android:parentActivityName=".mKnowItActivity.Scaffoldings.Scaffolding"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -221,20 +221,20 @@
                 android:value="com.vikas.dtu.safetyfirst2.mKnowItActivity.Scaffoldings.Scaffolding" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mNewsActivity.NewsDetailActivity"
+            android:name=".mNewsActivity.NewsDetailActivity"
             android:label="News"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity">
+            android:parentActivityName=".mNewsActivity.NewsActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity"
+            android:name=".mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
-            android:theme="@style/AppTheme"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -242,21 +242,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mLaws.LawsActivity"
-            android:label="Laws"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
-        </activity>
-        <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity"
+            android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -264,10 +253,10 @@
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mDiscussion.NewPostActivity"
+            android:name=".mDiscussion.NewPostActivity"
             android:label="@string/titleNewPostActivity"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity"
+            android:parentActivityName=".mDiscussion.DiscussionActivity"
+            android:screenOrientation="portrait"
             android:uiOptions="splitActionBarWhenNarrow">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -279,10 +268,10 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mDiscussion.PostDetailActivity"
+            android:name=".mDiscussion.PostDetailActivity"
             android:label="@string/titlePostDetailActivity"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity">
+            android:parentActivityName=".mDiscussion.DiscussionActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -290,31 +279,32 @@
                 android:value="com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mDiscussion.SearchActivity"
-            android:label="@string/search_activity" />
-        <activity android:name="com.vikas.dtu.safetyfirst2.mSignUp.SignUpActivity" />
-        <activity android:name="com.vikas.dtu.safetyfirst2.NoNetworkConnection" />
+            android:name=".mDiscussion.SearchActivity"
+            android:label="@string/search_activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mSignUp.SignUpActivity" />
+        <activity android:name=".NoNetworkConnection" />
         <activity
-            android:name="com.vikas.dtu.safetyfirst2.PicActivity"
+            android:name=".PicActivity"
             android:label="@string/title_activity_pic"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.mUser.UpdateProfile"
+            android:name=".mUser.UpdateProfile"
             android:label="Update Profile"
-            android:parentActivityName="com.vikas.dtu.safetyfirst2.DashboardActivity">
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
-        <activity android:name="com.vikas.dtu.safetyfirst2.mWebview.WebViewActivity"
-            android:screenOrientation="portrait"/>
         <activity
+            android:name=".mWebview.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreen"
             android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -323,11 +313,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.vikas.dtu.safetyfirst2.DashboardActivity"
+            android:name=".DashboardActivity"
             android:label="Safety First"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity" />
+        <activity android:name=".mSignUp.SignInActivity" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -336,17 +326,151 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.KnowItDetails.KnowItDetail" />
-        <activity android:name="com.vikas.dtu.safetyfirst2.TermsnCondition"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.vikas.dtu.safetyfirst2.Help"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.vikas.dtu.safetyfirst2.FaqActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.vikas.dtu.safetyfirst2.mKnowItActivity.Ladder.LadderList"
+        <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail" />
+        <activity
+            android:name=".TermsnCondition"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Help"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FaqActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mKnowItActivity.Ladder.LadderList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mLaws.ActivityLaws"
+            android:label="Laws"
+            android:parentActivityName=".DashboardActivity"
             android:screenOrientation="portrait">
 
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
+        <activity
+            android:name=".mLaws.StateLaws.KarnatakaLaws"
+            android:label="Karnataka"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.AndhraPradeshLaws"
+            android:label="Andhra Pradesh"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.DelhiLaws"
+            android:label="Delhi"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.GujaratLaws"
+            android:label="Gujarat"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.HaryanaLaws"
+            android:label="Haryana"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.KerelaLaws"
+            android:label="Kerela"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.MaharashtraLaws"
+            android:label="Maharashtra"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.OrrisaLaws"
+            android:label="Orrisa"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.PunjabLaws"
+            android:label="Punjab"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity
+            android:name=".mLaws.StateLaws.TamilNaduLaws"
+            android:label="Tamil Nadu"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+        </activity>
+        <activity android:name=".mLaws.StateLaws.TelanganaLaws"
+            android:label="Telangana"
+            android:parentActivityName=".mLaws.ActivityLaws"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
+    </activity>
     </application>
 
 </manifest>
