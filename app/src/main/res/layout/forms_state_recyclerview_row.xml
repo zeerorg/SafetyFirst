@@ -7,7 +7,7 @@
     android:layout_height="140dp"
     app:cardCornerRadius="6dp"
     app:cardElevation="3dp"
-    android:layout_margin="4dp"
+    android:layout_margin="4.5dp"
     app:cardBackgroundColor="#ffffff">
 
     <ImageView
@@ -16,11 +16,12 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/Lawimage"
         android:background="@drawable/form_backgrond"
+        android:alpha=".3"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="16dp"
         android:textColor="#002e48"
         android:gravity="center"
         android:layout_gravity="center"

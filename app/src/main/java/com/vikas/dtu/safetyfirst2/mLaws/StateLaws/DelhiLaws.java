@@ -80,7 +80,7 @@ public class DelhiLaws extends AppCompatActivity {
                     downloadandShow(musterroll);
                 }else if(item.text=="Half yearly Retuns"){
                     downloadandShow(halfyearlyretuns);
-                }else if(item.text=="Register of Leave with Wages)"){
+                }else if(item.text=="Register of Leave with Wages"){
                     downloadandShow(registerofleavewithwages);
                 }else if(item.text=="Register of Compensatory Holidays"){
                     downloadandShow(registerofcompensatoryholidays);
@@ -111,7 +111,7 @@ public class DelhiLaws extends AppCompatActivity {
         temp.add(new StateLawsRowInfo("Register of Compensatory Holidays",0));
         temp.add(new StateLawsRowInfo("Half yearly Retuns",0));
         temp.add(new StateLawsRowInfo("Register of Trained Adult Workers",0));
-        temp.add(new StateLawsRowInfo(" Muster Roll",0));
+        temp.add(new StateLawsRowInfo("Muster Roll",0));
         temp.add(new StateLawsRowInfo("Register of Adult Workers",0));
         temp.add(new StateLawsRowInfo("Annual Return",0));
         temp.add(new StateLawsRowInfo("Health Register",0));
