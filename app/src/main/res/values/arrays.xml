@@ -92,18 +92,18 @@
     </string-array>
 
     <string-array name="second_safety_rules">
-        <item>Not Available Yet</item>
-        <item>Not Available Yet</item>
-        <item>Not Available Yet</item>
-        <item>Not Available Yet</item>
-        <item>Not Available Yet</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
         <item> ●	All wood parts must be free from sharp edges and splinters; sound and free from accepted visual inspection from shake, wane, compression failures, decay, or other irregularities.\n
 \n●	Ladders must be maintained in good condition at all times, the joint between the steps and side rails must be tight, all hardware and fittings securely attached, and the movable parts shall operate freely without binding or undue play.\n
 \n●	Metal bearings of locks, wheels, pulleys, etc., shall be frequently lubricated.\n
 \n●	Ladders must be inspected frequently and those which have developed defects must be withdrawn from service for repair or destruction and tagged or marked as "Dangerous, Do Not Use." \n
 \n●	Ladders with broken or missing steps, rungs, or cleats, broken side rails, or other faulty equipment shall not be used; improvised repairs are not allowed.\n
 </item>
-        <item>Not Available Yet</item>
+        <item>NOT YET AVAILABLE</item>
         <item>Work at Height Regulations 2005
 \nWork at height is defined in regulations as: Work in any place, including a place at, above or below ground level, where a person could be injured if they fall from that place.
 \nExample: Work below ground level could be work at height if for instance a large pit has been evacuated and someone may fall either from an unprotected edge or whilst descending into that pit.
@@ -148,7 +148,7 @@ Working at Height Regulations – Overriding Principle
     <!--Know it - Third Activity-->
     <!--Title-->
 
-    <string-array name = "aerial_lift_title">     6
+    <string-array name = "aerial_lift_title">
         <item>Articulating Boom Lift</item>
         <item>Elevating Work Platform</item>
         <item>Extensible Boom Platform</item>
@@ -157,7 +157,7 @@ Working at Height Regulations – Overriding Principle
         <item>Vehicle Mounted Lift</item>
     </string-array>
 
-    <string-array name="crane_lift_title">      11
+    <string-array name="crane_lift_title">
         <item>Mobile Cranes</item>
         <item>Telescopic Crane</item>
         <item>Tower Crane</item>
@@ -216,7 +216,7 @@ Working at Height Regulations – Overriding Principle
 
     </string-array>
 
-    <string-array name="scaffoldings_title">   19
+    <string-array name="scaffoldings_title">
         <item>Supported Scaffold</item>
         <item>Frame or Fabricated</item>
         <item>Mobile</item>
@@ -298,6 +298,8 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>A crawler is a crane mounted on an undercarriage with a set of tracks (also called crawlers) that provide stability and mobility. Crawler cranes range in lifting capacity from about 40 to 3,500 short tons (35.7 to 3,125.0 long tons; 36.3 to 3,175.1 t).
 \nCrawler cranes have both advantages and disadvantages depending on their use. Their main advantage is that they can move around on site and perform each lift with little set-up, since the crane is stable on its tracks with no outriggers. Caterpillar tracks are also far better at traversing soft ground without sinking in, as they spread the weight out over a great area. Thus a crawler crane can move about an unprepared job site with less risk of getting stuck in soft ground. In addition, a crawler crane is capable of traveling with a load. The main disadvantage is that they are very heavy, and cannot easily be moved from one job site to another without significant expense. Typically a large crawler must be disassembled and moved by trucks, rail cars or ships to its next location.
 </item>
+        <item>A gantry crane has a hoist in a fixed machinery house or on a trolley that runs horizontally along rails, usually fitted on a single beam (mono-girder) or two beams (twin-girder). The crane frame is supported on a gantry system with equalized beams and wheels that run on the gantry rail, usually perpendicular to the trolley travel direction. These cranes come in all sizes, and some can move very heavy loads, particularly the extremely large examples used in shipyards or industrial installations. A special version is the container crane (or "Portainer" crane, named by the first manufacturer), designed for loading and unloading ship-borne containers at a port.</item>
+        <item>A jib crane is a type of crane where a horizontal member (jib or boom), supporting a moveable hoist, is fixed to a wall or to a floor-mounted pillar. Jib cranes are used in industrial premises and on military vehicles. The jib may swing through an arc, to give additional lateral movement, or be fixed. Similar cranes, often known simply as hoists, were fitted on the top floor of warehouse buildings to enable goods to be lifted to all floors.</item>
     </string-array>
 
     <string-array name="fire_sprinklers_desc">

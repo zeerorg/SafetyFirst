@@ -158,12 +158,12 @@ public class KnowItFourth extends AppCompatActivity {
 
         imageView.setImageDrawable(image);
         infoTxt.setText(info);
-        if(howto!="no") {
+        //if(howto!="no") {
             howtoTxt.setText(howto);
-        }
-        else{
-            howtoTxt.setText("Not Available Yet");
-        }
+        //}
+        //else{
+          //  howtoTxt.setText("NOT YET AVAILABLE");
+        //}
         heading.setText("INFORMATION");
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -190,6 +190,13 @@ public class KnowItFourth extends AppCompatActivity {
                     checkBtn.setBackground(redBG);
                     videoBtn.setBackground(redBG);
                     heading.setText("HOW TO USE");
+
+                    if(howtoTxt.getText().toString().equals("NOT YET AVAILABLE")) {
+                        howtoTxt.setVisibility(View.GONE);
+                        status.setVisibility(View.VISIBLE);
+                        status.setText("Not Available");
+                    }
+
                 }
                 else if(view == findViewById(R.id.check_btn)){
                     infoTxt.setVisibility(View.GONE);
@@ -418,7 +425,7 @@ public class KnowItFourth extends AppCompatActivity {
         }
 
         if(isNetworkStatusAvailable (getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "Playing Video", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "Playing Video", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
             status.setText("Video Available. Check your Internet connection");
