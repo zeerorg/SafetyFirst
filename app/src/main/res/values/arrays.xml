@@ -705,48 +705,48 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     <!--Know it - Fourth Activity-->
 <!--How to-->
     <string-array name="aerial_lift_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <string-array name="crane_lift_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <string-array name="fire_sprinklers_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <string-array name="fork_lift_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <string-array name="heat_stress_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <string-array name="ladders_howto">
@@ -826,34 +826,34 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     </string-array>
 
     <string-array name="respiratory_protection_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <string-array name="scaffoldings_howto">
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
-        <item>no</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
+        <item>NOT YET AVAILABLE</item>
     </string-array>
 
     <array name="fourth_how_to">
