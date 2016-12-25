@@ -120,8 +120,8 @@ public class KnowItFourth extends AppCompatActivity {
         int howToId = howToArray.getResourceId(type,0);
         howto = res.getStringArray(howToId)[position];
 
-        TypedArray checklistArray = res.obtainTypedArray(R.array.fourth_checklist);
-        int checklistId = checklistArray.getResourceId(type,0);
+//        TypedArray checklistArray = res.obtainTypedArray(R.array.fourth_checklist);
+//        int checklistId = checklistArray.getResourceId(type,0);
         // checklist = res.getStringArray(checklistId)[position];
 
 

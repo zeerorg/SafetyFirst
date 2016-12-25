@@ -128,7 +128,7 @@
                     <ImageView
                         android:layout_toRightOf="@+id/types"
                         android:layout_marginTop="37dp"
-                        android:src="@drawable/circle"
+                        android:src="@drawable/fourth_icon_types"
                         android:elevation="1dp"
                         android:layout_marginLeft="50dp"
                         android:layout_width="18dp"
