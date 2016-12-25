@@ -185,7 +185,7 @@ public class KarnatakaLaws extends AppCompatActivity {
                 }else{
                     path = Uri.fromFile(file);}
 
-                if (path!= null) {
+                if (file.exists()) {
 
                     Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
                     pdfIntent.setDataAndType(path, "application/pdf");
@@ -234,7 +234,7 @@ public class KarnatakaLaws extends AppCompatActivity {
                 }else{
                     pathd = Uri.fromFile(file1);}
 
-                if (pathd!= null) {
+                if (file1.exists()) {
 
                     Intent intent = new Intent();
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -326,7 +326,7 @@ public class KarnatakaLaws extends AppCompatActivity {
                     Color.RED);
         } catch (FileNotFoundException e){
 
-            setTextError(e.getMessage(),
+            setTextError("Some Error Occured.Please Check for Storage Permissions of Application",
                     Color.RED);
         } catch (final IOException e) {
             setTextError("Some Error Occurred.Please Check your Internet Connection",
