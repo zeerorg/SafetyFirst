@@ -34,6 +34,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
+import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mKnowIt2.KnowItActivity;
 import com.vikas.dtu.safetyfirst2.mLaws.LawsActivity;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
@@ -232,7 +233,7 @@ public class DashboardActivity extends BaseActivity
     }
 
     public void startKnowIt(View view) {
-        Intent intent = new Intent(this, KnowItActivity.class);
+        Intent intent = new Intent(this, KnowItMain.class);
         startActivity(intent);
     }
 
