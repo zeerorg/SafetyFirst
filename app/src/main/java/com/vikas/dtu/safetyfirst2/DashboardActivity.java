@@ -37,6 +37,7 @@ import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mKnowIt2.KnowItActivity;
 import com.vikas.dtu.safetyfirst2.mLaws.LawsActivity;
+
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
@@ -240,8 +241,8 @@ public class DashboardActivity extends BaseActivity
         startActivity(intent);
     }
 
-    public void startLaws(View view) {
-        Intent intent = new Intent(this, LawsActivity.class);
+    public void startLaw(View view) {
+        Intent intent = new Intent(this, ActivityLaws.class);
         startActivity(intent);
     }
 
