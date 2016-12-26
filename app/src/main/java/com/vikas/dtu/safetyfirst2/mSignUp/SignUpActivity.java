@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.DashboardActivity;
 import com.vikas.dtu.safetyfirst2.R;
+import com.vikas.dtu.safetyfirst2.TermsnCondition;
 import com.vikas.dtu.safetyfirst2.mData.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,16 +49,22 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
     private EditText mConfirmPasswordField;
     private Button mSignUpButton;
     private TextView mSigninText;
+    CheckBox checkBox;
+    TextView tncLink;
 
     private static final int RC_SIGN_IN = 9001;
     private SignInButton mGoogleSignInButton;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    int tncFlag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        tncFlag = 0;
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -68,7 +76,12 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
         mConfirmPasswordField = (EditText) findViewById(R.id.input_password_confirm);
         mSignUpButton = (Button) findViewById(R.id.btn_signup);
         mSigninText = (TextView) findViewById(R.id.link_login);
+        checkBox = (CheckBox) findViewById(R.id.checkbox);
+        tncLink = (TextView) findViewById(R.id.terms_cond);
 
+        if(checkBox.isChecked()) {
+            checkBox.setChecked(false);
+        }
         // Click listeners
         mSignUpButton.setOnClickListener(this);
         mSigninText.setOnClickListener(this);
@@ -89,42 +102,54 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
         // Initialize FirebaseAuth
     }
 
+    public void clickCheckbox(View v){
+        if(checkBox.isChecked()){
+            tncFlag = 1;
+        }
+        else{
+            tncFlag = 0;
+        }
+    }
+
+    public void clickTnc(View v){
+        startActivity(new Intent(SignUpActivity.this, TermsnCondition.class));
+    }
+
     private void signUp() {
-        Log.d(TAG, "signUp");
-        if (!validateForm()) {
-            return;
-        }
-
-        showProgressDialog();
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
-        String confirmPassword = mConfirmPasswordField.getText().toString();
-
-        if (password.equals(confirmPassword)) {
-            if (password.length() < 6) {
-                Toast.makeText(SignUpActivity.this, "Password length should be atleast 6", Toast.LENGTH_SHORT).show();
-            } else {
-                mFirebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
-                                hideProgressDialog();
-
-                                if (task.isSuccessful()) {
-                                    onAuthSuccess(task.getResult().getUser());
-                                } else {
-                                    Toast.makeText(SignUpActivity.this, "Sign Up Failed",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+            Log.d(TAG, "signUp");
+            if (!validateForm()) {
+                return;
             }
-        } else {
-            hideProgressDialog();
-            Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
-        }
 
+            showProgressDialog();
+            String email = mEmailField.getText().toString();
+            String password = mPasswordField.getText().toString();
+            String confirmPassword = mConfirmPasswordField.getText().toString();
+
+            if (password.equals(confirmPassword)) {
+                if (password.length() < 6) {
+                    Toast.makeText(SignUpActivity.this, "Password length should be atleast 6", Toast.LENGTH_SHORT).show();
+                } else {
+                    mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
+                                    hideProgressDialog();
+
+                                    if (task.isSuccessful()) {
+                                        onAuthSuccess(task.getResult().getUser());
+                                    } else {
+                                        Toast.makeText(SignUpActivity.this, "Sign Up Failed",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            } else {
+                hideProgressDialog();
+                Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+            }
     }
 
     private void onAuthSuccess(FirebaseUser user) {
@@ -195,13 +220,23 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btn_signup) {
-            signUp();
+            if(tncFlag==1){
+                signUp();
+            }
+            else{
+                Toast.makeText(this, "Agree to Terms and Conditions.", Toast.LENGTH_SHORT).show();
+            }
         } else if (i == R.id.link_login) {
             startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
             finish();
         }
         else  if (i == R.id.sign_in_button) {
-            googleSignIn();
+            if(tncFlag==1){
+                googleSignIn();
+            }
+            else{
+                Toast.makeText(this, "Agree to Terms and Conditions.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

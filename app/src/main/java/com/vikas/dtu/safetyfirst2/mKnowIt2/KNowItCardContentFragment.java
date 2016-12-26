@@ -71,8 +71,8 @@ public class KNowItCardContentFragment extends Fragment {
 
         public ContentAdapter(Context context) {
             Resources resources = context.getResources();
-            mPlaces = resources.getStringArray(R.array.item);
-            mPlaceDesc = resources.getStringArray(R.array.item_desc);
+            mPlaces = resources.getStringArray(R.array.aerial_lift_desc);
+            mPlaceDesc = resources.getStringArray(R.array.aerial_lift_desc);
             TypedArray a = resources.obtainTypedArray(R.array.item_picture);
             mPlacePictures = new Drawable[a.length()];
             for (int i = 0; i < mPlacePictures.length; i++) {
