@@ -355,13 +355,31 @@
         <activity android:name=".mKnowItActivity.KnowItDetails.KnowItDetail" />
         <activity
             android:name=".TermsnCondition"
+            android:label="Terms and Conditions"
+            android:parentActivityName=".DashboardActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         <activity
             android:name=".Help"
-            android:screenOrientation="portrait" />
+            android:label="Help"
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+        </activity>
         <activity
             android:name=".FaqActivity"
-            android:screenOrientation="portrait" />
+            android:label="FAQs"
+            android:parentActivityName=".DashboardActivity"
+            android:screenOrientation="portrait">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+        </activity>
         <activity
             android:name=".mKnowItActivity.Ladder.LadderList"
             android:screenOrientation="portrait" />

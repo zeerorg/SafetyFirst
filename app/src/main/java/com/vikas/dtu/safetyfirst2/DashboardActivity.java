@@ -190,7 +190,10 @@ public class DashboardActivity extends BaseActivity
 
             onInviteClicked();
 
-        } else if (id == R.id.log_out) {
+        } else if(id == R.id.nav_tnc){
+            startActivity(new Intent(DashboardActivity.this, TermsnCondition.class));
+        }
+        else if (id == R.id.log_out) {
             logout();
         } else if (id == R.id.nav_feedback) {
             startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));

@@ -132,5 +132,34 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="50dp"
+                android:onClick="clickCheckbox"/>
+            <TextView
+                android:text="Agree to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/agree_to" />
+            <TextView
+                android:text="Terms and Conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/terms_cond"
+                android:onClick="clickTnc"
+                android:textColor="@android:color/holo_blue_light"
+                android:layout_marginLeft="2dp" />
+
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
