@@ -39,10 +39,10 @@ public class KnowItSecond extends AppCompatActivity {
         setContentView(R.layout.know_it_second);
         Resources res = this.getResources();
 
-        //  ActionBar ab = getSupportActionBar();
+          ActionBar ab = getSupportActionBar();
 
         // Enable the Up round_blue_dark
-        //ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayHomeAsUpEnabled(true);
 
         position = getIntent().getIntExtra(POSITION,0);
         setTitle(res.getStringArray(R.array.item_title)[position]);
@@ -55,14 +55,14 @@ public class KnowItSecond extends AppCompatActivity {
 
         //   Resources res = this.getResources();
 
-        TypedArray a = res.obtainTypedArray(R.array.second_image);
+        TypedArray a = res.obtainTypedArray(R.array.second_types_image);
         image.setImageDrawable(a.getDrawable(position));
 
         title.setText(res.getStringArray(R.array.item_title)[position]);
         description.setText(res.getStringArray(R.array.second_desc)[position]);
         safetyRules.setText(res.getStringArray(R.array.second_safety_rules)[position]);
 
-        TypedArray b = res.obtainTypedArray(R.array.second_types_image);
+        TypedArray b = res.obtainTypedArray(R.array.second_image);
         typesImage.setImageDrawable(b.getDrawable(position));
 
 
