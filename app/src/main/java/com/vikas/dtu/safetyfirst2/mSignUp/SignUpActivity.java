@@ -197,7 +197,15 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
         } else {
             mPasswordField.setError(null);
         }
-    /*    if (mPasswordField.getText().toString() != mConfirmPasswordField.getText().toString() ) {
+
+        if (mPasswordField.getText().toString().length()<6){
+            mPasswordField.setError("Password Length should be greater than 6");
+            result = false;
+        }else {
+            mPasswordField.setError(null);
+        }
+
+        /*if (mPasswordField.getText().toString() != mConfirmPasswordField.getText().toString() ) {
             mPasswordField.setError("Passwords do not match");
             mConfirmPasswordField.setError("Passwords do not match");
             result = false;

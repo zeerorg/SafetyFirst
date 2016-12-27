@@ -86,6 +86,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private CommentAdapter mAdapter;
 
     private ImageView mAuthorImage;
+    private ImageView mImageView;
     private TextView mAuthorView;
     private TextView mTitleView;
     private TextView mBodyView;
@@ -122,7 +123,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         ActionBar ab = getSupportActionBar();
 
         // Enable the Up round_blue_dark
-        ab.setDisplayHomeAsUpEnabled(true);
+      //  ab.setDisplayHomeAsUpEnabled(true);
 
 
         // Get post key from intent
@@ -144,6 +145,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mAuthorView = (TextView) findViewById(R.id.post_author);
         mTitleView = (TextView) findViewById(R.id.post_title);
         mBodyView = (TextView) findViewById(R.id.post_body);
+        mImageView = (ImageView) findViewById(R.id.post_image);
 
         mImageButton = (ImageButton) findViewById(R.id.image_btn);
         mFileButton = (ImageButton) findViewById(R.id.file_btn);
@@ -187,6 +189,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                     Glide.with(getBaseContext())
                             .load(post.getPhotoUrl())
                             .into(mAuthorImage);
+                }
+
+                if (post.getImage() != null) {
+                    Glide.with(getBaseContext())
+                            .load(post.getImage())
+                            .into(mImageView);
+                    mImageView.setVisibility(View.VISIBLE);
+                } else {
+                    mImageView.setVisibility(View.GONE);
                 }
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);

@@ -195,7 +195,14 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         if (TextUtils.isEmpty(mPasswordField.getText().toString())) {
             mPasswordField.setError("Required");
             result = false;
-        } else {
+        }else {
+            mPasswordField.setError(null);
+        }
+
+        if (mPasswordField.getText().toString().length()<6){
+            mPasswordField.setError("Password Length should be greater than 6");
+            result = false;
+        }else {
             mPasswordField.setError(null);
         }
 

@@ -35,7 +35,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
-import com.vikas.dtu.safetyfirst2.mKnowIt2.KnowItActivity;
 
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
