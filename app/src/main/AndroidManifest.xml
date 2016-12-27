@@ -257,7 +257,7 @@
                 android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
         </activity>
         <activity
-            android:name=".mLaws.LawsActivity"
+            android:name=".mLaws.ActivityLaws"
             android:label="Laws"
             android:parentActivityName=".DashboardActivity"
             android:screenOrientation="portrait">

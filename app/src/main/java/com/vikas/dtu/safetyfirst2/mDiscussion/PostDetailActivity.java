@@ -109,6 +109,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     boolean postLoaded = false;
     private Menu mMenu;
 
+    private LinearLayoutManager mManager;
+
     private Post post;
   //  private int clickcount =0;
 
@@ -157,7 +159,12 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mFileButton.setOnClickListener(this);
        // mVideoButton.setOnClickListener(this);
         mLinkButton.setOnClickListener(this);
-        mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
+       // mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        mManager = new LinearLayoutManager(this);
+        mManager.setReverseLayout(true);
+        mManager.setStackFromEnd(true);
+        mCommentsRecycler.setLayoutManager(mManager);
 
     }
 
