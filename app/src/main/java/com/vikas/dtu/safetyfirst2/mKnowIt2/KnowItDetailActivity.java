@@ -33,14 +33,14 @@ public class KnowItDetailActivity extends AppCompatActivity {
 
         int postion = getIntent().getIntExtra(EXTRA_POSITION, 0);
         Resources resources = getResources();
-        String[] places = resources.getStringArray(R.array.item);
+        String[] places = resources.getStringArray(R.array.aerial_lift_desc);
         collapsingToolbar.setTitle(places[postion % places.length]);
 
-        String[] placeDetails = resources.getStringArray(R.array.item_details);
+        String[] placeDetails = resources.getStringArray(R.array.aerial_lift_desc);
         TextView placeDetail = (TextView) findViewById(R.id.place_detail);
         placeDetail.setText(placeDetails[postion % placeDetails.length]);
 
-        String[] placeLocations = resources.getStringArray(R.array.item_locations);
+        String[] placeLocations = resources.getStringArray(R.array.aerial_lift_desc);
         TextView placeLocation =  (TextView) findViewById(R.id.place_location);
         placeLocation.setText(placeLocations[postion % placeLocations.length]);
 

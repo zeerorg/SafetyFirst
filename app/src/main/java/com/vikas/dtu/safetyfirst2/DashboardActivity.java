@@ -34,8 +34,10 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
+import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mKnowIt2.KnowItActivity;
-import com.vikas.dtu.safetyfirst2.mLaws.LawsActivity;
+
+import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
@@ -189,7 +191,10 @@ public class DashboardActivity extends BaseActivity
 
             onInviteClicked();
 
-        } else if (id == R.id.log_out) {
+        } else if(id == R.id.nav_tnc){
+            startActivity(new Intent(DashboardActivity.this, TermsnCondition.class));
+        }
+        else if (id == R.id.log_out) {
             logout();
         } else if (id == R.id.nav_feedback) {
             startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));
@@ -232,12 +237,12 @@ public class DashboardActivity extends BaseActivity
     }
 
     public void startKnowIt(View view) {
-        Intent intent = new Intent(this, KnowItActivity.class);
+        Intent intent = new Intent(this, KnowItMain.class);
         startActivity(intent);
     }
 
-    public void startLaws(View view) {
-        Intent intent = new Intent(this, LawsActivity.class);
+    public void startLaw(View view) {
+        Intent intent = new Intent(this, ActivityLaws.class);
         startActivity(intent);
     }
 
