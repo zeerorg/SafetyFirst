@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.DashboardActivity;
 import com.vikas.dtu.safetyfirst2.R;
+import com.vikas.dtu.safetyfirst2.TermsnCondition;
 import com.vikas.dtu.safetyfirst2.mData.User;
 import com.vikas.dtu.safetyfirst2.mUtils.DialogUtils;
 
@@ -51,6 +53,9 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     private TextView mSignUpText;
     private SignInButton mSignInButton;
 
+    CheckBox checkBox;
+    TextView tncLink;
+    int tncFlag = 0;
 
 
     @Override
@@ -75,7 +80,7 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        tncFlag = 0;
         setContentView(R.layout.activity_sign_in);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -88,6 +93,16 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         //  mSignUpButton = (Button) findViewById(R.id.button_sign_up);
 
         mSignUpText = (TextView) findViewById(R.id.link_signup);
+
+        //TnC
+        checkBox = (CheckBox) findViewById(R.id.checkbox2);
+        tncLink = (TextView) findViewById(R.id.terms_cond);
+
+        if(checkBox.isChecked()) {
+            checkBox.setChecked(false);
+        }
+
+
         // Click listeners
         customSigninButton.setOnClickListener(this);
         mSignUpText.setOnClickListener(this);
@@ -127,12 +142,30 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         };*/
     }
 
+    public void clickCheckbox(View v){
+        if(checkBox.isChecked()){
+            tncFlag = 1;
+        }
+        else{
+            tncFlag = 0;
+        }
+    }
+
+    public void clickTnc(View v){
+        startActivity(new Intent(SignInActivity.this, TermsnCondition.class));
+    }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
-                googleSignIn();
+                if(tncFlag==1){
+                    googleSignIn();
+                }
+                else{
+                    Toast.makeText(this, "Agree to Terms and Conditions.", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.link_signup:
                 {

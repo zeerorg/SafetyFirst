@@ -122,12 +122,12 @@
                         android:textSize="22sp"
                         android:textColor="@color/dark_blue"
                         android:textAlignment="center"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="45dp"
                         android:id="@+id/types"
                         android:layout_marginLeft="50dp" />
                     <ImageView
                         android:layout_toRightOf="@+id/types"
-                        android:layout_marginTop="37dp"
+                        android:layout_marginTop="50.5dp"
                         android:src="@drawable/fourth_icon_types"
                         android:elevation="1dp"
                         android:layout_marginLeft="50dp"
