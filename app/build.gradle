@@ -9,7 +9,7 @@ android {
         applicationId "com.vikas.dtu.safetyfirst2"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 13
+        versionCode 14
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
     }

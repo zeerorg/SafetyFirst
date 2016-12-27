@@ -10,10 +10,10 @@ public class RecentNewsFragment extends NewsListFragment {
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
         // [START recent_posts_query]
-        // Last 100 posts, these are automatically the 100 most recent
+        // Last 1000 posts, these are automatically the 1000 most recent
         // due to sorting by push() keys
         Query recentPostsQuery = databaseReference.child("news")
-                .limitToFirst(100);
+                .limitToFirst(1000);
         // [END recent_posts_query]
 
         return recentPostsQuery;
