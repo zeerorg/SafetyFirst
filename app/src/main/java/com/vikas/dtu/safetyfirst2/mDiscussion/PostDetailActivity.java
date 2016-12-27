@@ -170,6 +170,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -858,6 +859,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 post_Del_Alert.create().show();
 
                 break;
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return true;
     }

@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_red"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:text="Standard Ladders"
                     android:id="@+id/third_title"
                     android:gravity="center_horizontal"
@@ -70,8 +70,9 @@
                     android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                     android:layout_marginRight="6dp"
                     android:textSize="12sp"
-                    android:layout_height="80dp"
-                    android:gravity="center_horizontal" />
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="clip_vertical|clip_horizontal"
+                    android:layout_height="85dp" />
 
             </LinearLayout>
 
