@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -60,7 +62,11 @@ public class HaryanaLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if(item.text=="Factories Rules"){
-                    downloadandShow(factoriesrules);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                    downloadandShow(factoriesrules);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,1);
+                    }
                 }
             }
         });
@@ -71,35 +77,118 @@ public class HaryanaLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if(item.text=="Record of Lime Washing etc."){
-                    downloadandShow(recordoflimewashing);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(recordoflimewashing);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,2);
+                    }
                 }else  if(item.text=="Overtime Muster Roll for Exempted Worker"){
-                    downloadandShow(overtimemusterrollforexemptedworker);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(overtimemusterrollforexemptedworker);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,3);
+                    }
                 }else  if(item.text=="Notice of Period for Adult Workers"){
-                    downloadandShow(noticeofperiodforadultworkers);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(noticeofperiodforadultworkers);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,4);
+                    }
                 }else  if(item.text=="Register of Adult Worker"){
-                    downloadandShow(registerofadultworkers);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(registerofadultworkers);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,5);
+                    }
                 }else  if(item.text=="Notice of Period for Child Workers"){
-                    downloadandShow(noticeofperiodforchildworkers);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(noticeofperiodforchildworkers);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,6);
+                    }
                 }else  if(item.text=="Register of Child Workers"){
-                    downloadandShow(registerofchildworkers);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(registerofchildworkers);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,7);
+                    }
                 }else  if(item.text=="Register of Leave with Wages"){
-                    downloadandShow(registerofleavewithwages);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(registerofleavewithwages);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,8);
+                    }
                 }else  if(item.text=="Health Register"){
-                    downloadandShow(healthregister);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(healthregister);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,9);
+                    }
                 }else  if(item.text=="Annual Return"){
-                    downloadandShow(annualreturn);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(annualreturn);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,10);
+                    }
                 }else  if(item.text=="Half Yearly Return"){
-                    downloadandShow(halfyearlyreturn);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(halfyearlyreturn);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,11);
+                    }
                 }else  if(item.text=="Muster Roll"){
-                    downloadandShow(musterroll);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(musterroll);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,12);
+                    }
                 }else  if(item.text=="Register of Compensatory Holidays"){
-                    downloadandShow(registerofcompensatoryholidays);
+                    if(Checkforpermission.CheckforPermissions(HaryanaLaws.this)){
+                        downloadandShow(registerofcompensatoryholidays);}
+                    else {
+                        Checkforpermission.requestpermission(HaryanaLaws.this,13);
+                    }
                 }
             }
         });
         formsrecycler.setAdapter(Adapter1);
         formsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(factoriesrules);
+            }else  if(requestCode==2){
+                downloadandShow(recordoflimewashing);
+            }else  if(requestCode==3){
+                downloadandShow(overtimemusterrollforexemptedworker);
+            }else  if(requestCode==4){
+                downloadandShow(noticeofperiodforadultworkers);
+            }else  if(requestCode==5){
+                downloadandShow(registerofadultworkers);
+            }else  if(requestCode==6){
+                downloadandShow(noticeofperiodforchildworkers);
+            }else  if(requestCode==7){
+                downloadandShow(registerofchildworkers);
+            }else  if(requestCode==8){
+                downloadandShow(registerofleavewithwages);
+            }else  if(requestCode==9){
+                downloadandShow(healthregister);
+            }else  if(requestCode==10){
+                downloadandShow(annualreturn);
+            }else  if(requestCode==11){
+                downloadandShow(halfyearlyreturn);
+            }else  if(requestCode==12){
+                downloadandShow(musterroll);
+            }else  if(requestCode==13){
+                downloadandShow(registerofcompensatoryholidays);
+            }
+        }
+    }
+
     private ArrayList<StateLawsRowInfo> fillLawsData() {
         ArrayList<StateLawsRowInfo> temp=new ArrayList<>();
 

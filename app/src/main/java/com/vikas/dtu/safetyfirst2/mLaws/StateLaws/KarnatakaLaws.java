@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -63,13 +65,29 @@ public class KarnatakaLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if(item.text=="Citizen`s Charter"){
-                    downloadandShow(citizenscharter);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShow(citizenscharter);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,1);
+                    }
                 }else if(item.text=="Factories Act"){
-                    downloadandShow(factoriesact);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShow(factoriesact);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,2);
+                    }
                 }else if(item.text=="No Fees for Licence"){
-                    downloadandShow(nofeesforlicence);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShow(nofeesforlicence);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,3);
+                    }
                 }else if(item.text=="Factories Rules"){
-                    downloadandShow(factoriesrules);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShow(factoriesrules);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,4);
+                    }
                 }
             }
         });
@@ -79,28 +97,98 @@ public class KarnatakaLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if(item.text=="Register of Accidents and Dangerous Occurence"){
-                    downloadandShowdoc(registerofaccidentsanddangerousoccurence);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                    downloadandShowdoc(registerofaccidentsanddangerousoccurence);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,5);
+                    }
                 }else if(item.text=="Register of Adult workers"){
-                    downloadandShowdoc(registerofleavewithwages);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(registerofadultworkers);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,6);
+                    }
                 }else if(item.text=="Register of Leave with Wages"){
-                    downloadandShowdoc(registerofleavewithwages);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(registerofleavewithwages);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,7);
+                    }
                 }else if(item.text=="Muster Roll"){
-                    downloadandShowdoc(musterroll);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(musterroll);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,8);
+                    }
                 }else if(item.text=="Register of Overtime and Payment"){
-                    downloadandShowdoc(registerofovertimeandpayment);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(registerofovertimeandpayment);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,9);
+                    }
                 }else if(item.text=="Leave Book"){
-                    downloadandShowdoc(leavebook);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(leavebook);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,10);
+                    }
                 }else if(item.text=="Annual Return"){
-                    downloadandShowdoc(annualreturn);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(annualreturn);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,11);
+                    }
                 }else if(item.text=="Health Register"){
-                    downloadandShowdoc(healthregister);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(healthregister);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,12);
+                    }
                 }else if(item.text=="Factory Licence Renewal"){
-                    downloadandShowdoc(factorylicencerenewal);
+                    if(Checkforpermission.CheckforPermissions(KarnatakaLaws.this)){
+                        downloadandShowdoc(factorylicencerenewal);}
+                    else{
+                        Checkforpermission.requestpermission(KarnatakaLaws.this,13);
+                    }
                 }
             }
         });
         formsrecycler.setAdapter(Adapter1);
         formsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(citizenscharter);
+            }else if(requestCode==2){
+                downloadandShow(factoriesact);
+            }else if(requestCode==3){
+                downloadandShow(nofeesforlicence);
+            }else if(requestCode==4){
+                downloadandShow(factoriesrules);
+            }else if(requestCode==5){
+                downloadandShowdoc(registerofaccidentsanddangerousoccurence);
+            }else if(requestCode==6){
+                downloadandShowdoc(registerofadultworkers);
+            }else if(requestCode==7){
+                downloadandShowdoc(registerofleavewithwages);
+            }else if(requestCode==8){
+                downloadandShowdoc(musterroll);
+            }else if(requestCode==9){
+                downloadandShowdoc(registerofovertimeandpayment);
+            }else if(requestCode==10){
+                downloadandShowdoc(leavebook);
+            }else if(requestCode==11){
+                downloadandShowdoc(annualreturn);
+            }else if(requestCode==12){
+                downloadandShowdoc(healthregister);
+            }else if(requestCode==13){
+                downloadandShowdoc(factorylicencerenewal);
+            }
+        }
     }
 
     private ArrayList<StateLawsRowInfo> fillLawsData() {
