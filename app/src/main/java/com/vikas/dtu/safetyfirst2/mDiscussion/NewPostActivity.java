@@ -1,23 +1,23 @@
 package com.vikas.dtu.safetyfirst2.mDiscussion;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.storage.OnProgressListener;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.Post;
@@ -32,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
-import com.google.firebase.storage.StorageReference;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,11 +40,9 @@ import com.vikas.dtu.safetyfirst2.model.PostNotify;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -58,7 +55,6 @@ import android.media.ExifInterface;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 
 import io.realm.Realm;
@@ -71,9 +67,9 @@ public class NewPostActivity extends BaseActivity {
     private static final int SELECT_IMAGE = 2;
     private static final int SELECT_PDF = 3;
     private static final int SELECT_VIDEO = 4;
+    private static final int ASK_MULTIPLE_PERMISSION_REQUEST_CODE = 5;
     private ImageView mImageView;
     private ProgressDialog mProgressDialog;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private FirebaseStorage storage;
     private UploadTask uploadTask;
     private String path;
@@ -505,39 +501,6 @@ public class NewPostActivity extends BaseActivity {
         client.disconnect();
     }
 
-    /* @Override
-     public boolean onCreateOptionsMenu(Menu menu) {
-         MenuInflater inflater = getMenuInflater();
-         inflater.inflate(R.menu.menu_new_post, menu);
-
-         return super.onCreateOptionsMenu(menu);
-     }
-
-     @Override
-     public boolean onOptionsItemSelected(MenuItem item) {
-         // Take appropriate action for each action item click
-         switch (item.getItemId()) {
-             case R.id.image:
-                 // image action
-                 startAction();
-                 return true;
-             case R.id.file:
-                 // file action
-                 pickPDF();
-                 return true;
-             case R.id.video:
-                 // video action
-                 pickVideo();
-                 return true;
-             case R.id.link:
-                 // link action
-                 attachLink();
-                 return true;
-             default:
-                 return super.onOptionsItemSelected(item);
-         }
-     }
- */
     private void attachLink() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.attach_link);
@@ -654,7 +617,38 @@ public class NewPostActivity extends BaseActivity {
     }
 
     public void uploadImage(View view) {
-        startAction();
+        //  startAction();
+
+        if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            startAction();
+        } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                startAction();
+            } else {
+                if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    Toast.makeText(this, "External Storage and Camera permission is required to read images from device", Toast.LENGTH_SHORT).show();
+                }
+                requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA},
+                        ASK_MULTIPLE_PERMISSION_REQUEST_CODE);
+            }
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+        if(requestCode == ASK_MULTIPLE_PERMISSION_REQUEST_CODE){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                startAction();
+            }
+            else {
+                Toast.makeText(this, "External Storage and Camera permission not granted", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     public void uploadFile(View view) {

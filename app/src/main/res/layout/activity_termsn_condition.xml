@@ -12,27 +12,28 @@
     tools:context="com.vikas.dtu.safetyfirst2.TermsnCondition">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@android:color/background_light">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:text="Terms and Conditions"
-            android:textAlignment="center"
-            android:layout_margin="@dimen/md_keylines"
-            android:textColor="@color/colorPrimary"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/termsnconditions"
-            tools:text="@string/dummy1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="Terms and Conditions"
+                android:textAlignment="center"
+                android:layout_margin="@dimen/md_keylines"
+                android:textColor="@color/colorPrimary"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/termsnconditions"
+                android:text="@string/terms_and_conditions" />
         </LinearLayout>
 
-        </ScrollView>
+    </ScrollView>
 
 </LinearLayout>

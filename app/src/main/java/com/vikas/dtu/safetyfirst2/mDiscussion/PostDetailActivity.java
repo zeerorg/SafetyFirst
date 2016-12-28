@@ -17,6 +17,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -58,6 +61,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import io.realm.Realm;
 
@@ -67,6 +71,14 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     public static final String EXTRA_POST_KEY = "post_key";
 
+    //URL_REGEX STRINGS FOR HYPERLINK IN COMMENT
+    //Extra String(Not used anywhere)
+    public static final String URL_REGEX = "^((https?|ftp)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?$";
+    //Original String
+    public static final String URL_REGEX2 = "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
+            + "(([\\w\\-]+\\.){1,}?([\\w\\-.~]+\\/?)*"
+            + "[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)";
+
     private DatabaseReference mPostReference, mPostAttachmentsReference, mUserPostReference;
     private DatabaseReference mCommentsReference;
     private ValueEventListener mPostListener;
@@ -74,6 +86,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private CommentAdapter mAdapter;
 
     private ImageView mAuthorImage;
+    private ImageView mImageView;
     private TextView mAuthorView;
     private TextView mTitleView;
     private TextView mBodyView;
@@ -97,6 +110,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     boolean postLoaded = false;
     private Menu mMenu;
 
+    private LinearLayoutManager mManager;
+
     private Post post;
   //  private int clickcount =0;
 
@@ -108,7 +123,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         ActionBar ab = getSupportActionBar();
 
         // Enable the Up round_blue_dark
-        ab.setDisplayHomeAsUpEnabled(true);
+      //  ab.setDisplayHomeAsUpEnabled(true);
 
 
         // Get post key from intent
@@ -130,6 +145,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mAuthorView = (TextView) findViewById(R.id.post_author);
         mTitleView = (TextView) findViewById(R.id.post_title);
         mBodyView = (TextView) findViewById(R.id.post_body);
+        mImageView = (ImageView) findViewById(R.id.post_image);
 
         mImageButton = (ImageButton) findViewById(R.id.image_btn);
         mFileButton = (ImageButton) findViewById(R.id.file_btn);
@@ -145,9 +161,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mFileButton.setOnClickListener(this);
        // mVideoButton.setOnClickListener(this);
         mLinkButton.setOnClickListener(this);
-        mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
+       // mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        mManager = new LinearLayoutManager(this);
+        mManager.setReverseLayout(true);
+        mManager.setStackFromEnd(true);
+        mCommentsRecycler.setLayoutManager(mManager);
 
     }
+
 
     @Override
     public void onStart() {
@@ -169,9 +191,19 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                             .load(post.getPhotoUrl())
                             .into(mAuthorImage);
                 }
+
+                if (post.getImage() != null) {
+                    Glide.with(getBaseContext())
+                            .load(post.getImage())
+                            .into(mImageView);
+                    mImageView.setVisibility(View.VISIBLE);
+                } else {
+                    mImageView.setVisibility(View.GONE);
+                }
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
-                mBodyView.setText(post.body);
+               // mBodyView.setText(post.body); //Replaced by hyperlink text method in line below.
+                setHyperlinkText(mBodyView, post.body);
 
                 postLoaded = true;
                 onCreateOptionsMenu(mMenu);
@@ -180,6 +212,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 //TODO get attachment urls from post if they exist
                 // [END_EXCLUDE]
             }
+
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -200,6 +234,51 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         // Listen for comments
         mAdapter = new CommentAdapter(this, mCommentsReference);
         mCommentsRecycler.setAdapter(mAdapter);
+    }
+
+    private static void setHyperlinkText(TextView textview, String input) {
+        Spanned output;
+        String preText, postText;
+
+        Pattern p = Pattern.compile(URL_REGEX2, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+        String link = "";
+        String[] parts = input.split("\\s+");
+        preText = "";
+        postText = "";
+        int flag = 0;
+        for(String item : parts){
+            if(!p.matcher(item).matches()&&flag==0){
+                preText+= item;
+                preText+=" ";
+            }
+            if(p.matcher(item).matches()){
+                link = item;
+                //Log.d("Here",item);
+                flag = 1;
+            }
+            if(!p.matcher(item).matches()&&flag==1){
+                postText+=" ";
+                postText+= item;
+            }
+        }
+        if(flag==1){
+            //Exceptions:
+            // 1.) For links starting with "//"
+            if(link.startsWith("//")){
+                link = "http:" + link;
+            }
+            //2.) For links not starting with http or https
+            else if(!(link.startsWith("http://"))&&!(link.startsWith("https://"))){
+                link = "http://" + link;
+            }
+            output = Html.fromHtml(preText + "<a href = " + link + ">"+ link + "</a>" + postText);
+            textview.setMovementMethod(LinkMovementMethod.getInstance());
+            textview.setText(output);
+        }
+        else {
+            textview.setText(input);
+        }
+
     }
 
     @Override
@@ -465,9 +544,55 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         public void onBindViewHolder(CommentViewHolder holder, int position) {
             Comment comment = mComments.get(position);
             holder.authorView.setText(comment.author);
-            holder.bodyView.setText(comment.text);
+          //  holder.bodyView.setText(comment.text);
+            setHyperlinkText(holder.bodyView,comment.text);
 
         }
+
+//        private void setHyperlinkText(CommentViewHolder holder, String input) {
+//            Spanned output;
+//            String preText, postText;
+//
+//            Pattern p = Pattern.compile(URL_REGEX2, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+//            String link = "";
+//            String[] parts = input.split("\\s+");
+//            preText = "";
+//            postText = "";
+//            int flag = 0;
+//            for(String item : parts){
+//                if(!p.matcher(item).matches()&&flag==0){
+//                    preText+= item;
+//                    preText+=" ";
+//                }
+//                if(p.matcher(item).matches()){
+//                    link = item;
+//                    //Log.d("Here",item);
+//                    flag = 1;
+//                }
+//                if(!p.matcher(item).matches()&&flag==1){
+//                    postText+=" ";
+//                    postText+= item;
+//                }
+//            }
+//            if(flag==1){
+//                //Exceptions:
+//                // 1.) For links starting with "//"
+//                if(link.startsWith("//")){
+//                    link = "http:" + link;
+//                }
+//                //2.) For links not starting with http or https
+//                else if(!(link.startsWith("http://"))&&!(link.startsWith("https://"))){
+//                    link = "http://" + link;
+//                }
+//                output = Html.fromHtml(preText + "<a href = " + link + ">"+ link + "</a>" + postText);
+//                holder.bodyView.setMovementMethod(LinkMovementMethod.getInstance());
+//                holder.bodyView.setText(output);
+//            }
+//            else {
+//                holder.bodyView.setText(input);
+//            }
+//
+//        }
 
         @Override
         public int getItemCount() {
@@ -734,6 +859,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 post_Del_Alert.create().show();
 
                 break;
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return true;
     }

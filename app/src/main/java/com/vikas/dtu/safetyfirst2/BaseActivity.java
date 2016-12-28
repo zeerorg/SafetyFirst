@@ -61,6 +61,4 @@ public class BaseActivity extends AppCompatActivity {
         else
             return null;
     }
-
-
 }
