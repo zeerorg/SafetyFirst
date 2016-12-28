@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vikas.dtu.safetyfirst2.R;
-import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mLaws.StateLawsRowInfo;
 
 import java.io.File;
@@ -61,35 +62,95 @@ public class DelhiLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if(item.text=="Record Lime Washing etc."){
-                    downloadandShow(recordlimewashing);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(recordlimewashing);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,1);
+                    }
                 }else if(item.text=="Over Time Muster Roll"){
-                    downloadandShow(overtimemusterroll);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(overtimemusterroll);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,2);
+                    }
                 }else if(item.text=="Notice of Change of Mananger"){
-                    downloadandShow(noticeofchangeofmananger);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(noticeofchangeofmananger);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,3);
+                    }
                 }else if(item.text=="Register of Accident and Dangerous Occurence"){
-                    downloadandShow(registerofaccidentanddangerousoccurence);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(registerofaccidentanddangerousoccurence);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,4);
+                    }
                 }else if(item.text=="Register of Child Workers"){
-                    downloadandShow(registerofchildworkers);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(registerofchildworkers);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,5);
+                    }
                 }else if(item.text=="Notice Period for Child Workers"){
-                    downloadandShow(noticeperiodforchildworkers);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(noticeperiodforchildworkers);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,6);
+                    }
                 }else if(item.text=="Notice Period for Adult Workers"){
-                    downloadandShow(noticeperiodforadultworkers);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(noticeperiodforadultworkers);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,7);
+                    }
                 }else if(item.text=="Register of Trained Adult Workers"){
-                    downloadandShow(registeroftrainedadultworkers);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(registeroftrainedadultworkers);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,8);
+                    }
                 }else if(item.text=="Muster Roll"){
-                    downloadandShow(musterroll);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(musterroll);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,9);
+                    }
                 }else if(item.text=="Half yearly Retuns"){
-                    downloadandShow(halfyearlyretuns);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(halfyearlyretuns);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,10);
+                    }
                 }else if(item.text=="Register of Leave with Wages"){
-                    downloadandShow(registerofleavewithwages);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(registerofleavewithwages);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,11);
+                    }
                 }else if(item.text=="Register of Compensatory Holidays"){
-                    downloadandShow(registerofcompensatoryholidays);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(registerofcompensatoryholidays);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,12);
+                    }
                 }else if(item.text=="Register of Adult Workers"){
-                    downloadandShow(registerofadultworkers);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(registerofadultworkers);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,13);
+                    }
                 }else if(item.text=="Annual Return"){
-                    downloadandShow(annualreturn);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(annualreturn);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,14);
+                    }
                 }else if(item.text=="Health Register"){
-                    downloadandShow(healthregister);
+                    if(Checkforpermission.CheckforPermissions(DelhiLaws.this)){
+                        downloadandShow(healthregister);}
+                    else{
+                        Checkforpermission.requestpermission(DelhiLaws.this,15);
+                    }
                 }
             }
         });
@@ -97,7 +158,43 @@ public class DelhiLaws extends AppCompatActivity {
         formsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
 
     }
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(recordlimewashing);
+            }else if(requestCode==2){
+                downloadandShow(overtimemusterroll);
+            }else if(requestCode==3){
+                downloadandShow(noticeofchangeofmananger);
+            }else if(requestCode==4){
+                downloadandShow(registerofaccidentanddangerousoccurence);
+            }else if(requestCode==5){
+                downloadandShow(registerofchildworkers);
+            }else if(requestCode==6){
+                downloadandShow(noticeperiodforchildworkers);
+            }else if(requestCode==7){
+                downloadandShow(noticeperiodforadultworkers);
+            }else if(requestCode==8){
+                downloadandShow(registeroftrainedadultworkers);
+            }else if(requestCode==9){
+                downloadandShow(musterroll);
+            }else if(requestCode==10){
+                downloadandShow(halfyearlyretuns);
+            }else if(requestCode==11){
+                downloadandShow(registerofleavewithwages);
+            }else if(requestCode==12){
+                downloadandShow(registerofcompensatoryholidays);
+            }else if(requestCode==13){
+                downloadandShow(registerofadultworkers);
+            }else if(requestCode==14){
+                downloadandShow(annualreturn);
+            }else if(requestCode==15){
+                downloadandShow(healthregister);
+            }
+        }
+    }
     private ArrayList<StateLawsRowInfo> filldata() {
         ArrayList<StateLawsRowInfo> temp=new ArrayList<>();
         temp.add(new StateLawsRowInfo("Record Lime Washing etc.",0));
@@ -117,6 +214,9 @@ public class DelhiLaws extends AppCompatActivity {
         temp.add(new StateLawsRowInfo("Health Register",0));
         return temp;
     }
+
+
+
     public void downloadandShow(String url) {
 
         //  Log.d(TAG, url);

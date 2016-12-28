@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -55,7 +57,11 @@ public class GujaratLaws extends AppCompatActivity {
         StateLawAdapter Adapter=new StateLawAdapter(getApplicationContext(), lawsArrayList, new StateLawAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
-                downloadandShow(factorylawurl);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                downloadandShow(factorylawurl);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,1);
+                }
             }
         });
         lawsrecycler.setAdapter(Adapter);
@@ -64,24 +70,77 @@ public class GujaratLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
             if(item.text=="Register of Compensatory Holidays"){
-                downloadandShow(registerofcompensatoryholidays);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(registerofcompensatoryholidays);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,2);
+                }
+
             }else if(item.text=="Register of Adult Workers"){
-                downloadandShow(registerofadultworkers);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(registerofadultworkers);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,3);
+                }
             }else if(item.text=="Notice Period of Work for Child"){
-                downloadandShow(noticeperiodforchild);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(noticeperiodforchild);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,4);
+                }
             }else if(item.text=="Register of Child Workers"){
-                downloadandShow(registerofchildworkers);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(registerofchildworkers);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,5);
+                }
             }else if(item.text=="Register of Leave with Wages"){
-                downloadandShow(registerofleavewithwages);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(registerofleavewithwages);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,6);
+                }
             }else if(item.text=="Notice of Change of Manager"){
-                downloadandShow(noticeofchangeofmanager);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(noticeofchangeofmanager);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,7);
+                }
             }else if(item.text=="Record of Lime washing etc."){
-                downloadandShow(recordoflimewashingetc);
+                if(Checkforpermission.CheckforPermissions(GujaratLaws.this)){
+                    downloadandShow(recordoflimewashingetc);}
+                else {
+                    Checkforpermission.requestpermission(GujaratLaws.this,8);
+                }
             }
             }
         });
         formsrecycler.setAdapter(Adapter1);
         formsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(factorylawurl);
+            }else if(requestCode==2){
+                downloadandShow(registerofcompensatoryholidays);
+            }else if(requestCode==3){
+                downloadandShow(registerofadultworkers);
+            }else if(requestCode==4){
+                downloadandShow(noticeperiodforchild);
+            }else if(requestCode==5){
+                downloadandShow(registerofchildworkers);
+            }else if(requestCode==6){
+                downloadandShow(registerofleavewithwages);
+            }else if(requestCode==7){
+                downloadandShow(noticeofchangeofmanager);
+            }else if(requestCode==8){
+                downloadandShow(recordoflimewashingetc);
+            }
+        }
     }
 
     private ArrayList<StateLawsRowInfo> fillLawsData() {

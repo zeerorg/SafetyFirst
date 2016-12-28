@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -61,8 +63,11 @@ public class PunjabLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if(item.text=="Factories Rules"){
-                    downloadandShow(factoriesrules);
-                }
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(factoriesrules);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,1);
+                    }                }
             }
         });
         lawsrecycler.setAdapter(Adapter);
@@ -71,34 +76,116 @@ public class PunjabLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if (item.text == "Muster Roll") {
-                    downloadandShow(musterroll);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(musterroll);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,2);
+                    }
                 }else if (item.text == "Overtime Muster Roll for Exempted Worker") {
-                    downloadandShow(overtimemusterrollforexemptedworker);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(overtimemusterrollforexemptedworker);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,3);
+                    }
                 }else if (item.text == "Annual Returns") {
-                    downloadandShow(annualreturn);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(annualreturn);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,4);
+                    }
                 }else if (item.text == "Half Yearly Returns") {
-                    downloadandShow(halfyearlyreturns);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(halfyearlyreturns);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,5);
+                    }
                 }else if (item.text == "Register of Adult Workers") {
-                    downloadandShow(registerofadultworker);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(registerofadultworker);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,6);
+                    }
                 }else if (item.text == "Register of Child Workers") {
-                    downloadandShow(registerofchildworkers);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(registerofchildworkers);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,7);
+                    }
                 }else if (item.text == "Register of Compensatory Holidays") {
-                    downloadandShow(registerofcompensatoryholidays);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(registerofcompensatoryholidays);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,8);
+                    }
                 }else if (item.text == "Notice Period for Adult Workers") {
-                    downloadandShow(noticeperiodforadultworkers);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(noticeperiodforadultworkers);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,9);
+                    }
                 }else if (item.text == "Notice Period for Child Workers") {
-                    downloadandShow(noticeperioforchildworkers);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(noticeperioforchildworkers);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,10);
+                    }
                 }else if (item.text == "Register of Leave with Wages") {
-                    downloadandShow(registerofleavewithwages);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(registerofleavewithwages);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,11);
+                    }
                 }else if (item.text == "Health Register") {
-                    downloadandShow(healthregister);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(healthregister);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,12);
+                    }
                 }else if (item.text == "Record of Limewashing etc.") {
-                    downloadandShow(recordoflimewashingetc);
+                    if(Checkforpermission.CheckforPermissions(PunjabLaws.this)){
+                        downloadandShow(recordoflimewashingetc);}
+                    else{
+                        Checkforpermission.requestpermission(PunjabLaws.this,13);
+                    }
                 }
             }
         });
         formsrecycler.setAdapter(Adapter1);
         formsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(factoriesrules);
+            }else  if(requestCode==2){
+                downloadandShow(musterroll);
+            }else  if(requestCode==3){
+                downloadandShow(overtimemusterrollforexemptedworker);
+            }else  if(requestCode==4){
+                downloadandShow(annualreturn);
+            }else  if(requestCode==5){
+                downloadandShow(halfyearlyreturns);
+            }else  if(requestCode==6){
+                downloadandShow(registerofadultworker);
+            }else  if(requestCode==7){
+                downloadandShow(registerofchildworkers);
+            }else  if(requestCode==8){
+                downloadandShow(registerofcompensatoryholidays);
+            }else  if(requestCode==9){
+                downloadandShow(noticeperiodforadultworkers);
+            }else  if(requestCode==10){
+                downloadandShow(noticeperioforchildworkers);
+            }else  if(requestCode==11){
+                downloadandShow(registerofleavewithwages);
+            }else  if(requestCode==12){
+                downloadandShow(healthregister);
+            }else  if(requestCode==13){
+                downloadandShow(recordoflimewashingetc);
+            }
+        }
     }
 
     private ArrayList<StateLawsRowInfo> fillLawsData() {
