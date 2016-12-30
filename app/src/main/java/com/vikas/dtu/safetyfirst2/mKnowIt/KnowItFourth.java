@@ -107,6 +107,7 @@ public class KnowItFourth extends AppCompatActivity {
         int titleId = titleArray.getResourceId(type,0);
         title = res.getStringArray(titleId)[position];
         setTitle(title);
+        dest_file_path = title + ".pdf";
 
         TypedArray descArray = res.obtainTypedArray(R.array.third_description);
         int descId =descArray.getResourceId(type,0);
@@ -125,7 +126,7 @@ public class KnowItFourth extends AppCompatActivity {
 
 //        TypedArray checklistArray = res.obtainTypedArray(R.array.fourth_checklist);
 //        int checklistId = checklistArray.getResourceId(type,0);
-        // checklist = res.getStringArray(checklistId)[position];
+// checklist = res.getStringArray(checklistId)[position];
 
 
         infoTxt = (TextView) findViewById(R.id.fourth_info) ;
@@ -476,7 +477,7 @@ public class KnowItFourth extends AppCompatActivity {
 
         //Aerial Lift(6) :
         all[0][0] = "http://www.ehsdb.com/resources/Aerial_lift/Articulating%20Boom%20Lift.pdf";
-        all[0][1] = "https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjeic-GzvbPAhXJwI8KHQ8NDs8QFgghMAE&url=https%3A%2F%2Fwww.worksafe.vic.gov.au%2F__data%2Fassets%2Fword_doc%2F0014%2F12326%2FElevated_Work_Platform_Checklist.doc&usg=AFQjCNHs6QVHEkixyuLqm-zt6Khq8lVAaA&sig2=NIo28G8C02Uc7HvDDEXHMw&bvm=bv.136593572,d.c2I";
+        all[0][1] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2FElevated_Work_Platform_Checklist.pdf?alt=media&token=71bd0353-d598-454e-85ab-0158a9569b70";
         all[0][2] = "http://access.ewu.edu/Documents/HRRR/ehs/Procedures/P25AerialLiftPREInsp.pdf";
         all[0][3] = "http://publicsafety.lafayette.edu/files/2011/11/Scissor-Lift-Inspection-Checklist.pdf";
         all[0][4] = "https://www.jlg.com/ground_support/pdf/annual-machine-inspection-check-list.pdf";
@@ -499,15 +500,15 @@ public class KnowItFourth extends AppCompatActivity {
         all[2][0] = "http://www.co.frederick.va.us/home/showdocument?id=230";
         all[2][1] = "http://www.hanover.com/linec/docs/171-1749.pdf";
         all[2][2] = "http://c.ymcdn.com/sites/www.nfsa.org/resource/resmgr/forms/25-13x-2011.pdf";
-        all[2][3] = "https://drive.google.com/open?id=0B28ZutF8NxpZT3RrWWxPcnVPR0k";
+        all[2][3] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2FNFPA%20Form%20-%20Sprinkler%20System.pdf?alt=media&token=4351674e-73f2-4c7a-95d4-8f7c43840794";
 
         //Fork Lift(6)  :
         all[3][0] = "http://sielift.com/wp-content/uploads/2016/06/Reach-Truck-Daily-Operator-Checklist-2.pdf";
-        all[3][1] = "https://drive.google.com/file/d/0B28ZutF8NxpZR1llM0hETm9Ea00/view?usp=sharing";
+        all[3][1] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2FCounterbalanced-Forklift-Pre-Use-Inspection-SUP-140-e-EN-16-077.pdf?alt=media&token=aa5ed4e0-2d3d-49c2-8915-89672f2287db";
         all[3][2] = "https://www.nccer.org/uploads/fileLibrary/HEO_L2_2013_CEP.pdf";
         all[3][3] = "http://www.aalhysterforklifts.com.au/uploads/blog/Adaptalift_Hyster_Forklift_Safety_Prestart_Checklist.pdf";
         all[3][4] = "http://www.tsha.com.au/uploads/TSH%20Pre-Acceptance%20Checklist%20Issue%202%20Oct%202013.pdf";
-        all[3][5] = "https://drive.google.com/open?id=0B28ZutF8NxpZck1faXZwUU1Ob3M";
+        all[3][5] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2FPowered-Pallet-Truck-Pre-Use-Inspection-SUP-146-e-EN-16-077.pdf?alt=media&token=f66d09fa-f974-4075-b9c6-8451be34589c";
 
         //Heat Stress(5) :
         all[4][0] = "no";
@@ -519,13 +520,13 @@ public class KnowItFourth extends AppCompatActivity {
         //Ladders(6) :
         all[5][0] = "http://www.britishladders.co.uk/images/steplader.pdf";
         all[5][1] = "http://www-ehs.ucsd.edu/shop/pdf/Ladder_Inspection_Form.pdf";
-        all[5][2] = "https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0ahUKEwi2kKadvfbPAhUGvI8KHRugAP8QFggbMAA&url=http%3A%2F%2Fsafety.ucanr.org%2Ffiles%2F138047.docx&usg=AFQjCNH3SofAdlE9tBqderCzXVUnEz3i4g&bvm=bv.136593572,d.c2I&cad=rja";
-        all[5][3] = "https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=9&ved=0ahUKEwi42_7MvfbPAhUMPY8KHWXBAvsQFgg5MAg&url=http%3A%2F%2Fwww.kelsi.org.uk%2F__data%2Fassets%2Fword_doc%2F0011%2F27884%2FLadder-safety-Ladders-checklist-3-monthly-inspection.doc&usg=AFQjCNFQ6VaVt0WmMQeJNlp1rP2DGjCbZg&bvm=bv.136593572,d.c2I&cad=rja";
-        all[5][4] = "https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjSsKaIvvbPAhVKqI8KHdx-BgQQFggbMAA&url=http%3A%2F%2Fwww.isri.org%2Fdocs%2Fdefault-source%2Fosha-safety%2Fmobile-ladder-stands-checklist.docx%3Fsfvrsn%3D2&usg=AFQjCNHWWUYfdm_EjsBo1cHH3VHxwEZ8rg&bvm=bv.136593572,d.c2I&cad=rja";
+        all[5][2] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2Fportable%20ladder.pdf?alt=media&token=62192121-a582-487e-bd50-d22665ecc43d";
+        all[5][3] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2FLadder-safety-Ladders-checklist-3-monthly-inspection.pdf?alt=media&token=7034cbde-9f9d-4509-bc68-6dacee9d333a";
+        all[5][4] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2Fmobile-ladder-stands-checklist.pdf?alt=media&token=23b63a48-82d6-4f6b-beea-760d13fc7058";
         all[5][5] = "https://www.osha.gov/dte/grant_materials/fy06/46e0-ht10/stf_ladder_safety_checklist.pdf";
 
         //Respiratory(6)
-        all[6][0] = "https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiG3ozy9PfPAhUBJZQKHXdzBq8QFgghMAE&url=http%3A%2F%2Fwww.doa.state.wi.us%2Fdocuments%2FDEO%2FRisk%2520Management%2Fsafety%2520categories%2FRespiratory%2520Protection%2FResp_Inspection_Checklist.doc&usg=AFQjCNHa0cMs-s3dHXtRKRnBzmH_wAkvSQ&sig2=8E1TKG4qqTARoZ4B9M6oHw";
+        all[6][0] = "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/checklist%2FResp_Inspection_Checklist.pdf?alt=media&token=42abd5ac-602f-4640-9d20-1f2696a4b6a6";
         all[6][1] = all[6][0];
         all[6][2] = all[6][0];
         all[6][3] = all[6][0];
