@@ -19,6 +19,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -42,8 +44,8 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     private static final int RC_SIGN_IN = 9001;
     private SignInButton mGoogleSignInButton;
     private DatabaseReference mDatabase;
-    private GoogleApiClient mGoogleApiClient;
-    private FirebaseAuth mFirebaseAuth;
+    public static GoogleApiClient mGoogleApiClient;
+    public static FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final int REQUEST_CODE_GOOGLE_SIGN_IN = 1;
 
@@ -52,7 +54,7 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     private Button customSigninButton;
     private TextView mSignUpText;
     private SignInButton mSignInButton;
-
+    public static boolean signin = false;
     CheckBox checkBox;
     TextView tncLink;
     int tncFlag = 0;
@@ -61,11 +63,8 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     @Override
     public void onStart() {
         super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthListener);
 
-        // Check auth on Activity start
-        if (mFirebaseAuth.getCurrentUser() != null) {
-            onAuthSuccess(mFirebaseAuth.getCurrentUser());
-        }
     }
 
     @Override
@@ -112,20 +111,12 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         mGoogleSignInButton.setOnClickListener(this);
 
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
 
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-    /*    mAuthListener = new FirebaseAuth.AuthStateListener() {
+       mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -139,7 +130,7 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
                     Log.e(TAG, "onAuthStateChanged:signed_out");
                 }
             }
-        };*/
+        };
     }
 
     public void clickCheckbox(View v){
@@ -161,6 +152,7 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         switch (v.getId()) {
             case R.id.sign_in_button:
                 if(tncFlag==1){
+                    signin = true;
                     googleSignIn();
                 }
                 else{
@@ -244,6 +236,14 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
 
 
     private void googleSignIn() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -266,6 +266,16 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
                 Log.e(TAG, "Google Sign In failed.");
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(signin==true)
+        Toast.makeText(this, "You must sign in first",
+                Toast.LENGTH_LONG).show();
+
+        else
+            super.onBackPressed();
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -321,6 +331,8 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         finish();
         DialogUtils.dismissProgressDialog();
     }
+
+
 
 
 }
