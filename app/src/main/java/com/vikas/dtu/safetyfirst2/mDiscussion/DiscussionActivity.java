@@ -1,5 +1,7 @@
 package com.vikas.dtu.safetyfirst2.mDiscussion;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -91,33 +93,15 @@ public class DiscussionActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         // Search Menu
-        final MenuItem searchPost = menu.findItem(R.id.search_post);
-        SearchView searchView = null;
-        if (searchPost != null) {
-            searchView = (SearchView) MenuItemCompat.getActionView(searchPost);
-        }
-        EditText searchPlate = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchPlate.setHint("Search Posts");
-        View searchPlateView = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
-        searchPlateView.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+        //final MenuItem searchPost = menu.findItem(R.id.search_post);
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search_post).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Intent searchIntent = new Intent(getApplicationContext(),SearchActivity.class);
-                searchIntent.putExtra("search_query",query);
-                startActivity(searchIntent);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // use this method for auto complete search process
-                return false;
-            }
-        });
-
-        //
         return true;
     }
 

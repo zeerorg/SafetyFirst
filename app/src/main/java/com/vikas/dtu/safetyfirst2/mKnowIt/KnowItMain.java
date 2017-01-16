@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.vikas.dtu.safetyfirst2.R;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class KnowItMain extends AppCompatActivity {
 
@@ -57,11 +59,11 @@ class Cards{
 class FirstCustAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<Cards> list;
+    List<Cards> list;
 
     FirstCustAdapter(Context c){
         context = c;
-        list = new ArrayList<Cards>();
+        list = new LinkedList<>();
 
         Resources res = c.getResources();
         String[] titles = res.getStringArray(R.array.item_title);

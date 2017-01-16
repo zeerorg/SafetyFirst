@@ -257,7 +257,7 @@ The appropriate Government, may, by notification in the Official Gazette, appoin
             to connect like minded people and discuss and share knowledge.</item>
 
     </string-array>
-
+    <string name="terms_string"><u>Terms and Conditions</u></string>
     <!--TermsAndConditions-->
     <string name="terms_and_conditions">
         By downloading the application SAFETY FIRST  (here after referred to as “The Company”),
