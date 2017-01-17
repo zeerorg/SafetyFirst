@@ -272,6 +272,11 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this,SignInActivity.class));
+    }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         DialogUtils.showProgressDialog(SignUpActivity.this, "", getString(R.string.sign_in), false);
