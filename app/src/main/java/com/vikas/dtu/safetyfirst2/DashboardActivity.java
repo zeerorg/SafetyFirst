@@ -1,5 +1,6 @@
 package com.vikas.dtu.safetyfirst2;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,9 +29,12 @@ import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.appinvite.AppInviteInvitationResult;
 import com.google.android.gms.appinvite.AppInviteReferral;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
@@ -54,8 +58,10 @@ public class DashboardActivity extends BaseActivity
     private ImageView imgProfile;
     private TextView userProfile;
     private TextView emailProfile;
+    private ProgressDialog mProgressDialog;
+    private FirebaseAuth mAuth;
     // [START define_variables]
-    private GoogleApiClient mGoogleApiClient;
+    //private GoogleApiClient mGoogleApiClient;
     private NavigationView navigationView;
     // [END define_variables]
 
@@ -75,7 +81,10 @@ public class DashboardActivity extends BaseActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+       /* GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
         // Create an auto-managed GoogleApiClient with access to App Invites.
         // ATTENTION: This "addApi(AppIndex.API)"was auto-generated to implement the App Indexing API.
@@ -83,7 +92,9 @@ public class DashboardActivity extends BaseActivity
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(AppInvite.API)
                 .enableAutoManage(this, this)
-                .addApi(AppIndex.API).build();
+                .addApi(AppIndex.API)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();*/
+
         // Check for App Invite invitations and launch deep-link activity if possible.
         // Requires that an Activity is registered in AndroidManifest.xml to handle
         // deep-link URLs.
@@ -194,6 +205,8 @@ public class DashboardActivity extends BaseActivity
             startActivity(new Intent(DashboardActivity.this, TermsnCondition.class));
         }
         else if (id == R.id.log_out) {
+            SignInActivity.signin = true;
+
             logout();
         } else if (id == R.id.nav_feedback) {
             startActivity(new Intent(DashboardActivity.this, FeedBackActivity.class));
@@ -201,6 +214,14 @@ public class DashboardActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void signOut() {
+
+        //startActivity(new Intent(DashboardActivity.this,SignInActivity.class));
+
+        // Google sign out
+
     }
 
     @Override
