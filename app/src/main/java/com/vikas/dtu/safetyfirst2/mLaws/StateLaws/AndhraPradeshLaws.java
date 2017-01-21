@@ -1,10 +1,13 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -44,11 +47,32 @@ public class AndhraPradeshLaws extends AppCompatActivity {
         StateLawAdapter Adapter=new StateLawAdapter(getApplicationContext(), lawslist, new StateLawAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
-            downloadandShow(factoryurl);
+                if(Checkforpermission.CheckforPermissions(AndhraPradeshLaws.this)){
+            downloadandShow(factoryurl);}
+                else{
+                    Checkforpermission.requestpermission(AndhraPradeshLaws.this,1);
+                }
             }
         });
         lawsrecycler.setAdapter(Adapter);
         lawsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    downloadandShow(factoryurl);
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                }
+                return;
+    }
+        }
     }
 
     private ArrayList<StateLawsRowInfo> filldata() {

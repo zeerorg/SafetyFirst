@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,6 +47,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.vikas.dtu.safetyfirst2.R;
+import com.vikas.dtu.safetyfirst2.mLaws.StateLaws.Checkforpermission;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -208,7 +211,11 @@ public class KnowItFourth extends AppCompatActivity {
                     checkBtn.setBackground(blueBG);
                     videoBtn.setBackground(redBG);
                     heading.setText("SAFETY CHECKLIST");
-                    showFile(checklist);
+                    if(Checkforpermission.CheckforPermissions(KnowItFourth.this)){
+                    showFile(checklist);}
+                    else{
+                        Checkforpermission.requestpermission(KnowItFourth.this,1);
+                    }
                 }
                 else if(view == findViewById(R.id.video_btn)){
                     infoTxt.setVisibility(View.GONE);
@@ -236,6 +243,16 @@ public class KnowItFourth extends AppCompatActivity {
         ImageButton btn4 = (ImageButton)findViewById(R.id.video_btn);
         btn4.setOnClickListener(listener);
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                showFile(checklist);
+            }
+        }
     }
 
     @Override
