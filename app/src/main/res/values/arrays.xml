@@ -28,7 +28,7 @@
     <string-array name="second_desc">
 
         <item>Aerial lifts are commonly used in construction, inspection, athletic events and repair services to lift University employees to an elevated work position. Proper operation and use of aerial lifts can make completion of tasks at elevation, safer and more efficient. However, unsafe use, operation and aerial lift work practices can result in serious injury. This program has been developed due to the hazards associated with improper use and the concern for the safety of individuals in and around this type of equipment. In addition, this program outlines general, operating, maintenance, inspection and training requirements governing safe aerial lift use.
-\n\n<b>Definitions:</b>
+\n\nDefinitions:
 \nAerial Device:  Any vehicle mounted or a self propelled device that is telescoping extensible, articulating, or both, and is primarily designed to position personnel.
 \nAL / EWP: Acronym for “Aerial Lift/Elevating Work Platform”
 \nBoom: An elevating member, the lower end of which is so attached to a rotating or non-rotating base that permits elevation of the free end in the vertical plane.
@@ -46,14 +46,14 @@
         <item>A crane is a tower or derrick that is equipped with cables and pulleys that are used to lift and lower material. They are commonly used in the construction industry and in the manufacturing of heavy equipment. Cranes for construction are normally temporary structures, either fixed to the ground or mounted on a purpose built vehicle.
 \nThey can either be controlled from an operator in a cab that travels along with the crane, by a push button pendant control station, or by radio type controls. The crane operator is ultimately responsible for the safety of the crews and the crane.
 \nTower cranes are used extensively in construction and other industry to hoist and move materials. There are many types of tower cranes. Although they are different in type, the main parts are the same, as follows:
-\n•<b>Mast:</b>	 the main supporting tower of the crane. It is made of steel trussed sections that are connected together during installation.
-\n•<b>Slewing unit:</b>	 the slewing unit sits at the top of the mast. This is the engine that enables the crane to rotate.
-\n•<b>Operating cabin:</b>	 the operating cabin sits just above the slewing unit. It contains the operating controls.
-\n•<b>Jib:</b>	 the jib, or operating arm, extends horizontally from the crane. A "luffing" jib is able to move up and down; a fixed jib has a rolling trolley that runs along the underside to move goods horizontally.
-\n•<b>Counter jib:</b>	 holds counterweights, hoist motor, hoist drum and the electronics.[41]
-\n•<b>Hoist unit:</b>	 the hoist unit houses the hoist drum, hoist cable, gear box, gear shift, brake, and supporting components.
-\n•<b>Hook:</b>	 the hook (or hooks) is used to connect the material to the crane. It hangs at the end of thick steel cables that run along the jib to the motor.
-\n•<b>Weights:</b>	 Large concrete counterweights are mounted toward the rear of the mast, to compensate for the weight of the goods lifted
+\n•	Mast: the main supporting tower of the crane. It is made of steel trussed sections that are connected together during installation.
+\n•	Slewing unit: the slewing unit sits at the top of the mast. This is the engine that enables the crane to rotate.
+\n•	Operating cabin: the operating cabin sits just above the slewing unit. It contains the operating controls.
+\n•	Jib: the jib, or operating arm, extends horizontally from the crane. A "luffing" jib is able to move up and down; a fixed jib has a rolling trolley that runs along the underside to move goods horizontally.
+\n•	Counter jib: holds counterweights, hoist motor, hoist drum and the electronics.[41]
+\n•	Hoist unit: the hoist unit houses the hoist drum, hoist cable, gear box, gear shift, brake, and supporting components.
+\n•	Hook: the hook (or hooks) is used to connect the material to the crane. It hangs at the end of thick steel cables that run along the jib to the motor.
+\n•	Weights: Large concrete counterweights are mounted toward the rear of the mast, to compensate for the weight of the goods lifted
 </item>
         <item>A fire sprinkler or sprinkler head is the component of a fire sprinkler system that discharges water when the effects of a fire have been detected, such as when a predetermined temperature has been exceeded. Fire sprinklers are extensively used worldwide, with over 40 million sprinkler heads fitted each year. In buildings protected by properly designed and maintained fire sprinklers, over 99% of fires were controlled by fire sprinklers alone.
         \n\n
@@ -705,7 +705,7 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
 
 
     <!--Know it - Fourth Activity-->
-<!--How to-->
+    <!--How to-->
     <string-array name="aerial_lift_howto">
         <item>NOT YET AVAILABLE</item>
         <item>NOT YET AVAILABLE</item>
@@ -870,5 +870,269 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>@array/respiratory_protection_howto</item>
         <item>@array/scaffoldings_howto</item>
     </array>
+    <string-array name="States">
+        <item>Andhra Pradesh</item>
+        <item>Delhi</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Maharashtra</item>
+        <item>Orrisa</item>
+        <item>Punjab</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>West Bengal</item>
+    </string-array>
+    <string-array name="AndhraPradeshLaws">
+        <item>Factories Act</item>
+    </string-array>
+    <array name="AndhraPradeshLawsImage">
+        <item>@drawable/back_law7</item>
+    </array>
+    <string-array name="AndhraPradeshforms">
+    </string-array>
+    <array name="AndhraPradesh">
+        <item>@array/AndhraPradeshLaws</item>
+        <item>@array/AndhraPradeshLawsImage</item>
+        <item>@array/AndhraPradeshforms</item>
+    </array>
+    <string-array name="DelhiLaws">
+    </string-array>
+    <array name="DelhiLawsImage">
+    </array>
+    <string-array name="Delhiforms">
+        <item>Record Lime Washing etc</item>
+        <item>Over Time Muster Roll</item>
+        <item>Notice of Change of Mananger</item>
+        <item>Register of Accident and Dangerous Occurence</item>
+        <item>Register of Child Workers</item>
+        <item>Notice Period for Child Workers</item>
+        <item>Notice Period for Adult Workers</item>
+        <item>Register of Trained Adult Workers</item>
+        <item>Muster Roll</item>
+        <item>Half yearly Retuns</item>
+        <item>Register of Leave with Wages</item>
+        <item>Register of Compensatory Holidays</item>
+        <item>Register of Adult Workers</item>
+        <item>Annual Return</item>
+        <item>Health Register</item>
+    </string-array>
+    <array name="Delhi">
+        <item>@array/DelhiLaws</item>
+        <item>@array/DelhiLawsImage</item>
+        <item>@array/Delhiforms</item>
+    </array>
+    <string-array name="GujaratLaws">
+        <item>Factories Act</item>
+    </string-array>
+    <array name="Gujaratimage">
+        <item>@drawable/back_law3</item>
+    </array>
+    <string-array name="Gujaratform">
+        <item>Register of Compensatory Holidays</item>
+        <item>Register of Adult Workers</item>
+        <item>Notice Period of Work for Child</item>
+        <item>Register of Child Workers</item>
+        <item>Register of Leave with Wages</item>
+        <item>Notice of Change of Manager</item>
+        <item>Record of Lime washing etc</item>
+    </string-array>
+    <array name="Gujarat">
+        <item>@array/GujaratLaws</item>
+        <item>@array/Gujaratimage</item>
+        <item>@array/Gujaratform</item>
+    </array>
+    <string-array name="HaryanaLaws">
+        <item>Factories Rules</item>
+    </string-array>
+    <array name="HaryanaImage">
+        <item>@drawable/back_law2</item>
+    </array>
+    <string-array name="Haryanaform">
+        <item>Record of Lime Washing etc</item>
+        <item>Overtime Muster Roll for Exempted Worker</item>
+        <item>Notice of Period for Adult Workers</item>
+        <item>Register of Adult Workers</item>
+        <item>Notice of Period for Child Workers</item>
+        <item>Register of Child Workers</item>
+        <item>Register of Leave with Wages</item>
+        <item>Health Register</item>
+        <item>Annual Return</item>
+        <item>Half Yearly Return</item>
+        <item>Muster Roll</item>
+        <item>Register of Compensatory Holidays</item>
+    </string-array>
+    <array name="Haryana">
+        <item>@array/HaryanaLaws</item>
+        <item>@array/HaryanaImage</item>
+        <item>@array/Haryanaform</item>
+    </array>
+    <string-array name="Karnatakalaws">
+        <item>Citizen`s Charter</item>
+        <item>Factories Act</item>
+        <item>No Fees for Licence</item>
+        <item>Factories Rules</item>
+    </string-array>
+    <array name="Karnatakaimage">
+        <item>@drawable/back_law3</item>
+        <item>@drawable/back_law4</item>
+        <item>@drawable/back_law5</item>
+        <item>@drawable/back_law6</item>
+    </array>
+    <string-array name="Karnatakaform">
+        <item>Register of Accidents and Dangerous Occurence</item>
+        <item>Register of Adult workers</item>
+        <item>Register of Leave with Wages</item>
+        <item>Muster Roll</item>
+        <item>Register of Overtime and Payment</item>
+        <item>Leave Book</item>
+        <item>Annual Return</item>
+        <item>Health Register</item>
+        <item>Factory Licence Renewal</item>
+    </string-array>
+    <array name="Karnataka">
+        <item>@array/Karnatakalaws</item>
+        <item>@array/Karnatakaimage</item>
+        <item>@array/Karnatakaform</item>
+    </array>
+    <string-array name="Keralalaws">
+        <item>Factories Rules</item>
+    </string-array>
+    <array name="Keralaimage">
+        <item>@drawable/back_law7</item>
+    </array>
+    <string-array name="Keralaform">
+    </string-array>
+    <array name="Kerala">
+        <item>@array/Keralalaws</item>
+        <item>@array/Keralaimage</item>
+        <item>@array/Keralaform</item>
+    </array>
+    <string-array name="Maharashtralaws">
+        <item>Factories Act</item>
+        <item>Labour Welfare Fund Act</item>
+    </string-array>
+    <array name="Maharashtraimage">
+        <item>@drawable/back_law1</item>
+        <item>@drawable/back_law2</item>
+    </array>
+    <string-array name="Maharashtraform">
+        <item>Labour Welfare Board Cum Return</item>
+    </string-array>
+    <array name="Maharashtra">
+        <item>@array/Maharashtralaws</item>
+        <item>@array/Maharashtraimage</item>
+        <item>@array/Maharashtraform</item>
+    </array>
+    <string-array name="Orrisalaws">
+        <item>Factories Rules</item>
+        <item>Holidays Act</item>
+    </string-array>
+    <array name="Orrisaimage">
+        <item>@drawable/back_law3</item>
+        <item>@drawable/back_law4</item>
+    </array>
+    <string-array name="Orrisaform">
+    </string-array>
+    <array name="Orrisa">
+        <item>@array/Orrisalaws</item>
+        <item>@array/Orrisaimage</item>
+        <item>@array/Orrisaform</item>
+    </array>
+    <string-array name="Punjablaws">
+        <item>Factories Rules</item>
+    </string-array>
+    <array name="Punjabimage">
+        <item>@drawable/back_law5</item>
+    </array>
+    <string-array name="Punjabform">
+        <item>Muster Roll</item>
+        <item>Overtime Muster Roll for Exempted Worker</item>
+        <item>Annual Returns</item>
+        <item>Half Yearly Returns</item>
+        <item>Register of Adult Workers</item>
+        <item>Register of Child Workers</item>
+        <item>Register of Compensatory Holidays</item>
+        <item>Notice Period for Adult Workers</item>
+        <item>Notice Period for Child Workers</item>
+        <item>Register of Leave with Wages</item>
+        <item>Health Register</item>
+        <item>Record of Limewashing etc</item>
+    </string-array>
+    <array name="Punjab">
+        <item>@array/Punjablaws</item>
+        <item>@array/Punjabimage</item>
+        <item>@array/Punjabform</item>
+    </array>
+    <string-array name="TamilNadulaws">
+        <item>Factories Act</item>
+        <item>Factories Rules</item>
+    </string-array>
+    <array name="TamilNaduimage">
+        <item>@drawable/back_law6</item>
+        <item>@drawable/back_law7</item>
+    </array>
+    <string-array name="TamilNaduform">
+    </string-array>
+    <array name="TamilNadu">
+        <item>@array/TamilNadulaws</item>
+        <item>@array/TamilNaduimage</item>
+        <item>@array/TamilNaduform</item>
+    </array>
+    <string-array name="Telanganalaws">
+        <item>Factories Rules</item>
+    </string-array>
+    <array name="TelanganaImage">
+        <item>@drawable/back_law6</item>
+    </array>
+    <string-array name="Telanganaform">
+        <item>Register of Child Workers</item>
+        <item>Notice of Change of Manager</item>
+        <item>Annual Return</item>
+        <item>Factories Act Form</item>
+        <item>Factories Rules and Forms</item>
+        <item>Certificate of Fitness</item>
+    </string-array>
+    <array name="Telangana">
+        <item>@array/Telanganalaws</item>
+        <item>@array/TelanganaImage</item>
+        <item>@array/Telanganaform</item>
+    </array>
+    <string-array name="WestBengallaws">
+        <item>The Building and Other Workers Act</item>
+        <item>The Manufacture Strorage and Import Rules</item>
+        <item>Safety Officer Notification</item>
+        <item>Factories Rules</item>
+        <item>The Chemical Accidents Rules</item>
+    </string-array>
+    <array name="WestBengalimage">
+        <item>@drawable/back_law1</item>
+        <item>@drawable/back_law2</item>
+        <item>@drawable/back_law3</item>
+        <item>@drawable/back_law4</item>
+        <item>@drawable/back_law5</item>
+    </array>
+    <string-array name="WestBengalform">
 
+    </string-array>
+    <array name="WestBengal">
+        <item>@array/WestBengallaws</item>
+        <item>@array/WestBengalimage</item>
+        <item>@array/WestBengalform</item>
+    </array>
+    <array name="StatesLf">
+        <item>@array/AndhraPradesh</item>
+        <item>@array/Delhi</item>
+        <item>@array/Gujarat</item>
+        <item>@array/Haryana</item>
+        <item>@array/Karnataka</item>
+        <item>@array/Kerala</item>
+        <item>@array/Maharashtra</item>
+        <item>@array/Orrisa</item>
+        <item>@array/Punjab</item>
+        <item>@array/TamilNadu</item>
+        <item>@array/Telangana</item>
+        <item>@array/WestBengal</item>
+    </array>
 </resources>
