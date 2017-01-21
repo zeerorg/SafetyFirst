@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.vikas.dtu.safetyfirst2.BaseActivity;
@@ -99,6 +100,7 @@ public class NewPostActivity extends BaseActivity {
     private EditText mTitleField;
     private EditText mBodyField;
     private String mImageUri;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +120,8 @@ public class NewPostActivity extends BaseActivity {
 
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
 
 
         findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
@@ -169,6 +173,9 @@ public class NewPostActivity extends BaseActivity {
             return;
         }
 
+        findViewById(R.id.new_post).setVisibility(View.INVISIBLE);  // To make textbox invisible
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
+
         // [START single_value_read]
         final String userId = getUid();
         mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
@@ -192,6 +199,9 @@ public class NewPostActivity extends BaseActivity {
                         }
 
                         // Finish this Activity, back to the stream
+                        if (imagePath != null || pdfPath != null)  // Wait for image to upload
+                            return;
+
                         finish();
                         // [END_EXCLUDE]
                     }
@@ -238,6 +248,12 @@ public class NewPostActivity extends BaseActivity {
         mDatabase.updateChildren(childUpdates);
     }
     // [END write_fan_out]
+
+//    @Override
+//    public void finish() {
+//        super.finish();
+//        mProgressBar.setVisibility();
+//    }
 
     private void startAction() {
         final CharSequence[] items = {"Take Photo", "Choose From Gallery", "Cancel"};
