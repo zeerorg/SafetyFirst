@@ -17,14 +17,14 @@ import java.util.Collections;
  * Created by DHEERAJ on 21-12-2016.
  */
 
-public class LawsRecyclerViewAdapter extends RecyclerView.Adapter<LawsRecyclerViewAdapter.MyViewHolder> {
+public class LawsRecyclerViewAdapter extends RecyclerView.Adapter<LawsRecyclerViewAdapter.MyViewHolder>  {
     public interface OnItemClickListener{
-        void onItemClick(StateLawsRowInfo item);
+        void onItemClick(View v,int position);
     }
     LayoutInflater inflater;
     ArrayList<StateLawsRowInfo> rowInfos;
     private final OnItemClickListener listener;
-    LawsRecyclerViewAdapter(Context context, ArrayList<StateLawsRowInfo> rowInfos,OnItemClickListener listener){
+    public LawsRecyclerViewAdapter(Context context, ArrayList<StateLawsRowInfo> rowInfos, OnItemClickListener listener){
         inflater=LayoutInflater.from(context);
         this.rowInfos=rowInfos;
         this.listener=listener;
@@ -39,35 +39,36 @@ public class LawsRecyclerViewAdapter extends RecyclerView.Adapter<LawsRecyclerVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.bind(rowInfos.get(position),listener);
         StateLawsRowInfo rowInfo=rowInfos.get(position);
         holder.textView.setText(rowInfo.text);
-        holder.imageView.setBackgroundResource(rowInfo.backgroundid);
+        holder.imageView.setBackground(rowInfo.backgroundid);
     }
 
     @Override
     public int getItemCount() {
         return rowInfos.size();
     }
-    public void insert(int position,StateLawsRowInfo rowInfo){
+
+
+
+    public void insert(int position, StateLawsRowInfo rowInfo){
         rowInfos.add(position,rowInfo);
         notifyItemInserted(position);
     }
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView textView;
         ImageView imageView;
         public MyViewHolder(View itemView) {
             super(itemView);
             textView=(TextView)itemView.findViewById(R.id.centre_text);
             imageView=(ImageView) itemView.findViewById(R.id.back_Image);
+            itemView.setOnClickListener(this);
         }
-        public  void bind(final StateLawsRowInfo item, final OnItemClickListener listener){
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(item);
-                }
-            });
+
+
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(v,this.getLayoutPosition());
         }
     }
 }
