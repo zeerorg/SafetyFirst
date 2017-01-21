@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -47,15 +49,36 @@ public class OrrisaLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                 if (item.text == "Factories Rules") {
-                    downloadandShow(factoriesrules);
+                    if(Checkforpermission.CheckforPermissions(OrrisaLaws.this)){
+                        downloadandShow(factoriesrules);}
+                    else{
+                        Checkforpermission.requestpermission(OrrisaLaws.this,1);
+                    }
                 }else  if (item.text == "Holidays Act") {
-                    downloadandShow(holidaysact);
+                    if(Checkforpermission.CheckforPermissions(OrrisaLaws.this)){
+                        downloadandShow(holidaysact);}
+                    else{
+                        Checkforpermission.requestpermission(OrrisaLaws.this,2);
+                    }
                 }
             }
         });
         lawsrecycler.setAdapter(Adapter);
         lawsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(factoriesrules);
+            }else if(requestCode==2){
+                downloadandShow(holidaysact);
+            }
+        }
+    }
+
     private ArrayList<StateLawsRowInfo> filldata() {
         ArrayList<StateLawsRowInfo> temp=new ArrayList<>();
         temp.add(new StateLawsRowInfo("Factories Rules",R.drawable.back_law3));

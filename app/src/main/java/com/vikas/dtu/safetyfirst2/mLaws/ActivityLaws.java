@@ -1,7 +1,10 @@
 package com.vikas.dtu.safetyfirst2.mLaws;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,6 +14,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
@@ -53,6 +59,7 @@ import java.util.ArrayList;
 
 public class ActivityLaws extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_CODE =123 ;
     RecyclerView recyclerView;
     CardView c1,c2,c3;
     Uri path=null;
@@ -81,19 +88,31 @@ public class ActivityLaws extends AppCompatActivity {
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            downloadandShow(mineurl);
+                if(CheckforPermissions(ActivityLaws.this)){
+            downloadandShow(mineurl);}
+                else{
+                    requestpermission(ActivityLaws.this,1);
+                }
             }
         });
         c2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadandShow(factoryurl);
+                if(CheckforPermissions(ActivityLaws.this)){
+                    downloadandShow(factoryurl);}
+                else{
+                    requestpermission(ActivityLaws.this,2);
+                }
             }
         });
         c3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadandShow(dockworkerurl);
+                if(CheckforPermissions(ActivityLaws.this)){
+                    downloadandShow(dockworkerurl);}
+                else{
+                    requestpermission(ActivityLaws.this,3);
+                }
             }
         });
 
@@ -176,7 +195,55 @@ public class ActivityLaws extends AppCompatActivity {
         }
 
     }
+    public static boolean CheckforPermissions(Activity thisActivity) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(thisActivity,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else{
+            return true;
+    }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    downloadandShow(mineurl);
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                }
+                return;
+            }
+            case 2:{
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    downloadandShow(factoryurl);
+
+                }
+                return;
+            }
+            case 3:{
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    downloadandShow(dockworkerurl);
+                }
+                return;
+            }
+        }
+    }
+
     void downloadAndOpenPDF(final String url) {
+
         new Thread(new Runnable() {
             public void run() {
                 File file=null;
@@ -213,6 +280,34 @@ public class ActivityLaws extends AppCompatActivity {
 
         }).start();
     }
+
+    public static void requestpermission(Activity thisActivity, int MY_PERMISSIONS_REQUEST_READ_CONTACTS) {
+        // Here, thisActivity is the current activity
+
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                ActivityCompat.requestPermissions(thisActivity,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            }
+              else  {
+
+                    // No explanation needed, we can request the permission.
+                    ActivityCompat.requestPermissions(thisActivity,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                    // app-defined int constant. The callback method gets the
+                    // result of the request.
+                }
+            }
+
+
 
     File downloadFile(String dwnload_file_path) {
         File file = null;

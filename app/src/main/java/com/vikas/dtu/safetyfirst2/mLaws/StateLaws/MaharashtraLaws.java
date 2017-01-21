@@ -1,10 +1,12 @@
 package com.vikas.dtu.safetyfirst2.mLaws.StateLaws;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -51,9 +53,17 @@ public class MaharashtraLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                     if(item.text=="Factories Act"){
-                        downloadandShow(factoriesact);
+                        if(Checkforpermission.CheckforPermissions(MaharashtraLaws.this)){
+                        downloadandShow(factoriesact);}
+                        else{
+                            Checkforpermission.requestpermission(MaharashtraLaws.this,1);
+                        }
                     }else  if(item.text=="Labour Welfare Fund Act"){
-                        downloadandShow(labourwelfarefundact);
+                        if(Checkforpermission.CheckforPermissions(MaharashtraLaws.this)){
+                            downloadandShow(labourwelfarefundact);}
+                        else{
+                            Checkforpermission.requestpermission(MaharashtraLaws.this,2);
+                        }
                     }
             }
         });
@@ -63,13 +73,32 @@ public class MaharashtraLaws extends AppCompatActivity {
             @Override
             public void onItemClick(StateLawsRowInfo item) {
                         if(item.text=="Labour Welfare Board Cum Return"){
-                            downloadandShowdoc(cumreturn);
+                            if(Checkforpermission.CheckforPermissions(MaharashtraLaws.this)){
+                                downloadandShowdoc(cumreturn);}
+                            else{
+                                Checkforpermission.requestpermission(MaharashtraLaws.this,3);
+                            }
                         }
             }
         });
         formsrecycler.setAdapter(Adapter1);
         formsrecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode==1){
+                downloadandShow(factoriesact);
+            }else  if(requestCode==2){
+                downloadandShow(labourwelfarefundact);
+            }else  if(requestCode==3){
+                downloadandShowdoc(cumreturn);
+            }
+        }
+    }
+
     private ArrayList<StateLawsRowInfo> fillLawsData() {
         ArrayList<StateLawsRowInfo> temp=new ArrayList<>();
 

@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.vikas.dtu.safetyfirst2.R;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class KnowItThird extends AppCompatActivity {
 
@@ -82,11 +84,11 @@ class ThirdCards{
 class ThirdCustAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<ThirdCards> list;
+    List<ThirdCards> list;
 
     ThirdCustAdapter(Context c, int position){
         context = c;
-        list = new ArrayList<ThirdCards>();
+        list = new LinkedList<>();
 
         Resources res = c.getResources();
         TypedArray titleArray = res.obtainTypedArray(R.array.third_title);
