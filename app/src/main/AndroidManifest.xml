@@ -69,13 +69,13 @@
         <activity
             android:name=".FeedBackActivity"
             android:label="FeedBack"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mNewsActivity.NewsDetailActivity"
@@ -89,36 +89,36 @@
         <activity
             android:name=".mNewsActivity.NewsActivity"
             android:label="@string/titleNewsActivity"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mLaws.ActivityLaws"
             android:label="Laws"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mDiscussion.DiscussionActivity"
             android:label="@string/titleDiscussionActivity"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mDiscussion.NewPostActivity"
@@ -159,13 +159,13 @@
         <activity
             android:name=".mUser.UpdateProfile"
             android:label="Update Profile"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mWebview.WebViewActivity"
@@ -181,7 +181,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DashboardActivity"
+            android:name=".DynamicDashboardNav"
             android:label="Safety First"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -197,39 +197,39 @@
         <activity
             android:name=".TermsnCondition"
             android:label="Terms and Conditions"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+            android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
 
         <activity
             android:name=".Help"
             android:label="Help"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".FaqActivity"
             android:label="FAQs"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mKnowIt.KnowItMain"
             android:label="Know It"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".DynamicDashboardNav"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.DashboardActivity" />
+                android:value="com.vikas.dtu.safetyfirst2.DynamicDashboardNav" />
         </activity>
         <activity
             android:name=".mKnowIt.KnowItSecond"
@@ -258,16 +258,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst2.mKnowIt.KnowItThird" />
         </activity>
-        <activity android:name=".mLaws.StateLaws.StateLawsActivity"
+        <activity
+            android:name=".mLaws.StateLaws.StateLawsActivity"
             android:label="StateLawsActivity"
             android:parentActivityName=".mLaws.ActivityLaws"
             android:screenOrientation="portrait">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
-
         </activity>
+
     </application>
 
 </manifest>

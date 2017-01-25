@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.DashboardActivity;
+import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.TermsnCondition;
 import com.vikas.dtu.safetyfirst2.mData.User;
@@ -305,7 +306,7 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail(), user.getPhotoUrl()!= null ?user.getPhotoUrl().toString():null);
         // Go to DashboardnActivity
-        startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
+        startActivity(new Intent(SignInActivity.this, DynamicDashboardNav.class));
         finish();
         DialogUtils.dismissProgressDialog();
     }

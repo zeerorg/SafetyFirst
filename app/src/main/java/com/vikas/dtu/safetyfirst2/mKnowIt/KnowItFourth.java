@@ -609,8 +609,10 @@ public class KnowItFourth extends AppCompatActivity {
 
         //Ladders :
         all[5][0] = "https://www.youtube.com/embed/tcsdVup8NzA";
-        all[5][1] = "https://www.youtube.com/embed/sWuOBu3GjHw&feature=youtu.be";
-        all[5][2] = "https://www.youtube.com/embed/sWuOBu3GjHw&feature=youtu.be";
+        //all[5][1] = "https://www.youtube.com/embed/sWuOBu3GjHw&feature=youtu.be";
+        all[5][1] = "https://www.youtube.com/watch?v=sWuOBu3GjHw";
+       // all[5][2] = "https://www.youtube.com/embed/sWuOBu3GjHw&feature=youtu.be";
+        all[5][2] = "https://www.youtube.com/embed/jNggabGSvvs";
         all[5][3] = "no";
         all[5][4] = "https://www.youtube.com/embed/isv6O-FIj8c";
         all[5][5] = "https://www.youtube.com/embed/3g-Kwc7qMaY";
@@ -626,11 +628,12 @@ public class KnowItFourth extends AppCompatActivity {
         //Scaffolds:
         all[7][0] = "no";
         all[7][1] = "no";
-        all[7][2] = "https://www.youtube.com/embed/veF4uSUtrEY&t=41s&list=PLXrxTqXRekj2tkWIWUwVTsp18ydbhG5Lb&index=1";
+        //all[7][2] = "https://www.youtube.com/embed/veF4uSUtrEY&t=41s&list=PLXrxTqXRekj2tkWIWUwVTsp18ydbhG5Lb&index=1";
+        all[7][2] = "https://www.youtube.com/embed/56NZrk183BI";
         all[7][3] = "https://www.youtube.com/embed/56NZrk183BI";
-        all[7][4] = "https://www.youtube.com/embed/-8hukCYUo3U"; //5
-        all[7][5] = "https://www.youtube.com/embed/-8hukCYUo3U";
-        all[7][6] = "https://www.youtube.com/embed/-8hukCYUo3U";
+        all[7][4] = "no"; //5
+        all[7][5] = "no";
+        all[7][6] = "no";
         all[7][7] = "https://www.youtube.com/embed/Hx9i3L2eDzs";
         all[7][8] = "https://www.youtube.com/embed/Hx9i3L2eDzs";
         all[7][9] = all[7][8]; //10

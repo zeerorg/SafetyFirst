@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.DashboardActivity;
+import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.TermsnCondition;
 import com.vikas.dtu.safetyfirst2.mData.User;
@@ -163,7 +164,7 @@ public class SignUpActivity extends BaseActivity implements GoogleApiClient.OnCo
         writeNewUser(user.getUid(), username, user.getEmail(), user.getPhotoUrl()!= null ?user.getPhotoUrl().toString():null);
 
         // Go to DashboardActivity
-        startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
+        startActivity(new Intent(SignUpActivity.this, DynamicDashboardNav.class));
         finish();
     }
 

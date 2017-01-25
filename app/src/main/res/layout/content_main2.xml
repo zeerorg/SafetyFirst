@@ -13,9 +13,12 @@
                 android:layout_weight="0.8"
                 >
                 <ImageView
+                    android:paddingTop="60dp"
+                    android:id="@+id/dash_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="30dp"
+                    android:onClick="onImageClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/welder"
 
