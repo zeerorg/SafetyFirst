@@ -5,6 +5,7 @@
     android:fadeScrollbars="false"
     android:scrollbarThumbVertical="@drawable/custom_scrollbar"
     android:scrollbarSize="3dp"
+    android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:layout_width="match_parent"

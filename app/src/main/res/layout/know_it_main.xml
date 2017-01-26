@@ -8,6 +8,7 @@
     android:paddingTop="1dp"
     android:paddingLeft="1dp"
     android:paddingRight="1dp"
+    android:background="@color/background"
     tools:context="com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain">
     <ListView
         android:layout_width="match_parent"
