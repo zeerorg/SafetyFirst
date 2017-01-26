@@ -22,8 +22,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.fragment.RecentNewsFragment;
@@ -37,6 +41,7 @@ public class NewsActivity extends BaseActivity {
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
     private ProgressBar mProgressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,8 @@ public class NewsActivity extends BaseActivity {
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         }
 
 }
@@ -88,5 +95,6 @@ public class NewsActivity extends BaseActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
 
 }

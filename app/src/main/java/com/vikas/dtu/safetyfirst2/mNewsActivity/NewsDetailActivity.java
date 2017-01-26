@@ -34,6 +34,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     private TextView mBodyView;
     private TextView mReadMore;
     private ImageView mNewsImage;
+
     private String url;
     private String HEADLINE;
 
@@ -67,6 +68,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
         mBodyView = (TextView) findViewById(R.id.post_body);
         mReadMore = (TextView) findViewById(R.id.readMore);
         mNewsImage = (ImageView) findViewById(R.id.news_photo);
+
         findViewById(R.id.share_news).setOnClickListener(this);
 
     mReadMore.setOnClickListener(this);
@@ -94,7 +96,7 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
                     PicassoClient.downloadImage(getApplicationContext(), news.imgUrl, mNewsImage);
                     mNewsImage.setVisibility(View.VISIBLE);
                 }
-                // [END_EXCLUDE]
+
             }
 
             @Override
@@ -147,4 +149,5 @@ public class NewsDetailActivity extends BaseActivity implements View.OnClickList
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
     }
+
 }

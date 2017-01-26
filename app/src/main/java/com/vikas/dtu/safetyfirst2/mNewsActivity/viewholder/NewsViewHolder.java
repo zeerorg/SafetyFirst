@@ -14,9 +14,6 @@ import com.vikas.dtu.safetyfirst2.mPicasso.PicassoClient;
 public class NewsViewHolder extends RecyclerView.ViewHolder {
 
     public TextView titleView;
-    public TextView authorView;
-    public ImageView bookmark;
-    public ImageView share;
     public TextView bodyView;
     public ImageView mNewsImage;
 
@@ -25,18 +22,17 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
 
         titleView = (TextView) itemView.findViewById(R.id.post_title);
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
-      //  bookmark = (ImageView) itemView.findViewById(R.id.bookmark);
-     //   share = (ImageView) itemView.findViewById(R.id.share);
+
+
         mNewsImage = (ImageView) itemView.findViewById(R.id.card_image);
 
     }
 
     public void bindToNews(News news,
-                           //View.OnClickListener starClickListener, View.OnClickListener shareClickListener,
+                          // View.OnClickListener starClickListener, View.OnClickListener shareClickListener,
                             Context c) {
         titleView.setText(news.title);
         bodyView.setText(news.body);
-      //  bookmark.setOnClickListener(starClickListener);
 //        share.setOnClickListener(shareClickListener);
         if(news.imgUrl!=null){
             PicassoClient.downloadImage(c, news.imgUrl, mNewsImage);

@@ -8,9 +8,10 @@
     
     <ImageView
         android:id="@+id/card_image"
-        android:layout_height="@dimen/card_image_height"
+        android:layout_height="180dp"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
+
         android:src="@drawable/placeholder"/>
 
     <TextView
@@ -41,6 +42,7 @@
         android:textColor="@color/dark_blue"
         android:layout_below="@+id/line"
         android:layout_alignParentRight="true"/>
+
 
     <RelativeLayout
         android:id="@+id/headline"
