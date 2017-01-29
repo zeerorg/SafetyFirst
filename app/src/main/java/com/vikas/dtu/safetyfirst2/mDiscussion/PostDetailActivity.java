@@ -67,7 +67,7 @@ import io.realm.Realm;
 
 public class PostDetailActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "NewsDetailActivity";
+    private static final String TAG = "PostDetailActivity";
 
     public static final String EXTRA_POST_KEY = "post_key";
 

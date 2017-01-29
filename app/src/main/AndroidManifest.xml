@@ -269,7 +269,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws" />
         </activity>
-
+        <activity
+            android:name=".mUser.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

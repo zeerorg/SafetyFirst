@@ -52,6 +52,7 @@ import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
+import com.vikas.dtu.safetyfirst2.mUser.UserProfileActivity;
 
 import java.util.HashMap;
 
@@ -72,7 +73,7 @@ public class DynamicDashboardNav extends BaseActivity
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     HashMap<String,String> url_maps = new HashMap<String, String>();
 
-    private static final String TAG = DashboardActivity.class.getSimpleName();
+    private static final String TAG = DynamicDashboardNav.class.getSimpleName();
     private static final int REQUEST_INVITE = 0;
     TextView Username;
     private FirebaseAuth mFirebaseAuth;
@@ -224,37 +225,15 @@ public class DynamicDashboardNav extends BaseActivity
         }
     }
 
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.dynamic_dashboard_nav, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
  @SuppressWarnings("StatementWithEmptyBody")
  @Override
  public boolean onNavigationItemSelected(MenuItem item) {
      // Handle navigation view item clicks here.
      int id = item.getItemId();
 
-     // if (id == R.id.nav_update_profile) {
-     //     startActivity(new Intent(DashboardActivity.this, UpdateProfile.class));
-     // } else
+      if (id == R.id.user) {
+          startActivity(new Intent(DynamicDashboardNav.this, UserProfileActivity.class));
+      } else
      if (id == R.id.nav_faq) {
          startActivity(new Intent(DynamicDashboardNav.this, FaqActivity.class));
      }

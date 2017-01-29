@@ -3,34 +3,34 @@
 <defaultsMap>
     <entry>
         <key>image1</key>
-        <value>Hannibal</value>
+        <value>HSE conference</value>
     </entry>
     <entry>
         <key>image2</key>
-        <value>Big Bang Theory</value>
+        <value>Site Safety</value>
     </entry>
     <entry>
         <key>image3</key>
-        <value>House of Cards</value>
+        <value>Fire Extinguisher Chart</value>
     </entry>
     <entry>
         <key>image4</key>
-        <value>Game of Thrones</value>
+        <value>Oil and gas</value>
     </entry>
     <entry>
         <key>image1_url</key>
-        <value>http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg</value>
+        <value>R.drawable.welder</value>
     </entry>
     <entry>
         <key>image2_url</key>
-        <value>http://tvfiles.alphacoders.com/100/hdclearart-10.png</value>
+        <value>R.drawable.second</value>
     </entry>
     <entry>
         <key>image3_url</key>
-        <value>http://cdn3.nflximg.net/images/3093/2043093.jpg</value>
+        <value>R.drawable.third</value>
     </entry><entry>
     <key>image4_url</key>
-    <value>http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg</value>
+    <value>R.drawable.fourth</value>
 </entry>
 
 </defaultsMap>

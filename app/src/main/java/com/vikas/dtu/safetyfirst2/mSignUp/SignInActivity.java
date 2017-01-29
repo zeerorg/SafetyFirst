@@ -31,7 +31,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
-import com.vikas.dtu.safetyfirst2.DashboardActivity;
+import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.TermsnCondition;

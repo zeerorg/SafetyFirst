@@ -30,6 +30,11 @@
             android:title="Terms and Conditions"/>
 
         <item
+            android:id="@+id/user"
+            android:icon="@drawable/ic_description_white_24dp"
+            android:title="User Profile"/>
+
+        <item
          android:id="@+id/log_out"
          android:icon="@drawable/ic_input_white_24dp"
          android:title="Log out"/>

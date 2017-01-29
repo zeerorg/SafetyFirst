@@ -22,7 +22,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
-import com.vikas.dtu.safetyfirst2.DashboardActivity;
 import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.TermsnCondition;

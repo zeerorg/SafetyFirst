@@ -392,6 +392,7 @@ To advertise to, or so, any user to buy or sell any products or services, orb us
 
     </string>
     <string name="title_activity_dynamic_dashboard_nav">DynamicDashboardNav</string>
+    <string name="title_activity_user_profile">UserProfileActivity</string>
 
 
 </resources>

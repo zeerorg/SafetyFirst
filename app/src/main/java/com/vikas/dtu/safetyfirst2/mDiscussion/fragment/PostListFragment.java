@@ -102,7 +102,7 @@ public abstract class PostListFragment extends Fragment {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
                 }
 
-                //Set Author Photo
+                //Set User Photo
                 if (model.getPhotoUrl() == null) {
                     viewHolder.authorImage.setImageDrawable(ContextCompat.getDrawable(getContext(),
                             R.drawable.ic_action_account_circle_40));
