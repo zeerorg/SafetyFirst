@@ -59,44 +59,59 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="20dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:src="@drawable/ic_action_account_circle_40"
-                    android:id="@+id/user_detail_photo"
-                    android:layout_width="@dimen/user_detail_photo_size"
-                    android:layout_height="@dimen/user_detail_photo_size" />
+                <RelativeLayout
+                    android:id="@+id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/user_designation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/UserStatsTextStyle"
+                    android:text="Designation"
+                    android:layout_alignParentTop="true" />
+                <TextView
+                    android:id="@+id/user_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/UserStatsTextStyle"
+                    android:text="Company"
+                    android:layout_centerVertical="true"
+                    android:layout_below="@id/user_designation"/>
+                <TextView
+                    android:id="@+id/user_qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/UserStatsTextStyle"
+                    android:layout_alignParentBottom="true"
+                    android:text="Qualification"
+                    android:layout_below="@id/user_company"/>
+                </RelativeLayout>
                 <View android:id="@+id/separator"
                     android:background="@color/user_detail_separator"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:layout_width = "1dp"
                     android:layout_height="@dimen/user_detail_photo_size"
-                    android:layout_toRightOf="@id/user_detail_photo" />
+                    android:layout_toRightOf="@id/info" />
                 <TextView
-                    android:id="@+id/user_num_followers"
+                    android:id="@+id/user_num_questions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/UserStatsTextStyle"
-                    android:text="0 followers"
+                    android:text="0 Questions"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@id/separator" />
                 <TextView
-                    android:id="@+id/user_num_following"
+                    android:id="@+id/user_num_answers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/UserStatsTextStyle"
-                    android:text="0 following"
+                    android:text="0 Answers"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/separator"
                     android:layout_below="@id/user_num_followers"/>
-                <TextView
-                    android:id="@+id/user_num_likes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/UserStatsTextStyle"
-                    android:layout_alignParentBottom="true"
-                    android:text="0 likes"
-                    android:layout_toRightOf="@id/separator"
-                    android:layout_below="@id/user_num_following"/>
+
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"

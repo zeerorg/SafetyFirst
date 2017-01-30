@@ -43,6 +43,7 @@ public class Post {
         return authorImageUrl;
     }
     public String getImage() {return image;}
+    public String getPostAuthorUID() {return uid;}
 
     // [START post_to_map]
     @Exclude

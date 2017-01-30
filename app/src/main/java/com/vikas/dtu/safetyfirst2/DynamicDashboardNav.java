@@ -52,6 +52,7 @@ import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
+import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
 import com.vikas.dtu.safetyfirst2.mUser.UserProfileActivity;
 
 import java.util.HashMap;
@@ -236,6 +237,10 @@ public class DynamicDashboardNav extends BaseActivity
       } else
      if (id == R.id.nav_faq) {
          startActivity(new Intent(DynamicDashboardNav.this, FaqActivity.class));
+     }
+     else
+     if (id == R.id.update_prof) {
+         startActivity(new Intent(DynamicDashboardNav.this, UpdateProfile.class));
      }
      else if (id == R.id.nav_feedback)
      {

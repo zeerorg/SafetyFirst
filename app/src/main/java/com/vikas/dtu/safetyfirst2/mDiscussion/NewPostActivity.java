@@ -188,7 +188,7 @@ public class NewPostActivity extends BaseActivity {
                         } else {
                             // Write new post
                             mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(key);
-                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.userImage, downloadVideoURL, downloadPdfURL, attachLink);
+                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.photoUrl, downloadVideoURL, downloadPdfURL, attachLink);
                         }
 
                         // Finish this Activity, back to the stream

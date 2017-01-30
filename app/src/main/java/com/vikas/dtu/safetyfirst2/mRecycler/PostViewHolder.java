@@ -33,7 +33,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         postImage = (ImageView) itemView.findViewById(R.id.post_image);
     }
 
-    public void bindToPost(Post post, View.OnClickListener starClickListener) {
+    public void bindToPost(Post post, View.OnClickListener starClickListener, View.OnClickListener authorClickListener) {
         titleView.setText(post.title);
         authorView.setText(post.author);
         numStarsView.setText(String.valueOf(post.starCount));
@@ -41,5 +41,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         bodyView.setMaxLines(6);
         bodyView.setEllipsize(TextUtils.TruncateAt.END);
         starView.setOnClickListener(starClickListener);
+        authorView.setOnClickListener(authorClickListener);
+        authorImage.setOnClickListener(authorClickListener);
     }
 }

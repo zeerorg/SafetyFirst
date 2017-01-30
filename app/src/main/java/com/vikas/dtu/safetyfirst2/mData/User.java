@@ -10,7 +10,7 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class User {
 
-    public String userImage;
+    public String photoUrl;
     public String username;
     public String email;
     public int questions_asked;
@@ -31,11 +31,11 @@ public class User {
     public User(String username, String email, String userImage) {
         this.username = username;
         this.email = email;
-        this.userImage = userImage;
+        this.photoUrl = userImage;
     }
 
     public String getPhotoUrl() {
-        return userImage;
+        return photoUrl;
     }
 
     public String getFull_name() {
@@ -44,6 +44,11 @@ public class User {
 
     public String getCompany(){ return company;}
 
+    public int getAnswersGiven() { return answers_given;}
+
+    public String getEmail() { return email; }
+
+    public int getQuestionsAsked() { return questions_asked;}
     public String getCity() {
         return city;
     }

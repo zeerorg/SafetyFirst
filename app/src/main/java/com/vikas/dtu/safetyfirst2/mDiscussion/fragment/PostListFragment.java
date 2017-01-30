@@ -26,6 +26,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
+import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
+import com.vikas.dtu.safetyfirst2.mUser.UserProfileActivity;
+
+import static com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil.getCurrentUserId;
 
 public abstract class PostListFragment extends Fragment {
 
@@ -132,6 +136,15 @@ public abstract class PostListFragment extends Fragment {
                         // Run two transactions
                         onStarClicked(globalPostRef);
                         onStarClicked(userPostRef);
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View authorView) {
+                        Intent userDetailIntent = new Intent(getContext(), UserProfileActivity.class);
+                        userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
+                                model.getPostAuthorUID());
+                        startActivity(userDetailIntent);
+
                     }
                 });
             }

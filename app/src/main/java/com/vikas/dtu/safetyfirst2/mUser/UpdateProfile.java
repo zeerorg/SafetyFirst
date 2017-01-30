@@ -56,6 +56,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil.getCurrentUserId;
+
 public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
     FirebaseUser user;
     Uri Imagepath=null;
@@ -255,7 +257,12 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
 
         useRef.updateChildren(childUpdates);
 
-        Toast.makeText(this, getUid(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
+
+        Intent userDetailIntent = new Intent(UpdateProfile.this, UserProfileActivity.class);
+        userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
+                getCurrentUserId());
+        startActivity(userDetailIntent);
 
     }
 
@@ -281,7 +288,7 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
                     profilephotoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            useRef.child("userImage").setValue(uri.toString());
+                            useRef.child("photoUrl").setValue(uri.toString());
                         }
                     })   .addOnFailureListener(new OnFailureListener() {
                         @Override
