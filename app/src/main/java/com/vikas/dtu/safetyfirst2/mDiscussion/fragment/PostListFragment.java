@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.vikas.dtu.safetyfirst2.R;
@@ -143,6 +144,7 @@ public abstract class PostListFragment extends Fragment {
                         Intent userDetailIntent = new Intent(getContext(), UserProfileActivity.class);
                         userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
                                 model.getPostAuthorUID());
+
                         startActivity(userDetailIntent);
 
                     }

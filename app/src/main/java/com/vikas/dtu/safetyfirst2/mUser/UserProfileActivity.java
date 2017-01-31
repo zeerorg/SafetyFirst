@@ -157,14 +157,14 @@ public class UserProfileActivity extends BaseActivity {
         Intent intent = getIntent();
         mUserId = intent.getStringExtra(USER_ID_EXTRA_NAME);
 
-
+       // Toast.makeText(this,  mUserId, Toast.LENGTH_SHORT).show();
          collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
         mPeopleRef = FirebaseUtil.getPeopleRef();
 
         useRef = FirebaseDatabase.getInstance().getReference()
-                .child("users").child(getUid());
+                .child("users").child( mUserId);
 
         final String currentUserId = getCurrentUserId();
 

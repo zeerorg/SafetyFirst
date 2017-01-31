@@ -7,8 +7,11 @@ import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vikas.dtu.safetyfirst2.mData.Feedback;
@@ -39,25 +42,19 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
 
     private EditText mTitleField;
     private EditText mBodyField;
-    private ImageView mVeryGood;
-    private ImageView mGood;
-    private ImageView mSatisfactory;
-    private ImageView mBad;
-    private ImageView mStars;
-    private ImageView mSubmit;
 
-    String title = "nothing";
+    private Button mSubmit;
 
-    boolean very_good = false;
-    boolean good = false;
-    boolean satisfactory = false;
-    boolean bad = false;
 
+    private RatingBar ratingBar;
+    private TextView txtRatingValue;
+    private String stars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+
         ActionBar ab = getSupportActionBar();
 
         // Enable the Up round_blue_dark
@@ -67,21 +64,26 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
         mDatabase = FirebaseDatabase.getInstance().getReference();
      //   storage = FirebaseStorage.getInstance();
         // [END initialize_database_ref]
-
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        txtRatingValue = (TextView) findViewById(R.id.txtRatingValue);
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
-        mVeryGood = (ImageView) findViewById(R.id.very_good);
-        mGood = (ImageView) findViewById(R.id.good);
-        mSatisfactory = (ImageView) findViewById(R.id.satisfactory);
-        mBad = (ImageView) findViewById(R.id.bad);
-        mSubmit = (ImageView) findViewById(R.id.submit);
-        mStars = (ImageView) findViewById(R.id.stars);
-        mVeryGood.setOnClickListener(this);
-        mGood.setOnClickListener(this);
-        mSatisfactory.setOnClickListener(this);
-        mBad.setOnClickListener(this);
+
+        mSubmit = (Button) findViewById(R.id.submit);
+
+
        mSubmit.setOnClickListener(this);
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        stars =  String.valueOf(ratingBar.getNumStars());
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+stars = String.valueOf(rating);
+                txtRatingValue.setText(stars + " Stars");
+
+            }
+        });
     }
 
     private void submitPost() {
@@ -113,7 +115,7 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username, title, body);
+                            writeNewPost(userId, user.username, stars + " Stars", body);
                         }
 
                         // Finish this Activity, back to the stream
@@ -194,70 +196,8 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
             case R.id.submit:
                 submitPost();
                 break;
-            case R.id.very_good:
-                very_good = !very_good;
-                good = false;
-                satisfactory = false;
-                bad = false;
-                setView();
-                break;
-
-            case R.id.good:
-                very_good = false;
-                good = !good;
-                satisfactory = false;
-                bad = false;
-                setView();
-
-                break;
-            case R.id.satisfactory:
-                very_good = false;
-                good = false;
-                satisfactory = !satisfactory;
-                bad = false;
-                setView();
-                break;
-            case R.id.bad:
-                very_good = false;
-                good = false;
-                satisfactory = false;
-                bad = !bad;
-                setView();
-
-                break;
         }
 
     }
 
-    private void setView() {
-        if(very_good){
-            title="Very Good";
-            mVeryGood.setImageResource(R.drawable.pressed_very_good);
-            mGood.setImageResource(R.drawable.good);
-            mSatisfactory.setImageResource(R.drawable.satisfactory);
-            mBad.setImageResource(R.drawable.bad);
-            mStars.setImageResource(R.drawable.stars4);
-
-        }
-        if(good){
-            title="Good";
-            mVeryGood.setImageResource(R.drawable.very_good);
-            mGood.setImageResource(R.drawable.good_pressed);
-            mSatisfactory.setImageResource(R.drawable.satisfactory);
-            mBad.setImageResource(R.drawable.bad);
-            mStars.setImageResource(R.drawable.stars3);}
-        if(satisfactory){
-            title="Satisfactory";
-            mVeryGood.setImageResource(R.drawable.very_good);
-            mGood.setImageResource(R.drawable.good);
-            mSatisfactory.setImageResource(R.drawable.satisfactory_pressed);
-            mBad.setImageResource(R.drawable.bad);
-            mStars.setImageResource(R.drawable.stars2);}
-        if(bad){title="Bad";
-            mVeryGood.setImageResource(R.drawable.very_good);
-            mGood.setImageResource(R.drawable.good);
-            mSatisfactory.setImageResource(R.drawable.satisfactory);
-            mBad.setImageResource(R.drawable.bad_pressed_r);
-            mStars.setImageResource(R.drawable.stars1);}
-    }
 }

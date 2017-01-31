@@ -172,8 +172,7 @@ public class DynamicDashboardNav extends BaseActivity
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(DynamicDashboardNav.this, "Fetch Succeeded",
-                                    Toast.LENGTH_SHORT).show();
+                   //         Toast.makeText(DynamicDashboardNav.this, "Fetch Succeeded", Toast.LENGTH_SHORT).show();
 
                             // Once the config is successfully fetched it must be activated before newly fetched
                             // values are returned.
@@ -232,15 +231,9 @@ public class DynamicDashboardNav extends BaseActivity
      // Handle navigation view item clicks here.
      int id = item.getItemId();
 
-      if (id == R.id.user) {
-          startActivity(new Intent(DynamicDashboardNav.this, UserProfileActivity.class));
-      } else
+
      if (id == R.id.nav_faq) {
          startActivity(new Intent(DynamicDashboardNav.this, FaqActivity.class));
-     }
-     else
-     if (id == R.id.update_prof) {
-         startActivity(new Intent(DynamicDashboardNav.this, UpdateProfile.class));
      }
      else if (id == R.id.nav_feedback)
      {

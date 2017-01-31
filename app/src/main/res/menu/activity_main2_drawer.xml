@@ -29,15 +29,6 @@
             android:icon="@drawable/ic_description_white_24dp"
             android:title="Terms and Conditions"/>
 
-        <item
-            android:id="@+id/user"
-            android:icon="@drawable/ic_description_white_24dp"
-            android:title="User Profile"/>
-
-        <item
-            android:id="@+id/update_prof"
-            android:icon="@drawable/ic_forum_white_24dp"
-            android:title="Update Profile"/>
 
         <item
          android:id="@+id/log_out"
