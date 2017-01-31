@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.vikas.dtu.safetyfirst2.FeedBackActivity"
-    android:weightSum="1">
+    android:background="@color/background"
+    android:paddingBottom="100dp"
+    tools:context="com.vikas.dtu.safetyfirst2.FeedBackActivity">
 
-<TextView
+    <TextView
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1"
     android:text="Rate Us"
     android:paddingTop="@dimen/md_keylines"
     android:paddingBottom="@dimen/md_keylines"
@@ -26,12 +23,14 @@
     <ImageView
         android:id="@+id/stars"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/stars0"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:paddingTop="@dimen/md_keylines"
@@ -43,27 +42,32 @@
     <ImageView
         android:id="@+id/very_good"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/very_good"/>
     <ImageView
         android:id="@+id/good"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/good"/>
     <ImageView
         android:id="@+id/satisfactory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/satisfactory"/>
     <ImageView
         android:id="@+id/bad"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/bad"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:paddingTop="@dimen/md_keylines"
         android:paddingBottom="@dimen/md_keylines"
@@ -76,6 +80,7 @@
         android:id="@+id/field_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -84,15 +89,15 @@
         android:textIsSelectable="true"
         android:maxLines="10"
         android:scrollHorizontally="false"
-        android:layout_weight="11.50" />
+        />
 
 
     <ImageView
         android:id="@+id/submit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/submit"/>
 
 
 </LinearLayout>
-</ScrollView>
