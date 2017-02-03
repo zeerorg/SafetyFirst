@@ -20,10 +20,14 @@
 
 # Add this global rule
 -keepattributes Signature
-
+-keep class com.squareup.okhttp.** { *; }
+-keep class com.squareup.** {*;}
+-dontwarn com.squareup.*
+-dontwarn org.w3c.dom.bootstrap.DOMImplementationRegistry
 # This rule will properly ProGuard all the model classes in
 # the package com.yourcompany.models. Modify to fit the structure
 # of your app.
 -keepclassmembers class com.yourcompany.models.** {
   *;
+
 }

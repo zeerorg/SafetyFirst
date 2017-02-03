@@ -41,7 +41,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         bodyView.setMaxLines(6);
         bodyView.setEllipsize(TextUtils.TruncateAt.END);
         starView.setOnClickListener(starClickListener);
-        authorView.setOnClickListener(authorClickListener);
-        authorImage.setOnClickListener(authorClickListener);
+     //   authorView.setOnClickListener(authorClickListener);
+      //  authorImage.setOnClickListener(authorClickListener);
     }
 }

@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/croptraining"
+            android:src="@drawable/screen4"
             android:layout_marginBottom="50dp"/>
 
         <TextView
