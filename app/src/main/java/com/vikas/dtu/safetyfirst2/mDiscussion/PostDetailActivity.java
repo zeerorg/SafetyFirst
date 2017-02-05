@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.commonsware.cwac.richtextutils.SpannableStringGenerator;
 import com.squareup.picasso.Picasso;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
@@ -52,6 +53,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.vikas.dtu.safetyfirst2.mWebview.WebViewActivity;
 import com.vikas.dtu.safetyfirst2.model.PostNotify;
 
+import org.xml.sax.SAXException;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -62,6 +65,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import io.realm.Realm;
 
@@ -80,7 +85,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             + "[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)";
 
     private DatabaseReference mPostReference, mPostAttachmentsReference, mUserPostReference;
-    private DatabaseReference mCommentsReference;
+    private DatabaseReference mCommentsReference, mCommentAttachmentsReference;
     private ValueEventListener mPostListener;
     private String mPostKey;
     private CommentAdapter mAdapter;
@@ -90,12 +95,12 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private TextView mAuthorView;
     private TextView mTitleView;
     private TextView mBodyView;
-    private EditText mCommentField;
+    // Removed mCommentField Since clicking on Post answer will open NewCommentActivity
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
 
     private ImageButton mImageButton;
-   // private Button mVideoButton;
+    // private Button mVideoButton;
     private ImageButton mFileButton;
     private ImageButton mLinkButton;
 
@@ -112,8 +117,12 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     private LinearLayoutManager mManager;
 
+    private LinearLayoutManager mImageManager;
+    private ArrayList<String> imageList;
+    private RecyclerView mImageRecycler;
+
     private Post post;
-  //  private int clickcount =0;
+    //  private int clickcount =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +132,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         ActionBar ab = getSupportActionBar();
 
         // Enable the Up round_blue_dark
-      //  ab.setDisplayHomeAsUpEnabled(true);
+        //  ab.setDisplayHomeAsUpEnabled(true);
 
 
         // Get post key from intent
@@ -139,6 +148,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 .child("post-comments").child(mPostKey);
         mPostAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(mPostKey);
         mUserPostReference = FirebaseDatabase.getInstance().getReference().child("user-posts").child(getUid()).child(mPostKey);
+        mCommentAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("comment-attachments").child(mPostKey);
 
         // Initialize Views
         mAuthorImage = (ImageView) findViewById(R.id.post_author_photo);
@@ -149,25 +159,27 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         mImageButton = (ImageButton) findViewById(R.id.image_btn);
         mFileButton = (ImageButton) findViewById(R.id.file_btn);
-       // mVideoButton = (Button) findViewById(R.id.video_btn);
+        // mVideoButton = (Button) findViewById(R.id.video_btn);
         mLinkButton = (ImageButton) findViewById(R.id.link_btn);
 
-        mCommentField = (EditText) findViewById(R.id.field_comment_text);
         mCommentButton = (Button) findViewById(R.id.button_post_comment);
         mCommentsRecycler = (RecyclerView) findViewById(R.id.recycler_comments);
+        mImageRecycler = (RecyclerView) findViewById(R.id.recycler_images);
 
         mCommentButton.setOnClickListener(this);
         mImageButton.setOnClickListener(this);
         mFileButton.setOnClickListener(this);
-       // mVideoButton.setOnClickListener(this);
+        // mVideoButton.setOnClickListener(this);
         mLinkButton.setOnClickListener(this);
-       // mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
+        // mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         mManager = new LinearLayoutManager(this);
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mCommentsRecycler.setLayoutManager(mManager);
 
+        mImageManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mImageRecycler.setLayoutManager(mImageManager);
     }
 
 
@@ -202,17 +214,24 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 }
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
-               // mBodyView.setText(post.body); //Replaced by hyperlink text method in line below.
+                // mBodyView.setText(post.body); //Replaced by hyperlink text method in line below.
                 setHyperlinkText(mBodyView, post.body);
 
                 postLoaded = true;
                 onCreateOptionsMenu(mMenu);
 
+                if(post.imageList != null && post.imageList.size() > 1) {
+                    //Toast.makeText(PostDetailActivity.this, "Has Image List", Toast.LENGTH_LONG);
+                    imageList = post.imageList;
+                    mImageView.setVisibility(View.GONE);
+                    mImageRecycler.setVisibility(View.VISIBLE);
+                    mImageRecycler.setAdapter(new ImagesAdapter(PostDetailActivity.this, imageList));
+                }
+
 
                 //TODO get attachment urls from post if they exist
                 // [END_EXCLUDE]
             }
-
 
 
             @Override
@@ -242,41 +261,49 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         Pattern p = Pattern.compile(URL_REGEX2, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
         String link = "";
-        String[] parts = input.split("\\s+");
+        String[] parts = input.split("\\s");
         preText = "";
         postText = "";
         int flag = 0;
-        for(String item : parts){
-            if(!p.matcher(item).matches()&&flag==0){
-                preText+= item;
-                preText+=" ";
+        for (String item : parts) {
+            if (!p.matcher(item).matches() && flag == 0) {
+                preText += item;
+                preText += " ";
             }
-            if(p.matcher(item).matches()){
+            if (p.matcher(item).matches()) {
                 link = item;
                 //Log.d("Here",item);
                 flag = 1;
             }
-            if(!p.matcher(item).matches()&&flag==1){
-                postText+=" ";
-                postText+= item;
+            if (!p.matcher(item).matches() && flag == 1) {
+                postText += " ";
+                postText += item;
             }
         }
-        if(flag==1){
+        if (flag == 1) {
             //Exceptions:
             // 1.) For links starting with "//"
-            if(link.startsWith("//")){
+            if (link.startsWith("//")) {
                 link = "http:" + link;
             }
             //2.) For links not starting with http or https
-            else if(!(link.startsWith("http://"))&&!(link.startsWith("https://"))){
+            else if (!(link.startsWith("http://")) && !(link.startsWith("https://"))) {
                 link = "http://" + link;
             }
-            output = Html.fromHtml(preText + "<a href = " + link + ">"+ link + "</a>" + postText);
+            output = Html.fromHtml(preText + "<a href = " + link + ">" + link + "</a>" + postText);
             textview.setMovementMethod(LinkMovementMethod.getInstance());
             textview.setText(output);
-        }
-        else {
-            textview.setText(input);
+        } else {
+            SpannableStringGenerator toDisplay = new SpannableStringGenerator();
+            try {
+                textview.setText(toDisplay.fromXhtml(input));
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            } catch (SAXException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -298,22 +325,17 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_post_comment:
-                if (!mCommentField.getText().toString().trim().equals("")) {
-
-                    postComment();
-
-                   // clickcount++; //to fix realm transaction already in progress exception
-                }
-                else
-                    Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, NewCommentActivity.class);  // New Activity to write Comment
+                intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, mPostKey);
+                startActivity(intent);
                 break;
             case R.id.image_btn:
                 showImage();
-              //  Toast.makeText(this, "image btn clicked", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(this, "image btn clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.file_btn:
                 showFile();
-            //    Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(this, "file btn clicked", Toast.LENGTH_SHORT).show();
                 break;
          /*   case R.id.video_btn:
                 showVideo();
@@ -321,99 +343,9 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 break;*/
             case R.id.link_btn:
                 showLink();
-             //   Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(this, "link btn clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
-
-    private void postComment() {
-        mCommentButton.setClickable(false);
-        mCommentButton.setBackgroundColor(getResources().getColor(R.color.grey));
-        final String uid = getUid();
-        FirebaseDatabase.getInstance().getReference().child("users").child(uid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user information
-                        User user = dataSnapshot.getValue(User.class);
-                        String authorName = user.username;
-
-                        // Create new comment object
-                        String commentText = mCommentField.getText().toString();
-                        Comment comment = new Comment(uid, authorName, commentText);
-
-                        // Push the comment, it will appear in the list
-                        mCommentsReference.push().setValue(comment);
-
-                        // Clear the field
-                        mCommentField.setText(null);
-
-                        // Add post-key to local DB to check for notification //
-                        final DatabaseReference postNotifyRef = FirebaseDatabase.getInstance().getReference().child("post-notify");
-                        final Realm realm = Realm.getDefaultInstance();
-                        PostNotify postNotify = realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst();
-                        if (postNotify == null) {
-                            realm.beginTransaction();
-                            postNotify = realm.createObject(PostNotify.class);
-                            postNotify.setUid(getUid());
-                            postNotify.setPostKey(mPostKey);
-                            final PostNotify finalPostNotify = postNotify;
-                            postNotifyRef.child(mPostKey).child("num_of_comments").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    finalPostNotify.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()) + 1);
-                                    realm.commitTransaction();
-                                    postNotifyRef.child(mPostKey).child("num_of_comments").setValue(finalPostNotify.getNumComments());
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-                            /* For Star click
-                            postNotifyRef.child(mPostKey).child("num_of_stars").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    finalPostNotify.setNumStars(Integer.parseInt(dataSnapshot.getValue().toString()));
-                                    postNotifyRef.child(mPostKey).child("num_of_stars").setValue(finalPostNotify.getNumStars());
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-                            */
-                        } else {
-                            realm.beginTransaction();
-                            final PostNotify finalPostNotify = realm.where(PostNotify.class).equalTo("postKey",mPostKey).findFirst();
-
-                            postNotifyRef.child(mPostKey).child("num_of_comments").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    finalPostNotify.setNumComments(Integer.parseInt(dataSnapshot.getValue().toString()) + 1);
-                                    realm.commitTransaction();
-                                    postNotifyRef.child(mPostKey).child("num_of_comments").setValue(finalPostNotify.getNumComments());
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-                        }
-                        //  END Realm Stuff //
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-        mCommentButton.setClickable(true);
-      //  mCommentButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
     }
 
     private static class CommentViewHolder extends RecyclerView.ViewHolder {
@@ -422,11 +354,14 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         public TextView bodyView;
         //TODO add upvotes and downvotes round_blue_dark
 
+        public ImageView commentImage;
+
         public CommentViewHolder(View itemView) {
             super(itemView);
 
             authorView = (TextView) itemView.findViewById(R.id.comment_author);
             bodyView = (TextView) itemView.findViewById(R.id.comment_body);
+            commentImage = (ImageView) itemView.findViewById(R.id.comment_image);
         }
     }
 
@@ -544,8 +479,17 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         public void onBindViewHolder(CommentViewHolder holder, int position) {
             Comment comment = mComments.get(position);
             holder.authorView.setText(comment.author);
-          //  holder.bodyView.setText(comment.text);
-            setHyperlinkText(holder.bodyView,comment.text);
+            //  holder.bodyView.setText(comment.text);
+            if (comment.xmlText == null)
+                setHyperlinkText(holder.bodyView, comment.text);  //For older comments with simple text
+            else
+                setHyperlinkText(holder.bodyView, comment.xmlText);
+
+            // Display Image in Comment
+            if(comment.image != null){
+                holder.commentImage.setVisibility(View.VISIBLE);
+                Glide.with(mContext).load(comment.image).into(holder.commentImage);
+            }
 
         }
 
@@ -806,12 +750,12 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(postLoaded) {
+        if (postLoaded) {
             if (getUid().equals(post.uid) && (menu != null)) {
                 getMenuInflater().inflate(R.menu.post_detail, menu);
                 postLoaded = false;
             }
-        }else{
+        } else {
             mMenu = menu;
         }
         return super.onCreateOptionsMenu(menu);
@@ -824,38 +768,39 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 // delete post remotely from [  nodes to remove from   posts, user-posts, post-attachments, post-comments ]
                 final AlertDialog.Builder post_Del_Alert = new AlertDialog.Builder(this);
                 post_Del_Alert.setTitle("Warning").setMessage("Are you sure you want to delete this post?")
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
+                        }
+                    })
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            if (mPostListener != null) {
+                                mPostReference.removeEventListener(mPostListener);
                             }
-                        })
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            mAdapter.cleanupListener();
 
-                                if (mPostListener != null) {
-                                    mPostReference.removeEventListener(mPostListener);
-                                }
-                                mAdapter.cleanupListener();
+                            mPostReference.removeValue();
+                            mCommentsReference.removeValue();
+                            mPostAttachmentsReference.removeValue();
+                            mUserPostReference.removeValue();
+                            mCommentAttachmentsReference.removeValue();
 
-                                mPostReference.removeValue();
-                                mCommentsReference.removeValue();
-                                mPostAttachmentsReference.removeValue();
-                                mUserPostReference.removeValue();
-
-                                Realm realm = Realm.getDefaultInstance();
-                                realm.beginTransaction();
-                                if(realm.where(PostNotify.class).equalTo("postKey",mPostKey).findFirst() != null) {
-                                    realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst().deleteFromRealm();
-                                }
-                                realm.commitTransaction();
-
-                                FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
-                                //Todo:  delete stuff from storage too
-                                finish();
+                            Realm realm = Realm.getDefaultInstance();
+                            realm.beginTransaction();
+                            if (realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst() != null) {
+                                realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst().deleteFromRealm();
                             }
-                        });
+                            realm.commitTransaction();
+
+                            FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
+                            //Todo:  delete stuff from storage too
+                            finish();
+                        }
+                    });
                 post_Del_Alert.create().show();
 
                 break;
@@ -870,5 +815,43 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
+    }
+
+    private static class ImageViewHolder extends RecyclerView.ViewHolder {
+
+        public ImageView postImage;
+
+        public ImageViewHolder(View itemView) {
+            super(itemView);
+            postImage = (ImageView) itemView.findViewById(R.id.post_image);
+        }
+    }
+
+    private static class ImagesAdapter extends RecyclerView.Adapter<ImageViewHolder> {
+
+        private Context mContext;
+        private ArrayList<String> imageList;
+
+        public ImagesAdapter(final Context context, ArrayList<String> imageList) {
+            mContext = context;
+            this.imageList = imageList;
+        }
+
+        @Override
+        public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            View view = inflater.inflate(R.layout.post_detail_image, parent, false);
+            return new ImageViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ImageViewHolder holder, int position) {
+            Glide.with(mContext).load(imageList.get(position)).into(holder.postImage);
+        }
+
+        @Override
+        public int getItemCount() {
+            return imageList.size();
+        }
     }
 }

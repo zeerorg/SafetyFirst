@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
@@ -20,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
-        <ImageButton
+        <ImageButton  android:id="@+id/upload_image"
             android:padding="@dimen/md_keylines"
             android:background="@drawable/round_red_dark"
             android:layout_marginRight="@dimen/md_keylines"
@@ -28,7 +30,7 @@
             android:layout_height="wrap_content"
             android:onClick="uploadImage"
             android:src="@drawable/ic_photo_camera_white_24dp"/>
-        <ImageButton
+        <ImageButton android:id="@+id/attach_link"
             android:visibility="gone"
             android:layout_marginLeft="@dimen/md_keylines"
             android:layout_marginRight="@dimen/md_keylines"
@@ -38,7 +40,7 @@
             android:layout_height="wrap_content"
             android:onClick="attachLink"
             android:src="@drawable/ic_link_white_24dp"/>
-        <ImageButton
+        <ImageButton  android:id="@+id/upload_file"
             android:padding="@dimen/md_keylines"
             android:background="@drawable/round_red_dark"
             android:layout_width="wrap_content"
@@ -96,7 +98,10 @@
         android:textColor="@color/white"
         tools:ignore="RtlHardcoded" />
 
-
-
+    <com.vikas.dtu.safetyfirst2.mUtils.NestedListView
+        android:id="@+id/image_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
+</ScrollView>
