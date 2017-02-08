@@ -398,7 +398,7 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
     private void writeNewComment(String uid, String authorName, String commentText, String xmlText, String downloadImageURL, String downloadPdfURL) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        Comment comment = new Comment(uid, authorName, commentText, xmlText, downloadImageURL, downloadPdfURL);
+        Comment comment = new Comment(uid, authorName, commentText, xmlText, downloadImageURL, downloadPdfURL,0);
 
         Map<String, Object> commentValues = comment.toMap();
 

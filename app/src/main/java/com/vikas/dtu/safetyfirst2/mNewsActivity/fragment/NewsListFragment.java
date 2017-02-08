@@ -74,7 +74,8 @@ public abstract class NewsListFragment extends Fragment {
         mRecycler.setLayoutManager(mManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
-        Query newsQuery = getQuery(mDatabase);
+        Query newsQuery =  mDatabase.child("news")
+                .limitToFirst(1000);;
         mAdapter = new FirebaseRecyclerAdapter<News, NewsViewHolder>(News.class, R.layout.item_news,
                 NewsViewHolder.class, newsQuery) {
             @Override

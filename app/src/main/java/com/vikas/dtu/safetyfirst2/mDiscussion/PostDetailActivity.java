@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -38,6 +39,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.commonsware.cwac.richtextutils.SpannableStringGenerator;
+import com.google.android.gms.auth.api.credentials.IdToken;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.squareup.picasso.Picasso;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
@@ -63,6 +70,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -122,6 +131,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private RecyclerView mImageRecycler;
 
     private Post post;
+    String Uid;
     //  private int clickcount =0;
 
     @Override
@@ -134,7 +144,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         // Enable the Up round_blue_dark
         //  ab.setDisplayHomeAsUpEnabled(true);
 
-
+        Uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Get post key from intent
         mPostKey = getIntent().getStringExtra(EXTRA_POST_KEY);
         if (mPostKey == null) {
@@ -352,6 +362,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         public TextView authorView;
         public TextView bodyView;
+        public TextView Upvoteview;
+        public ImageView upvoteimage;
         //TODO add upvotes and downvotes round_blue_dark
 
         public ImageView commentImage;
@@ -362,7 +374,12 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             authorView = (TextView) itemView.findViewById(R.id.comment_author);
             bodyView = (TextView) itemView.findViewById(R.id.comment_body);
             commentImage = (ImageView) itemView.findViewById(R.id.comment_image);
+            Upvoteview=(TextView) itemView.findViewById(R.id.post_num_upvote);
+            upvoteimage=(ImageView) itemView.findViewById(R.id.upvote);
+
         }
+
+
     }
 
     private static class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
@@ -374,25 +391,56 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         private List<String> mCommentIds = new ArrayList<>();
         private List<Comment> mComments = new ArrayList<>();
 
-        public CommentAdapter(final Context context, DatabaseReference ref) {
+        public CommentAdapter(final Context context, final DatabaseReference ref) {
             mContext = context;
             mDatabaseReference = ref;
-
+//            if(ref.child("upvotecount")==null){
+//                ref.child("upvotecount").push().setValue(0);
+//            }
             // Create child event listener
             // [START child_event_listener_recycler]
             ChildEventListener childEventListener = new ChildEventListener() {
                 @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                public void onChildAdded(final DataSnapshot dataSnapshot, String previousChildName) {
                     Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
 
                     // A new comment has been added, add it to the displayed list
+
+
                     Comment comment = dataSnapshot.getValue(Comment.class);
+                    if(mComments.size()==0){
+                        mComments.add(comment);
+                        mCommentIds.add(dataSnapshot.getKey());
+//                        Log.d("TAG222",String.valueOf(mComments.get(0).upvoteCount));
+                    }
+                    else{
+                        int i;
+                        for(i=0;i<mComments.size();i++){
+                            if(mComments.get(i).upvoteCount>comment.upvoteCount){
+                                Log.d("TAG2221",String.valueOf(i));
+                                break;
+                            }
+
+                        }
+                        mComments.add(i,comment);
+                        mCommentIds.add(i,dataSnapshot.getKey());
+//                        Log.d("TAG22212",mComments.get(i).text);
+//                        Log.d("TAG22212",String.valueOf(i));
+//                        Log.d("TAG222",String.valueOf(mComments.get(i).upvoteCount));
+                    }
+                    notifyItemInserted(mComments.size() - 1);
+
+
+//                        Log.d("Tag112",String.valueOf(comment.downvoteCount));
+//                    comment.upvoteCount=0;
+//
+//                    ref.child(dataSnapshot.getKey()).setValue(comment);
+//                    Log.d("Tag113",ref.toString());
+
 
                     // [START_EXCLUDE]
                     // Update RecyclerView
-                    mCommentIds.add(dataSnapshot.getKey());
-                    mComments.add(comment);
-                    notifyItemInserted(mComments.size() - 1);
+
                     // [END_EXCLUDE]
                 }
 
@@ -404,7 +452,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                     // comment and if so displayed the changed comment.
                     Comment newComment = dataSnapshot.getValue(Comment.class);
                     String commentKey = dataSnapshot.getKey();
-
+//                    Log.d("TAG113",String.valueOf(newComment.upvoteCount));
                     // [START_EXCLUDE]
                     int commentIndex = mCommentIds.indexOf(commentKey);
                     if (commentIndex > -1) {
@@ -414,7 +462,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                         // Update the RecyclerView
                         notifyItemChanged(commentIndex);
                     } else {
-                        Log.w(TAG, "onChildChanged:unknown_child:" + commentKey);
+                        Log.w(TAG, "onChildChanged:unknown_child:" + commentIndex);
                     }
                     // [END_EXCLUDE]
                 }
@@ -466,7 +514,9 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
             // Store reference to listener so it can be removed on app stop
             mChildEventListener = childEventListener;
+
         }
+
 
         @Override
         public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -477,7 +527,11 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public void onBindViewHolder(CommentViewHolder holder, int position) {
-            Comment comment = mComments.get(position);
+
+
+            final Comment comment = mComments.get(position);
+            String  refkey=mCommentIds.get(position);
+            final DatabaseReference commentref=mDatabaseReference.child(refkey);
             holder.authorView.setText(comment.author);
             //  holder.bodyView.setText(comment.text);
             if (comment.xmlText == null)
@@ -490,6 +544,46 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 holder.commentImage.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(comment.image).into(holder.commentImage);
             }
+
+           holder.Upvoteview.setText(String.valueOf(comment.upvoteCount));
+            if (comment.upvoteusers.containsKey(getuserid())) {
+                holder.upvoteimage.setImageResource(R.drawable.ic_toggle_star_24);
+            } else {
+                holder.upvoteimage.setImageResource(R.drawable.ic_toggle_star_outline_24);
+            }
+            holder.upvoteimage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onStarClicked(commentref);
+                }
+            });
+
+        }
+
+        private void onStarClicked(DatabaseReference commentref) {
+            commentref.runTransaction(new Transaction.Handler() {
+                @Override
+                public Transaction.Result doTransaction(MutableData mutableData) {
+                    Comment P=mutableData.getValue(Comment.class);
+                    if(P==null){
+                        return Transaction.success(mutableData);
+                    }
+                    if(P.upvoteusers.containsKey(getuserid())){
+                        P.upvoteCount=P.upvoteCount-1;
+                        P.upvoteusers.remove(getuserid());
+                    } else {
+                        P.upvoteCount=P.upvoteCount+1;
+                        P.upvoteusers.put(getuserid(),true);
+                    }
+                    mutableData.setValue(P);
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                    Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+                }
+            });
 
         }
 
@@ -853,5 +947,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         public int getItemCount() {
             return imageList.size();
         }
+    }
+    public static String getuserid() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 }
