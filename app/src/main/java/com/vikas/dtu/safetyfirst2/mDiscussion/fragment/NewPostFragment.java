@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
@@ -25,6 +26,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -73,8 +75,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.realm.Realm;
+import jp.wasabeef.richeditor.RichEditor;
 
-public class NewPostFragment extends Fragment {
+public class NewPostFragment extends Fragment implements View.OnTouchListener {
 
     private static final String TAG = "NewPostActivity";
     private static final String REQUIRED = "Required";
@@ -92,10 +95,17 @@ public class NewPostFragment extends Fragment {
     private Button PostButton;
     private String URL = "gs://safetyfirst-aec72.appspot.com/";
     private View mainView;
+    private Button mBoldButton;
+    private Button mItalicButton;
+    private Button mUnderlineButton;
 
     private DatabaseReference mAttachmentsReference;
 
     private String key;
+
+    int boldFlag = 0;
+    int italicFlag = 0;
+    int underlineFlag = 0;
 
     ////Using paths to upload
     String imagePath = null, pdfPath = null, attachLink = null;
@@ -117,7 +127,7 @@ public class NewPostFragment extends Fragment {
     // [END declare_database_ref]
 
     private EditText mTitleField;
-    private EditText mBodyField;
+    private RichEditor mBodyField;
     private String mImageUri;
     private NestedListView imageListView;
 
@@ -130,9 +140,16 @@ public class NewPostFragment extends Fragment {
         // [END initialize_database_ref]
 
         mTitleField = (EditText) mainView.findViewById(R.id.field_title);
-        mBodyField = (EditText) mainView.findViewById(R.id.field_body);
         imageListView = (NestedListView) mainView.findViewById(R.id.image_list);
 
+        mBodyField = (RichEditor) mainView.findViewById(R.id.field_body);
+        mBodyField.setPadding(20, 20 , 20, 40);
+        mBodyField.setHtml("&nbsp;");
+        mBodyField.setEditorFontSize(15);
+
+        mBoldButton = (Button) mainView.findViewById(R.id.bold_button);
+        mItalicButton = (Button) mainView.findViewById(R.id.italic_button);
+        mUnderlineButton = (Button) mainView.findViewById(R.id.underline_button);
 
         mainView.findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +188,29 @@ public class NewPostFragment extends Fragment {
                 uploadFile(v);
             }
         });
+        mBoldButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBoldClick();
+            }
+        });
+        mItalicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItalicsClick();
+            }
+        });
+        mUnderlineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onUnderlineClick();
+            }
+        });
+		
+		// For changing color on touch
+		mBoldButton.setOnTouchListener(this);
+		mItalicButton.setOnTouchListener(this);
+		mUnderlineButton.setOnTouchListener(this);
 
         // Displaying names of list of Images
         images = new ArrayList<>();
@@ -182,10 +222,108 @@ public class NewPostFragment extends Fragment {
         client = new GoogleApiClient.Builder(getActivity()).addApi(AppIndex.API).build();
         return mainView;
     }
+	
+	@Override
+	public boolean onTouch(View view, MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			view.setBackgroundColor(Color.parseColor("#37000000"));
+		} else if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			view.setBackgroundColor(Color.parseColor("#66000000"));
+		}
+		return false;
+    }
+
+    //----------------------RICH TEXT CODE--------------------------------------
+    public void onBoldClick() {
+
+//        etQues.setSelected(true);
+        // Log.d("TAG2", sel + "");
+        String str = mBodyField.getHtml();
+        Log.d("TAG1", "str: " + str + "xxx");
+        if (checkBlanks(str)) {
+            Toast.makeText(getContext(), "Press spacebar first", Toast.LENGTH_SHORT).show();
+            boldFlag = toggle(boldFlag);
+        }
+
+        if (boldFlag == 0) {
+
+            boldFlag = 1;
+            //mBoldButton.setBackgroundColor(Color.parseColor("#66000000"));
+        } else if (boldFlag == 1) {
+            boldFlag = 0;
+            //mBoldButton.setBackgroundColor(Color.parseColor("#37000000"));
+        }
+
+        mBodyField.setBold();
+    }
+
+    public void onItalicsClick() {
+
+        //      etQues.setSelected(true);
+        // Log.d("TAG2", sel + "");
+        String str = mBodyField.getHtml();
+        Log.d("TAG1", "str: " + str + "xxx");
+        if (checkBlanks(str)){
+            Toast.makeText(getContext(), "Press spacebar first", Toast.LENGTH_SHORT).show();
+            italicFlag = toggle(italicFlag);
+        }
+
+        if (italicFlag == 0) {
+
+            italicFlag = 1;
+            //mItalicButton.setBackgroundColor(Color.parseColor("#66000000"));
+        } else if (italicFlag == 1) {
+            italicFlag = 0;
+            //mItalicButton.setBackgroundColor(Color.parseColor("#37000000"));
+        }
+
+        mBodyField.setItalic();
+    }
+
+    public void onUnderlineClick() {
+
+        //etQues.setSelected(true);
+        // Log.d("TAG2", sel + "");
+        String str = mBodyField.getHtml();
+        Log.d("TAG1", "str: " + str + "xxx");
+        if (checkBlanks(str)) {
+            Toast.makeText(getContext(), "Press spacebar first", Toast.LENGTH_SHORT).show();
+            underlineFlag = toggle(underlineFlag);
+        }
+
+        if (underlineFlag == 0) {
+
+            underlineFlag = 1;
+            //mUnderlineButton.setBackgroundColor(Color.parseColor("#66000000"));
+        } else if (underlineFlag == 1) {
+            underlineFlag = 0;
+            //mUnderlineButton.setBackgroundColor(Color.parseColor("#37000000"));
+        }
+
+        mBodyField.setUnderline();
+    }
+
+    public int toggle(int flag){
+        return 1-flag;
+    }
+
+    public boolean checkBlanks(String str){
+        if(str.endsWith("nbsp;")||str.endsWith("nbsp;</b>")||str.endsWith("nbsp;</i>")||str.endsWith("nbsp;</u>")||str.endsWith("nbsp;</b></i>")
+                ||str.endsWith("nbsp;</i></b>")||str.endsWith("nbsp;</b></u>")||str.endsWith("nbsp;</u></b>")||str.endsWith("nbsp;</i></u>")
+                ||str.endsWith("nbsp;</u></i>")||str.endsWith("nbsp;</b></i></u>")||str.endsWith("nbsp;</b></u></i>")
+                ||str.endsWith("nbsp;</i></b></u>")||str.endsWith("nbsp;</i></u></b>")||str.endsWith("nbsp;</u></b></i>")
+                ||str.endsWith("nbsp;</u></i></b>")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
     private void submitPost() {
         final String title = mTitleField.getText().toString();
-        final String body = mBodyField.getText().toString();
+        final String xmlBody = mBodyField.getHtml();
+        final String body = Html.fromHtml(xmlBody).toString();
         final String image;
         if (mImageUri != null) image = mImageUri;
         else image = null;
@@ -198,7 +336,7 @@ public class NewPostFragment extends Fragment {
 
         // Body is required
         if (TextUtils.isEmpty(body)) {
-            mBodyField.setError(REQUIRED);
+            mBodyField.setHtml(REQUIRED);
             return;
         }
 
@@ -221,10 +359,10 @@ public class NewPostFragment extends Fragment {
                         } else {
                             // Write new post
                             mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(key);
-                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.photoUrl, downloadVideoURL, downloadPdfURL, attachLink, downloadImageList);
+                            writeNewPost(userId, user.username, title, body, xmlBody, downloadImageURL, user.photoUrl, downloadVideoURL, downloadPdfURL, attachLink, downloadImageList);
                         }
 
-                        mBodyField.setText(null);
+                        mBodyField.setHtml(null);
                         mTitleField.setText(null);
                         if(images.isEmpty())
                             finish();
@@ -240,11 +378,11 @@ public class NewPostFragment extends Fragment {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body, String downloadImageURL, String authorImageUrl,
+    private void writeNewPost(String userId, String username, String title, String body, String xmlBody, String downloadImageURL, String authorImageUrl,
                               String downloadPdfURL, String downloadVideoURL, String attachLink, ArrayList<String> downloadImageList) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl, downloadPdfURL, attachLink, downloadImageList);
+        Post post = new Post(userId, username, title, body, xmlBody, downloadImageURL, authorImageUrl, downloadPdfURL, attachLink, downloadImageList);
         Map<String, Object> postValues = post.toMap();
 
         // Obtaining and adding Keywords for search
@@ -750,7 +888,7 @@ public class NewPostFragment extends Fragment {
     private void finish(){
         DiscussionActivity.getViewPager().setCurrentItem(0);
         mTitleField.setText("");
-        mBodyField.setText("");
+        mBodyField.setHtml("");
         images = new ArrayList<>();
         downloadImageList = new ArrayList<>();
         imageListAdapter = new SimpleImageListAdapter(getContext(), images);

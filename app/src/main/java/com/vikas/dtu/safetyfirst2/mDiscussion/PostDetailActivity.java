@@ -225,7 +225,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 // mBodyView.setText(post.body); //Replaced by hyperlink text method in line below.
-                setHyperlinkText(mBodyView, post.body);
+                if(post.xmlBody == null)
+                    setHyperlinkText(mBodyView, post.body);
+                else
+                    setHyperlinkText(mBodyView, post.xmlBody);
 
                 postLoaded = true;
                 onCreateOptionsMenu(mMenu);
@@ -304,18 +307,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             textview.setMovementMethod(LinkMovementMethod.getInstance());
             textview.setText(output);
         } else {
-            SpannableStringGenerator toDisplay = new SpannableStringGenerator();
-            try {
-                textview.setText(toDisplay.fromXhtml(input));
-            } catch (ParserConfigurationException e) {
-                e.printStackTrace();
-            } catch (SAXException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            textview.setText(Html.fromHtml(input));
         }
-
     }
 
     @Override

@@ -32,6 +32,7 @@ import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -69,7 +70,7 @@ import java.util.Map;
 import io.realm.Realm;
 import jp.wasabeef.richeditor.RichEditor;
 
-public class NewCommentActivity extends BaseActivity implements View.OnClickListener{
+public class NewCommentActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener{
 
     private RichEditor mCommentField;
     private Button mCommentButton;
@@ -121,6 +122,11 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
         mItalicButton.setOnClickListener(this);
         mUnderlineButton.setOnClickListener(this);
         mCommentButton.setOnClickListener(this);
+		
+		// For changing color on touch
+		mBoldButton.setOnTouchListener(this);
+		mItalicButton.setOnTouchListener(this);
+		mUnderlineButton.setOnTouchListener(this);
 
         mPostKey = getIntent().getStringExtra(PostDetailActivity.EXTRA_POST_KEY);
         if (mPostKey == null) {
@@ -172,8 +178,17 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
 
         }
     }
-
-
+	
+	@Override
+	public boolean onTouch(View view, MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			view.setBackgroundColor(Color.parseColor("#37000000"));
+		} else if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			view.setBackgroundColor(Color.parseColor("#66000000"));
+		}
+		return false;
+    }
+	
     //----------------------RICH TEXT CODE--------------------------------------
     public void onBoldClick() {
 
@@ -189,10 +204,10 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
         if (boldFlag == 0) {
 
             boldFlag = 1;
-            mBoldButton.setBackgroundColor(Color.parseColor("#66000000"));
+            //mBoldButton.setBackgroundColor(Color.parseColor("#66000000"));
         } else if (boldFlag == 1) {
             boldFlag = 0;
-            mBoldButton.setBackgroundColor(Color.parseColor("#37000000"));
+            //mBoldButton.setBackgroundColor(Color.parseColor("#37000000"));
         }
 
         mCommentField.setBold();
@@ -212,10 +227,10 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
         if (italicFlag == 0) {
 
             italicFlag = 1;
-            mItalicButton.setBackgroundColor(Color.parseColor("#66000000"));
+            //mItalicButton.setBackgroundColor(Color.parseColor("#66000000"));
         } else if (italicFlag == 1) {
             italicFlag = 0;
-            mItalicButton.setBackgroundColor(Color.parseColor("#37000000"));
+            //mItalicButton.setBackgroundColor(Color.parseColor("#37000000"));
         }
 
         mCommentField.setItalic();
@@ -235,10 +250,10 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
         if (underlineFlag == 0) {
 
             underlineFlag = 1;
-            mUnderlineButton.setBackgroundColor(Color.parseColor("#66000000"));
+            //mUnderlineButton.setBackgroundColor(Color.parseColor("#66000000"));
         } else if (underlineFlag == 1) {
             underlineFlag = 0;
-            mUnderlineButton.setBackgroundColor(Color.parseColor("#37000000"));
+            //mUnderlineButton.setBackgroundColor(Color.parseColor("#37000000"));
         }
 
         mCommentField.setUnderline();
@@ -317,9 +332,10 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
                         SpannedXhtmlGenerator htmlText = new SpannedXhtmlGenerator();
                         String xmlText = htmlText.toXhtml(Html.fromHtml(mCommentField.getHtml()));
 
-                        String commentText = mCommentField.getHtml().toString();
+                        String commentText = Html.fromHtml(mCommentField.getHtml()).toString();
 
                         writeNewComment(uid, authorName, commentText, xmlText, downloadImageURL, downloadPdfURL);
+                        Log.e("Comment", "Text : " + commentText);
 
                         // Clear the field
                         mCommentField.setHtml(null);

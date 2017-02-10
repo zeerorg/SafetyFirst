@@ -53,7 +53,7 @@ public class KnowItMain extends AppCompatActivity {
 
                 Cards clicked_card= (Cards) adapterView.getItemAtPosition(i);
                 String clicked_title = clicked_card.getTitle();
-                final Dialog openDialog = new Dialog(context);
+                final Dialog openDialog = new Dialog(context, android.R.style.Theme_DeviceDefault_Panel);
                 openDialog.setContentView(R.layout.custom_dialog_box);
                 mTitle = (TextView)openDialog.findViewById(R.id.title);
                 mTitle.setText(clicked_title);

@@ -1,6 +1,7 @@
 package com.vikas.dtu.safetyfirst2.mRecycler;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,7 +38,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         titleView.setText(post.title);
         authorView.setText(post.author);
         numStarsView.setText(String.valueOf(post.starCount));
-        bodyView.setText(post.body);
+        if(post.xmlBody == null)
+            bodyView.setText(post.body);
+        else
+            bodyView.setText(Html.fromHtml(post.xmlBody));
+
         bodyView.setMaxLines(6);
         bodyView.setEllipsize(TextUtils.TruncateAt.END);
         starView.setOnClickListener(starClickListener);

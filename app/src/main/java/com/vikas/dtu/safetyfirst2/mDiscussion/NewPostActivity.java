@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -67,6 +68,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 
 import io.realm.Realm;
+import jp.wasabeef.richeditor.RichEditor;
 
 public class NewPostActivity extends BaseActivity {
 
@@ -110,7 +112,7 @@ public class NewPostActivity extends BaseActivity {
     // [END declare_database_ref]
 
     private EditText mTitleField;
-    private EditText mBodyField;
+    private RichEditor mBodyField;
     private String mImageUri;
     private ListView imageListView;
 
@@ -131,7 +133,7 @@ public class NewPostActivity extends BaseActivity {
         // [END initialize_database_ref]
 
         mTitleField = (EditText) findViewById(R.id.field_title);
-        mBodyField = (EditText) findViewById(R.id.field_body);
+        mBodyField = (RichEditor) findViewById(R.id.field_body);
         imageListView = (ListView) findViewById(R.id.image_list);
 
 
@@ -156,7 +158,7 @@ public class NewPostActivity extends BaseActivity {
                 post_notify_ref.child(key).child("num_of_stars").setValue(0);
 
 
-                mBodyField.setText(null);
+                mBodyField.setHtml(null);
                 mTitleField.setText(null);
                 //if (!images.isEmpty()) uploadAllImages();  // Changed uploadImage() to uploadAllImages()
                 if(!images.isEmpty())   Log.e("Images Array", images.toString());
@@ -176,7 +178,8 @@ public class NewPostActivity extends BaseActivity {
 
     private void submitPost() {
         final String title = mTitleField.getText().toString();
-        final String body = mBodyField.getText().toString();
+        final String xmlBody = mBodyField.getHtml();
+        final String body = Html.fromHtml(xmlBody).toString();
         final String image;
         if (mImageUri != null) image = mImageUri;
         else image = null;
@@ -188,8 +191,8 @@ public class NewPostActivity extends BaseActivity {
         }
 
         // Body is required
-        if (TextUtils.isEmpty(body)) {
-            mBodyField.setError(REQUIRED);
+        if (TextUtils.isEmpty(xmlBody)) {
+            mBodyField.setHtml(REQUIRED);
             return;
         }
 
@@ -212,7 +215,7 @@ public class NewPostActivity extends BaseActivity {
                         } else {
                             // Write new post
                             mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("post-attachments").child(key);
-                            writeNewPost(userId, user.username, title, body, downloadImageURL, user.photoUrl, downloadVideoURL, downloadPdfURL, attachLink, downloadImageList);
+                            writeNewPost(userId, user.username, title, body, xmlBody, downloadImageURL, user.photoUrl, downloadVideoURL, downloadPdfURL, attachLink, downloadImageList);
                         }
 
                         // Finish this Activity, back to the stream
@@ -230,11 +233,11 @@ public class NewPostActivity extends BaseActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body, String downloadImageURL, String authorImageUrl,
+    private void writeNewPost(String userId, String username, String title, String body, String xmlBody, String downloadImageURL, String authorImageUrl,
                               String downloadPdfURL, String downloadVideoURL, String attachLink, ArrayList<String> downloadImageList) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        Post post = new Post(userId, username, title, body, downloadImageURL, authorImageUrl, downloadPdfURL, attachLink, downloadImageList);
+        Post post = new Post(userId, username, title, body, xmlBody, downloadImageURL, authorImageUrl, downloadPdfURL, attachLink, downloadImageList);
         Map<String, Object> postValues = post.toMap();
 
         // Obtaining and adding Keywords for search
