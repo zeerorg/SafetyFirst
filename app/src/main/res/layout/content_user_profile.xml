@@ -49,6 +49,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:background="@drawable/round_blue_dark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -63,31 +64,73 @@
                     android:id="@+id/info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/user_designation_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/UserStatsTextStyle"
+                        android:text="@string/designation_label"
+                        android:textAllCaps="true"
+                        android:layout_alignParentTop="true" />
                 <TextView
+                    android:layout_toRightOf="@+id/user_designation_label"
                     android:id="@+id/user_designation"
                     android:layout_width="wrap_content"
+                    android:background="@drawable/round_blue_dark"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/md_keylines"
                     style="@style/UserStatsTextStyle"
                     android:text="Designation"
                     android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/user_company_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="true"
+                        style="@style/UserStatsTextStyle"
+                        android:text="@string/company_label"
+                        android:layout_centerVertical="true"
+                        android:layout_below="@id/user_designation"/>
+
                 <TextView
+                    android:layout_toRightOf="@+id/user_company_label"
                     android:id="@+id/user_company"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/UserStatsTextStyle"
+                    android:paddingLeft="@dimen/md_keylines"
+                    android:background="@drawable/round_blue_dark"
+                    android:textColor="@color/white"
                     android:text="Company"
                     android:layout_centerVertical="true"
                     android:layout_below="@id/user_designation"/>
                 <TextView
-                    android:id="@+id/user_qualification"
+                    android:id="@+id/user_qualification_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/UserStatsTextStyle"
                     android:layout_alignParentBottom="true"
-                    android:text="Qualification"
+                    android:text="@string/qualification_label"
+                    android:textAllCaps="true"
                     android:layout_below="@id/user_company"/>
+                    <TextView
+                        android:layout_toRightOf="@+id/user_qualification_label"
+                        android:id="@+id/user_qualification"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/md_keylines"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_blue_dark"
+                        android:textColor="@color/white"
+                        style="@style/UserStatsTextStyle"
+                        android:layout_alignParentBottom="true"
+                        android:text="Qualification"
+                        android:layout_below="@id/user_company"/>
                 </RelativeLayout>
-                <View android:id="@+id/separator"
+                <View
+                    android:visibility="gone"
+                    android:id="@+id/separator"
                     android:background="@color/user_detail_separator"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
@@ -95,6 +138,7 @@
                     android:layout_height="@dimen/user_detail_photo_size"
                     android:layout_toRightOf="@id/info" />
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/user_num_questions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,6 +147,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@id/separator" />
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/user_num_answers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,12 +158,21 @@
                     android:layout_below="@id/user_num_followers"/>
 
             </RelativeLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_red_dark"
+                android:text="@string/update_profile"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/md_keylines"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:visibility="gone">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,6 +201,7 @@
         android:tint="@android:color/white"
         app:srcCompat="@drawable/ic_person_add_24dp"
         android:layout_margin="@dimen/fab_margin"
+        android:visibility="gone"
         android:clickable="true"/>
 
 </android.support.design.widget.CoordinatorLayout>

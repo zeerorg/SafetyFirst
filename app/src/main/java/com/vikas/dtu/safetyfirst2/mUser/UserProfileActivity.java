@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
+import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.User;
 import com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil;
@@ -67,7 +68,7 @@ public class UserProfileActivity extends BaseActivity {
     public void onStart() {
         super.onStart();
 
-
+        showProgressDialog();
 
         profilephotoRef = mstorageRef.child(user.getUid()+"/ProfilePhoto.jpg");
         // Add value event listener to the news
@@ -75,10 +76,18 @@ public class UserProfileActivity extends BaseActivity {
         ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 // Get User object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 // [START_EXCLUDE]
-//
+
+
+hideProgressDialog();
+                if (user.getDesignation() == null){
+                    startActivity(new Intent(UserProfileActivity.this, UpdateProfile.class));
+                    finish();
+                }
+
                 mDesignation.setText(user.getDesignation());
                 mQualification.setText(user.getQualification());
                 mCompany.setText(user.getCompany());
@@ -156,7 +165,6 @@ public class UserProfileActivity extends BaseActivity {
 
         Intent intent = getIntent();
         mUserId = intent.getStringExtra(USER_ID_EXTRA_NAME);
-
        // Toast.makeText(this,  mUserId, Toast.LENGTH_SHORT).show();
          collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -251,6 +259,10 @@ public class UserProfileActivity extends BaseActivity {
 
         if(mPersonRef != null)
         mPersonRef.child(mUserId).removeEventListener(mPersonInfoListener);
+
+        if(useRef != null)
+            useRef.removeEventListener(mUserListener);
+
 
         if(mFollowersRef != null)
         mFollowersRef.removeEventListener(mFollowersListener);

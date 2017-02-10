@@ -57,6 +57,8 @@ import com.vikas.dtu.safetyfirst2.mUser.UserProfileActivity;
 
 import java.util.HashMap;
 
+import static com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil.getCurrentUserId;
+
 public class DynamicDashboardNav extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, GoogleApiClient.OnConnectionFailedListener {
@@ -238,6 +240,15 @@ public class DynamicDashboardNav extends BaseActivity
      else if (id == R.id.nav_feedback)
      {
          startActivity(new Intent(DynamicDashboardNav.this, FeedBackActivity.class));
+     }
+     else if (id == R.id.nav_update)
+     {
+        // startActivity(new Intent(DynamicDashboardNav.this, UserProfileActivity.class));
+         Intent userDetailIntent = new Intent(DynamicDashboardNav.this, UserProfileActivity.class);
+         userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
+                 getCurrentUserId());
+         startActivity(userDetailIntent);
+
      }
      else if (id == R.id.nav_help) {
          startActivity(new Intent(DynamicDashboardNav.this, Help.class));

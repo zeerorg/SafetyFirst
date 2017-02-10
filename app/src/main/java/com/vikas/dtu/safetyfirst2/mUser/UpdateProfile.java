@@ -263,6 +263,7 @@ public class UpdateProfile extends BaseActivity implements AdapterView.OnItemSel
         userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
                 getCurrentUserId());
         startActivity(userDetailIntent);
+        finish();
 
     }
 

@@ -43,7 +43,5 @@ public class Comment {
         result.put("image", image);
         return result;
     }
-
-
 }
 // [END comment_class]
