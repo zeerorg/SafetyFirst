@@ -898,8 +898,10 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>@array/AndhraPradeshforms</item>
     </array>
     <string-array name="DelhiLaws">
+        <item>Fire Service Act</item>
     </string-array>
     <array name="DelhiLawsImage">
+        <item>@drawable/back_law1</item>
     </array>
     <string-array name="Delhiforms">
         <item>Record Lime Washing etc</item>
@@ -973,12 +975,14 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>Factories Act</item>
         <item>No Fees for Licence</item>
         <item>Factories Rules</item>
+        <item>Fire Force Act</item>
     </string-array>
     <array name="Karnatakaimage">
         <item>@drawable/back_law3</item>
         <item>@drawable/back_law4</item>
         <item>@drawable/back_law5</item>
         <item>@drawable/back_law6</item>
+        <item>@drawable/back_law7</item>
     </array>
     <string-array name="Karnatakaform">
         <item>Register of Accidents and Dangerous Occurence</item>
@@ -1012,10 +1016,12 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     <string-array name="Maharashtralaws">
         <item>Factories Act</item>
         <item>Labour Welfare Fund Act</item>
+        <item>Fire Force Act</item>
     </string-array>
     <array name="Maharashtraimage">
         <item>@drawable/back_law1</item>
         <item>@drawable/back_law2</item>
+        <item>@drawable/back_law3</item>
     </array>
     <string-array name="Maharashtraform">
         <item>Labour Welfare Board Cum Return</item>
@@ -1028,10 +1034,12 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     <string-array name="Orrisalaws">
         <item>Factories Rules</item>
         <item>Holidays Act</item>
+        <item>Fire Service Act</item>
     </string-array>
     <array name="Orrisaimage">
         <item>@drawable/back_law3</item>
         <item>@drawable/back_law4</item>
+        <item>@drawable/back_law5</item>
     </array>
     <string-array name="Orrisaform">
     </string-array>
@@ -1068,10 +1076,12 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     <string-array name="TamilNadulaws">
         <item>Factories Act</item>
         <item>Factories Rules</item>
+        <item>Fire Service Act</item>
     </string-array>
     <array name="TamilNaduimage">
         <item>@drawable/back_law6</item>
         <item>@drawable/back_law7</item>
+        <item>@drawable/back_law1</item>
     </array>
     <string-array name="TamilNaduform">
     </string-array>
@@ -1105,6 +1115,7 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>Safety Officer Notification</item>
         <item>Factories Rules</item>
         <item>The Chemical Accidents Rules</item>
+        <item>Fire Service Act</item>
     </string-array>
     <array name="WestBengalimage">
         <item>@drawable/back_law1</item>
@@ -1112,6 +1123,7 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>@drawable/back_law3</item>
         <item>@drawable/back_law4</item>
         <item>@drawable/back_law5</item>
+        <item>@drawable/back_law6</item>
     </array>
     <string-array name="WestBengalform">
 

@@ -141,8 +141,9 @@ public class StateLawsActivity extends AppCompatActivity {
 
     private void Addurl() {
 //        Andhra
-        lurl[0][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTHE%20FACTORIES%20ACT-1948.pdf?alt=media&token=293a89e2-f4b9-4cc8-b2bc-58f400e14829";
+        lurl[1][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTHE%20FACTORIES%20ACT-1948.pdf?alt=media&token=293a89e2-f4b9-4cc8-b2bc-58f400e14829";
 //      delhi
+        lurl[1][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2FDelhi_fire_service_act_2009.pdf?alt=media&token=3db46ee5-27bc-4a6e-9ce8-938b3f2f0e5d";
         furl[1][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FDelhiForm%2FNone_form%20-%207%20-%20Record%20of%20Lime%20washing%2Cpainting%2Cetc.pdf?alt=media&token=9fa3d07b-b09d-4c4e-8c59-e27cf31d1194";
         furl[1][1]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FDelhiForm%2FNone_Form%2010%20-%20Overtime%20Muster%20Roll%20for%20Exempted%20worker%20-%20Punjab%20Factories%20Act.pdf?alt=media&token=a5fbf92a-9aee-4022-be83-195a4a0dd844";
         furl[1][2]= "https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FDelhiForm%2FNone_Form%2011%20-%20Notice%20of%20period%20of%20work%20for%20Adult%20Workers%20-%20Delhi%20Factories%20Act.pdf?alt=media&token=70314442-90b6-4cb7-8356-bb5b73dc27aa";
@@ -186,6 +187,7 @@ public class StateLawsActivity extends AppCompatActivity {
         lurl[4][1]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FKarnataka%2Ffactories_act_1948.pdf?alt=media&token=9a78f989-c310-47af-bebe-a06faabe0aa3";
         lurl[4][2]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FKarnataka%2Fno_fees_for_trade_license_or_general_license_from_small_scale_industries_in_karnataka.pdf?alt=media&token=08118094-29a5-406c-8727-36d3b6c5492f";
         lurl[4][3]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FKarnataka%20Factories%20Rules%2C%201969.pdf?alt=media&token=e2f3a4e6-81ba-43f7-a64d-68ded3e3982f";
+        lurl[4][4]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2FKarnataka_Fire_Force_Act.pdf?alt=media&token=4792a850-441d-4f26-a10f-3b952ada03d2";
         furl[4][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2FNone_FORM%20%2023%20-%20REGISTER%20OF%20ACCIDENTS%20AND%20DANGEROUS%20OCCURRENCES.pdf?alt=media&token=9db0d92c-0e13-4b06-942e-73c76d94313e";
         furl[4][1]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2FNone_FORM%2011%20-%20REGISTER%20OF%20ADULT%20WORKER.pdf?alt=media&token=eb2823c4-1285-4200-ad58-a65f9f6801da";
         furl[4][2]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2FNone_FORM%2014%20-%20REGISTER%20OF%20LEAVE%20WITH%20WAGES%20FOR%20THE%20YEAR.pdf?alt=media&token=e6efac1d-d217-4b1c-882e-39e42c7c54d4";
@@ -200,10 +202,12 @@ public class StateLawsActivity extends AppCompatActivity {
 //  Maharashtra
         lurl[6][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffactories-act-1948.pdf?alt=media&token=4b247841-6f5c-49c8-a8e0-5041228a0f36";
         lurl[6][1]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FMaharashtra%2Fmaharashtra_labor_welfare_fund_act.pdf?alt=media&token=d24180b3-f4cb-4682-b411-e8e3ca67ba62";
+        lurl[6][2]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2FMaharashatra_Fire_Act_English.pdf?alt=media&token=acd9bbc0-ab78-4f90-9163-5670e10eef2d";
         furl[6][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2FNone_Form%20A-1%20CUM%20Return.pdf?alt=media&token=8a79ffe9-4191-403e-b9c5-ad911b71ea26";
 //  Orrisa
         lurl[7][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FOrissa%2F1415.pdf?alt=media&token=91d15ee5-ff8e-4670-b468-2cb7c194ce54";
         lurl[7][1]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Fthe_orissaindustrial_establishments_national_and_festival_holidays_act_1969.pdf?alt=media&token=86a33e4e-e4cb-46dc-a080-d9c526a1c62a";
+        lurl[7][2]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2Forissa_fire_service_act_1993.pdf?alt=media&token=b6899629-f6c9-44a5-b008-15e84ab968aa";
 //  Punjab
         lurl[8][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FCopy%20of%20the_punjab_factories_rules_1952.pdf?alt=media&token=fc2f7c90-df66-4754-9fa5-6989f27fb7d4";
         furl[8][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FPunjab%2FNone_Form%2010%20-%20Overtime%20Muster%20Roll%20for%20Exempted%20worker%20-%20Punjab%20Factories%20Act.pdf?alt=media&token=b9518d5d-819d-4bf4-b82a-8fcca2b805ae";
@@ -221,6 +225,7 @@ public class StateLawsActivity extends AppCompatActivity {
 //  TamilNadu
         lurl[9][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTamil-Nadu-Factories-Rules-1950-With-FORMS.pdf?alt=media&token=b6712332-b33c-420c-a305-a880a703a86b";
         lurl[9][1]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTamilNadu%2FFactoriesAct1948andTamilNaduFactoriesRules.pdf?alt=media&token=592e135b-d415-45d6-9f6a-b3129af47fc3";
+        lurl[9][2]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2Ftamilnadu_fire_service_act_1985.pdf?alt=media&token=f74a7db6-ab57-4fc8-abc8-4a0b28bf0ec7";
 //  Telangana
         lurl[10][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Fthe_telangana_factorie_rules.pdf?alt=media&token=2f72ad5c-0ab0-4688-b9f4-44831e11acb2";
         furl[10][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTelanganaForm%2FNone_Form%2014%20-%20Register%20of%20Child%20worker%20-%20Telangana%20Factories%20Act.pdf?alt=media&token=1c506423-9bec-4c8b-9bf6-85791c97796c";
@@ -235,6 +240,7 @@ public class StateLawsActivity extends AppCompatActivity {
         lurl[11][2]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2F1_safety_officer_notification_after_1980.pdf?alt=media&token=b9bf17e0-4a22-4c4d-97d0-4b87f587a232";
         lurl[11][3]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2F2_factories_rules_1958.pdf?alt=media&token=520ee35a-3461-4a48-804b-e1cacc69a1dd";
         lurl[11][4]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%202%2F2_the_chemical_accidents_emergency_planning_preparedness_and_response_rules_1996_as_amended_upto_date.pdf?alt=media&token=ae27f2ef-d913-4e61-a50e-52d4d5a26667";
+        lurl[11][5]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2FWest_bengal_fire_service_act.pdf?alt=media&token=1a6ee010-6e74-46cb-a358-8f49d7b41b38";
     }
 
     private ArrayList<StateLawsRowInfo> fillFormsData() {
