@@ -16,6 +16,7 @@ public class Post {
     public String author;
     public String title;
     public String body;
+    public String xmlBody;
     public int starCount = 0;
     public Map<String, Boolean> stars = new HashMap<>();
 
@@ -29,7 +30,7 @@ public class Post {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    public Post(String uid, String author, String title, String body, String image, String authorImageUrl, String file, String link, ArrayList<String> imageList) {
+    public Post(String uid, String author, String title, String body, String xmlBody , String image, String authorImageUrl, String file, String link, ArrayList<String> imageList) {
         this.authorImageUrl = authorImageUrl;
         this.uid = uid;
         this.author = author;
@@ -40,6 +41,7 @@ public class Post {
         this.file = file;
         this.link = link;
         this.imageList = imageList;
+        this.xmlBody = xmlBody;
     }
 
     public String getPhotoUrl() {
@@ -62,6 +64,7 @@ public class Post {
         result.put("authorImageUrl", authorImageUrl);
         result.put("postLink", link);
         result.put("imageList", imageList);
+        result.put("xmlBody", xmlBody);
 
         return result;
     }

@@ -48,6 +48,32 @@
             android:layout_height="wrap_content"
             android:onClick="uploadFile"
             android:src="@drawable/ic_attach_file_white_24dp"/>
+        <Button
+            android:id="@+id/bold_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/md_keylines"
+            android:background="@color/cardview_shadow_start_color"
+            android:text="B"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/italic_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/md_keylines"
+            android:background="@color/cardview_shadow_start_color"
+            android:text="I"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/underline_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/md_keylines"
+            android:background="@color/cardview_shadow_start_color"
+            android:text="U"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <EditText
@@ -67,11 +93,11 @@
         android:hint="@string/title"
         android:maxLines="1" />
 
-    <EditText
+    <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/field_body"
         android:padding="@dimen/md_keylines"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:background="@drawable/edit_text_style"
         android:layout_marginBottom="@dimen/md_keylines"
         android:layout_marginLeft="16dp"
@@ -80,8 +106,6 @@
         android:hint="@string/write_your_post"
         android:inputType="textMultiLine"
         android:gravity="center"
-        android:lines="10"
-        android:maxLines="10"
         android:elevation="5dp"
         android:scrollHorizontally="false" />
 

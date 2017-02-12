@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
@@ -24,10 +25,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -63,10 +68,11 @@ import java.util.List;
 import java.util.Map;
 
 import io.realm.Realm;
+import jp.wasabeef.richeditor.RichEditor;
 
-public class NewCommentActivity extends BaseActivity implements View.OnClickListener{
+public class NewCommentActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener{
 
-    private RichEditText mCommentField;
+    private RichEditor mCommentField;
     private Button mCommentButton;
 
     private DatabaseReference mDatabase;
@@ -78,6 +84,10 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
     private Button mBoldButton;
     private Button mItalicButton;
     private Button mUnderlineButton;
+
+    int boldFlag = 0;
+    int italicFlag = 0;
+    int underlineFlag = 0;
 
     private String key = null;
     private String path;
@@ -98,7 +108,11 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment2);
 
-        mCommentField = (RichEditText) findViewById(R.id.editor);
+        mCommentField = (RichEditor) findViewById(R.id.editor);
+        mCommentField.setPadding(20, 20 , 20, 40);
+        mCommentField.setHtml("&nbsp;");
+        mCommentField.setEditorFontSize(15);
+
         mCommentButton = (Button) findViewById(R.id.button_post_comment);
         mBoldButton = (Button) findViewById(R.id.bold_button);
         mItalicButton = (Button) findViewById(R.id.italic_button);
@@ -108,6 +122,11 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
         mItalicButton.setOnClickListener(this);
         mUnderlineButton.setOnClickListener(this);
         mCommentButton.setOnClickListener(this);
+		
+		// For changing color on touch
+		mBoldButton.setOnTouchListener(this);
+		mItalicButton.setOnTouchListener(this);
+		mUnderlineButton.setOnTouchListener(this);
 
         mPostKey = getIntent().getStringExtra(PostDetailActivity.EXTRA_POST_KEY);
         if (mPostKey == null) {
@@ -135,7 +154,7 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_post_comment:
-                if (!mCommentField.getText().toString().trim().equals("")) {
+                if (!mCommentField.getHtml().toString().trim().equals("")) {
                     key = mCommentsReference.push().getKey();
                     mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("comment-attachments").child(mPostKey).child(key);
                     postComment();
@@ -145,18 +164,122 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
                     Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bold_button:
-                mCommentField.applyEffect(RichEditText.BOLD, !mCommentField.hasEffect(RichEditText.BOLD));
+                // mCommentField.applyEffect(RichEditText.BOLD, !mCommentField.hasEffect(RichEditText.BOLD));
+                onBoldClick();
                 break;
             case R.id.italic_button:
-                mCommentField.applyEffect(RichEditText.ITALIC, !mCommentField.hasEffect(RichEditText.ITALIC));
+                // mCommentField.applyEffect(RichEditText.ITALIC, !mCommentField.hasEffect(RichEditText.ITALIC));
+                onItalicsClick();
                 break;
             case R.id.underline_button:
-                mCommentField.applyEffect(RichEditText.UNDERLINE, !mCommentField.hasEffect(RichEditText.UNDERLINE));
+                //  mCommentField.applyEffect(RichEditText.UNDERLINE, !mCommentField.hasEffect(RichEditText.UNDERLINE));
+                onUnderlineClick();
                 break;
 
         }
     }
+	
+	@Override
+	public boolean onTouch(View view, MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			view.setBackgroundColor(Color.parseColor("#37000000"));
+		} else if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			view.setBackgroundColor(Color.parseColor("#66000000"));
+		}
+		return false;
+    }
+	
+    //----------------------RICH TEXT CODE--------------------------------------
+    public void onBoldClick() {
 
+//        etQues.setSelected(true);
+        // Log.d("TAG2", sel + "");
+        String str = mCommentField.getHtml();
+        Log.d("TAG1", "str: " + str + "xxx");
+        if (checkBlanks(str)) {
+            Toast.makeText(this, "Press spacebar first", Toast.LENGTH_SHORT).show();
+            boldFlag = toggle(boldFlag);
+        }
+
+        if (boldFlag == 0) {
+
+            boldFlag = 1;
+            //mBoldButton.setBackgroundColor(Color.parseColor("#66000000"));
+        } else if (boldFlag == 1) {
+            boldFlag = 0;
+            //mBoldButton.setBackgroundColor(Color.parseColor("#37000000"));
+        }
+
+        mCommentField.setBold();
+    }
+
+    public void onItalicsClick() {
+
+        //      etQues.setSelected(true);
+        // Log.d("TAG2", sel + "");
+        String str = mCommentField.getHtml();
+        Log.d("TAG1", "str: " + str + "xxx");
+        if (checkBlanks(str)){
+            Toast.makeText(this, "Press spacebar first", Toast.LENGTH_SHORT).show();
+            italicFlag = toggle(italicFlag);
+        }
+
+        if (italicFlag == 0) {
+
+            italicFlag = 1;
+            //mItalicButton.setBackgroundColor(Color.parseColor("#66000000"));
+        } else if (italicFlag == 1) {
+            italicFlag = 0;
+            //mItalicButton.setBackgroundColor(Color.parseColor("#37000000"));
+        }
+
+        mCommentField.setItalic();
+    }
+
+    public void onUnderlineClick() {
+
+        //etQues.setSelected(true);
+        // Log.d("TAG2", sel + "");
+        String str = mCommentField.getHtml();
+        Log.d("TAG1", "str: " + str + "xxx");
+        if (checkBlanks(str)) {
+            Toast.makeText(this, "Press spacebar first", Toast.LENGTH_SHORT).show();
+            underlineFlag = toggle(underlineFlag);
+        }
+
+        if (underlineFlag == 0) {
+
+            underlineFlag = 1;
+            //mUnderlineButton.setBackgroundColor(Color.parseColor("#66000000"));
+        } else if (underlineFlag == 1) {
+            underlineFlag = 0;
+            //mUnderlineButton.setBackgroundColor(Color.parseColor("#37000000"));
+        }
+
+        mCommentField.setUnderline();
+    }
+
+
+
+    public boolean checkBlanks(String str){
+        if(str.endsWith("nbsp;")||str.endsWith("nbsp;</b>")||str.endsWith("nbsp;</i>")||str.endsWith("nbsp;</u>")||str.endsWith("nbsp;</b></i>")
+                ||str.endsWith("nbsp;</i></b>")||str.endsWith("nbsp;</b></u>")||str.endsWith("nbsp;</u></b>")||str.endsWith("nbsp;</i></u>")
+                ||str.endsWith("nbsp;</u></i>")||str.endsWith("nbsp;</b></i></u>")||str.endsWith("nbsp;</b></u></i>")
+                ||str.endsWith("nbsp;</i></b></u>")||str.endsWith("nbsp;</i></u></b>")||str.endsWith("nbsp;</u></b></i>")
+                ||str.endsWith("nbsp;</u></i></b>")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+    public int toggle(int flag){
+        return 1-flag;
+    }
+
+    //----------------------RICH TEXT CODE--------------------------------------
     public void uploadImage() {
         Uri file = Uri.fromFile(new File(imagePath));
         /// upload destination. change according to your needs
@@ -207,13 +330,15 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
 
                         // Create new comment object
                         SpannedXhtmlGenerator htmlText = new SpannedXhtmlGenerator();
-                        String xmlText = htmlText.toXhtml(mCommentField.getText());
-                        String commentText = mCommentField.getText().toString();
+                        String xmlText = htmlText.toXhtml(Html.fromHtml(mCommentField.getHtml()));
+
+                        String commentText = Html.fromHtml(mCommentField.getHtml()).toString();
 
                         writeNewComment(uid, authorName, commentText, xmlText, downloadImageURL, downloadPdfURL);
+                        Log.e("Comment", "Text : " + commentText);
 
                         // Clear the field
-                        mCommentField.setText(null);
+                        mCommentField.setHtml(null);
 
                         // Add post-key to local DB to check for notification //
                         final DatabaseReference postNotifyRef = mDatabase.child("post-notify");
@@ -289,7 +414,7 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
     private void writeNewComment(String uid, String authorName, String commentText, String xmlText, String downloadImageURL, String downloadPdfURL) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        Comment comment = new Comment(uid, authorName, commentText, xmlText, downloadImageURL, downloadPdfURL);
+        Comment comment = new Comment(uid, authorName, commentText, xmlText, downloadImageURL, downloadPdfURL,0);
 
         Map<String, Object> commentValues = comment.toMap();
 

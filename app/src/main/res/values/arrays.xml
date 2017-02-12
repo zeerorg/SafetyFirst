@@ -904,19 +904,19 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     <string-array name="Delhiforms">
         <item>Record Lime Washing etc</item>
         <item>Over Time Muster Roll</item>
-        <item>Notice of Change of Mananger</item>
-        <item>Register of Accident and Dangerous Occurence</item>
-        <item>Register of Child Workers</item>
-        <item>Notice Period for Child Workers</item>
         <item>Notice Period for Adult Workers</item>
-        <item>Register of Trained Adult Workers</item>
-        <item>Muster Roll</item>
-        <item>Half yearly Retuns</item>
-        <item>Register of Leave with Wages</item>
-        <item>Register of Compensatory Holidays</item>
         <item>Register of Adult Workers</item>
-        <item>Annual Return</item>
+        <item>Notice Period for Child Workers</item>
+        <item>Register of Child Workers</item>
+        <item>Register of Leave with Wages</item>
         <item>Health Register</item>
+        <item>Annual Return</item>
+        <item>Half yearly Retuns</item>
+        <item>Muster Roll</item>
+        <item>Register of Accident and Dangerous Occurence</item>
+        <item>Register of Trained Adult Workers</item>
+        <item>Notice of Change of Mananger</item>
+        <item>Register of Compensatory Holidays</item>
     </string-array>
     <array name="Delhi">
         <item>@array/DelhiLaws</item>
@@ -930,7 +930,7 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>@drawable/back_law3</item>
     </array>
     <string-array name="Gujaratform">
-        <item>Register of Compensatory Holidays</item>
+        <item>Overtime Register of Exempted Workers</item>
         <item>Register of Adult Workers</item>
         <item>Notice Period of Work for Child</item>
         <item>Register of Child Workers</item>
@@ -984,12 +984,12 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>Register of Accidents and Dangerous Occurence</item>
         <item>Register of Adult workers</item>
         <item>Register of Leave with Wages</item>
-        <item>Muster Roll</item>
-        <item>Register of Overtime and Payment</item>
         <item>Leave Book</item>
-        <item>Annual Return</item>
         <item>Health Register</item>
         <item>Factory Licence Renewal</item>
+        <item>Annual Return</item>
+        <item>Muster Roll</item>
+        <item>Register of Overtime and Payment</item>
     </string-array>
     <array name="Karnataka">
         <item>@array/Karnatakalaws</item>
@@ -1047,18 +1047,18 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
         <item>@drawable/back_law5</item>
     </array>
     <string-array name="Punjabform">
-        <item>Muster Roll</item>
         <item>Overtime Muster Roll for Exempted Worker</item>
-        <item>Annual Returns</item>
-        <item>Half Yearly Returns</item>
-        <item>Register of Adult Workers</item>
-        <item>Register of Child Workers</item>
-        <item>Register of Compensatory Holidays</item>
         <item>Notice Period for Adult Workers</item>
+        <item>Register of Adult Workers</item>
         <item>Notice Period for Child Workers</item>
+        <item>Register of Child Workers</item>
         <item>Register of Leave with Wages</item>
         <item>Health Register</item>
+        <item>Annual Returns</item>
+        <item>Half Yearly Returns</item>
+        <item>Muster Roll</item>
         <item>Record of Limewashing etc</item>
+        <item>Register of Compensatory Holidays</item>
     </string-array>
     <array name="Punjab">
         <item>@array/Punjablaws</item>
@@ -1088,11 +1088,11 @@ An articulating boom lift is a type of crane that uses hydraulic cylinders to ri
     </array>
     <string-array name="Telanganaform">
         <item>Register of Child Workers</item>
-        <item>Notice of Change of Manager</item>
-        <item>Annual Return</item>
         <item>Factories Act Form</item>
-        <item>Factories Rules and Forms</item>
+        <item>Notice of Change of Manager</item>
         <item>Certificate of Fitness</item>
+        <item>Annual Return</item>
+        <item>Factories Rules and Forms</item>
     </string-array>
     <array name="Telangana">
         <item>@array/Telanganalaws</item>
