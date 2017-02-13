@@ -20,15 +20,15 @@ import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 
 public class DiscussionActivity extends BaseActivity {
 
-    private static final String TAG = "NewsActivity";
+    private static final String TAG = "DiscussionActivity";
 
     private  CategoryAdapter mAdapter;
     private static ViewPager mViewPager; // static so that it can be changed within fragments
 
     private final int[] tabIcons =  {
-            R.drawable.ic_group_black_24dp,
-            R.drawable.ic_home_black_24dp,
-            R.drawable.ic_bookmark_black_24dp,
+            R.drawable.ic_forum_white_24dp,
+            R.drawable.ic_help_white_24dp,
+            R.drawable.ic_account_circle_white_24dp,
             R.drawable.ic_border_color_black_24dp};
     private TabLayout tabLayout;
 

@@ -59,8 +59,9 @@ public class UserProfileActivity extends BaseActivity {
     TextView mDesignation;
     TextView mCompany;
     TextView mQualification;
-    TextView mQuestions;
-    TextView mAnswers;
+    //TextView mQuestions;
+   // TextView mAnswers;
+    TextView mEmail;
 
     private ValueEventListener mUserListener;
     CollapsingToolbarLayout collapsingToolbar;
@@ -83,19 +84,26 @@ public class UserProfileActivity extends BaseActivity {
 
 
 hideProgressDialog();
-                if (user.getDesignation() == null){
-                    startActivity(new Intent(UserProfileActivity.this, UpdateProfile.class));
+                if (user.getDesignation() == null ){
+                    Toast.makeText(UserProfileActivity.this, "User has not Updated his profile", Toast.LENGTH_SHORT).show();
                     finish();
+                    /*startActivity(new Intent(UserProfileActivity.this, UpdateProfile.class));
+                    finish();*/
                 }
+
+               /* else{
+
+                }*/
 
                 mDesignation.setText(user.getDesignation());
                 mQualification.setText(user.getQualification());
                 mCompany.setText(user.getCompany());
-                mQuestions.setText(String.valueOf(user.getQuestionsAsked())+" Questions");
-                mAnswers.setText(String.valueOf(user.getAnswersGiven())+" Answers");
+                mEmail.setText(user.getEmail());
+              //  mQuestions.setText(String.valueOf(user.getQuestionsAsked())+" Questions");
+              //  mAnswers.setText(String.valueOf(user.getAnswersGiven())+" Answers");
 
-                collapsingToolbar.setExpandedTitleTextAppearance(R.style.user_profile);
-                collapsingToolbar.setTitle(user.getFull_name());
+              //  collapsingToolbar.setExpandedTitleTextAppearance(R.style.user_profile);
+              //  collapsingToolbar.setTitle(user.getFull_name());
 
                 if(check==true){
                     check=false;}else{
@@ -149,17 +157,18 @@ hideProgressDialog();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      //  setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mstorageRef= FirebaseStorage.getInstance().getReference();
         user = getCurrentUser();
         mPhoto = (ImageView) findViewById(R.id.backdrop);
         mDesignation = (TextView) findViewById(R.id.user_designation);
         mCompany = (TextView) findViewById(R.id.user_company);
         mQualification = (TextView) findViewById(R.id.user_qualification);
-        mQuestions = (TextView) findViewById(R.id.user_num_questions);
-        mAnswers = (TextView) findViewById(R.id.user_num_answers);
+        mEmail = (TextView) findViewById(R.id.user_email);
+       // mQuestions = (TextView) findViewById(R.id.user_num_questions);
+       // mAnswers = (TextView) findViewById(R.id.user_num_answers);
 
         //mUserId = getCurrentUserId();
 

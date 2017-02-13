@@ -49,6 +49,8 @@ import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
+import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
+import com.vikas.dtu.safetyfirst2.mUser.UserProfileActivity;
 
 import java.util.HashMap;
 
@@ -319,11 +321,11 @@ public class DynamicDashboardNav extends BaseActivity
      }
      else if (id == R.id.nav_update)
      {
-        // startActivity(new Intent(DynamicDashboardNav.this, UserProfileActivity.class));
-         Intent userDetailIntent = new Intent(DynamicDashboardNav.this, UserProfileActivity.class);
+         startActivity(new Intent(DynamicDashboardNav.this, UpdateProfile.class));
+        /* Intent userDetailIntent = new Intent(DynamicDashboardNav.this, UserProfileActivity.class);
          userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
                  getCurrentUserId());
-         startActivity(userDetailIntent);
+         startActivity(userDetailIntent);*/
 
      }
      else if (id == R.id.nav_help) {
