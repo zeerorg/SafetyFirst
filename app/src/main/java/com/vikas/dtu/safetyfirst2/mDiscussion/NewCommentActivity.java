@@ -158,8 +158,12 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
                     key = mCommentsReference.push().getKey();
                     mAttachmentsReference = FirebaseDatabase.getInstance().getReference().child("comment-attachments").child(mPostKey).child(key);
                     postComment();
-                    if (imagePath != null) uploadImage();
+                    if (imagePath != null){
+                        Toast.makeText(getBaseContext(), "Images will be available when Uploaded", Toast.LENGTH_LONG).show();
+                        uploadImage();
+                    }
                     if (pdfPath != null) uploadPDF();
+                    finish();
                 } else
                     Toast.makeText(this, "Write valid answer.", Toast.LENGTH_SHORT).show();
                 break;
@@ -310,6 +314,7 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
 
                 pushNode(IMAGE_ATTACH, downloadImageURL);
 
+                Toast.makeText(getBaseContext(), "Image Uploaded", Toast.LENGTH_LONG).show();
                 finish();
 
             }

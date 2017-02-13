@@ -115,6 +115,7 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
     ////
 
     private ArrayList<String> images;
+    private ArrayList<String> imagesLocalUrl;
     private ArrayList<String> downloadImageList;
     private ArrayAdapter<String> imageListAdapter;
 
@@ -172,7 +173,14 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
                 post_notify_ref.child(key).child("num_of_stars").setValue(0);
 
 
-                if (!images.isEmpty()) uploadAllImages();  // Changed uploadImage() to uploadAllImages()
+                if (!images.isEmpty()){
+                    imagesLocalUrl = new ArrayList<String>(images.size());
+                    for (String singleImage: images){
+                        imagesLocalUrl.add(singleImage);
+                    }
+                    Toast.makeText(getContext(), "Images will be available when Uploaded", Toast.LENGTH_LONG).show();
+                    uploadAllImages();  // Changed uploadImage() to uploadAllImages()
+                }
                 if (pdfPath != null) uploadPDF();
             }
         });
@@ -362,10 +370,10 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
                             writeNewPost(userId, user.username, title, body, xmlBody, downloadImageURL, user.photoUrl, downloadVideoURL, downloadPdfURL, attachLink, downloadImageList);
                         }
 
-                        mBodyField.setHtml(null);
-                        mTitleField.setText(null);
-                        if(images.isEmpty())
-                            finish();
+//                        mBodyField.setHtml(null);
+//                        mTitleField.setText(null);
+//                        if(images.isEmpty())
+                        finish();
                         // [END_EXCLUDE]
                     }
 
@@ -713,7 +721,7 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void uploadAllImages() {
-        Uri file = Uri.fromFile(new File(images.get(0)));
+        Uri file = Uri.fromFile(new File(imagesLocalUrl.get(0)));
         /// upload destination. change according to your needs
         UploadTask uploadTask = storage.getReferenceFromUrl(URL).child(getUid() + "/image/" + file.getLastPathSegment()).putFile(file);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -751,14 +759,15 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
     }
 
     private void uploadImageList(final int index){
-        if (index == images.size()) {
+        if (index == imagesLocalUrl.size()) {
             Map<String, Object> imageAttach = new HashMap<>();
             imageAttach.put("/posts/" + key + "/imageList/", downloadImageList);
             mDatabase.updateChildren(imageAttach);
             pushNode(IMAGE_LIST_ATTACH, downloadImageList);
-            finish();
+            downloadImageList = new ArrayList<>();
+            Toast.makeText(getContext(), "Images Uploaded", Toast.LENGTH_LONG).show();
         } else {
-            Uri file = Uri.fromFile(new File(images.get(index)));
+            Uri file = Uri.fromFile(new File(imagesLocalUrl.get(index)));
             /// upload destination. change according to your needs
             UploadTask uploadTask = storage.getReferenceFromUrl(URL).child(getUid() + "/image/" + file.getLastPathSegment()).putFile(file);
             uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -776,7 +785,6 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
 
                     downloadImageList.add(String.valueOf(downloadUrl));
                     assert downloadUrl != null;
-                    Toast.makeText(getContext(), "Image " + (index+1) + " Uploaded", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     intent.putExtra("DOWNLOAD_URI", downloadUrl);
 
@@ -890,7 +898,6 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
         mTitleField.setText("");
         mBodyField.setHtml("");
         images = new ArrayList<>();
-        downloadImageList = new ArrayList<>();
         imageListAdapter = new SimpleImageListAdapter(getContext(), images);
         imageListView.setAdapter(imageListAdapter);
     }
