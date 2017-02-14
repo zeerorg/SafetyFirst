@@ -49,23 +49,24 @@
             android:layout_alignBottom="@+id/post_author_layout"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/post_author_layout"
+            android:layout_gravity="end"
+            android:layout_marginRight="24dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/upvote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:background="?attr/selectableItemBackground"
-                android:src="@drawable/ic_toggle_star_outline_24" />
+                android:src="@drawable/thumbsup_outline" />
 
             <TextView
                 android:id="@+id/post_num_upvote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="#000000"
                 android:textIsSelectable="true"
                 android:text="7" />
 
@@ -88,8 +89,13 @@
                 android:textColor="@color/red"
                 android:textIsSelectable="true"
                 android:text="7" />
-        </LinearLayout>
 
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="@color/black_overlay"
+            />
     </LinearLayout>
 
 

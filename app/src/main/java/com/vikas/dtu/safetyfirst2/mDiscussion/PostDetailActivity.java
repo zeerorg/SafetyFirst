@@ -174,6 +174,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         mImageButton = (ImageButton) findViewById(R.id.image_btn);
         mFileButton = (ImageButton) findViewById(R.id.file_btn);
+        mFileButton.setVisibility(View.GONE);
         // mVideoButton = (Button) findViewById(R.id.video_btn);
         mLinkButton = (ImageButton) findViewById(R.id.link_btn);
 
@@ -195,9 +196,26 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         mImageManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mImageRecycler.setLayoutManager(mImageManager);
+        checkVisibilityfilebutton();
     }
 
+    private void checkVisibilityfilebutton() {
+        mPostAttachmentsReference.child("FILE_ATTACH").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String url = (String) dataSnapshot.getValue();
+                //  Log.d(TAG, url);
+                if (url != null) {
+                    mFileButton.setVisibility(View.VISIBLE);
+                }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -547,9 +565,9 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
            holder.Upvoteview.setText(String.valueOf(comment.upvoteCount));
             if (comment.upvoteusers.containsKey(getuserid())) {
-                holder.upvoteimage.setImageResource(R.drawable.ic_toggle_star_24);
+                holder.upvoteimage.setImageResource(R.drawable.thumbsup_blue);
             } else {
-                holder.upvoteimage.setImageResource(R.drawable.ic_toggle_star_outline_24);
+                holder.upvoteimage.setImageResource(R.drawable.thumbsup_outline);
             }
             holder.upvoteimage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -559,7 +577,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             });
 
         }
-
         private void onStarClicked(DatabaseReference commentref) {
             commentref.runTransaction(new Transaction.Handler() {
                 @Override
