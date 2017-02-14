@@ -30,23 +30,27 @@
 
         <android.support.design.widget.TabItem
             android:id="@+id/discussions"
+            android:icon="@drawable/disc_forum_1_ic_forum_white_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <android.support.design.widget.TabItem
             android:id="@+id/myposts"
+            android:icon="@drawable/disc_forum_2_ic_home_white_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <android.support.design.widget.TabItem
             android:id="@+id/bookmarked"
+            android:icon="@drawable/disc_forum_3_ic_account_circle_white_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
         <android.support.design.widget.TabItem
             android:id="@+id/write_que"
+            android:icon="@drawable/disc_forum_4_ic_edit_white_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

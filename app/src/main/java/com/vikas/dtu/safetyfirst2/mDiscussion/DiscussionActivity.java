@@ -40,12 +40,12 @@ public class DiscussionActivity extends BaseActivity {
     private  CategoryAdapter mAdapter;
     private static ViewPager mViewPager; // static so that it can be changed within fragments
 
-    private final int[] tabIcons =  {
+ /*   private final int[] tabIcons =  {
 
             R.drawable.disc_forum_1_ic_forum_white_24dp,
             R.drawable.disc_forum_2_ic_home_white_24dp,
             R.drawable.disc_forum_3_ic_account_circle_white_24dp,
-            R.drawable.disc_forum_4_ic_edit_white_24dp};
+            R.drawable.disc_forum_4_ic_edit_white_24dp};*/
 /*
             R.drawable.ic_forum_white_24dp,
             R.drawable.ic_help_white_24dp,
@@ -119,7 +119,7 @@ public class DiscussionActivity extends BaseActivity {
                 mViewPager.setAdapter(mAdapter);
                 tabLayout = (TabLayout)findViewById(R.id.tabs);
                 tabLayout.setupWithViewPager(mViewPager);
-                setupTabIcons();
+               // setupTabIcons();
                 progress.setVisibility(View.GONE);
             }
             @Override
@@ -128,12 +128,12 @@ public class DiscussionActivity extends BaseActivity {
             }
         });
     }
-    private void setupTabIcons() {
+/*    private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
