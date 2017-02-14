@@ -10,17 +10,29 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.CategoryAdapter;
 import com.vikas.dtu.safetyfirst2.NotificationService;
 import com.vikas.dtu.safetyfirst2.R;
+import com.vikas.dtu.safetyfirst2.mData.User;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
+
+import static com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil.getCurrentUserId;
 
 public class DiscussionActivity extends BaseActivity {
 
     private static final String TAG = "DiscussionActivity";
+    private ProgressBar progress;
 
     private  CategoryAdapter mAdapter;
     private static ViewPager mViewPager; // static so that it can be changed within fragments
@@ -86,14 +98,26 @@ public class DiscussionActivity extends BaseActivity {
                 startActivity(new Intent(DiscussionActivity.this, NewPostActivity.class));
             }
         }); */
+        progress = (ProgressBar) findViewById(R.id.progressBar);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mAdapter = new CategoryAdapter(DiscussionActivity.this ,getSupportFragmentManager());
-        mViewPager.setAdapter(mAdapter);
-        tabLayout = (TabLayout)findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-        setupTabIcons();
+        DatabaseReference mUserRef= FirebaseDatabase.getInstance().getReference().child("users").child(getCurrentUserId());
+        mUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                mAdapter = new CategoryAdapter(DiscussionActivity.this ,getSupportFragmentManager(), user);
+                mViewPager.setAdapter(mAdapter);
+                tabLayout = (TabLayout)findViewById(R.id.tabs);
+                tabLayout.setupWithViewPager(mViewPager);
+                setupTabIcons();
+                progress.setVisibility(View.GONE);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(DiscussionActivity.this, "Error Loading User", Toast.LENGTH_LONG).show();
+            }
+        });
     }
-
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);

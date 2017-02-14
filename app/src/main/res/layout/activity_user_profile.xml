@@ -54,6 +54,7 @@
             android:paddingRight="10dp"
             android:layout_marginBottom="5dp"
             android:drawablePadding="15dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -266,4 +267,9 @@
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
+    <Button android:visibility="gone"
+        android:text="Update Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/update_profile_button" />
 </LinearLayout>

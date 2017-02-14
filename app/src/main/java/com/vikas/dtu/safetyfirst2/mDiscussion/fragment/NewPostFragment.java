@@ -181,7 +181,10 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
                     Toast.makeText(getContext(), "Images will be available when Uploaded", Toast.LENGTH_LONG).show();
                     uploadAllImages();  // Changed uploadImage() to uploadAllImages()
                 }
-                if (pdfPath != null) uploadPDF();
+                if (pdfPath != null){
+                    Toast.makeText(getContext(), "PDF will be available when Uploaded", Toast.LENGTH_LONG).show();
+                    uploadPDF();
+                }
             }
         });
         mainView.findViewById(R.id.upload_image).setOnClickListener(new View.OnClickListener() {
