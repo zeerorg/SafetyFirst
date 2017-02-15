@@ -110,7 +110,7 @@ public class NewCommentActivity extends BaseActivity implements View.OnClickList
 
         mCommentField = (RichEditor) findViewById(R.id.editor);
         mCommentField.setPadding(20, 20 , 20, 40);
-        mCommentField.setHtml("&nbsp;");
+        mCommentField.setHtml("");
         mCommentField.setEditorFontSize(15);
 
         mCommentButton = (Button) findViewById(R.id.button_post_comment);

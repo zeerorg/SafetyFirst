@@ -145,7 +145,7 @@ public class NewPostFragment extends Fragment implements View.OnTouchListener {
 
         mBodyField = (RichEditor) mainView.findViewById(R.id.field_body);
         mBodyField.setPadding(20, 20 , 20, 40);
-        mBodyField.setHtml("&nbsp;");
+        mBodyField.setHtml("");
         mBodyField.setEditorFontSize(15);
 
         mBoldButton = (Button) mainView.findViewById(R.id.bold_button);

@@ -555,7 +555,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             if (comment.xmlText == null)
                 setHyperlinkText(holder.bodyView, comment.text);  //For older comments with simple text
             else
-                setHyperlinkText(holder.bodyView, comment.xmlText);
+                setHyperlinkText(holder.bodyView, comment.text);
 
             // Display Image in Comment
             if(comment.image != null){
