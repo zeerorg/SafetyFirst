@@ -2,6 +2,7 @@ package com.vikas.dtu.safetyfirst2.mSignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -36,6 +37,7 @@ import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.TermsnCondition;
 import com.vikas.dtu.safetyfirst2.mData.User;
+import com.vikas.dtu.safetyfirst2.mIntro.MainIntroActivity;
 import com.vikas.dtu.safetyfirst2.mUtils.DialogUtils;
 
 public class SignInActivity extends BaseActivity implements GoogleApiClient.OnConnectionFailedListener,
@@ -57,6 +59,8 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     private SignInButton mSignInButton;
     public static boolean signin = false;
 
+    public static final String PREF_KEY_FIRST_START = "com.vikas.dtu.safetyfirst2.PREF_KEY_FIRST_START";
+    public static final int REQUEST_CODE_INTRO = 1;
 
 
     @Override
@@ -97,7 +101,12 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
         customSigninButton.setOnClickListener(this);
         mSignUpText.setOnClickListener(this);
         // Set click listeners
-
+        boolean firstStart = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(PREF_KEY_FIRST_START, true);
+        if (firstStart) {
+            Intent intent = new Intent(this, MainIntroActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_INTRO);
+        }
 
         mGoogleSignInButton.setOnClickListener(this);
 
@@ -105,6 +114,8 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
 
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+
 
 
        mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -123,6 +134,8 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
             }
         };
     }
+
+
 
 
     public void clickTnc(View v){
@@ -230,9 +243,7 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        callbackManager.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
@@ -243,6 +254,20 @@ public class SignInActivity extends BaseActivity implements GoogleApiClient.OnCo
             } else {
                 // Google Sign In failed
                 Log.e(TAG, "Google Sign In failed.");
+            }
+        }
+        else  if (requestCode == REQUEST_CODE_INTRO) {
+            if (resultCode == RESULT_OK) {
+                PreferenceManager.getDefaultSharedPreferences(this).edit()
+                        .putBoolean(PREF_KEY_FIRST_START, false)
+                        .apply();
+            }
+            else {
+                PreferenceManager.getDefaultSharedPreferences(this).edit()
+                        .putBoolean(PREF_KEY_FIRST_START, true)
+                        .apply();
+                //User cancelled the intro so we'll finish this activity too.
+                finish();
             }
         }
     }

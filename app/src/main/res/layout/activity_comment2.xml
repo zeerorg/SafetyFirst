@@ -68,6 +68,7 @@
                 android:background="@drawable/round_red_dark"
                 android:onClick="uploadFile"
                 android:padding="@dimen/md_keylines"
+                android:visibility="gone"
                 android:src="@drawable/ic_attach_file_white_24dp" />
 
             <Button

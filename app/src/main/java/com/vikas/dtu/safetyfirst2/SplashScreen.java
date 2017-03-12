@@ -7,34 +7,35 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.database.FirebaseDatabase;
+import com.vikas.dtu.safetyfirst2.mIntro.MainIntroActivity;
+
+import butterknife.ButterKnife;
+
 public class SplashScreen extends AppCompatActivity {
-    // Splash screen timer
-    private static int SPLASH_TIME_OUT = 1500;
+    private final Handler waitHandler = new Handler();
+    private final Runnable waitCallback = new Runnable() {
+        @Override
+        public void run() {
+            Intent intent = new Intent(SplashScreen.this, DynamicDashboardNav.class);
+            startActivity(intent);
+            finish();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Make the activity FullScreen
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_splash_screen);
+        ButterKnife.bind(this);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        //Fake wait 2s to simulate some initialization on cold start (never do this in production!)
+        waitHandler.postDelayed(waitCallback, 1500);
+    }
 
-        new Handler().postDelayed(new Runnable() {
-
-            // Showing splash screen with a timer.
-
-
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, WelcomeActivity.class);
-                startActivity(i);
-
-                // close this activity
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+    @Override
+    protected void onDestroy() {
+        waitHandler.removeCallbacks(waitCallback);
+        super.onDestroy();
     }
 }

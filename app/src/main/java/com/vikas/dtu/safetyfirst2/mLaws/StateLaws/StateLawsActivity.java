@@ -141,7 +141,7 @@ public class StateLawsActivity extends AppCompatActivity {
 
     private void Addurl() {
 //        Andhra
-        lurl[1][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTHE%20FACTORIES%20ACT-1948.pdf?alt=media&token=293a89e2-f4b9-4cc8-b2bc-58f400e14829";
+        lurl[0][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FTHE%20FACTORIES%20ACT-1948.pdf?alt=media&token=293a89e2-f4b9-4cc8-b2bc-58f400e14829";
 //      delhi
         lurl[1][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2Ffire%20acts%2FDelhi_fire_service_act_2009.pdf?alt=media&token=3db46ee5-27bc-4a6e-9ce8-938b3f2f0e5d";
         furl[1][0]="https://firebasestorage.googleapis.com/v0/b/safetyfirst-aec72.appspot.com/o/laws%2FDelhiForm%2FNone_form%20-%207%20-%20Record%20of%20Lime%20washing%2Cpainting%2Cetc.pdf?alt=media&token=9fa3d07b-b09d-4c4e-8c59-e27cf31d1194";

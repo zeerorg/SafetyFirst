@@ -1,11 +1,14 @@
 package com.vikas.dtu.safetyfirst2.mUser;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -76,6 +79,7 @@ public class UpdateProfileFragment extends Fragment implements AdapterView.OnIte
     Spinner mSpinner;
     static final int RESULT_GALLERY_IMAGE=100;
     static final int RESULT_CAMERA_IMAGE=101;
+    private static final int REQUEST_EXTERNAL_STORAGE=101;
     private ValueEventListener mUserListener;
     private File Imagefile;
     private Button mSubmit;
@@ -132,6 +136,40 @@ public class UpdateProfileFragment extends Fragment implements AdapterView.OnIte
     }
 
     private void ChangeProfilePic() {
+        if(android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1){
+            TakePhoto();
+        } else {
+            if (ContextCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                TakePhoto();
+            } else {
+                if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    Toast.makeText(getContext(), "External Storage and Camera permission is required to read images from device", Toast.LENGTH_SHORT).show();
+                }
+                requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA},
+                        REQUEST_EXTERNAL_STORAGE);
+            }
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+         if(requestCode == REQUEST_EXTERNAL_STORAGE){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                TakePhoto();
+            } else {
+                Toast.makeText(getContext(), "External Storage and Camera permission not granted", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+         }
+    }
+
+    private void TakePhoto(){
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
 
         builder.setItems(R.array.options, new DialogInterface.OnClickListener() {
@@ -157,7 +195,6 @@ public class UpdateProfileFragment extends Fragment implements AdapterView.OnIte
             }
         });
         builder.show();
-
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -226,7 +263,7 @@ public class UpdateProfileFragment extends Fragment implements AdapterView.OnIte
         joinAs = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + joinAs, Toast.LENGTH_LONG).show();
+      //  Toast.makeText(parent.getContext(), "Selected: " + joinAs, Toast.LENGTH_LONG).show();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub

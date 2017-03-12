@@ -31,8 +31,6 @@ public class NewsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-        // Get a support ActionBar corresponding to this toolbar
-
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
@@ -51,11 +49,9 @@ public class NewsActivity extends BaseActivity {
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
             firstFragment.setArguments(getIntent().getExtras());
-
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
-//            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         }
 

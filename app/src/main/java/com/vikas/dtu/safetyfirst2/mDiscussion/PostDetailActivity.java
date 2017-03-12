@@ -293,7 +293,41 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mCommentsRecycler.setAdapter(mAdapter);
     }
 
+    private static boolean checkHyperlinkText(String input) {
+        Log.d("TAGhyper7", "string: " + input);
+        Spanned output;
+        String preText, postText;
+
+        Pattern p = Pattern.compile(URL_REGEX2, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+        String link = "";
+        String[] parts = input.split("\\s");
+        preText = "";
+        postText = "";
+        int flag = 0;
+        for (String item : parts) {
+            if (!p.matcher(item).matches() && flag == 0) {
+                preText += item;
+                preText += " ";
+            }
+            if (p.matcher(item).matches()) {
+                link = item;
+                //Log.d("Here",item);
+                flag = 1;
+            }
+            if (!p.matcher(item).matches() && flag == 1) {
+                postText += " ";
+                postText += item;
+            }
+        }
+        if (flag == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private static void setHyperlinkText(TextView textview, String input) {
+        Log.d("TAGhyper7", "string: "+input);
         Spanned output;
         String preText, postText;
 
@@ -552,18 +586,32 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             final DatabaseReference commentref=mDatabaseReference.child(refkey);
             holder.authorView.setText(comment.author);
             //  holder.bodyView.setText(comment.text);
-            if (comment.xmlText == null)
-                setHyperlinkText(holder.bodyView, comment.text);  //For older comments with simple text
-            else
-                setHyperlinkText(holder.bodyView, comment.text);
 
+            Log.d("TAGhyper4", "commentText : " + comment.text + "xmlText: "+ comment.xmlText);
+            if (comment.xmlText == null) {
+                Log.d("TAGhyper6","inside 0");
+                setHyperlinkText(holder.bodyView, comment.text);  //For older comments with simple text
+            }
+            else {
+                if(checkHyperlinkText(comment.text)){
+                    Log.d("TAGhyper6","inside 1");
+                    setHyperlinkText(holder.bodyView, comment.text);
+                }
+                else{
+                    Log.d("TAGhyper6","inside 2");
+                    Spanned output;
+                    output = Html.fromHtml(comment.xmlText);
+                    holder.bodyView.setText(output);
+                }
+                //setHyperlinkText(holder.bodyView, comment.text);
+            }
             // Display Image in Comment
             if(comment.image != null){
                 holder.commentImage.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(comment.image).into(holder.commentImage);
             }
 
-           holder.Upvoteview.setText(String.valueOf(comment.upvoteCount));
+            holder.Upvoteview.setText(String.valueOf(comment.upvoteCount));
             if (comment.upvoteusers.containsKey(getuserid())) {
                 holder.upvoteimage.setImageResource(R.drawable.thumbsup_blue);
             } else {
@@ -879,39 +927,39 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 // delete post remotely from [  nodes to remove from   posts, user-posts, post-attachments, post-comments ]
                 final AlertDialog.Builder post_Del_Alert = new AlertDialog.Builder(this);
                 post_Del_Alert.setTitle("Warning").setMessage("Are you sure you want to delete this post?")
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                        }
-                    })
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                            if (mPostListener != null) {
-                                mPostReference.removeEventListener(mPostListener);
                             }
-                            mAdapter.cleanupListener();
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                            mPostReference.removeValue();
-                            mCommentsReference.removeValue();
-                            mPostAttachmentsReference.removeValue();
-                            mUserPostReference.removeValue();
-                            mCommentAttachmentsReference.removeValue();
+                                if (mPostListener != null) {
+                                    mPostReference.removeEventListener(mPostListener);
+                                }
+                                mAdapter.cleanupListener();
 
-                            Realm realm = Realm.getDefaultInstance();
-                            realm.beginTransaction();
-                            if (realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst() != null) {
-                                realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst().deleteFromRealm();
+                                mPostReference.removeValue();
+                                mCommentsReference.removeValue();
+                                mPostAttachmentsReference.removeValue();
+                                mUserPostReference.removeValue();
+                                mCommentAttachmentsReference.removeValue();
+
+                                Realm realm = Realm.getDefaultInstance();
+                                realm.beginTransaction();
+                                if (realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst() != null) {
+                                    realm.where(PostNotify.class).equalTo("postKey", mPostKey).findFirst().deleteFromRealm();
+                                }
+                                realm.commitTransaction();
+
+                                FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
+                                //Todo:  delete stuff from storage too
+                                finish();
                             }
-                            realm.commitTransaction();
-
-                            FirebaseDatabase.getInstance().getReference().child("post-notify").child(mPostKey).removeValue();
-                            //Todo:  delete stuff from storage too
-                            finish();
-                        }
-                    });
+                        });
                 post_Del_Alert.create().show();
 
                 break;

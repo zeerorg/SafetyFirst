@@ -45,20 +45,21 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
+import com.vikas.dtu.safetyfirst2.mIntro.MainIntroActivity;
 import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
-import com.vikas.dtu.safetyfirst2.mUser.UserProfileActivity;
 
 import java.util.HashMap;
-
-import static com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil.getCurrentUserId;
 
 public class DynamicDashboardNav extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, GoogleApiClient.OnConnectionFailedListener {
+
+
+
     //private boolean[] dashboardSection = new boolean[4];
     private ImageView mNewsImageView;
     private ImageView mDiscussionImageView;
@@ -94,10 +95,7 @@ public class DynamicDashboardNav extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic_dashboard_nav);
-       /* for(int i = 0; i< 4 ; i++)
-        {
-            dashboardSection[i] = false;
-        }*/
+
         mNewsImageView = (ImageView)findViewById(R.id.imageView4) ;
         mDiscussionImageView = (ImageView)findViewById(R.id.imageView5);
         mLawsImageView = (ImageView)findViewById(R.id.laws);
@@ -239,6 +237,9 @@ public class DynamicDashboardNav extends BaseActivity
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
 
         fetchDashboardSlides();
+
+
+
     }
     private void fetchDashboardSlides(){
         long cacheExpiration = 3600;
@@ -322,11 +323,6 @@ public class DynamicDashboardNav extends BaseActivity
      else if (id == R.id.nav_update)
      {
          startActivity(new Intent(DynamicDashboardNav.this, UpdateProfile.class));
-        /* Intent userDetailIntent = new Intent(DynamicDashboardNav.this, UserProfileActivity.class);
-         userDetailIntent.putExtra(UserProfileActivity.USER_ID_EXTRA_NAME,
-                 getCurrentUserId());
-         startActivity(userDetailIntent);*/
-
      }
      else if (id == R.id.nav_help) {
          startActivity(new Intent(DynamicDashboardNav.this, Help.class));
@@ -403,13 +399,13 @@ public class DynamicDashboardNav extends BaseActivity
     }
 
     public void startNews(View view) {
-        if (isNetworkConnected()) {
+      //  if (isNetworkConnected()) {
             Intent intent = new Intent(this, NewsActivity.class);
+      //      startActivity(intent);
+     //   } else {
+          //  Intent intent = new Intent(this, NoNetworkConnection.class);
             startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, NoNetworkConnection.class);
-            startActivity(intent);
-        }
+     //   }
 
 
 
@@ -417,13 +413,13 @@ public class DynamicDashboardNav extends BaseActivity
 
     public void startDiscussion(View view) {
 
-        if (isNetworkConnected()) {
+       // if (isNetworkConnected()) {
             Intent intent = new Intent(this, DiscussionActivity.class);
+       //     startActivity(intent);
+     //   } else {
+     //       Intent intent = new Intent(this, NoNetworkConnection.class);
             startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, NoNetworkConnection.class);
-            startActivity(intent);
-        }
+      //  }
 
     }
 
