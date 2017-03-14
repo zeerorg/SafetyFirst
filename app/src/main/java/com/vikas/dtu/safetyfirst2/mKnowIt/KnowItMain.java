@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -25,24 +27,35 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.vikas.dtu.safetyfirst2.R;
+import com.vikas.dtu.safetyfirst2.mUtils.UIConstants;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class KnowItMain extends AppCompatActivity {
 
+    private boolean mPaused;
     GridView myList;
     private TextView mTitle;
     private Context context = this;
+    private Animation mButtonFlickerAnimation;
+    private Animation mFadeOutAnimation;
+    private Animation mAlternateFadeOutAnimation;
+    private Animation mFadeInAnimation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.know_it_main);
-
+        mButtonFlickerAnimation = AnimationUtils.loadAnimation(this, R.anim.button_flicker);
+        mFadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        mAlternateFadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        mFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
         myList = (GridView)findViewById(R.id.my_list);
         myList.setAdapter(new FirstCustAdapter(this));
@@ -51,22 +64,37 @@ public class KnowItMain extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
-                Cards clicked_card= (Cards) adapterView.getItemAtPosition(i);
+               // if (!mPaused){
+                  //  view.startAnimation(mButtonFlickerAnimation);
+                // mFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(i));
+                //myList.startAnimation(mFadeOutAnimation);
+                //mOptionsButton.startAnimation(mAlternateFadeOutAnimation);
+                //mExtrasButton.startAnimation(mAlternateFadeOutAnimation);
+                //mTicker.startAnimation(mAlternateFadeOutAnimation);
+              //  mPaused = true;
+                Cards clicked_card = (Cards) adapterView.getItemAtPosition(i);
                 String clicked_title = clicked_card.getTitle();
-                final Dialog openDialog = new Dialog(context, android.R.style.Theme_DeviceDefault_Panel);
+               // final Dialog openDialog = new Dialog(context, android.R.style.Theme_DeviceDefault_Panel);
+               // final Dialog openDialog = buildDialog(R.style.DialogAnimation, "Fade In - Fade Out Animation!");
+                Dialog  openDialog = new Dialog(KnowItMain.this);
+                openDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
                 openDialog.setContentView(R.layout.custom_dialog_box);
-                mTitle = (TextView)openDialog.findViewById(R.id.title);
+                mTitle = (TextView) openDialog.findViewById(R.id.title);
                 mTitle.setText(clicked_title);
-                CardView info = (CardView)openDialog.findViewById(R.id.info_icon);
-                CardView types = (CardView)openDialog.findViewById(R.id.types_icon);
+                CardView info = (CardView) openDialog.findViewById(R.id.info_icon);
+                CardView types = (CardView) openDialog.findViewById(R.id.types_icon);
                 openDialog.setCanceledOnTouchOutside(true);
+
                 info.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(KnowItMain.this, KnowItSecond.class);
-                                intent.putExtra(KnowItSecond.POSITION, i);
-                                startActivity(intent);
+                                    Intent intent = new Intent(KnowItMain.this, KnowItSecond.class);
+                                    intent.putExtra(KnowItSecond.POSITION, i);
+                                    v.startAnimation(mButtonFlickerAnimation);
+                                     mAlternateFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(intent));
+                                     myList.startAnimation(mAlternateFadeOutAnimation);
+
                             }
                         }
                 );
@@ -77,15 +105,72 @@ public class KnowItMain extends AppCompatActivity {
                             public void onClick(View v) {
                                 Intent intent = new Intent(KnowItMain.this, KnowItThird.class);
                                 intent.putExtra(KnowItThird.POSITION, i);
-                                startActivity(intent);
+                                v.startAnimation(mButtonFlickerAnimation);
+                                mFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(intent));
+                                myList.startAnimation(mFadeOutAnimation);
+                                //startActivity(intent);
                             }
                         }
                 );
                 openDialog.show();
-            }
+           // }
+        }
         });
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+       // mPaused = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // mPaused = false;
+        mButtonFlickerAnimation.setAnimationListener(null);
+       // myList.setAnimation(null);
+
+
+
+    }
+
+    protected class StartActivityAfterAnimation implements Animation.AnimationListener {
+        private Intent mIntent;
+
+        StartActivityAfterAnimation(Intent intent) {
+            mIntent = intent;
+        }
+
+
+        public void onAnimationEnd(Animation animation) {
+
+            startActivity(mIntent);
+
+            if (UIConstants.mOverridePendingTransition != null) {
+                try {
+                    UIConstants.mOverridePendingTransition.invoke(KnowItMain.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+                } catch (InvocationTargetException ite) {
+                    Log.d("Activity Transition", "Invocation Target Exception");
+                } catch (IllegalAccessException ie) {
+                    Log.d("Activity Transition", "Illegal Access Exception");
+                }
+            }
+        }
+
+        public void onAnimationRepeat(Animation animation) {
+            // TODO Auto-generated method stub
+
+        }
+
+        public void onAnimationStart(Animation animation) {
+            // TODO Auto-generated method stub
+
+        }
+
+    }
+
 
 
 }

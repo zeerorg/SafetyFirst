@@ -238,11 +238,11 @@
         <activity
             android:name=".mKnowIt.KnowItThird"
             android:label="Know It"
-            android:parentActivityName=".mKnowIt.KnowItSecond"
+            android:parentActivityName=".mKnowIt.KnowItMain"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.vikas.dtu.safetyfirst2.mKnowIt.KnowItSecond" />
+                android:value="com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain" />
         </activity>
         <activity
             android:name=".mKnowIt.KnowItFourth"

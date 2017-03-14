@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,10 +31,16 @@ public class KnowItThird extends AppCompatActivity {
     int position;
     ListView thirdList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.know_it_third);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up round_blue_dark
+        ab.setDisplayHomeAsUpEnabled(true);
         Resources r = getResources();
         position = getIntent().getIntExtra(POSITION,0);
         setTitle(r.getStringArray(R.array.item_title)[position]+" Types");

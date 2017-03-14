@@ -141,7 +141,6 @@ public class DynamicDashboardNav extends BaseActivity
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mKnowItImageView.setImageResource(R.drawable.knowit);
-
                         break;
                     case MotionEvent.ACTION_UP:
                         mKnowItImageView.setImageResource(R.drawable.knowit_pressed);
@@ -158,7 +157,6 @@ public class DynamicDashboardNav extends BaseActivity
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mLawsImageView.setImageResource(R.drawable.laws);
-
                         break;
                     case MotionEvent.ACTION_UP:
                         mLawsImageView.setImageResource(R.drawable.laws_pressed);
@@ -322,7 +320,9 @@ public class DynamicDashboardNav extends BaseActivity
      }
      else if (id == R.id.nav_update)
      {
+
          startActivity(new Intent(DynamicDashboardNav.this, UpdateProfile.class));
+
      }
      else if (id == R.id.nav_help) {
          startActivity(new Intent(DynamicDashboardNav.this, Help.class));
@@ -456,6 +456,10 @@ public class DynamicDashboardNav extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
+        mNewsImageView.setImageResource(R.drawable.news);
+        mLawsImageView.setImageResource(R.drawable.laws);
+        mKnowItImageView.setImageResource(R.drawable.knowit);
+        mDiscussionImageView.setImageResource(R.drawable.discussion);
         mFirebaseUser = getCurrentUser();
         if (mFirebaseUser == null) {
             startActivity(new Intent(DynamicDashboardNav.this, SignInActivity.class));
@@ -482,6 +486,10 @@ public class DynamicDashboardNav extends BaseActivity
     @Override
     public void onStart() {
         super.onStart();
+        mNewsImageView.setImageResource(R.drawable.news);
+        mLawsImageView.setImageResource(R.drawable.laws);
+        mKnowItImageView.setImageResource(R.drawable.knowit);
+        mDiscussionImageView.setImageResource(R.drawable.discussion);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

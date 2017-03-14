@@ -3,13 +3,16 @@ package com.vikas.dtu.safetyfirst2.mDiscussion;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,12 +33,18 @@ import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.User;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 import static com.vikas.dtu.safetyfirst2.mUtils.FirebaseUtil.getCurrentUserId;
 
-public class DiscussionActivity extends BaseActivity {
+public class DiscussionActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "DiscussionActivity";
     private ProgressBar progress;
+    private TabItem tabItem1, tabItem2, tabItem3, tabItem4;
+    private static final String SHOWCASE_ID = "sequence example";
 
     private  CategoryAdapter mAdapter;
     private static ViewPager mViewPager; // static so that it can be changed within fragments
@@ -62,6 +71,18 @@ public class DiscussionActivity extends BaseActivity {
         // starting notification service
         Intent serviceIntent = new Intent(this,NotificationService.class);
         startService(serviceIntent);
+        tabItem1 = (TabItem)findViewById(R.id.discussions);
+       // tabItem1.setOnClickListener(this);
+        tabItem2 = (TabItem)findViewById(R.id.myposts);
+        //tabItem2.setOnClickListener(this);
+        tabItem3 = (TabItem)findViewById(R.id.bookmarked);
+       // tabItem3.setOnClickListener(this);
+        tabItem4 = (TabItem)findViewById(R.id.write_que);
+       // tabItem4.setOnClickListener(this);
+
+
+
+
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
@@ -118,8 +139,10 @@ public class DiscussionActivity extends BaseActivity {
                 mAdapter = new CategoryAdapter(DiscussionActivity.this ,getSupportFragmentManager(), user);
                 mViewPager.setAdapter(mAdapter);
                 tabLayout = (TabLayout)findViewById(R.id.tabs);
+                tabLayout.setOnClickListener(DiscussionActivity.this);
                 tabLayout.setupWithViewPager(mViewPager);
                 setupTabIcons();
+                presentShowcaseView(1000); // one second delay
                 progress.setVisibility(View.GONE);
             }
             @Override
@@ -175,10 +198,20 @@ public class DiscussionActivity extends BaseActivity {
         switch (i) {
             case R.id.action_logout:
                 FirebaseAuth.getInstance().signOut();
+                View view = findViewById(R.id.action_logout);
+                /*new MaterialShowcaseView.Builder(this)
+                        .setTarget(view)
+                        .setShapePadding(96)
+                        .setDismissText("GOT IT")
+                        .setContentText("Example of how to setup a MaterialShowcaseView for menu items in action bar.")
+                        .setContentTextColor(getResources().getColor(R.color.green))
+                        .setMaskColour(getResources().getColor(R.color.dark_blue))
+                        .show();*/
                 startActivity(new Intent(this, SignInActivity.class));
                 finish();
                 return true;
             case R.id.search_post:
+
                 //  Toast.makeText(NewsActivity.this, "Just write important TAG/Word of your Question", Toast.LENGTH_LONG).show();
                 break;
         }
@@ -188,4 +221,69 @@ public class DiscussionActivity extends BaseActivity {
     public static ViewPager getViewPager(){
         return mViewPager;
     }
+
+
+    @Override
+    public void onClick(View v) {
+
+        presentShowcaseView(0);
+
+    }
+    private void presentShowcaseView(int withDelay) {
+
+        new MaterialShowcaseView.Builder(this)
+                .setTarget(tabLayout)
+                .setContentText("This is Discussion Section \n1. Main Discussion Section\n2. Your Posts \n3. Profile \n4. Write new Post")
+                .setFadeDuration(1000)
+                .setDismissOnTouch(true)
+                .setContentTextColor(getResources().getColor(R.color.white))
+                .setMaskColour(getResources().getColor(R.color.dark_blue))
+                .setDelay(withDelay) // optional but starting animations immediately in onCreate can make them choppy
+                .singleUse(SHOWCASE_ID) // provide a unique ID used to ensure it is only shown once
+                .show();
+       /* ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+
+        sequence.setOnItemShownListener(new MaterialShowcaseSequence.OnSequenceItemShownListener() {
+            @Override
+            public void onShow(MaterialShowcaseView itemView, int position) {
+                Toast.makeText(itemView.getContext(), "Item #" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sequence.setConfig(config);
+
+        sequence.addSequenceItem(tabItem1, "This is button one", "GOT IT");
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(tabItem2)
+                        .setDismissText("GOT IT")
+                        .setContentText("This is button two")
+                        .withRectangleShape(true)
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(tabItem3)
+                        .setDismissText("GOT IT")
+                        .setContentText("This is button three")
+                        .withRectangleShape()
+                        .build()
+        );
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(tabItem4)
+                        .setDismissText("GOT IT")
+                        .setContentText("This is button three")
+                        .withRectangleShape()
+                        .build()
+        );
+        sequence.start();*/
+
+    }
+
 }
