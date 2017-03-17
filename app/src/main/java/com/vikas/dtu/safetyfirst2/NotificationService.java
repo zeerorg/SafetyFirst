@@ -29,7 +29,7 @@ public class NotificationService extends IntentService {
 
     private static final int NOTIFICATION_ID = 1;
     Realm realm = null;
-
+    String uid;
     public NotificationService() {
         super(NotificationService.class.getSimpleName());
     }
@@ -43,7 +43,10 @@ public class NotificationService extends IntentService {
         DatabaseReference postNotifyRef = FirebaseDatabase.getInstance().getReference().child("post-notify");
         realm = Realm.getDefaultInstance();
         final RealmResults<PostNotify> notifyRealmResults = realm.where(PostNotify.class).findAll();
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid() == null){
+            return;
+        }
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         for (int i = 0; i < notifyRealmResults.size(); i++) {
             if (notifyRealmResults.get(i).getUid().equals(uid)) {
                 final int numComments = notifyRealmResults.get(i).getNumComments();

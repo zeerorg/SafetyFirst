@@ -628,8 +628,8 @@ public class KnowItFourth extends AppCompatActivity {
         //Scaffolds:
         all[7][0] = "no";
         all[7][1] = "no";
-        //all[7][2] = "https://www.youtube.com/embed/veF4uSUtrEY&t=41s&list=PLXrxTqXRekj2tkWIWUwVTsp18ydbhG5Lb&index=1";
-        all[7][2] = "https://www.youtube.com/embed/56NZrk183BI";
+        all[7][2] = "https://www.youtube.com/embed/MFJ4FNy1qWU";
+      //  all[7][2] = "https://www.youtube.com/embed/56NZrk183BI";
         all[7][3] = "https://www.youtube.com/embed/56NZrk183BI";
         all[7][4] = "no"; //5
         all[7][5] = "no";
