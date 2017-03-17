@@ -46,6 +46,7 @@ public class KnowItMain extends AppCompatActivity {
     private Animation mFadeOutAnimation;
     private Animation mAlternateFadeOutAnimation;
     private Animation mFadeInAnimation;
+    private Dialog  openDialog;
 
 
     @Override
@@ -76,7 +77,7 @@ public class KnowItMain extends AppCompatActivity {
                 String clicked_title = clicked_card.getTitle();
                // final Dialog openDialog = new Dialog(context, android.R.style.Theme_DeviceDefault_Panel);
                // final Dialog openDialog = buildDialog(R.style.DialogAnimation, "Fade In - Fade Out Animation!");
-                Dialog  openDialog = new Dialog(KnowItMain.this);
+                openDialog = new Dialog(KnowItMain.this);
                 openDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
                 openDialog.setContentView(R.layout.custom_dialog_box);
                 mTitle = (TextView) openDialog.findViewById(R.id.title);
@@ -91,9 +92,12 @@ public class KnowItMain extends AppCompatActivity {
                             public void onClick(View v) {
                                     Intent intent = new Intent(KnowItMain.this, KnowItSecond.class);
                                     intent.putExtra(KnowItSecond.POSITION, i);
-                                    v.startAnimation(mButtonFlickerAnimation);
-                                     mAlternateFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(intent));
-                                     myList.startAnimation(mAlternateFadeOutAnimation);
+                                    //v.startAnimation(mButtonFlickerAnimation);
+                                    // mAlternateFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(intent));
+                                     //myList.startAnimation(mAlternateFadeOutAnimation);
+                                 openDialog.dismiss();
+                                startActivity(intent);
+
 
                             }
                         }
@@ -105,10 +109,11 @@ public class KnowItMain extends AppCompatActivity {
                             public void onClick(View v) {
                                 Intent intent = new Intent(KnowItMain.this, KnowItThird.class);
                                 intent.putExtra(KnowItThird.POSITION, i);
-                                v.startAnimation(mButtonFlickerAnimation);
-                                mFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(intent));
-                                myList.startAnimation(mFadeOutAnimation);
-                                //startActivity(intent);
+                               // v.startAnimation(mButtonFlickerAnimation);
+                               // mFadeOutAnimation.setAnimationListener(new StartActivityAfterAnimation(intent));
+                               // myList.startAnimation(mFadeOutAnimation);
+                                openDialog.dismiss();
+                                startActivity(intent);
                             }
                         }
                 );
@@ -128,15 +133,13 @@ public class KnowItMain extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       // mPaused = false;
-        mButtonFlickerAnimation.setAnimationListener(null);
        // myList.setAnimation(null);
 
 
 
     }
 
-    protected class StartActivityAfterAnimation implements Animation.AnimationListener {
+  /*  protected class StartActivityAfterAnimation implements Animation.AnimationListener {
         private Intent mIntent;
 
         StartActivityAfterAnimation(Intent intent) {
@@ -169,7 +172,7 @@ public class KnowItMain extends AppCompatActivity {
 
         }
 
-    }
+    } */
 
 
 
