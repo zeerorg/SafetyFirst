@@ -65,17 +65,17 @@
 
         </LinearLayout>
 
-        <TextView
+        <me.biubiubiu.justifytext.library.JustifyTextView
             android:id="@+id/howto"
             android:layout_width="match_parent"
             android:text="@string/dummy1"
             android:layout_height="wrap_content" />
-        <TextView
+        <me.biubiubiu.justifytext.library.JustifyTextView
             android:id="@+id/info"
             android:text="@string/dummy2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <TextView
+        <me.biubiubiu.justifytext.library.JustifyTextView
             android:id="@+id/check"
             android:text="@string/dummy3"
             android:layout_width="match_parent"
