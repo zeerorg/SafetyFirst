@@ -267,6 +267,12 @@ public class NewPostActivity extends BaseActivity {
     }
     // [END write_fan_out]
 
+//    @Override
+//    public void finish() {
+//        super.finish();
+//        mProgressBar.setVisibility();
+//    }
+
     private void startAction() {
         final CharSequence[] items = {"Take Photo", "Choose From Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(NewPostActivity.this);
