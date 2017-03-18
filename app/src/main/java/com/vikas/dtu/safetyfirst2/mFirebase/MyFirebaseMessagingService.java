@@ -14,6 +14,8 @@ import com.vikas.dtu.safetyfirst2.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 /**
  * Created by Vikas on 15-07-2016.
  */
@@ -29,7 +31,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
 
         //Calling method to generate notification
-        sendNotification(remoteMessage.getNotification().getBody());
+        if(remoteMessage.getData() == null) {
+            sendNotification(remoteMessage.getNotification().getBody());
+        } else {
+            sendNotificationForComment(remoteMessage.getData());
+        }
     }
 
     //This method is only generating push notification
@@ -44,7 +50,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("Firebase Push Notification")
-                .setContentText(messageBody)
+                .setContentText("Built: " + messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -53,5 +59,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
+    }
+
+    public void sendNotificationForComment(Map<String, String> notifData){
+
     }
 }

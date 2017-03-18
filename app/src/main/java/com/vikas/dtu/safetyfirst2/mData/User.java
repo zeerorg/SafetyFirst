@@ -15,6 +15,7 @@ public class User {
     public String email;
     public int questions_asked;
     public int answers_given;
+    public String instanceId;
 
     private String company;
     private String designation;
