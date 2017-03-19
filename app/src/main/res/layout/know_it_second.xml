@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             >
-            <TextView
+            <me.biubiubiu.justifytext.library.JustifyTextView
                 android:id="@+id/second_desc"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:text="Safety Rules"
                     android:textSize="20dp"
                     android:textColor="@color/dark_blue" />
-                <TextView
+                <me.biubiubiu.justifytext.library.JustifyTextView
                     android:text="●All wood parts must be free from sharp edges and splinters; sound and free from accepted visual inspection from shake, wane, compression failures, decay, or other irregularities.\n● Ladders must be maintained in good condition at all times, the joint between the steps and side rails must be tight, all hardware and fittings securely attached, and the movable parts shall operate freely without binding or undue play.\n● Metal bearings of locks, wheels, pulleys, etc., shall be frequently lubricated.\n● Ladders must be inspected frequently and those which have developed defects must be withdrawn from service for repair or destruction and tagged or marked as Dangerous, Do Not Use.\n● Ladders with broken or missing steps, rungs, or cleats, broken side rails, or other faulty equipment shall not be used; improvised repairs are not allowed."
                     android:layout_margin="5dp"
                     android:layout_width="match_parent"

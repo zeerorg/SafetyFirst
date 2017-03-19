@@ -47,6 +47,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.User;
+import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -280,6 +281,12 @@ public class UpdateProfileFragment extends Fragment implements AdapterView.OnIte
                 String city = mCity.getText().toString();
 
                 updateUser(company, qualification, designation, city);
+
+                if (getActivity() instanceof DiscussionActivity) {
+                    Intent intent = getActivity().getIntent();
+                    getActivity().finish();
+                    startActivity(intent);
+                }
             }
         }
     }
@@ -329,7 +336,7 @@ public class UpdateProfileFragment extends Fragment implements AdapterView.OnIte
                         })   .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getContext(), "Failed to get Url!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Failed to get Url!", Toast.LENGTH_SHORT).show();
                             }
                         });
 
