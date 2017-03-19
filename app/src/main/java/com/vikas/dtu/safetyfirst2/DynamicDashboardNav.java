@@ -42,6 +42,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
@@ -236,9 +239,25 @@ public class DynamicDashboardNav extends BaseActivity
 
         fetchDashboardSlides();
 
-
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPreferences.getString("instanceID", "").equals("")) // will run first time only
+            setInstanceId();
 
     }
+
+    private void setInstanceId() {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference()
+                .child("users").child(getCurrentUser().getUid());
+        String instanceId = FirebaseInstanceId.getInstance().getToken();
+        userRef.child("instanceId").setValue(instanceId);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("instanceID", instanceId);
+        editor.apply();
+        Log.e("InstanceId", instanceId);
+    }
+
     private void fetchDashboardSlides(){
         long cacheExpiration = 3600;
 
