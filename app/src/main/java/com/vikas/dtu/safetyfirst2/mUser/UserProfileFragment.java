@@ -89,8 +89,7 @@ public class UserProfileFragment extends Fragment {
                 // Get User object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 // [START_EXCLUDE]
-
-
+                Log.e("UserId", getCurrentUserId());
                 hideProgressDialog();
                 if (user.getDesignation() == null ){
                     Toast.makeText(getContext(), "User has not Updated his profile", Toast.LENGTH_SHORT).show();

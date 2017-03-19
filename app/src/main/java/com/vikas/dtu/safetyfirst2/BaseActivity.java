@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.appindexing.AppIndex;
@@ -19,6 +20,13 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.vikas.dtu.safetyfirst2.mData.User;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 
 
@@ -119,6 +127,5 @@ public class BaseActivity extends AppCompatActivity {
                 .addApi(AppInvite.API)
                 .addApi(AppIndex.API)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
-
     }
 }

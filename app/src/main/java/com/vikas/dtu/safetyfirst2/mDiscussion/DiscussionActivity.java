@@ -28,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.CategoryAdapter;
-import com.vikas.dtu.safetyfirst2.NotificationService;
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.User;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
@@ -68,9 +67,6 @@ public class DiscussionActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.discussion_view_pager);
 
-        // starting notification service
-        Intent serviceIntent = new Intent(this,NotificationService.class);
-        startService(serviceIntent);
         tabItem1 = (TabItem)findViewById(R.id.discussions);
        // tabItem1.setOnClickListener(this);
         tabItem2 = (TabItem)findViewById(R.id.myposts);
