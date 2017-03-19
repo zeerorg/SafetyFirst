@@ -13,6 +13,7 @@ import com.vikas.dtu.safetyfirst2.DynamicDashboardNav;
 import com.vikas.dtu.safetyfirst2.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.vikas.dtu.safetyfirst2.mDiscussion.PostDetailActivity;
 
 import java.util.Map;
 
@@ -25,16 +26,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        //Displaying data in log
-        //It is optional
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
-        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+        Map<String, String> data = remoteMessage.getData();
 
         //Calling method to generate notification
-        if(remoteMessage.getData() == null) {
-            sendNotification(remoteMessage.getNotification().getBody());
+        if(data.containsKey("postKey")) {
+            sendNotificationForComment(data.get("postKey"));
         } else {
-            sendNotificationForComment(remoteMessage.getData());
         }
     }
 
@@ -50,7 +47,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("Firebase Push Notification")
-                .setContentText("Built: " + messageBody)
+                .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -61,7 +58,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(0, notificationBuilder.build());
     }
 
-    public void sendNotificationForComment(Map<String, String> notifData){
+    public void sendNotificationForComment(String postKey){
+        Intent intent = new Intent(this, PostDetailActivity.class);
+        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_ONE_SHOT);
 
+        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("Firebase Push Notification")
+                .setContentText("New comment on your post")
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, notificationBuilder.build());
     }
 }
