@@ -434,7 +434,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private static class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
+    private class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
 
         private Context mContext;
         private DatabaseReference mDatabaseReference;
@@ -609,6 +609,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
             if(comment.image != null){
                 holder.commentImage.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(comment.image).into(holder.commentImage);
+                holder.commentImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.parse(comment.image), "image/*");
+                        startActivity(intent);
+                    }
+                });
             }
 
             holder.Upvoteview.setText(String.valueOf(comment.upvoteCount));
