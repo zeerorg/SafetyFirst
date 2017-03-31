@@ -99,6 +99,9 @@ public class DynamicDashboardNav extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic_dashboard_nav);
 
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.e("TOken", refreshedToken);
+
         mNewsImageView = (ImageView)findViewById(R.id.imageView4) ;
         mDiscussionImageView = (ImageView)findViewById(R.id.imageView5);
         mLawsImageView = (ImageView)findViewById(R.id.laws);
