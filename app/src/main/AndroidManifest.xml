@@ -25,7 +25,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -263,18 +262,25 @@
         <activity android:name=".mDiscussion.NewCommentActivity" />
         <activity
             android:name=".mIntro.MainIntroActivity"
-            android:theme="@style/Theme.Intro"></activity>
-        <service android:name=".mFirebase.MyFirebaseInstanceIDService" android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
+            android:theme="@style/Theme.Intro" />
+
         <service
-            android:name=".mFirebase.MyFirebaseMessagingService">
+            android:name=".mNotification.MyFirebaseInstanceIDService"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".mNotification.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".mNotification.NotificationActivity"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -45,13 +47,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
-import com.vikas.dtu.safetyfirst2.mIntro.MainIntroActivity;
 import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
+import com.vikas.dtu.safetyfirst2.mNotification.NotificationActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
 
@@ -98,6 +101,7 @@ public class DynamicDashboardNav extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic_dashboard_nav);
+        FirebaseMessaging.getInstance().subscribeToTopic("all"); //To receive notifications from api
 
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.e("TOken", refreshedToken);
@@ -253,6 +257,7 @@ public class DynamicDashboardNav extends BaseActivity
                 .child("users").child(getCurrentUser().getUid());
         String instanceId = FirebaseInstanceId.getInstance().getToken();
         userRef.child("instanceId").setValue(instanceId);
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -530,4 +535,24 @@ public class DynamicDashboardNav extends BaseActivity
         mGoogleApiClient.disconnect();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dynamic_dashboard_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.notification:
+                Intent intent = new Intent(this, NotificationActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
 }

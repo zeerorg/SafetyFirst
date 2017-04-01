@@ -1,4 +1,4 @@
-package com.vikas.dtu.safetyfirst2.mFirebase;
+package com.vikas.dtu.safetyfirst2.mNotification;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;

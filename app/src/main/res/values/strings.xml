@@ -192,9 +192,7 @@
     <string name="delete_post">Delete Post</string>
 
 
-
-
-   <string name="dummy1">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod, tempor incididunt ut labore et
+    <string name="dummy1">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod, tempor incididunt ut labore et
      dolore magna aliqua. Ut enim ad minim veniamm quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     Duis aute irure dolor in reprehenderit in vouptate velit esse cillum dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</string>
@@ -205,7 +203,7 @@
     <string name="forksafety">●Check fork blades for wear. Forks are constantly subjected to abrasion by concrete floors, steel shelving, etc. This abrasion can reduce the thickness of a fork until it cannot lift loads up to the designed capacity.\n●Check for distortion. Forks can be bent out of shape. Dependingon distortion, some forks can be straightened. The fork manufacturer is best qualified to correct this. Your local forklift supplier can make the arrangements.\n●Check for cracks in heel and hanger. Cracks may appear on forks where attachments are welded on or in the inside radius of the bend area. Periodic inspection using a magnetic particle or dye penetrant test can detect cracks.\n●Replace, when necessary, with good quality forks. When ordering or reordering forks, make sure you are getting high quality forks that will do your lifting jobs safely. Insist on forged forks or ones with an upset heel.\n●Do not exceed the recommended load limit of your lift truck. Each lift truck has a maximum load limit. The load limit is shown on the data plate of the lift truck.</string>
 
 
-<string name="factory">The main objective of the Act is not only to ensure adequate safety measures but also to promote health and welfare of the workers employed in factories as well as to prevent haphazard growth of factories.
+    <string name="factory">The main objective of the Act is not only to ensure adequate safety measures but also to promote health and welfare of the workers employed in factories as well as to prevent haphazard growth of factories.
 \n
 To ensure safety of the workers, the Act has provided several measures such as compulsory fencing of machines of all sorts. No person should be employed in any factory to lift, carry or move any load so heavy as to be likely to cause him injury. If it appears to the Inspector that any building or part of a building or any part of the ways, machinery or plant in a factory is in a condition that it is dangerous to human life or safety, he may serve on the Manager of the factory, an order in writing, specifying the measures which in his opinion should be adopted and requiring them to be carried out before a stipulated date.
 </string>
@@ -459,5 +457,6 @@ To advertise to, or so, any user to buy or sell any products or services, orb us
     <string name="description_welcome_intro4" translatable="false">Your one stop to know how to\'s, when to\'s and why to\'s of utility products.</string>
 
     <string name="label_button_cta_canteen_intro" translatable="false">Get started</string>
+    <string name="title_activity_notification">NotificationActivity</string>
 
 </resources>
