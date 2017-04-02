@@ -54,6 +54,7 @@ import com.vikas.dtu.safetyfirst2.mDiscussion.DiscussionActivity;
 import com.vikas.dtu.safetyfirst2.mKnowIt.KnowItMain;
 import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
+import com.vikas.dtu.safetyfirst2.mNotification.MyFirebaseMessagingService;
 import com.vikas.dtu.safetyfirst2.mNotification.NotificationActivity;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
@@ -243,10 +244,8 @@ public class DynamicDashboardNav extends BaseActivity
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
 
         fetchDashboardSlides();
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(sharedPreferences.getString("instanceID", "").equals("")) // will run first time only
-            setInstanceId();
+        
+        setInstanceId();
         FirebaseMessaging.getInstance().subscribeToTopic("all"); //To receive notifications from api
         Log.e("Instance ID", FirebaseInstanceId.getInstance().getToken());
     }
@@ -538,6 +537,18 @@ public class DynamicDashboardNav extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dynamic_dashboard_menu, menu);
+        final MenuItem item = menu.findItem(R.id.notification);
+        View v = item.getActionView();
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(item);
+            }
+        });
+
+        int unreadCount = PreferenceManager.getDefaultSharedPreferences(this).getInt(MyFirebaseMessagingService.unreadPreference, 0);
+        if(unreadCount > 0)
+            ((TextView)v.findViewById(R.id.unread_count)).setText(unreadCount);
         return true;
     }
 

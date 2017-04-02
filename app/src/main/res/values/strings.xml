@@ -457,6 +457,6 @@ To advertise to, or so, any user to buy or sell any products or services, orb us
     <string name="description_welcome_intro4" translatable="false">Your one stop to know how to\'s, when to\'s and why to\'s of utility products.</string>
 
     <string name="label_button_cta_canteen_intro" translatable="false">Get started</string>
-    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_activity_notification">Notifications</string>
 
 </resources>

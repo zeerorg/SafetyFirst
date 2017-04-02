@@ -66,6 +66,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.notificationImage.setVisibility(View.VISIBLE);
             holder.notificationImage.setImageBitmap(loadImageFromStorage(notif.getExtraString()));
         }
+        if(notif.getTitle() != null)
+            holder.titleView.setText(notif.getTitle());
+        else {
+            holder.titleView.setText("Safety First");
+        }
         holder.mainView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

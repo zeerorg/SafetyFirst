@@ -5,10 +5,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -35,6 +37,7 @@ import io.realm.Realm;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
+    public static final String unreadPreference = "unreadNotification";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -42,17 +45,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         //Calling method to generate notification
         if(data.containsKey("postKey")) {
-            sendNotificationForComment(data.get("postKey"));
+            sendNotificationForComment(data.get("postKey"), data.get("body"), data.get("title"));
         } else if (data.containsKey("image")) {
-            sendNotification(data.get("body"), data.get("image"));
+            sendNotification(data.get("body"), data.get("image"), data.get("title"));
         } else {
-            sendNotification(data.get("body"), null);
+            sendNotification(data.get("body"), null, data.get("title"));
         }
     }
 
     //This method is only generating push notification
     //It is same as we did in earlier posts
-    private void sendNotification(final String messageBody, String imageUrl) {
+    private void sendNotification(final String messageBody, String imageUrl, String title) {
         NotificationObject notif;
         Intent intent = new Intent(this, NewsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -60,7 +63,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("Safety First")
+                .setContentTitle(title)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri);
@@ -71,11 +74,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle().bigPicture(bitmap);
             style.setSummaryText(messageBody);
             notificationBuilder.setStyle(style);
-            notif = insertInDatabase(messageBody, NotificationObject.NEWS_WITH_IMAGE, filePath);
+            notif = insertInDatabase(messageBody, NotificationObject.NEWS_WITH_IMAGE, filePath, title);
         } else {
-            notif = insertInDatabase(messageBody, NotificationObject.NEWS, null);
+            notif = insertInDatabase(messageBody, NotificationObject.NEWS, null, title);
         }
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int unreadNotification = sharedPreferences.getInt("unreadNotification", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(MyFirebaseMessagingService.unreadPreference, unreadNotification+1);
+        editor.apply();
         intent.putExtra("fromNotification", notif.getId());
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -85,8 +93,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(4325, notificationBuilder.build());
     }
 
-    public void sendNotificationForComment(String postKey){
-        String body = "New comment on your post";
+    public void sendNotificationForComment(String postKey, String body, String title){
         NotificationObject notif;
         Intent intent = new Intent(this, PostDetailActivity.class);
         intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
@@ -96,7 +103,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("Safety First")
+                .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
@@ -106,7 +113,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(4325, notificationBuilder.build());
-        notif = insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey);
+        notif = insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey, title);
     }
 
     public Bitmap getBitmap(String urlString) {
@@ -124,7 +131,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    public NotificationObject insertInDatabase(final String body, final int type, final String extraString) {
+    public NotificationObject insertInDatabase(final String body, final int type, final String extraString, final String title) {
         Realm realm = Realm.getDefaultInstance();
         final NotificationObject notif = new NotificationObject();
 
@@ -135,6 +142,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 notif.setType(type);
                 if(extraString != null)
                     notif.setExtraString(extraString);
+                if(title != null)
+                    notif.setTitle(title);
                 realm.copyToRealm(notif);
             }
         });
