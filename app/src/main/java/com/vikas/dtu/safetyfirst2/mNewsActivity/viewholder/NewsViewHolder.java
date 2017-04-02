@@ -8,24 +8,26 @@ import android.widget.TextView;
 
 import com.vikas.dtu.safetyfirst2.R;
 import com.vikas.dtu.safetyfirst2.mData.News;
+import com.vikas.dtu.safetyfirst2.mNewsActivity.fragment.NewsListFragment;
 import com.vikas.dtu.safetyfirst2.mPicasso.PicassoClient;
 
 
-public class NewsViewHolder extends RecyclerView.ViewHolder {
+public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView titleView;
     public TextView bodyView;
     public ImageView mNewsImage;
+    NewsListFragment.OnItemClickListener listener;
 
-    public NewsViewHolder(View itemView) {
+    public NewsViewHolder(View itemView,NewsListFragment.OnItemClickListener listener) {
         super(itemView);
-
+        this.listener=listener;
         titleView = (TextView) itemView.findViewById(R.id.post_title);
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
 
 
         mNewsImage = (ImageView) itemView.findViewById(R.id.card_image);
-
+        itemView.setOnClickListener(this);
     }
 
     public void bindToNews(News news,
@@ -43,5 +45,10 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
 
         }
 //
+    }
+
+    @Override
+    public void onClick(View view) {
+        listener.onItemClick(view,getLayoutPosition());
     }
 }

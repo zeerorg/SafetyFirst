@@ -31,5 +31,10 @@ public class SearchPostFragment extends PostListFragment {
         return databaseReference.child("keywords").child(query.toLowerCase());
     }
 
+    @Override
+    public Boolean getBoolean() {
+        return false;
+    }
+
 
 }
