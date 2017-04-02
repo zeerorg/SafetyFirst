@@ -21,6 +21,9 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
 
         //Getting registration token
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            return;
+        }
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());

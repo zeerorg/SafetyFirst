@@ -53,10 +53,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     //This method is only generating push notification
     //It is same as we did in earlier posts
     private void sendNotification(final String messageBody, String imageUrl) {
+        NotificationObject notif;
         Intent intent = new Intent(this, NewsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
@@ -64,8 +63,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentTitle("Safety First")
                 .setContentText(messageBody)
                 .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
+                .setSound(defaultSoundUri);
 
         if(imageUrl != null) {
             Bitmap bitmap = getBitmap(imageUrl);
@@ -73,11 +71,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle().bigPicture(bitmap);
             style.setSummaryText(messageBody);
             notificationBuilder.setStyle(style);
-            insertInDatabase(messageBody, NotificationObject.NEWS_WITH_IMAGE, filePath);
+            notif = insertInDatabase(messageBody, NotificationObject.NEWS_WITH_IMAGE, filePath);
         } else {
-            insertInDatabase(messageBody, NotificationObject.NEWS, null);
+            notif = insertInDatabase(messageBody, NotificationObject.NEWS, null);
         }
 
+        intent.putExtra("fromNotification", notif.getId());
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+        notificationBuilder.setContentIntent(pendingIntent);
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(4325, notificationBuilder.build());
@@ -85,6 +87,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public void sendNotificationForComment(String postKey){
         String body = "New comment on your post";
+        NotificationObject notif;
         Intent intent = new Intent(this, PostDetailActivity.class);
         intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
@@ -103,7 +106,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(4325, notificationBuilder.build());
-        insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey);
+        notif = insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey);
     }
 
     public Bitmap getBitmap(String urlString) {
@@ -121,22 +124,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    public void insertInDatabase(final String body, final int type, final String extraString) {
+    public NotificationObject insertInDatabase(final String body, final int type, final String extraString) {
         Realm realm = Realm.getDefaultInstance();
+        final NotificationObject notif = new NotificationObject();
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                NotificationObject notif = new NotificationObject();
                 notif.setBody(body);
                 notif.setType(type);
                 if(extraString != null)
                     notif.setExtraString(extraString);
-                notif = realm.copyToRealm(notif);
+                realm.copyToRealm(notif);
             }
         });
 
         realm.close();
+        return notif;
     }
 
     private String saveToInternalStorage(Bitmap bitmapImage, String url){

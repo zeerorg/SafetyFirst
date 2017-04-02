@@ -59,6 +59,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(NotificationViewHolder holder, int position) {
         final NotificationObject notif = items.get(position);
         holder.bodyView.setText(notif.getBody());
+        if(!notif.isSeen()) {
+            holder.mainView.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimaryLight));
+        }
         if(notif.getType() == NotificationObject.NEWS_WITH_IMAGE){
             holder.notificationImage.setVisibility(View.VISIBLE);
             holder.notificationImage.setImageBitmap(loadImageFromStorage(notif.getExtraString()));
@@ -75,6 +78,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 } else {
                     intent = new Intent(mContext, DynamicDashboardNav.class);
                 }
+                intent.putExtra("fromNotification", notif.getId());
                 mContext.startActivity(intent);
             }
         });
@@ -90,6 +94,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public TextView bodyView;
         public ImageView notificationImage;
         public View mainView;
+        public TextView titleView;
         //TODO add upvotes and downvotes round_blue_dark
 
 
@@ -97,8 +102,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             super(itemView);
 
             mainView = itemView;
-            bodyView = (TextView) itemView.findViewById(R.id.notification_body);
+            bodyView = (TextView) itemView.findViewById(R.id.notification_descr);
             notificationImage = (ImageView) itemView.findViewById(R.id.notification_image);
+            titleView = (TextView) itemView.findViewById(R.id.notification_title);
         }
     }
 

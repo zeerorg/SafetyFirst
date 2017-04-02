@@ -103,9 +103,6 @@ public class DynamicDashboardNav extends BaseActivity
         setContentView(R.layout.activity_dynamic_dashboard_nav);
         FirebaseMessaging.getInstance().subscribeToTopic("all"); //To receive notifications from api
 
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.e("TOken", refreshedToken);
-
         mNewsImageView = (ImageView)findViewById(R.id.imageView4) ;
         mDiscussionImageView = (ImageView)findViewById(R.id.imageView5);
         mLawsImageView = (ImageView)findViewById(R.id.laws);
@@ -181,6 +178,7 @@ public class DynamicDashboardNav extends BaseActivity
         if (mFirebaseUser == null) {
             startActivity(new Intent(DynamicDashboardNav.this, SignInActivity.class));
             finish();
+            return;
         }
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -249,7 +247,8 @@ public class DynamicDashboardNav extends BaseActivity
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if(sharedPreferences.getString("instanceID", "").equals("")) // will run first time only
             setInstanceId();
-
+        FirebaseMessaging.getInstance().subscribeToTopic("all"); //To receive notifications from api
+        Log.e("Instance ID", FirebaseInstanceId.getInstance().getToken());
     }
 
     private void setInstanceId() {

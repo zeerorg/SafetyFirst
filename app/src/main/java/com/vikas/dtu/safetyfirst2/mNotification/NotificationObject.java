@@ -27,14 +27,14 @@ public class NotificationObject extends RealmObject {
 
     private int type;
 
-
     private String extraString;
 
-    //private Bitmap image;
+    private boolean seen;
 
     public NotificationObject() {
         Long idLong = System.currentTimeMillis();
         this.id = idLong.toString();     // To set a primary key using current timestamp
+        this.seen = false;
     }
 
     public String getBody() {
@@ -61,19 +61,23 @@ public class NotificationObject extends RealmObject {
         this.type = type;
     }
 
-//    public Bitmap getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(Bitmap image) {
-//        this.image = image;
-//    }
-
     public String getExtraString() {
         return extraString;
     }
 
     public void setExtraString(String extraString) {
         this.extraString = extraString;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 }

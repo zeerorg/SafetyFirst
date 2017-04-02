@@ -27,7 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.vikas.dtu.safetyfirst2.mData.User;
+import com.vikas.dtu.safetyfirst2.mNotification.NotificationObject;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
+
+import io.realm.Realm;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -127,5 +130,16 @@ public class BaseActivity extends AppCompatActivity {
                 .addApi(AppInvite.API)
                 .addApi(AppIndex.API)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
+
+        if(getIntent().hasExtra("fromNotification")){
+            Realm realm = Realm.getDefaultInstance();
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    NotificationObject notif = realm.where(NotificationObject.class).equalTo("id", getIntent().getStringExtra("fromNotification")).findFirst();
+                    notif.setSeen(true);
+                }
+            });
+        }
     }
 }
