@@ -547,8 +547,10 @@ public class DynamicDashboardNav extends BaseActivity
         });
 
         int unreadCount = PreferenceManager.getDefaultSharedPreferences(this).getInt(MyFirebaseMessagingService.unreadPreference, 0);
-        if(unreadCount > 0)
-            ((TextView)v.findViewById(R.id.unread_count)).setText(unreadCount);
+        if(unreadCount > 0) {
+            v.findViewById(R.id.unread_count).setVisibility(View.VISIBLE);
+            ((TextView) v.findViewById(R.id.unread_count)).setText(unreadCount + "");
+        }
         return true;
     }
 
