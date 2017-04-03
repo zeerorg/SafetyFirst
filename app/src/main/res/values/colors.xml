@@ -25,6 +25,7 @@
 	
 	<!-- Dailog Box Background Color -->
 	<color name="transparent">#80000000</color>
+    <color name="transparent_real">#00000000</color>
 
 
 

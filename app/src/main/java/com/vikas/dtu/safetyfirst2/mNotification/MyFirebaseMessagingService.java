@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
+import java.util.Random;
 
 import io.realm.Realm;
 
@@ -70,14 +71,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if(imageUrl != null) {
             Bitmap bitmap = getBitmap(imageUrl);
-            String filePath = saveToInternalStorage(bitmap, imageUrl);
             NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle().bigPicture(bitmap);
             style.setSummaryText(messageBody);
             notificationBuilder.setStyle(style);
-            notif = insertInDatabase(messageBody, NotificationObject.NEWS_WITH_IMAGE, filePath, title);
-        } else {
-            notif = insertInDatabase(messageBody, NotificationObject.NEWS, null, title);
         }
+        notif = insertInDatabase(messageBody, NotificationObject.NEWS, null, title);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         int unreadNotification = sharedPreferences.getInt("unreadNotification", 0);
@@ -90,7 +88,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationBuilder.setContentIntent(pendingIntent);
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(4325, notificationBuilder.build());
+
+        int notificationNumber = (new Random()).nextInt(4325);
+        notificationManager.notify(notificationNumber, notificationBuilder.build());
     }
 
     public void sendNotificationForComment(String postKey, String body, String title){
@@ -112,7 +112,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(4325, notificationBuilder.build());
+        int notificationNumber = (new Random()).nextInt(4325);
+        notificationManager.notify(notificationNumber, notificationBuilder.build());
         notif = insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey, title);
     }
 
@@ -150,29 +151,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         realm.close();
         return notif;
-    }
-
-    private String saveToInternalStorage(Bitmap bitmapImage, String url){
-        String[] split = url.split("/");
-        String fileName = split[split.length-1];
-
-        ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        File directory = cw.getDir("images", Context.MODE_PRIVATE);
-        File path = new File(directory, fileName);
-
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(path);
-            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return path.getAbsolutePath();
     }
 }

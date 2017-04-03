@@ -458,5 +458,6 @@ To advertise to, or so, any user to buy or sell any products or services, orb us
 
     <string name="label_button_cta_canteen_intro" translatable="false">Get started</string>
     <string name="title_activity_notification">Notifications</string>
+    <string name="no_notification">No Notification</string>
 
 </resources>

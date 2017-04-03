@@ -18,10 +18,6 @@ import com.vikas.dtu.safetyfirst2.mData.News;
 import com.vikas.dtu.safetyfirst2.mDiscussion.PostDetailActivity;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -57,15 +53,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(NotificationViewHolder holder, int position) {
-        final NotificationObject notif = items.get(position);
+        final NotificationObject notif = items.get(getItemCount() - position - 1);
         holder.bodyView.setText(notif.getBody());
-        if(!notif.isSeen()) {
-            holder.mainView.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimaryLight));
-        }
-        if(notif.getType() == NotificationObject.NEWS_WITH_IMAGE){
-            holder.notificationImage.setVisibility(View.VISIBLE);
-            holder.notificationImage.setImageBitmap(loadImageFromStorage(notif.getExtraString()));
-        }
         if(notif.getTitle() != null)
             holder.titleView.setText(notif.getTitle());
         else {
@@ -97,7 +86,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public class NotificationViewHolder extends RecyclerView.ViewHolder {
 
         public TextView bodyView;
-        public ImageView notificationImage;
         public View mainView;
         public TextView titleView;
         //TODO add upvotes and downvotes round_blue_dark
@@ -108,23 +96,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             mainView = itemView;
             bodyView = (TextView) itemView.findViewById(R.id.notification_descr);
-            notificationImage = (ImageView) itemView.findViewById(R.id.notification_image);
             titleView = (TextView) itemView.findViewById(R.id.notification_title);
         }
     }
-
-    private Bitmap loadImageFromStorage(String path)
-    {
-        Bitmap b = null;
-        try {
-            File f = new File(path);
-            b = BitmapFactory.decodeStream(new FileInputStream(f));
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
 }

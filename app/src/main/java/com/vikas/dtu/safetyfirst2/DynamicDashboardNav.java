@@ -56,10 +56,14 @@ import com.vikas.dtu.safetyfirst2.mLaws.ActivityLaws;
 import com.vikas.dtu.safetyfirst2.mNewsActivity.NewsActivity;
 import com.vikas.dtu.safetyfirst2.mNotification.MyFirebaseMessagingService;
 import com.vikas.dtu.safetyfirst2.mNotification.NotificationActivity;
+import com.vikas.dtu.safetyfirst2.mNotification.NotificationObject;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 import com.vikas.dtu.safetyfirst2.mUser.UpdateProfile;
 
 import java.util.HashMap;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class DynamicDashboardNav extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -97,6 +101,7 @@ public class DynamicDashboardNav extends BaseActivity
     private TextView emailProfile;
     private ProgressDialog mProgressDialog;
     private FirebaseAuth mAuth;
+    private TextView unreadCountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -361,7 +366,7 @@ public class DynamicDashboardNav extends BaseActivity
      }
      else if (id == R.id.log_out) {
          SignInActivity.signin = true;
-
+         clearNotifications();
          logout();
      } else if (id == R.id.nav_feedback) {
          startActivity(new Intent(DynamicDashboardNav.this, FeedBackActivity.class));
@@ -490,6 +495,7 @@ public class DynamicDashboardNav extends BaseActivity
             startActivity(new Intent(DynamicDashboardNav.this, SignInActivity.class));
             finish();
         }
+        setUnreadCountText();
     }
 
     /**
@@ -545,12 +551,8 @@ public class DynamicDashboardNav extends BaseActivity
                 onOptionsItemSelected(item);
             }
         });
-
-        int unreadCount = PreferenceManager.getDefaultSharedPreferences(this).getInt(MyFirebaseMessagingService.unreadPreference, 0);
-        if(unreadCount > 0) {
-            v.findViewById(R.id.unread_count).setVisibility(View.VISIBLE);
-            ((TextView) v.findViewById(R.id.unread_count)).setText(unreadCount + "");
-        }
+        unreadCountText = (TextView) v.findViewById(R.id.unread_count);
+        setUnreadCountText();
         return true;
     }
 
@@ -566,5 +568,26 @@ public class DynamicDashboardNav extends BaseActivity
         }
 
         return true;
+    }
+
+    private void setUnreadCountText(){
+        int unreadCount = PreferenceManager.getDefaultSharedPreferences(this).getInt(MyFirebaseMessagingService.unreadPreference, 0);
+        if(unreadCount > 0 && unreadCountText != null) {
+            unreadCountText.setVisibility(View.VISIBLE);
+            unreadCountText.setText(unreadCount + "");
+        } else if(unreadCountText != null) {
+            unreadCountText.setVisibility(View.GONE);
+        }
+    }
+
+    private void clearNotifications(){
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<NotificationObject> items = realm.where(NotificationObject.class).findAll();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                items.deleteAllFromRealm();
+            }
+        });
     }
 }

@@ -16,6 +16,7 @@ import com.vikas.dtu.safetyfirst2.BaseActivity;
 import com.vikas.dtu.safetyfirst2.R;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class NotificationActivity extends BaseActivity {
 
@@ -32,6 +33,11 @@ public class NotificationActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         realm = Realm.getDefaultInstance();
+
+        View noNotification = findViewById(R.id.no_notification);
+        RealmResults<NotificationObject> items = realm.where(NotificationObject.class).findAll();
+        if(items.size() == 0)
+            noNotification.setVisibility(View.VISIBLE);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
