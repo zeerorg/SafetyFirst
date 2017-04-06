@@ -42,6 +42,7 @@ public class NotificationActivity extends BaseActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(MyFirebaseMessagingService.unreadPreference, 0);
+        editor.putString(MyFirebaseMessagingService.discussionNotif, "");
         editor.apply();
 
         notificationAdapter = new NotificationAdapter(this, realm);

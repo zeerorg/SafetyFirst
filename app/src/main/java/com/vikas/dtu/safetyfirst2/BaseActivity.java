@@ -3,8 +3,10 @@ package com.vikas.dtu.safetyfirst2;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.vikas.dtu.safetyfirst2.mData.User;
+import com.vikas.dtu.safetyfirst2.mNotification.MyFirebaseMessagingService;
 import com.vikas.dtu.safetyfirst2.mNotification.NotificationObject;
 import com.vikas.dtu.safetyfirst2.mSignUp.SignInActivity;
 
@@ -131,6 +134,10 @@ public class BaseActivity extends AppCompatActivity {
                 .addApi(AppIndex.API)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
 
+        notificationSeen();
+    }
+
+    private void notificationSeen(){
         if(getIntent().hasExtra("fromNotification")){
             Realm realm = Realm.getDefaultInstance();
             realm.executeTransaction(new Realm.Transaction() {
@@ -140,6 +147,13 @@ public class BaseActivity extends AppCompatActivity {
                     notif.setSeen(true);
                 }
             });
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            int unreadNotification = sharedPreferences.getInt(MyFirebaseMessagingService.unreadPreference, 0);
+            if(unreadNotification > 0) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt(MyFirebaseMessagingService.unreadPreference, unreadNotification - 1);
+                editor.apply();
+            }
         }
     }
 }

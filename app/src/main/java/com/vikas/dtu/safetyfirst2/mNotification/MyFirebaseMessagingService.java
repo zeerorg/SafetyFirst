@@ -39,24 +39,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
     public static final String unreadPreference = "unreadNotification";
+    public static final String discussionNotif = "discussionNotification";
+    private SharedPreferences.Editor editor;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Map<String, String> data = remoteMessage.getData();
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int unreadNotification = sharedPreferences.getInt(unreadPreference, 0);
+        editor = sharedPreferences.edit();
+        editor.putInt(MyFirebaseMessagingService.unreadPreference, unreadNotification+1);
+        editor.apply();
+
         //Calling method to generate notification
         if(data.containsKey("postKey")) {
-            sendNotificationForComment(data.get("postKey"), data.get("body"), data.get("title"));
+            sendNotificationForDiscussion(data.get("postKey"), data.get("body"), data.get("title"));
         } else if (data.containsKey("image")) {
-            sendNotification(data.get("body"), data.get("image"), data.get("title"));
+            sendNotificationForNews(data.get("body"), data.get("image"), data.get("title"));
         } else {
-            sendNotification(data.get("body"), null, data.get("title"));
+            sendNotificationForNews(data.get("body"), null, data.get("title"));
         }
     }
 
     //This method is only generating push notification
     //It is same as we did in earlier posts
-    private void sendNotification(final String messageBody, String imageUrl, String title) {
+    private void sendNotificationForNews(final String messageBody, String imageUrl, String title) {
         NotificationObject notif;
         Intent intent = new Intent(this, NewsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -77,11 +86,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         notif = insertInDatabase(messageBody, NotificationObject.NEWS, null, title);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int unreadNotification = sharedPreferences.getInt("unreadNotification", 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(MyFirebaseMessagingService.unreadPreference, unreadNotification+1);
-        editor.apply();
         intent.putExtra("fromNotification", notif.getId());
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -93,16 +97,31 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(notificationNumber, notificationBuilder.build());
     }
 
-    public void sendNotificationForComment(String postKey, String body, String title){
-        NotificationObject notif;
-        Intent intent = new Intent(this, PostDetailActivity.class);
-        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+    public void sendNotificationForDiscussion(String postKey, String body, String title){
+        NotificationObject notif = insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey, title);
+        Intent intent;
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
+
+        String notificationString = sharedPreferences.getString(discussionNotif, "");
+        if(!notificationString.equals("")){
+            String bigText = notificationString + "\n" + body;
+            body = bigText.split("\n").length + " discussion activity.";
+            title = "Safety First";
+            intent = new Intent(this, NotificationActivity.class);
+            notificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(bigText));
+            editor.putString(discussionNotif, bigText);
+        } else {
+            intent = new Intent(this, PostDetailActivity.class);
+            intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+            editor.putString(discussionNotif, body);
+        }
+        editor.apply();
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
+        notificationBuilder.setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)
@@ -112,9 +131,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        int notificationNumber = (new Random()).nextInt(4325);
-        notificationManager.notify(notificationNumber, notificationBuilder.build());
-        notif = insertInDatabase(body, NotificationObject.COMMENT_ON_POST, postKey, title);
+        notificationManager.notify(4325, notificationBuilder.build());
     }
 
     public Bitmap getBitmap(String urlString) {
